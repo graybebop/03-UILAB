@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome to DashboardPro</title>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <!--[if IE 8]>
+	<link type="text/css" rel="stylesheet" href="css/ie8.css" />
+<![endif]-->
+</head>
+<style>
+    html,
+    body {
+        padding: 30px;
+        background-color: #fff;
+        padding-bottom: 100px;
+    }
+    
+    .box-wrapper {
+        padding: 0px;
+        margin: 20px 0;
+        display: flex;
+        border: 1px solid #ddd;
+    }
+    
+    .box-wrapper-2 {
+        padding: 0px;
+        margin: 20px 0;
+        display: flex;
+        border: 1px solid #ddd;
+        height: 500px;
+        align-content: stretch;
+    }
+    
+    .box-wrapper div {
+        flex: 1;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border: 1px solid #000;
+        padding: 30px;
+        text-align: center;
+    }
+    
+    .box-wrapper-2 div {
+        flex-grow: 1;
+        width: 100px;
+        border: 1px solid #000;
+        padding: 30px;
+        text-align: center;
+    }
+    
+    .box-wrapper-2 div+div {
+        margin: 2%;
+    }
+    
+    .box-wrapper div.box-1 {
+        /* height: 100px;
+        align-self: flex-end;
+        flex: 1; */
+    }
+    
+    .box-wrapper div.box-3 {
+        /* height: 200px;
+        align-self: flex-start; */
+    }
+    
+    .box-wrapper div.box-2 {
+        /* border: 1px solid #000;
+        padding: 10px;
+        text-align: center;
+        flex: 0;
+        width: 600px;
+        min-width: 600px;
+        height: 300px; */
+    }
+</style>
+
+<body class="bgc-white">
+    <div class="ft-30 ft-700 text-black">
+        Stretch all, fixed spacing
+    </div>
+    <div class="box-wrapper">
+        <div class="box-1">A</div>
+        <div class="box-2">B</div>
+        <div class="box-3">C</div>
+
+    </div>
+
+    <div class="box-wrapper-2 mt30">
+        <div class="box-1">A</div>
+        <div class="box-2">B</div>
+        <div class="box-3">C</div>
+        <div class="box-1" style="flex-grow: 2;">D</div>
+        <div class="box-2">E</div>
+    </div>
+</body>
+
+</html>

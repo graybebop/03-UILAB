@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="info">
+            <div class="t1" id="event">11111</div>
+            <div class="t2"></div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    window.addEventListener('load', () => {
+
+        var delay = 300;
+        var timer = null;
+        var count = 0;
+
+        window.addEventListener('resize', function() {
+
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                count++;
+                document.getElementsByClassName('t1')[0].innerHTML = 'window resize event finished' + count;
+
+            }, delay);
+        });
+    })
+
+
+    //jQuery
+    // $(window).on('resize', function() {
+    //     clearTimeout(timer);
+    //     timer = setTimeout(function() {
+    //         console.log('resize event!');
+    //     }, delay);
+    // });
+</script>
+
+</html>

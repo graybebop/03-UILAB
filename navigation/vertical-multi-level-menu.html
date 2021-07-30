@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+<style>
+    .half-degrees {
+        transform: rotate( -90deg);
+    }
+    
+    .w-p-item-area-fir {
+        padding-right: 10px;
+    }
+    
+    .w-p-item-area-fir>li {
+        border-bottom: 1px solid #ddd;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+    .w-p-item-area-fir .txt-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        font-size: 16px;
+        color: #818181;
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+    
+    .w-p-item-area-fir .txt-wrap .ico {
+        width: 20px;
+        height: 20px;
+        color: #818181;
+        text-align: right;
+    }
+    
+    .w-p-item-area-fir .txt-wrap .ico .material-icons {
+        font-size: 30px !important;
+        padding: 0;
+        margin: 0;
+        transition: 0.5s;
+        position: absolute;
+        top: 3px;
+        left: 0;
+    }
+    
+    .w-p-item-area-sec {
+        display: none;
+        border-top: 1px solid #ddd;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .w-p-item-area-sec .w-p-chk-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        padding-left: 30px;
+    }
+    
+    .w-p-item-area-sec .w-p-chk-item:last-child {
+        border-bottom: none;
+    }
+    
+    .w-p-item-area-sec .w-p-chk-item .p-wrap {
+        padding-left: 5px;
+    }
+    
+    .w-p-item-area-sec .w-p-chk-item .s-t-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        font-size: 16px;
+        color: #818181;
+        position: relative;
+        padding-left: 5px;
+    }
+    
+    .w-p-item-area-sec .w-p-chk-item .s-t-wrap .ico {
+        width: 20px;
+        height: 20px;
+        color: #818181;
+        text-align: right;
+    }
+    
+    .w-p-item-area-sec .w-p-chk-item .s-t-wrap .ico .material-icons {
+        font-size: 30px !important;
+        padding: 0;
+        margin: 0;
+        transition: 0.5s;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+    }
+    
+    .w-p-item-area-thd {
+        display: none;
+        border-top: 1px solid #ddd;
+        position: relative;
+        z-index: 1;
+        margin-left: -30px;
+        margin-top: 10px;
+        margin-bottom: -10px;
+    }
+    
+    .w-p-item-area-thd .w-p-chk-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        padding-left: 60px;
+    }
+    
+    .w-p-item-area-thd .w-p-chk-item:last-child {
+        border-bottom: none;
+    }
+    
+    .w-p-item-area-thd .w-p-chk-item .p-wrap {
+        padding-left: 0px;
+    }
+    
+    .w-p-item-area-thd .w-p-chk-item .s-t-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        font-size: 16px;
+        color: #818181;
+        position: relative;
+        padding-left: 5px;
+    }
+    
+    .w-p-item-area-thd .w-p-chk-item .s-t-wrap .ico {
+        width: 20px;
+        height: 20px;
+        color: #818181;
+        text-align: right;
+    }
+    
+    .w-p-item-area-thd .w-p-chk-item .s-t-wrap .ico .material-icons {
+        font-size: 30px !important;
+        padding: 0;
+        margin: 0;
+        transition: 0.5s;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+    }
+    
+    .w-p-chk-item {
+        cursor: pointer;
+    }
+    
+    .w-p-chk-item label {
+        font-size: 16px !important;
+        color: #818181 !important;
+    }
+    
+    .w-p-chk-item label .txt {
+        padding-left: 8px;
+    }
+    
+    .w-p-acc-wrapper {
+        position: relative;
+    }
+</style>
+
+
+<body>
+
+    <div class="w-p-acc-wrapper chk-bx mt20">
+        <!-- First Depth : S -->
+        <ul class="w-p-item-area-fir w-p-item-scroll p-scroll" style="height:384px" id="firItem">
+            <li>
+                <div class="txt-wrap">
+                    <div class="ico"><span class="material-icons">arrow_drop_down</span></div>
+                    <div class="txt">MainMenu-1</div>
+                </div>
+                <!-- Second Depth : S -->
+                <ul class="w-p-item-area-sec" id="secItem">
+                    <li class="w-p-chk-item">
+                        서브메뉴1-1
+                    </li>
+                    <li class="w-p-chk-item">
+                        서브메뉴1-2
+                    </li>
+                    <li class="w-p-chk-item">
+                        <div class="s-t-wrap">
+                            <div class="ico"><span class="material-icons">arrow_drop_down</span></div>
+                            <div class="txt">서브메뉴1-3</div>
+                        </div>
+                        <!-- Third Depth : S -->
+                        <ul class="w-p-item-area-thd">
+
+                            <li class="w-p-chk-item">
+                                서브메뉴1-1
+                            </li>
+                            <li class="w-p-chk-item">
+                                서브메뉴1-2
+                            </li>
+
+                        </ul>
+                        <!-- Third Depth : E -->
+                    </li>
+                </ul>
+                <!-- Second Depth : E -->
+            </li>
+            <li>
+                <div class="txt-wrap">
+                    <div class="ico"><span class="material-icons">arrow_drop_down</span></div>
+                    <div class="txt">MainMenu-1</div>
+                </div>
+                <!-- Second Depth : S -->
+                <ul class="w-p-item-area-sec" id="secItem">
+                    <li class="w-p-chk-item">
+                        서브메뉴1-1
+                    </li>
+                    <li class="w-p-chk-item">
+                        서브메뉴1-2
+                    </li>
+                    <li class="w-p-chk-item">
+                        <div class="s-t-wrap">
+                            <div class="ico"><span class="material-icons">arrow_drop_down</span></div>
+                            <div class="txt">서브메뉴1-3</div>
+                        </div>
+                        <!-- Third Depth : S -->
+                        <ul class="w-p-item-area-thd">
+
+                            <li class="w-p-chk-item">
+                                서브메뉴1-1
+                            </li>
+                            <li class="w-p-chk-item">
+                                서브메뉴1-2
+                            </li>
+
+                        </ul>
+                        <!-- Third Depth : E -->
+                    </li>
+                </ul>
+                <!-- Second Depth : E -->
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+        var current_num;
+        $('#firItem>li>.txt-wrap').on('click', function() {
+            if (!$(this).hasClass('open')) {
+
+                $(this).addClass('open')
+                $(this).parent().children('ul').delay(20).slideDown(200);
+                $(this).find('.material-icons').addClass('half-degrees');
+
+            } else {
+                $(this).removeClass('open')
+                $(this).parent().children('ul').delay(20).slideUp(200);
+                $(this).find('.material-icons').removeClass('half-degrees');
+
+            }
+        })
+        $('#secItem li .s-t-wrap').on('click', function() {
+            if (!$(this).hasClass('open')) {
+                $(this).addClass('open')
+                $(this).parent().children('ul').delay(20).slideDown(200);
+                $(this).find('.material-icons').addClass('half-degrees');
+
+            } else {
+                $(this).removeClass('open')
+                $(this).parent().children('ul').delay(20).slideUp(200);
+                $(this).find('.material-icons').removeClass('half-degrees');
+            }
+        });
+    })
+</script>
+
+</html>

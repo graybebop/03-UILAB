@@ -1,0 +1,54 @@
+.gnb-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    .logo {
+        flex: 40%;
+        a {
+            display: block;
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+    }
+}
+
+
+/* 1단계 메뉴 세팅 */
+
+.gnb {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    &>li {
+        position: relative;
+        display: block;
+        width: 20%;
+        &>a {
+            display: block;
+            padding: 30px 10px;
+            font-weight: 500;
+            text-align: center;
+            border: 0px solid #ddd;
+            &.active {
+                background-color: #f7f7f7;
+            }
+            &:hover {
+                background-color: #f7f7f7;
+            }
+        }
+    }
+}
+
+#header {
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px rgba(68, 68, 68, 0.05); //before
+    //box-shadow: 1px 1px 5px rgba(68, 68, 68, 0.1); //After
+}

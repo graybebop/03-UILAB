@@ -1,0 +1,120 @@
+.tpod-wrapper {
+    position: relative;
+    width: 100%;
+    min-width: 1200px;
+}
+
+.tpod-container {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.tpod-container-fluid {
+    position: relative;
+    margin: 0 auto;
+}
+
+.tpod-page-title {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+// Container Widths
+//
+// Define container widths, these will be applied to the 
+// .container element. Values must be ascending.
+$container-widths: ( mobile: 360px, mobile--large: 480px, tablet: 720px, tablet--large: 960px, desktop: 1160px, );
+// Device break-points
+//
+// Define device break-points. Must start with a breakpoint of 0 &
+// values must be ascending.
+$grid-breakpoints: ( reset: 0, mobile: 424px, mobile--large: 544px, tablet: 784px, tablet--large: 1024px, desktop: 1200px, );
+// Columns
+//
+// Specify amount of columns and the size of the gap.
+$columns: 12;
+$column-gap: 2rem;
+@mixin device-up($name, $breakpoints: $grid-breakpoints) {
+    $min: map-get($breakpoints, $name);
+    @if if(0 !=$min, $min, null) {
+        @media (min-width: $min) {
+            @content;
+        }
+    }
+    @else {
+        @content;
+    }
+}
+
+// Container
+.containers {
+    width: 100%;
+    padding-right: ($column-gap / 2);
+    padding-left: ($column-gap / 2);
+    margin-right: auto;
+    margin-left: auto;
+    @each $breakpoint,
+    $width in $container-widths {
+        @include device-up($breakpoint, $grid-breakpoints) {
+            max-width: $width;
+        }
+    }
+}
+
+// Column wrap
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: ($column-gap / -2);
+    margin-left: ($column-gap / -2);
+}
+
+@mixin build-columns($columns: $columns, $gap: $column-gap, $breakpoints: $grid-breakpoints) {
+    // Set Defaults
+    %defaults {
+        // % is used to create the placeholder
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: ($gap / 2);
+        padding-left: ($gap / 2);
+    }
+    // Loop Breakpoints
+    @each $breakpoint in map-keys($breakpoints) {
+        $min: map-get($breakpoints, $breakpoint);
+        $label: if(if(0 !=$min, $min, null), $breakpoint, 'all');
+        // Extend Defaults
+        .#{$label},
+        .#{$label}-auto {
+            @extend %defaults;
+        }
+        @for $i from 1 through $columns {
+            .#{$label}-#{$i} {
+                @extend %defaults;
+            }
+        }
+        @for $i from 1 through $columns {
+            .#{$label}-#{$i} {
+                flex: 0 0 calc(100% * #{$i} / #{$columns});
+                max-width: calc(100% * #{$i} / #{$columns});
+                @if not ($label=="all" and $i==0) {
+                    &--offset {
+                        $num: $i / $columns;
+                        margin-left: if($num==0, 0, calc(100% * #{$i} / #{$columns}));
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include build-columns();

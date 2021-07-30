@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body id="start">
+    <div>
+        <div>
+            <p><a href="./535">JavaScript Core</a></p>
+            <p><a href="./536">DOM</a></p>
+            <p><a href="./537">BOM</a></p>
+
+            <div>
+                <p><a href="./535">JavaScript Core</a></p>
+                <p><a href="./536">DOM</a></p>
+                <p><a href="./537">BOM</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // var s = document.getElementById('start');
+        // console.log(1, s.firstChild); // #text
+
+        // var ul = s.firstChild.nextSibling
+        // console.log(2, ul); // ul
+        // console.log(3, ul.nextSibling); // #text
+        // console.log(4, ul.nextSibling.nextSibling); // script
+        // console.log(5, ul.childNodes); //text, li, text, li, text, li, text
+        // console.log(6, ul.childNodes[5]); // li(html)
+        // console.log(7, ul.parentNode); // body
+
+        //var type = node.nodeType;
+        console.log(Node.ATTRIBUTE_NODE)
+
+        document.nodeType === Node.DOCUMENT_NODE; // true
+        document.doctype.nodeType === Node.DOCUMENT_TYPE_NODE; // true
+
+        document.createDocumentFragment().nodeType === Node.DOCUMENT_FRAGMENT_NODE; // true
+
+        var p = document.createElement("p");
+        document.getElementsByTagName('body')[0].appendChild(p)
+        p.textContent = "Once upon a time…";
+
+        p.nodeType === Node.ELEMENT_NODE; // true
+        p.firstChild.nodeType === Node.TEXT_NODE; // true
+    </script>
+</body>
+
+</html>

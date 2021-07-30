@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <!-- <script src="../js/common.js"></script> -->
+</head>
+
+<body>
+    <style>
+        .score {
+            font-size: 20px;
+        }
+        
+        .playground>ul {
+            border: 1px solid #000;
+        }
+        
+        .playground>ul>li {
+            width: 100%;
+            height: 25px;
+        }
+        
+        .playground>ul>li>ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+        
+        .playground>ul>li>ul>li {
+            border: 1px solid #ddd;
+            width: 25px;
+            height: 25px;
+        }
+        
+        .tree {
+            background-color: red;
+        }
+    </style>
+    <section class="wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <div class="score">Score : </div>
+                    <div class="playground">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const playground = document.querySelector('.playground>ul');
+        //Settings
+        const GMAE_ROWS = 20;
+        const GAME_COLS = 10;
+        //Variables
+        let score = 0;
+        let duration = 500;
+        let downInterval;
+        let tempMovingItem;
+        const BLOCKS = {
+            tree: [
+                [
+                    [2, 1],
+                    [0, 1],
+                    [1, 0],
+                    [1, 1]
+                ],
+
+            ]
+        };
+        const movingItem = {
+            type: "tree",
+            direction: 0,
+            top: 0,
+            left: 0
+        }
+
+        init();
+
+        function init() {
+            tempMovingItem = {...movingItem
+            };
+
+            for (let i = 0; i < GMAE_ROWS; i++) {
+                prependNewLine();
+            }
+            renderBlocks();
+        }
+
+        function prependNewLine() {
+            const li = document.createElement('li');
+            const ul = document.createElement('ul');
+            for (let j = 0; j < GAME_COLS; j++) {
+                const matrix = document.createElement('li');
+                ul.prepend(matrix);
+            }
+
+            li.prepend(ul);
+            playground.prepend(li)
+        }
+
+        function renderBlocks() {
+            const {
+                type,
+                direction,
+                top,
+                left
+            } = tempMovingItem;
+            const movingBlocks = document.querySelectorAll('.moving');
+            movingBlocks.forEach(moving => {
+                moving.classList.remove(type, "moving");
+            });
+
+            BLOCKS[type][direction].forEach(block => {
+                const x = block[0] + left;
+                const y = block[1] + top;
+                // const target = playground.childNodes[y].childNodes[0].childNodes[x];
+                const target = playground.childNodes[y] ? playground.childNodes[y].childNodes[0].childNodes[x] : null;
+                const isAvailable = checkEmpty(target);
+                if (isAvailable) {
+                    target.classList.add(type, "moving");
+                } else {
+                    tempMovingItem = {...movingItem
+                    };
+
+                    setTimeout(() => {
+                        renderBlocks();
+                    }, 0); //이벤트 스택에 키보드 스택이 넘치는것을 방지하기 위함이라는데 해보고
+
+
+                }
+
+
+            });
+            movingItem.left = left;
+            movingItem.top = top;
+            movingItem.direction = direction;
+
+        }
+
+        function checkEmpty(target) {
+            if (!target) {
+                console.log(false);
+                return false;
+            }
+
+            return true;
+        }
+
+        function moveBlock(moveType, amount) {
+            tempMovingItem[moveType] += amount;
+            renderBlocks();
+        }
+        //event handler
+
+        document.addEventListener('keydown', e => {
+
+            let key = e.keyCode
+            switch (key) {
+                case 39: //arrow right
+
+                    moveBlock('left', 1);
+                    break;
+                case 37: //arrow left
+
+                    moveBlock('left', -1);
+                    break;
+                case 38: //arrow top
+
+                    moveBlock('top', -1);
+                    break;
+                case 40: //arrow down
+
+                    moveBlock('top', 1);
+                    break;
+                default:
+                    //alert(e.keyCode);
+                    break;
+
+            }
+        })
+    </script>
+</body>
+
+</html>

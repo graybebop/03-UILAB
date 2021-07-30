@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<style>
+    #search-list {
+        margin-bottom: 100px;
+    }
+    
+    #search-list li {
+        line-height: 25px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+    }
+    
+    #search-result .p {
+        display: inline-block;
+    }
+    
+    .input-txt {
+        position: relative;
+    }
+    
+    .deleteBtn {
+        visibility: hidden;
+        position: absolute;
+        top: -8px;
+        margin-left: -10px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .deleteBtn .material-icons-outlined {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<body>
+    <div class="tpod-wrapper py-50">
+        <div class="tpod-container">
+            <div class="tpod-search-wrap">
+                <div class="serach-box location" id="input-location">
+                    <div class="txt-wrap">
+                        <div>위치</div>
+                        <div class="input-txt"><input type="text" name="search" value="" id="search-value" placeholder="어디로 여행 가세요?" autocomplete="off" />
+                            <button class="btn btn-circle btn-sm  deleteBtn"><span class="material-icons-outlined">highlight_off</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="serach-box location">
+                    <div class="txt-wrap">
+                        <div>체크인</div>
+                        <div><input type="text" placeholder="날짜입력" /></div>
+                    </div>
+                </div>
+                <div class="serach-box location">
+                    <div class="txt-wrap">
+                        <div>체크아웃</div>
+                        <div><input type="text" placeholder="날짜입력" /></div>
+                    </div>
+                </div>
+                <div class="serach-box location">
+                    <div class="txt-wrap">
+                        <div>인원</div>
+                        <div><input type="text" placeholder="게스트추가" /></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-danger btn-circle btn-md" id="btnSearch"><span class="material-icons-outlined icon-search">search</span></button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- content : s -->
+    <section class="tpod-wrapper">
+        <div class="tpod-container ">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <div class="search-container">
+                        <h5 id="search-result" class="py-20">검색결과</h5>
+                        <!-- <ul id="search-list"></ul> -->
+                    </div>
+                    <div id="search-result">검색결과 :
+                        <p class="p"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var sliderData = [{
+            title: '베트남에서 가장 큰 도시인 호치민시는 프랑스와 중국의 영향을 많이 받은 곳으로서, 활기찬 시장과 오토바이로 가득한 도로가 유명하지요.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '환상적인 나이트라이프 및 인기 쇼핑가 등이 1군의 대표적인 매력이에요. 이곳을 여행할 계획이라면 벤탄 시장 또는 사이공 스퀘어에 들러보세요.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '딴빈의 매력은 다양한 음식점에 있습니다. 더 많은 것을 경험하고 싶다면 사이공 수퍼보울 또는 호앙반투 공원에 가보는 것도 좋답니다',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '베트남 빈탄의 특별한 매력은 강변 경치에 있습니다. 사이공 강 및 빈홈 중앙 공원 같은 인기 명소도 들러보세요.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, ];
+
+        let searchResults = document.querySelector('#search-result .p');
+        let list = [];
+        let searchValue = document.getElementById('search-value');
+        searchResults.textContent = "흥";
+        searchValue.value = "베트남";
+        //지우기 버튼
+        let btnDelete = document.getElementsByClassName('deleteBtn')[0];
+        btnDelete.addEventListener('click', (e) => {
+            searchValue.value = "";
+        });
+        //위치 텍스트 박스
+        let txtBoxLocation = document.getElementById('input-location');
+        txtBoxLocation.addEventListener('mouseover', (e) => {
+            console.log('aaaa');
+            btnDelete.style.visibility = "visible";
+        });
+        txtBoxLocation.addEventListener('mouseleave', (e) => {
+            console.log('aaaa');
+            btnDelete.style.visibility = "hidden";
+        });
+
+
+
+        function createList(obj) {
+            let ul = document.createElement('ul');
+            let searchContainer = document.getElementsByClassName('search-container')[0];
+            let sliderEle = searchContainer.appendChild(ul);
+            sliderEle.setAttribute('id', 'search-list');
+
+
+            for (let value in obj) {
+
+                let lis = document.createElement('li');
+                sliderEle.appendChild(lis);
+                lis.innerHTML += '<div data-link="' + obj[value].link + '"><span class="mr-10">' + (Number(value) + 1) + ' </span>' + obj[value].title + '</div>';
+                lis.addEventListener('click', (e) => {
+                    // console.log(e.currentTarget.firstChild.getAttribute('data-link'));
+                    location.href = e.currentTarget.firstChild.getAttribute('data-link');
+
+                });
+                list[value] = lis;
+
+            }
+
+
+        }
+        createList(sliderData);
+
+
+        let objects = sliderData;
+        let btnSearch = document.getElementById('btnSearch');
+        // document.addEventListener('keydown', logKey);
+        document.addEventListener('keyup', logKey);
+        let log = document.createElement('div');
+        searchResults.appendChild(log);
+
+
+        function logKey(e) {
+            let searchWords = document.getElementById('search-value').value;
+            // log.textContent += ` ${e.keyCode }`;
+
+            if (e.keyCode == 13) { //엔터먹으면 
+                if (searchValue.textContent !== "") {
+                    alert('검색어를 입력해주세요');
+                } else {
+                    searchValue.textContent = findNested(objects, searchWords);
+                }
+            }
+
+        }
+
+
+        btnSearch.addEventListener('click', (e) => {
+            let searchWords = document.getElementById('search-value').value;
+            console.log('searchWords', searchWords);
+            //searchResults.textContent = queryObject(searchWords, objects);
+            // searchResults.textContent = searchInChild(objects, searchWords);
+
+
+            if (searchValue.textContent !== "") {
+                alert('검색어를 입력해주세요');
+            } else {
+                searchValue.textContent = findNested(objects, searchWords);
+            }
+        });
+
+
+
+        function searchInChild(objects, toSearch) {
+            var _finded = false;
+            for (var i = 0; i < objects.length; i++) {
+                for (key in objects[i]) {
+                    if (objects[i][key] != null && typeof(objects[i][key]) != "boolean" && typeof(objects[i][key]) != "number") {
+                        if (typeof objects[i][key] == 'object') {
+                            _finded = searchInChild(objects[i][key], toSearch);
+
+                        } else if (objects[i][key].indexOf(toSearch) != -1) {
+                            _finded = true;
+                        }
+                    }
+                }
+            }
+            return _finded;
+        }
+
+        function findNested(objects, toSearch) {
+
+            var _results = [];
+            for (var i = 0; i < objects.length; i++) {
+                for (key in objects[i]) {
+                    if (objects[i][key] != null && typeof(objects[i][key]) != "boolean" && typeof(objects[i][key]) != "number") {
+                        if (typeof objects[i][key] == 'object') {
+                            if (searchInChild(objects[i][key], toSearch)) {
+                                _results.push(objects[i]);
+                            }
+                        } else if (objects[i][key].indexOf(toSearch) != -1) {
+                            _results.push(objects[i]);
+                        }
+                    }
+                }
+            }
+
+            //return _results;
+            // let matches = [];
+            // let regexp = new RegExp(toSearch, 'g');
+            // _results.forEach((post) => {
+            //     if (post["title"].match(regexp)) matches.push(post);
+            // });
+
+            sliderData = _results;
+
+            $('#search-list').remove();
+            createList(_results);
+            console.log('aaaa : ', _results);
+
+        }
+        //let regexp = new RegExp(searchedWord, 'g');
+    </script>
+</body>
+
+</html>

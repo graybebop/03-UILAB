@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <style>
+        .wrapper {
+            padding: 50px;
+        }
+        
+        .box-wrapper {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .boxs {
+            position: relative;
+            width: 25%;
+            height: 200px;
+            border: 1px solid #ddd;
+            margin: 20px;
+        }
+        /* 라인 에니메인션을 위해 상, 하, 좌, 우 세팅으로 pseudo 클래스셀럭터 이용 */
+        /* 보더 에니메이션을 위한 세로 세팅 */
+        
+        .boxs.effects-1 .border-vertical {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 1;
+        }
+        
+        .boxs.effects-1 .border-vertical:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            background-color: #000;
+            height: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-1 .border-vertical:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #000;
+            height: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-1:hover .border-vertical:before,
+        .boxs.effects-1:hover .border-vertical:after {
+            height: 100%;
+        }
+        /* 보더 에니메이션을 위한 가로 세팅 */
+        
+        .boxs.effects-1 .border-horizon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 1;
+        }
+        
+        .boxs.effects-1 .border-horizon:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            background-color: #000;
+            height: 0;
+            width: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-1 .border-horizon:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #000;
+            height: 1px;
+            width: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-1:hover .border-horizon:before,
+        .boxs.effects-1:hover .border-horizon:after {
+            width: 100%;
+            height: 1px;
+        }
+        /* Line 2 이펙트 */
+        
+        .boxs.effects-2 .border-vertical {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 1;
+        }
+        
+        .boxs.effects-2 .border-vertical:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            height: 1px;
+            background-color: #000;
+            height: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-2 .border-vertical:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #000;
+            height: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-2:hover .border-vertical:before,
+        .boxs.effects-2:hover .border-vertical:after {
+            height: 100%;
+            width: 100%;
+        }
+        /* 보더 에니메이션을 위한 가로 세팅 */
+        
+        .boxs.effects-2 .border-horizon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 1;
+        }
+        
+        .boxs.effects-2 .border-horizon:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            background-color: #000;
+            height: 0;
+            width: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-2 .border-horizon:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #000;
+            height: 1px;
+            width: 0;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-2:hover .border-horizon:before,
+        .boxs.effects-2:hover .border-horizon:after {
+            width: 100%;
+            height: 1px;
+        }
+        /* Line 3 이펙트 */
+        
+        .boxs.effects-3 .border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            border: 0;
+            z-index: 1;
+        }
+        
+        .boxs.effects-3 .border-top:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #000;
+            transition: 0.5s;
+        }
+        
+        .boxs.effects-3:hover .border-top:before {
+            width: 100%;
+        }
+        
+        .boxs.effects-3 .border-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 1;
+        }
+        
+        .boxs.effects-3 .border-left:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #000;
+            transition: 0.5s;
+            /* animation-name: borderLeft;
+            animation-duration: 3s; */
+            /* animation-delay: 3s; */
+        }
+        
+        .boxs.effects-3:hover .border-left:before {
+            width: 1px;
+            height: 100%;
+        }
+        
+        @keyframes borderLeft {
+            0% {
+                height: 50%;
+            }
+            100% {
+                height: 100%;
+            }
+        }
+    </style>
+    <div class="wrapper">
+        <div class="box-wrapper">
+            <div class="boxs effects-1">
+                <span class="border-horizon"></span>
+                <span class="border-vertical"></span>
+            </div>
+            <div class="boxs effects-2">
+                <span class="border-horizon"></span>
+                <span class="border-vertical"></span>
+            </div>
+            <div class="boxs effects-3">
+                <span class="border-left"></span>
+                <span class="border-right"></span>
+                <span class="border-top"></span>
+                <span class="border-bottom"></span>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

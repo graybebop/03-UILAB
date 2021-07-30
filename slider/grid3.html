@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 20px;
+        position: relative;
+    }
+    
+    .grid-list {
+        border: 0px solid #ddd;
+    }
+    
+    .grid-list .items {
+        margin: 0;
+        border: 1px solid #000;
+        width: 25%;
+        height: 250px;
+        color: #000;
+        font-size: 12px;
+        /* margin-left: -2px; */
+        box-sizing: border-box;
+        /*변칙적인 계산 */
+        background-color: white;
+        border-collapse: collapse;
+    }
+    
+    #calc {
+        z-index: 10;
+        position: fixed;
+        bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    @media(max-width:760px) {
+        .wrapper {
+            padding: 10px;
+        }
+    }
+</style>
+
+<body>
+
+    <section class="wrapper">
+
+        <ul class="grid-list"></ul>
+
+    </section>
+
+    <script>
+        $(document).ready(function() {
+
+            const container = document.getElementsByClassName('grid-list')[0];
+            const containerWidth = document.getElementsByClassName('grid-list')[0].clientWidth;
+            //const items = document.querySelectorAll('.grid-list .items'); //현재 정보
+
+            //전체길이 = 각크기*가로개수
+            //totalWidth = eachWidth * itemRowNum;
+            //가로개수 = 전체길이/각크기
+            //itemNum = totalWidth / eachWidth;
+            //각크기 - 전체길이/가로개수
+            let items = [];
+            let totalWidth = 100;
+            let itemRowNum = 8;
+            let itemTotal = 100;
+            let borderNum = (itemRowNum - 6) * 2;
+            let eachWidth = (totalWidth / itemRowNum);
+
+            console.log('1. totalWidth : ', totalWidth);
+            console.log('1. eachWidth : ', eachWidth);
+            let sum = 0;
+            //let itemNum = Math.ceil(totalWidth / eachWidth);
+
+            console.log(borderNum)
+
+            function createItems() {
+
+
+                for (i = 0; i < itemTotal; i++) {
+                    items[i] = document.createElement('li');
+                    container.appendChild(items[i]);
+                    items[i].setAttribute('class', 'items');
+                    //items[i].style.width = 'calc(' + eachWidth + '% - ' + borderNum + 'px)';
+                    items[i].style.width = 'calc(' + eachWidth.toPrecision(5) + '%)';
+                    items[i].textContent = i;
+                }
+
+                // getSum(items);
+            }
+            createItems();
+            // function getSum(prop) {
+            //     prop.forEach(async function(t, i) {
+            //         t.style.width = eachWidth + 'px';
+            //         t.innerHTML = i;
+
+
+            //         if (i < itemRowNum) {
+            //             sum = sum + eachWidth;
+            //             // totalWidth = sum;
+
+            //             if (i == itemRowNum - 1) {
+            //                 totalWidth = sum;
+
+            //                 eachWidth = (totalWidth / itemRowNum) - borderNum;
+            //                 console.log('2. totalWidth : ', totalWidth);
+            //                 console.log('2. eachWidth : ', eachWidth);
+
+            //             }
+
+            //         }
+
+            //     })
+
+            //     reArrange(eachWidth);
+            //     return sum;
+            // }
+
+
+            // function reArrange(eachWidth) {
+            //     let itemsProps = window.getComputedStyle(items[0]);
+            //     let itemsLeftBorder = Number(itemsProps.borderLeftWidth);
+            //     let itemsRightBorder = Number(itemsProps.borderRightWidth);
+            //     let itemBorder = itemsLeftBorder + itemsRightBorder;
+            //     console.log("itemBorder", itemBorder);
+            //     for (i = 0; i < itemTotal; i++) {
+
+            //         items[i].style.width = (eachWidth - itemBorder) + 'px';
+            //         console.log(i, ':', eachWidth)
+            //     }
+
+            //     // console.log(eachWidth);
+            // }
+
+            // createItems();
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>

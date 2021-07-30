@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <style>
+        .wrapper {
+            position: relative;
+            width: 100%;
+            min-width: 100%;
+            margin: 50px 0;
+        }
+        
+        .show {
+            display: block !important;
+        }
+        
+        .hide {
+            display: none !important;
+        }
+    </style>
+
+    <div class="wrapper">
+        <ul class="gnb" id="gnb">
+            <li class="m-1"><a href="#none">대메뉴-1</a>
+                <ul>
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul>
+                            <li><a href="#none">서브메뉴-2-1</a>
+                                <ul>
+                                    <li><a href="#none">서브메뉴-4-1</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a>
+                                <ul>
+                                    <li><a href="#none">서브메뉴-3-1</a>
+                                        <ul>
+                                            <li><a href="#none">서브메뉴-4-1</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#none">서브메뉴-3-2</a></li>
+                                    <li><a href="#none">서브메뉴-3-3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="m-2"><a href="#none">대메뉴-2</a></li>
+            <li class="m-1"><a href="#none">대메뉴-3</a>
+                <ul>
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul>
+                            <li><a href="#none">서브메뉴-2-1</a>
+                                <ul>
+                                    <li><a href="#none">서브메뉴-4-1</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a>
+                                <ul>
+                                    <li><a href="#none">서브메뉴-3-1</a>
+                                        <ul>
+                                            <li><a href="#none">서브메뉴-4-1</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#none">서브메뉴-3-2</a></li>
+                                    <li><a href="#none">서브메뉴-3-3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="m-1"><a href="#none">대메뉴-4</a>
+                <ul>
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul>
+                            <li><a href="#none">서브메뉴-2-1</a>
+                                <ul>
+                                    <li><a href="#none">서브메뉴-4-1</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a>
+                                <ul>
+                                    <li><a href="#none">서브메뉴-3-1</a>
+                                        <ul>
+                                            <li><a href="#none">서브메뉴-4-1</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#none">서브메뉴-3-2</a></li>
+                                    <li><a href="#none">서브메뉴-3-3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        const depth = []; //각 1개의 메뉴를 배열에 저장
+        const gnb = document.getElementById("gnb");
+        const mainMenu = gnb.children; //1단계  li 만 기져온다.
+        const subUL = []; //각 메인메뉴의 서브메뉴를 담기위한 배열
+        const subLI = gnb.querySelectorAll('li'); //All Li
+        const subLIinUL = gnb.querySelector('#gnb>li>ul'); //All Li of ul
+        const link = gnb.querySelectorAll('#gnb li a'); //All link
+        const checkDepth = [];
+
+        //1단계 각 메뉴를 init한다
+        //각 li 밑에 ul의 단계를 체크한다.
+        // ul of Depth+1, ul of depth+2,...... ul of Depth+N 만든 후 각 ul의 length를 구한후 저장한다.
+        for (let i = 0; i < mainMenu.length; i++) {
+            subUL.push(mainMenu[i].querySelectorAll('ul'));
+            subUL[i].forEach(function(sub, key, parent) {
+                let eachUL = [];
+                eachUL[key] = sub;
+                eachUL[key].parentNode.setAttribute('class', 'has-children');
+                eachUL[key].parentNode.firstChild.classList.add('arrow-right');
+
+                //let boxgetBound = eachUL[key].getBoundingClientRect();
+                if (eachUL[key].localName == "ul") {
+                    eachUL[key].setAttribute('class', 'depth-' + (key + 2));
+
+                }
+
+            });
+        }
+
+        //모든 LI에 mouseover 이벤트를 만든다.
+        subLI.forEach(function(lis, key, parent) {
+            let eachLI = [];
+            eachLI[key] = lis;
+            eachLI[key].addEventListener('mouseover', e => {
+                this.mouseOverEventHandler(e);
+            });
+
+            eachLI[key].addEventListener('mouseleave', e => {
+                this.mouseLeaveEventHandler(e);
+            });
+        });
+
+
+        function checkSubMenu(node) {
+            node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+            node.forEach(function(sub, key, parent) {
+                if (parent[key].localName == "ul") {
+                    parent[key].style.display = "block";
+                    let width = getBoundWidth(parent[key]).width;
+                    let height = getBoundWidth(parent[key]).height;
+                    // parent[key].style.left = 0 + "px";
+                    // parent[key].style.top = 0 + "px";
+                    // console.log(height)
+                    // parent[key].style.zIndex = getZindex(parent[key]);
+
+                } else {
+                    return false;
+                }
+
+            });
+        }
+
+        function hideMenu(node) {
+            node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+            node.forEach(function(sub, key, parent) {
+                if (parent[key].localName == "ul") {
+                    parent[key].style.display = "none";
+                } else {
+                    return false;
+                }
+
+            });
+        }
+
+        function getBoundWidth(ele) {
+            return ele.getBoundingClientRect();
+
+        }
+
+        function getZindex(ele) {
+            let i = 0;
+            i++;
+            let obj = window.getComputedStyle(ele);
+            return parseInt(obj.zIndex) + i;
+
+        }
+
+        //마우스오버 이벤트를 만들어 해당 노드 아래에 서브메뉴 즉 ul이 있는지를 체크한다.
+        function mouseOverEventHandler(e) {
+            const mn = e.currentTarget; //1단계메뉴 li
+            const submn = e.currentTarget.children;
+
+            checkSubMenu(mn.childNodes);
+        }
+
+        function mouseLeaveEventHandler(e) {
+            const mn = e.currentTarget; //1단계메뉴 li
+            const submn = e.currentTarget.children;
+            // let stout = setTimeout(e => {
+            //     hideMenu(mn.childNodes);
+            // }, 1000);
+            hideMenu(mn.childNodes);
+        }
+
+
+        //메뉴에 서브메뉴가 있는지를 체크해서 화살표 클래스를 추가한다.
+    </script>
+
+</body>
+
+</html>

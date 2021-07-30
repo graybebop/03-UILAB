@@ -1,0 +1,31 @@
+.banners-contents {
+    padding: 0 15px;
+}
+
+.banners {
+    position: relative;
+}
+
+.banners-text {
+    // display flex 인상태에서는 자식 클래스는 fix width를 정하기 힘들기 때문에 아래와 같이
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        flex: 0 0 50px;
+    }
+    .txt {
+        word-break: break-all;
+        flex: 1;
+        font-weight: 300;
+        line-height: 1.2rem;
+    }
+}
+
+.banner-action {
+    text-align: right;
+}

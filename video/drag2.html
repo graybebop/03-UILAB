@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<style>
+    .wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    
+    #my_video {
+        border: 1px solid #000;
+        height: 500px !important;
+    }
+    
+    .video-wrapper {
+        position: relative;
+        width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .timer {
+        border: 1px solid #ddd;
+    }
+    
+    .timerbar .bar {
+        width: 100%;
+        height: 10px;
+        background-color: #ff6600;
+        border: 1px solid #ddd;
+    }
+    
+    .rwd.active {
+        background-color: #ff5500;
+    }
+    
+    .fwd.active {
+        background-color: #ff5500;
+    }
+</style>
+
+<body>
+
+    <section class="wrapper">
+        <div class="video-wrapper">
+            <!-- controls(조절판), autoplay(자동플레이) -->
+            <video src="top-gun.mp4" poster="topgun-poster.jpg" width="650" height="400" id="my_video">
+
+            Sorry, your browser doesn't support embedded videos,
+            but don't worry, you can <a href="https://archive.org/details/BigBuckBunny_124">download it</a>
+            and watch it with your favorite video player!
+
+            </video>
+            <div id="video_controls_bar">
+                <button class="play btn btn-sm btn-dark">play</button>
+                <button class="stop btn btn-sm btn-danger">stop</button>
+                <button class="pause btn btn-sm btn-warning">pause</button>
+
+                <button class="rwd btn btn-sm btn-secondary">rewind</button>
+                <button class="fwd btn btn-sm btn-secondary">fast wind</button>
+            </div>
+            <div class="timerWrapper">
+                <div class="timer"><span>000</span></div>
+                <div class="timerbar">
+                    <div class="bar"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <style>
+        .sliderWrapper {
+            width: 600px;
+            position: relative;
+            height: 10px;
+            top: 100px;
+            left: 10px;
+        }
+        
+        .sliderInner {
+            border: 1px solid #000;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .sliderBar {
+            background-color: #ff5500;
+            width: 50%;
+        }
+        
+        .sliderInner .controller {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+        }
+    </style>
+    <div class="sliderWrapper">
+        <div class="sliderInner">
+            <div class="sliderBar">100%</div>
+            <div class="controller" id="con"></div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', e => {
+            // let drag = false;
+
+            // document.addEventListener('mousedown', () => drag = false);
+            // document.addEventListener('mousemove', () => drag = true);
+            // document.addEventListener('mouseup', () => console.log(drag ? 'drag' : 'click'));
+            //range slider
+            let drag = false;
+            const rangeSlider = document.querySelector('.sliderInner .controller');
+
+            document.addEventListener('drag', rangeSliderFunc, false);
+            document.addEventListener('dragstart', rangeSliderFunc);
+            document.addEventListener('dragend', rangeSliderFunc);
+            document.addEventListener('dragover', rangeSliderFunc);
+            document.addEventListener('dragenter', rangeSliderFunc);
+            document.addEventListener('dragleave', rangeSliderFunc);
+
+            //rangeSlider.addEventListener('mouseup', rangeSliderFunc);
+            // rangeSlider.addEventListener('dragover', rangeSliderFunc);
+
+            function rangeSliderFunc(e) {
+                let tpe = e.type;
+                let ele = e.target;
+                var dragX = e.pageX,
+                    dragY = e.pageY;
+
+                ele.style.left = dragX + 'px';
+                console.log(dragX);
+
+
+
+                switch (e.type) {
+                    case 'drag':
+                        console.log('drag');
+
+                        break;
+                    case 'dragstart':
+                        console.log('dragstart');
+                        e.dataTransfer.setData('text/plain', null)
+                        break;
+                    case 'dragend':
+                        console.log('dragend');
+                        break;
+                    case 'dragover':
+                        console.log('dragover');
+                        break;
+                    case 'dragenter':
+                        console.log('dragenter');
+                        break;
+                    case 'dragleave':
+                        console.log('dragleave');
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+
+            //Setup Control bar
+            const media = document.querySelector('#my_video');
+            const play = document.querySelector('.play');
+            const pause = document.querySelector('.pause');
+            const stop = document.querySelector('.stop');
+            const rwd = document.querySelector('.rwd');
+            const fwd = document.querySelector('.fwd');
+
+            const timerWrapper = document.querySelector('.timer');
+            const timer = document.querySelector('.timer span');
+            const timerBar = document.querySelector('.timerbar .bar');
+
+            var vid_duration = Math.round(media.duration);
+
+            let intervalFwd;
+            let intervalRwd;
+
+
+            function playpause(e) {
+                let target = e.currentTarget;
+
+                if (target.textContent == 'play') {
+                    media.play();
+                    clearInterval(intervalFwd);
+                } else if (target.textContent == 'pause') {
+                    media.pause();
+                    clearInterval(intervalFwd);
+                }
+            }
+
+
+
+
+            function windBackward() {
+                if (media.currentTime <= 3) {
+                    rwd.classList.remove('active');
+                    clearInterval(intervalRwd);
+                    stopMedia();
+                } else {
+                    media.currentTime -= 3;
+                }
+            }
+
+            function windForward() {
+                if (media.currentTime >= media.duration - 3) {
+                    fwd.classList.remove('active');
+                    clearInterval(intervalFwd);
+                    stopMedia();
+                } else {
+                    media.currentTime += 3;
+                }
+            }
+
+            function mediaBackward() {
+                clearInterval(intervalFwd);
+                fwd.classList.remove('active');
+
+                if (rwd.classList.contains('active')) {
+                    rwd.classList.remove('active');
+                    clearInterval(intervalRwd);
+                    media.play();
+                } else {
+                    rwd.classList.add('active');
+                    media.pause();
+                    intervalRwd = setInterval(windBackward, 200);
+                }
+            }
+
+            function mediaForward() {
+                clearInterval(intervalRwd);
+                rwd.classList.remove('active');
+
+                if (fwd.classList.contains('active')) {
+                    fwd.classList.remove('active');
+                    clearInterval(intervalFwd);
+                    media.play();
+                } else {
+                    fwd.classList.add('active');
+                    media.pause();
+                    intervalFwd = setInterval(windForward, 200);
+                }
+            }
+
+
+            function stopMedia() {
+                clearInterval(intervalRwd);
+                media.pause();
+                media.currentTime = 0;
+                play.setAttribute('data-icon', 'P');
+            }
+
+            function setTime() {
+
+
+                let minutes = Math.floor(media.currentTime / 60);
+                let seconds = Math.floor(media.currentTime - minutes * 60);
+                let minuteValue;
+                let secondValue;
+
+                //console.log(console.log("Video duration minutes: " + minutes));
+                //console.log(console.log("Video duration seconds: " + seconds));
+
+                if (minutes < 10) {
+                    minuteValue = '0' + minutes;
+                } else {
+                    minuteValue = minutes;
+                }
+
+                if (seconds < 10) {
+                    secondValue = '0' + seconds;
+                } else {
+                    secondValue = seconds;
+                }
+
+                let mediaTime = minuteValue + ':' + secondValue;
+                timer.textContent = mediaTime;
+
+                let barLength = timerWrapper.clientWidth * (media.currentTime / media.duration);
+                timerBar.style.width = barLength + 'px';
+
+
+            }
+            rwd.addEventListener('click', mediaBackward);
+            fwd.addEventListener('click', mediaForward);
+            stop.addEventListener('click', stopMedia);
+            pause.addEventListener('click', playpause);
+            play.addEventListener('click', playpause);
+            media.addEventListener('timeupdate', setTime);
+
+        });
+    </script>
+
+</body>
+
+</html>

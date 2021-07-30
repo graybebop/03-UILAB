@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 10px 50px;
+        position: relative;
+    }
+    
+    .grid-list {
+        border: 0px solid #ddd;
+    }
+    
+    #calc {
+        z-index: 10;
+        position: fixed;
+        bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    @media(max-width:760px) {
+        .wrapper {
+            padding: 10px;
+        }
+    }
+</style>
+
+<body>
+
+    <section class="wrapper">
+        <h5 class="pt-50 pb-20">전체리스트</h5>
+
+        <ul class="grid-list">
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/1.jpg');">
+                    <button class="btn btn-circle btn-sm like"><span class="material-icons-outlined">favorite_border</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/2.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/3.jpg');">
+                    <button class="btn btn-circle btn-sm like"><span class="material-icons-outlined">favorite_border</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/4.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/5.jpg');">
+                    <button class="btn btn-circle btn-sm like"><span class="material-icons-outlined">favorite_border</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/6.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/7.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/8.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/9.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/10.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/11.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/12.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/13.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/14.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/15.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+            <li data-link="#none" class="t-card items">
+                <div class="t-card_thumb" style="background-image: url('images/16.jpg');">
+                    <button class="btn btn-circle btn-sm like active"><span class="material-icons-outlined">favorite</span></button>
+                </div>
+                <div class="t-card__title"><span class="badge badge-sm badge-red">New</span>단독소형주택1F/영도태종대/3Room/실물깡패/마당있는집/주택감성/흰여울마을/부산역</div>
+                <div class="t-card__subtitle">주택 전체</div>
+            </li>
+        </ul>
+
+    </section>
+    <div class="window-width" style="position:fixed; bottom:10px; left:10px; border:1px solid #000; background-color: #fff; padding:5px 10px;"><span></span></div>
+
+    <script>
+        $(document).ready(function() {
+
+
+
+            let www = null;
+
+
+            const w_w = document.querySelectorAll('.window-width span')[0]; //현재 정보
+            const items = document.querySelectorAll('.grid-list .items'); //현재 정보
+            var container_flex_width = document.getElementsByClassName('grid-list')[0].clientWidth;
+            w_w.innerHTML = container_flex_width;
+            w_w.parentNode.style.display = "none";
+            const breakPoint = {
+                'col-xs': 250,
+                'col-sm': 760,
+                'col-md': 1024,
+                'col-lg': 1200,
+                'col-xl': 1650,
+            };
+
+
+            resizeHandler();
+
+
+            function getSum(prop) {
+                //합계구하기
+                prop.forEach(async function(t, i) {
+                    sum = sum + t;
+                })
+                return sum;
+            }
+
+
+            function getItemsWidth(n) {
+
+                let itemsProps = window.getComputedStyle(document.getElementsByClassName('items')[0]);
+
+                let itemsPadRight = parseInt(itemsProps.paddingRight);
+                let itemsPadLeft = parseInt(itemsProps.paddingLeft);
+                let itemsMarginRight = parseInt(itemsProps.marginRight);
+                let itemsMarginLeft = parseInt(itemsProps.marginLeft);
+                let border = n * 2;
+                let itemsCol = n;
+                let itemsRow = 100 / itemsCol;
+                let itemsTotal = itemsPadRight + itemsPadLeft + itemsMarginRight + itemsMarginLeft + border;
+
+                let itemsSpace = 'calc(' + itemsRow + '% - ' + itemsTotal + 'px )';
+                w_w.innerHTML = document.getElementsByClassName('grid-list')[0].clientWidth;
+                let i = 0;
+
+
+                let rowWidth = 0;
+                let itemsWidth = [];
+
+                let lastWidth = null;
+
+                for (var item of items) {
+
+                    item.style.width = itemsSpace;
+                    if (i < n) {
+                        itemsWidth[i] = item.clientWidth;
+                        rowWidth = rowWidth + itemsWidth[i];
+                        if (i == n - 1) {
+
+                            lastWidth = (rowWidth / n) + (border - 2);
+                        }
+                        i++;
+                    }
+
+                    reArrange(items, lastWidth);
+                }
+
+
+            }
+
+            function reArrange(ttt, width) {
+                let length = ttt.length;
+                for (var i = 0; i < length; i++) {
+                    ttt[i].style.width = 'calc(' + width + 'px)';
+                }
+            }
+
+            window.addEventListener('resize', resizeHandler);
+
+            function resizeHandler() {
+
+                var w_w_width = www = window.innerWidth;
+
+                if (breakPoint['col-xs'] <= w_w_width && breakPoint['col-sm'] >= w_w_width) {
+                    itemsCol = 1;
+                    getItemsWidth(itemsCol);
+                    console.log('itemsCol', itemsCol);
+                }
+
+                if (breakPoint['col-sm'] <= w_w_width && breakPoint['col-md'] >= w_w_width) {
+                    itemsCol = 2;
+                    getItemsWidth(itemsCol);
+
+                    console.log('itemsCol', itemsCol)
+                }
+                if (breakPoint['col-md'] <= w_w_width && breakPoint['col-lg'] >= w_w_width) { //1024보다 크고  1170보다 작음
+                    itemsCol = 3;
+                    getItemsWidth(itemsCol);
+                    console.log('itemsCol', itemsCol);
+                }
+                if (breakPoint['col-lg'] <= w_w_width && breakPoint['col-xl'] >= w_w_width) {
+                    itemsCol = 4;
+                    getItemsWidth(itemsCol);
+                    console.log('itemsCol', itemsCol);
+                }
+                if (breakPoint['col-xl'] < w_w_width) {
+                    itemsCol = 5;
+                    getItemsWidth(itemsCol);
+                    console.log('itemsCol', itemsCol);
+                }
+            }
+
+        })
+    </script>
+
+
+
+</body>
+
+</html>

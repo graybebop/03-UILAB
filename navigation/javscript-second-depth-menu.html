@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Header : S -->
+
+    <body>
+        <!-- Header : S -->
+        <style>
+            html,
+            body {
+                padding: 30px;
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+            
+            .wrapper {
+                position: relative;
+                width: 1000px;
+                min-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .content h1 {
+                font-size: 30px;
+                font-weight: 500;
+                color: #333;
+            }
+            
+            .gnb {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                margin-top: 30px;
+            }
+            
+            .gnb>li {
+                display: block;
+                margin: 0 10px;
+                border: 1px solid #000;
+                position: relative;
+            }
+            
+            .gnb li:first-child {
+                margin-left: 0;
+            }
+            
+            .gnb>li>a {
+                position: relative;
+                padding: 15px 30px;
+                display: block;
+            }
+            
+            .gnb>li>a:hover {
+                background-color: #000;
+                color: #fff !important;
+            }
+            
+            .gnb>li>a.active {
+                background-color: #000;
+                color: #fff !important;
+            }
+            
+            .gnb>li>ul {
+                position: absolute;
+                top: inherit;
+                left: inherit;
+                margin-top: 1px;
+                display: none;
+                width: 100%;
+                border: 1px solid #ddd;
+            }
+            
+            .gnb>li>ul>li {
+                display: block;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .gnb>li>ul>li:last-child {
+                border-bottom: none;
+            }
+            
+            .gnb>li>ul>li>a {
+                position: relative;
+                padding: 20px 20px;
+                display: block;
+                background: #fff;
+            }
+            
+            .gnb>li>ul>li>a:hover {
+                background: #fafafa;
+            }
+            
+            .gnb>li:hover>ul {
+                display: block;
+            }
+            
+            .content .exp .t-1 {
+                font-size: 16px;
+                font-weight: 400;
+                color: #999;
+                margin-top: 20px;
+            }
+            
+            .content .exp .t-2 {
+                font-size: 14px;
+                font-weight: 400;
+                color: #333;
+                line-height: 22px;
+            }
+        </style>
+        <div class="wrapper content" id="gnb">
+            <h1>자바스크립트를활용한2단메뉴</h1>
+            <div class="exp">
+                <p class="t-1">설명 : </p>
+                <p class="t-2">gnb>li:hover>ul 을 활용해서 단순히 하단 ul 보였다 숨겼다함. active 클래스를 활용해서 현재 문서의 위치 메뉴명으로 이동</p>
+            </div>
+            <ul class="gnb">
+                <li><a href="#none">대메뉴-1</a>
+                    <ul style="display:none">
+                        <li><a href="#none">서브메뉴-1</a></li>
+                        <li><a href="#none">서브메뉴-2</a></li>
+                        <li><a href="#none">서브메뉴-3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#none">대메뉴-2</a>
+                    <ul style="display:none">
+                        <li><a href="#none">서브메뉴-1</a></li>
+                        <li><a href="#none">서브메뉴-2</a></li>
+                        <li><a href="#none">서브메뉴-3</a></li>
+
+
+                    </ul>
+                </li>
+                <li><a href="#none" class="active">대메뉴-3</a></li>
+                <li><a href="#none">대메뉴-4</a></li>
+                <li><a href="#none">대메뉴-5</a></li>
+                <li><a href="#none">대메뉴-6</a></li>
+                <li><a href="#none">대메뉴-7</a></li>
+                <li><a href="#none">대메뉴-8</a></li>
+
+            </ul>
+
+        </div>
+
+        <script>
+            var pageNum = 3;
+            var mainMenu = document.getElementById('gnb');
+            var mainMenu_ul = mainMenu.getElementsByTagName('ul')[0];
+
+            var mainMenuChildrenLi = mainMenu_ul.children;
+            var openedMenu;
+            var indexNum;
+
+
+
+
+            for (var i = 0; i < mainMenuChildrenLi.length; i++) {
+                mainMenuChildrenLi[i].querySelector('a').addEventListener('click', clickEvent);
+                mainMenuChildrenLi[i].querySelector('a').addEventListener('mouseover', mouseOverEvent);
+                mainMenuChildrenLi[i].addEventListener('mouseleave', mouseLeaveEvents);
+                mainMenuChildrenLi[i].getElementsByTagName('ul');
+
+                mainMenuChildrenLi[i].classList.add('mainmenu-' + (i + 1));
+
+                if (mainMenuChildrenLi[i].querySelector('ul') !== null) {
+                    mainMenuChildrenLi[i].querySelector('ul').style.display = "none";
+                } else if (mainMenuChildrenLi[i].querySelector('ul') == null) {
+                    // console.log('a')
+                }
+
+            }
+
+            function mouseLeaveEvents(e) {
+                var thisElm = mainMenu.getElementsByClassName('mainmenu-' + String(pageNum))[0];
+                // console.log(thisElm.getElementsByTagName('a'));
+                thisElm.getElementsByTagName('a')[0].classList.add('active');
+                var subMenuList = e.target.parentNode.querySelectorAll('ul')[0];
+
+
+                if (typeof(subMenuList) != 'undefined' && subMenuList != null) {
+                    //console.log('Element exists!');
+
+                    // subMenuList.style.display ="block";
+                    for (var q = 0; q < mainMenuChildrenLi.length; q++) {
+
+                        if (mainMenuChildrenLi[q].querySelector('ul') !== null) {
+                            mainMenuChildrenLi[q].querySelector('ul').style.display = "none";
+                        } else if (mainMenuChildrenLi[q].querySelector('ul') == null) {
+                            // console.log('a')
+                        }
+                        // console.log(q)
+                    }
+
+                } else {
+                    //console.log('Element does not exist!');
+                    for (var j = 0; j < mainMenuChildrenLi.length; j++) {
+
+                        if (mainMenuChildrenLi[j].querySelector('ul') !== null) {
+                            mainMenuChildrenLi[j].querySelector('ul').style.display = "none";
+                        } else if (mainMenuChildrenLi[j].querySelector('ul') == null) {
+                            // console.log('a')
+                        }
+                    }
+
+                }
+            }
+
+            function clickEvent(e) {
+
+                var subMenu = e.target.parentNode.querySelector('ul');
+                var str = e.target.parentNode.className;
+
+            }
+
+            function mouseOverEvent(e) {
+
+                var subMenuList = e.target.parentNode.querySelectorAll('ul')[0];
+
+
+
+                if (typeof(subMenuList) != 'undefined' && subMenuList != null) {
+
+                    for (var q = 0; q < mainMenuChildrenLi.length; q++) {
+
+                        if (mainMenuChildrenLi[q].querySelector('ul') !== null) {
+                            mainMenuChildrenLi[q].querySelector('ul').style.display = "none";
+                        } else if (mainMenuChildrenLi[q].querySelector('ul') == null) {
+
+                        }
+
+                    }
+                    subMenuList.style.display = "block";
+                } else {
+                    //console.log('Element does not exist!');
+                    for (var j = 0; j < mainMenuChildrenLi.length; j++) {
+                        console.log(mainMenu.getElementsByClassName('mainmenu-' + (j + 1))[0].firstChild.classList.remove('active'));
+                        if (mainMenuChildrenLi[j].querySelector('ul') !== null) {
+                            mainMenuChildrenLi[j].querySelector('ul').style.display = "none";
+
+                        } else if (mainMenuChildrenLi[j].querySelector('ul') == null) {
+                            // console.log('a')
+                        }
+                    }
+
+                }
+            }
+        </script>
+
+    </body>
+
+</html>

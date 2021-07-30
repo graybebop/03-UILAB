@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+
+<body>
+    <style>
+        input {
+            border: 1px solid #000 !important;
+        }
+    </style>
+
+    <p id="help">Helpful notes will appear here</p>
+    <p>E-mail: <input type="text" id="email" name="email"></p>
+    <p>Name: <input type="text" id="name" name="name"></p>
+    <p>Age: <input type="text" id="age" name="age"></p>
+</body>
+<script>
+    // function showHelp(help) {
+    //     document.getElementById('help').innerHTML = help;
+    // }
+
+    // function setupHelp() {
+    //     var helpText = [{
+    //         'id': 'email',
+    //         'help': 'Your e-mail address'
+    //     }, {
+    //         'id': 'name',
+    //         'help': 'Your full name'
+    //     }, {
+    //         'id': 'age',
+    //         'help': 'Your age (you must be over 16)'
+    //     }];
+
+    //     for (var i = 0; i < helpText.length; i++) {
+    //         var item = helpText[i];
+    //         document.getElementById(item.id).onfocus = function(e) {
+    //             console.log(e.target)
+    //                 // showHelp(item.help);
+    //         }
+    //     }
+    // }
+
+    // setupHelp();
+
+
+    // function showHelp(help) {
+    //     document.getElementById('help').innerHTML = help;
+    // }
+
+    // function makeHelpCallback(help) {
+    //     return function() {
+    //         showHelp(help);
+    //     };
+    // }
+
+    // function setupHelp() {
+    //     var helpText = [{
+    //         'id': 'email',
+    //         'help': 'Your e-mail address'
+    //     }, {
+    //         'id': 'name',
+    //         'help': 'Your full name'
+    //     }, {
+    //         'id': 'age',
+    //         'help': 'Your age (you must be over 16)'
+    //     }];
+
+    //     for (var i = 0; i < helpText.length; i++) {
+    //         var item = helpText[i];
+    //         document.getElementById(item.id).onfocus = makeHelpCallback(item.help);//makeHelpCallback 함수는 각각의 콜백에 새로운 어휘적 환경을 생성한다.
+    //     }
+    // }
+
+    // setupHelp();
+
+
+    function showHelp(help) {
+        document.getElementById('help').innerHTML = help;
+    }
+
+    function setupHelp() {
+        var helpText = [{
+            'id': 'email',
+            'help': 'Your e-mail address'
+        }, {
+            'id': 'name',
+            'help': 'Your full name'
+        }, {
+            'id': 'age',
+            'help': 'Your age (you must be over 16)'
+        }];
+
+        for (var i = 0; i < helpText.length; i++) {
+            (function() {
+                var item = helpText[i];
+
+                document.getElementById(item.id).onfocus = function() {
+                    showHelp(item.help);
+
+                }
+
+
+            })(); // Immediate event listener attachment with the current value of item (preserved until iteration).
+        }
+    }
+
+    setupHelp();
+</script>
+
+</html>

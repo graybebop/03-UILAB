@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 10px 50px;
+        position: relative;
+    }
+    
+    .gallery {
+        position: relative;
+        border: 1px solid #ddd;
+        height: 500px;
+    }
+    
+    .gallery-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        position: relative;
+        height: 500px;
+    }
+    
+    .gallery-wrapper .items {
+        display: flex;
+        text-align: center;
+        height: 500px;
+    }
+    
+    .gallery-wrapper .swiper-slide img {
+        object-fit: cover !important;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <header class="wrapper">
+        <h5 class="pt-20 pb-30">Swiper 기본형</h5>
+
+    </header>
+    <section class="wrapper">
+        <div class="swiper-container  gallery">
+            <div class="gallery-wrapper swiper-wrapper">
+                <div class="swiper-slide items">
+                    <img src="images/td00820019911.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="images/td00820019976.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="images/td00820019988.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="images/td00820019991.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="images/td00820019995.jpg" />
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+    </section>
+    <script>
+        var swiper = new Swiper(".gallery", {
+            observer: true,
+            observeParents: true,
+            watchOverflow: true,
+            simulateTouch: false,
+            freeMode: false,
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            spaceBetween: 0,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+
+
+</body>
+
+</html>

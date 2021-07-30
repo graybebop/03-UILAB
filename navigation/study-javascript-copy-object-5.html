@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<script>
+    // Merge an object
+    let first = {
+        name: 'Tony'
+    };
+    let last = {
+        lastName: 'Stark'
+    };
+    let person = Object.assign(first, last);
+    console.log(person);
+    // {name: 'Tony', lastName: 'Stark'}
+    console.log(first);
+    // first = {name: 'Tony', lastName: 'Stark'} as the target also changed
+
+    // Merge multiple sources
+    let a = Object.assign({
+        foo: 0
+    }, {
+        bar: 1
+    }, {
+        baz: 2
+    });
+    console.log(a);
+    // {foo: 0, bar: 1, baz: 2}
+
+    // Merge and overwrite equal keys
+    let b = Object.assign({
+        foo: 0
+    }, {
+        foo: 1
+    }, {
+        foo: 2
+    });
+    console.log(b);
+    // {foo: 2}
+
+    // Clone an object
+    let obj = {
+        person: 'Thor Odinson'
+    };
+    let clone = Object.assign({}, obj);
+    console.log(clone);
+    // {person: 'Thor Odinson'}
+</script>
+</body>
+
+</html>

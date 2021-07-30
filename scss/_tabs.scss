@@ -1,0 +1,42 @@
+.con-sec {
+    display: none;
+    border: 1px solid #ddd;
+    border-top: 0;
+    font-weight: 300;
+    color: #222;
+    font-size: 16px;
+    line-height: 32px;
+    padding: 15px;
+    margin-top: 0;
+    &.on {
+        display: block;
+    }
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    li {
+        flex: 1;
+        border: 1px solid #ddd;
+        width: 33%;
+        padding: 10px 20px;
+        text-align: center;
+        color: #222;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($primary, 8%);
+            color: #fff;
+        }
+        &.on {
+            background-color: $primary;
+            color: #fff;
+            &:hover {
+                background-color: darken($primary, 8%);
+                color: #fff;
+            }
+        }
+    }
+}

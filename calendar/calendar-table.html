@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    table td span {
+        display: inline-block;
+        background-color: #fff;
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+        border-radius: 50px;
+        line-height: 45px;
+    }
+    
+    .box .active {
+        border: none;
+        background-color: black;
+        color: #fff;
+        border-radius: 50%;
+    }
+    
+    table td span:hover {
+        background-color: #f7f7f7;
+        color: #000;
+    }
+    
+    table td span:active {
+        background-color: #ff5500;
+        color: #fff;
+    }
+    
+    table th {
+        border: 1px solid #999;
+        padding: 20px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    table td span.blue {
+        color: blue;
+    }
+    
+    table td span.blue:active {
+        color: #fff;
+    }
+    
+    table td span.red {
+        color: #ff5500;
+    }
+    
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .calendar {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .calendar-header {
+        font-size: 40px;
+        font-weight: 700;
+        text-align: center;
+        position: relative;
+    }
+    
+    .btn.prev {
+        position: absolute;
+        left: 20px;
+        top: 0;
+    }
+    
+    .btn.next {
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+    
+    .saturday {
+        border: 1px solid blue;
+        color: blue;
+    }
+    
+    .saturday .active {
+        border: none;
+        background-color: blue;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 50%;
+    }
+    
+    .red {
+        border: 1px solid red;
+        /* border-left: 0; */
+        color: red;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .red .active {
+        border: none;
+        background-color: red;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 50%;
+    }
+</style>
+
+
+<body>
+    <div class="wrapper">
+        <div class="calendar">
+            <div class="calendar-header">
+                <div class="year">2021.09.20</div>
+
+                <button type="button" class="prev btn btn-light btn-outlined btn-sm btn-circle"><span class="material-icons-outlined">
+                        chevron_left
+                        </span></button>
+                <button type="button" class="next btn btn-light btn-outlined btn-sm btn-circle"><span class="material-icons-outlined">
+                        navigate_next
+                        </span></button>
+
+            </div>
+            <div class="calendar-body" style="display:block; padding:20px;">
+                <div id="t_hd"></div>
+                <div id="date"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let datewrap = document.getElementById('date');
+    let weekdayhdr = document.getElementById('t_hd');
+    let year = document.getElementsByClassName('year')[0];
+    let date = new Date();
+    let current_year = date.getFullYear(); //current_year
+    let current_month = date.getMonth() + 1;
+    let fixedMonth = current_month;
+    let today = date.getDate();
+    let current_date = date.getDate();
+    let n = current_month; //달은 0부터 시작 그래서 +1 //n = current_month;
+    let d = current_date; //달은 0부터 시작 그래서 +1
+    let colNum = 7;
+    let boxRow = new Array(); //박스를 감싸는 줄 row
+    let boxCol = new Array(); //하나의 박스
+
+    function getFirstDayOfWeek(year, month) {
+        if (month < 10) month = "0" + month;
+        return (new Date(year + "-" + month + "-01").getDay());
+    }
+
+    let a = getFirstDayOfWeek(current_year, current_month + 5);
+
+    //해단년도의 해당월에 모든 일수를 구해오기
+    var getDaysInMonth = function(year, month) {
+        // Here January is 1 based
+        //Day 0 is the last day in the previous month
+        return new Date(year, month, 0).getDate();
+        // Here January is 0 based
+        // return new Date(year, month+1, 0).getDate();
+    };
+
+
+    function createTable(n, k) {
+        year.innerHTML = "";
+        datewrap.innerHTML = "";
+        let num = n;
+        let count = 0;
+
+        //dateBox = y + "." + k + ".";
+
+        document.getElementsByClassName('year')[0].innerHTML = current_year + "." + k + '.' + d;
+
+        let table = document.createElement('table');
+        let dtb = datewrap.appendChild(table);
+        let tr = [];
+        let current_date = [];
+        let first_day_of_week = getFirstDayOfWeek(current_year, current_month);
+        let arr_calendar = [];
+        for (let i = 0; i < first_day_of_week; i++) {
+            arr_calendar.push("");
+            // console.log(arr_calendar.push(""))
+        }
+
+        for (let l = 1; l <= n; l++) {
+            arr_calendar.push(l);
+        }
+
+        let rowNum = Math.ceil((arr_calendar.length) / 7);
+
+        for (var i = 0; i < rowNum; i++) {
+            let boxWrap = document.createElement('tr');
+
+            boxWrap.setAttribute('class', 'boxwrap');
+            boxRow[i] = table.appendChild(boxWrap);
+            for (let j = 1; j <= colNum; j++) {
+                let box = document.createElement("td");
+                count++;
+                boxCol = [j];
+
+                // console.log(arr_calendar)
+                boxCol[j] = boxRow[i].appendChild(box);
+                box.setAttribute('class', 'box');
+                box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+
+                if (j % 9 == 7) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
+                    // boxCol[j].classList.add('saturday');
+                }
+
+                if (j % 9 == 1) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
+                    // box.classList.add('red');
+                }
+
+
+
+                if (arr_calendar[count - 1] !== undefined) {
+                    box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+
+                }
+
+                if (current_month == fixedMonth && today == Number(arr_calendar[count - 1])) {
+
+                    box.querySelector('span').classList.add('active');
+                }
+
+            }
+
+        }
+        checkUndefinedinDate();
+    }
+
+    function checkUndefinedinDate() {
+
+        let undefinedDay = document.querySelectorAll('#date .box');
+        //console.log(undefinedDay)
+        let n = null;
+        for (var udy of undefinedDay) {
+            if (udy.innerText == 'undefined') {
+                udy.innerText = '';
+            }
+
+        }
+    }
+
+    function init() {
+
+        let thismonth = getDaysInMonth(current_year, current_month);
+
+        let prev = document.getElementsByClassName('prev')[0];
+        let next = document.getElementsByClassName('next')[0];
+
+        prev.addEventListener("click", function(e) {
+
+            current_month--;
+            console.log(current_month);
+            createTable(getDaysInMonth(current_year, current_month), current_month);
+            if (current_month < 2) {
+                current_month = 13;
+                current_year--;
+            };
+        });
+        next.addEventListener("click", function(e) {
+
+            current_month++;
+
+            createTable(getDaysInMonth(current_year, current_month), current_month);
+            if (current_month > 12 - 1) {
+                current_month = 0;
+                current_year++;
+            };
+        });
+
+
+        createTable(getDaysInMonth(current_year, n), current_month);
+
+        let weekday = ['일', '월', '화', '수', '목', '금', '토'];
+        let weekhdr = document.createElement('table');
+        let weekhdr_tr = document.createElement('tr');
+        weekdayhdr.appendChild(weekhdr);
+        weekhdr.appendChild(weekhdr_tr);
+
+        for (let i = 0; i < weekday.length; i++) {
+
+            let weekhdr_td = document.createElement('th');
+            weekhdr_tr.appendChild(weekhdr_td);
+            weekhdr_td.innerText = weekday[i];
+        }
+
+    }
+
+    init();
+</script>
+
+</html>

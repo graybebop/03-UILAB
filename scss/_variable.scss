@@ -1,0 +1,41 @@
+$prefix: 'tpod'; //CSS 접두어를 해당회사의 css로 만들때
+$primary-color:#0d6efd;
+$primary-color-hover:#079f9b;
+$font-main-color:#000;
+$font-main-hover-color:#000;
+$font-sub-color:#818181;
+$font-stack: 'Noto Sans KR',
+sans-serif;
+//form border effect color
+$form-input-border-effect-color:$primary-color;
+$primary:#0d6efd;
+$secondary:#6c757d;
+$success:#198754;
+$info:#0dcaf0;
+$warning:#ffc107;
+$danger:#dc3545;
+$light:#f8f9fa;
+$dark:#212529;
+$theme-colors: ( //
+"primary": $primary, //
+"secondary": $secondary, //
+"success": $success, //
+"info": $info, //
+"warning": $warning, //
+"danger": $danger, //
+"light": $light, //
+"dark": $dark //
+) !default;
+$mobile:1024px;
+$mobile-sm:726px;
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin mobile-sm {
+    @media (max-width: $mobile-sm) {
+        @content;
+    }
+}

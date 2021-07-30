@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<style>
+    body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    div {
+        width: 105px;
+        height: 105px;
+        background: #cdf;
+        padding: 5px;
+    }
+</style>
+
+<body>
+    <div>Scale me with your mouse wheel.</div>
+    <script>
+        function zoom(event) {
+            event.preventDefault();
+
+            scale += event.deltaY * -0.01;
+
+            // Restrict scale
+            scale = Math.min(Math.max(.125, scale), 4);
+
+            // Apply scale transform
+            el.style.transform = `scale(${scale})`;
+        }
+
+        let scale = 1;
+        const el = document.querySelector('div');
+        el.onwheel = zoom;
+
+        //el.addEventListener('wheel', zoom);
+    </script>
+</body>
+
+</html>

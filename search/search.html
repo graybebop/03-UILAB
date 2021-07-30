@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<style>
+    #search-list {
+        margin-bottom: 100px;
+    }
+    
+    #search-list li {
+        line-height: 25px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    #search-result .p {
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <div class="tpod-wrapper py-50">
+        <div class="tpod-container">
+            <div class="tpod-search-wrap">
+                <div class="serach-box location ">
+                    <div class="txt-wrap">
+                        <div>위치</div>
+                        <div><input type="text" name="search" value="" id="search-value" placeholder="어디로 여행 가세요?" /></div>
+                    </div>
+                </div>
+                <div class="serach-box location">
+                    <div class="txt-wrap">
+                        <div>체크인</div>
+                        <div><input type="text" placeholder="날짜입력" /></div>
+                    </div>
+                </div>
+                <div class="serach-box location">
+                    <div class="txt-wrap">
+                        <div>체크아웃</div>
+                        <div><input type="text" placeholder="날짜입력" /></div>
+                    </div>
+                </div>
+                <div class="serach-box location">
+                    <div class="txt-wrap">
+                        <div>인원</div>
+                        <div><input type="text" placeholder="게스트추가" /></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-danger btn-circle btn-md" id="btnSearch"><span class="material-icons-outlined icon-search">search</span></button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- content : s -->
+    <section class="tpod-wrapper">
+        <div class="tpod-container ">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <div class="slider-container">
+                        <h5 id="search-result" class="py-20">검색결과</h5>
+                        <ul id="search-list"></ul>
+                    </div>
+                    <div id="search-result">검색결과 :
+                        <p class="p"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var sliderData = [{
+            title: '베트남에서 가장 큰 도시인 호치민시는 프랑스와 중국의 영향을 많이 받은 곳으로서, 활기찬 시장과 오토바이로 가득한 도로가 유명하지요.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '환상적인 나이트라이프 및 인기 쇼핑가 등이 1군의 대표적인 매력이에요. 이곳을 여행할 계획이라면 벤탄 시장 또는 사이공 스퀘어에 들러보세요.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '딴빈의 매력은 다양한 음식점에 있습니다. 더 많은 것을 경험하고 싶다면 사이공 수퍼보울 또는 호앙반투 공원에 가보는 것도 좋답니다',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '베트남 빈탄의 특별한 매력은 강변 경치에 있습니다. 사이공 강 및 빈홈 중앙 공원 같은 인기 명소도 들러보세요.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, ];
+        let sliderEle = document.getElementById('search-list');
+        let searchResults = document.querySelector('#search-result .p');
+        searchResults.textContent = "흥";
+
+        function createList() {
+
+            for (let value in sliderData) {
+
+                let lis = document.createElement('li');
+                sliderEle.appendChild(lis);
+                lis.innerHTML += '<div><span class="mr-10">' + (Number(value) + 1) + ' </span>' + sliderData[value].title + '</div>';
+
+            }
+        }
+        createList();
+
+
+        let objects = sliderData;
+        let btnSearch = document.getElementById('btnSearch');
+
+
+        btnSearch.addEventListener('click', (e) => {
+            let searchWords = document.getElementById('search-value').value;
+            console.log('searchWords', searchWords);
+            searchResults.textContent = queryObject(searchWords, objects);
+
+        });
+
+        function queryObject(needle, set) {
+            var results = new Array();
+
+            for (index = 0; index < set.length; index++) {
+
+                for (key in set[index]) {
+                    if (set[index][key].indexOf(needle) > -1) {
+                        results.push(set[index]);
+                    }
+                }
+            }
+
+            if (results.length) {
+                console.log('results', results);
+                console.log('JSON.stringify(results)', JSON.stringify(results));
+
+                return JSON.stringify(results);
+            } else {
+                return "No match!";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .boxwrap {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border: 1px solid #000;
+        text-align: center;
+        font-size: 12px;
+        line-height: 100px;
+        text-align: center;
+    }
+    
+    .thin-gray {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+</style>
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var result = document.getElementById('result');
+        let boxRowCount = 0;
+        let boxWrapper = new Array(); //박스의
+        let boxRow = new Array(); //박스를 감싸는 줄 row
+        let boxCol = new Array(); //하나의 박스
+
+
+        result.innerHTML = "<h4>이차원 배열</h4>"
+
+        var q = 0;
+
+        for (var i = 1; i <= 9; i++) {
+            let boxWrap = document.createElement('div');
+            boxWrap.setAttribute('class', 'boxwrap');
+            boxRow[i] = result.appendChild(boxWrap);
+            boxRow[i].addEventListener('mouseleave', function(e) {
+                let ele = e.target;
+                //  console.log(e.target);
+                ele.classList.remove('thin-gray');
+            });
+
+
+            for (var j = 1; j <= 9; j++) {
+                let box = document.createElement("div");
+                boxCol = [j];
+                boxCol[j] = boxRow[i].appendChild(box);
+                box.setAttribute('class', 'box');
+
+                boxCol[j].addEventListener('click', function(e) {
+                    //console.log(boxRow.indexOf(e.target.parentNode));
+                    console.log(e.target);
+                });
+
+                boxCol[j].addEventListener('mouseover', function(e) {
+                    let ele = boxRow.indexOf(e.target.parentNode);
+                    // console.log(boxRow[Number(ele)]);
+                    boxRow[Number(ele)].classList.add('thin-gray');
+                });
+
+                // boxCol[j].addEventListener('mouseleave', function(e) {
+                //     let ele = boxRow.indexOf(e.target.parentNode);
+                //     console.log(boxRow[Number(ele)]);
+                //     boxRow[Number(ele)].classList.remove('thin-gray');
+                // });
+
+
+
+
+
+                if (j % 9 == 1) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
+                    box.innerHTML = q + 1;
+
+                    boxCol[j].style.backgroundColor = "#ff6600";
+                    //console.log('boxRowCount : ', boxRowCount++)
+                    boxWrapper[j] = boxRowCount++;
+                    console.log(boxWrapper);
+
+                } else {
+                    box.innerHTML = q + 1;
+                }
+
+                q++;
+
+            }
+        }
+    </script>
+
+</body>
+
+</html>

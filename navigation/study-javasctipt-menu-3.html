@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+
+<body>
+    <!-- Header : S -->
+    <style>
+        .wrapper {
+            position: relative;
+            width: 100%;
+            min-width: 100%;
+            margin: 50px 0;
+        }
+        
+        .gnb {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            border: 1px solid #000;
+        }
+        
+        .gnb li {
+            display: block;
+            margin: 0 10px;
+            border: 1px solid #000;
+        }
+        
+        .gnb>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+        }
+        
+        .gnb>li>a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .gnb>li>a.active {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .gnb>li>ul {
+            position: absolute;
+            top: inherit;
+            left: inherit;
+            display: none;
+        }
+        
+        .gnb>li>ul>li {
+            display: block;
+            margin: 0 10px;
+            border: 1px solid #000;
+        }
+        
+        .gnb>li>ul>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+        }
+    </style>
+    <div class="wrapper" id="gnb">
+        <ul class="gnb"></ul>
+    </div>
+    <div id="myGNB">
+    </div>
+    <script>
+        function addElement() {
+            // create a new div element 
+            const newDiv = document.createElement("div");
+
+            // and give it some content 
+            const newContent = document.createTextNode("Hi there and greetings!");
+
+            // add the text node to the newly created div
+            newDiv.appendChild(newContent);
+
+            // add the newly created element and its content into the DOM 
+            const currentDiv = document.getElementById("div1");
+            document.body.insertBefore(newDiv, currentDiv);
+        }
+
+        addElement();
+    </script>
+    <div id="div1">The text above has been created dynamically.</div>
+    <script>
+        var mainMenu = document.getElementsByClassName('gnb')[0];
+        var mainMenuObj = new Object();
+        var subMenuLi;
+        mainMenuObj = {
+            1: '메인메뉴-1',
+            2: '메인메뉴-2',
+            3: '메인메뉴-3',
+            4: '메인메뉴-4',
+            5: '메인메뉴-5',
+            6: '메인메뉴-6',
+
+        }
+
+        var subMenu_1 = {
+                1: '서브메뉴-1',
+                2: '서브메뉴-2',
+                3: '서브메뉴-3',
+            }
+            //console.log(mainMenuObj[1]);//output 메인메뉴-1
+            //console.log(mainMenu)
+        Object.size = function(obj) {
+            var size = 0,
+                key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        };
+
+        // Get the size of an object
+        var size = Object.size(mainMenuObj);
+        //console.log(size);//output 11
+        var mainMenuObjLen = size;
+        var a = 1;
+
+        function createMainMenu(text) {
+            // for(var i=0; i<mainMenuObjLen; i++){
+            //     var li = document.createElement('li');
+            //     console.log(mainMenuObjLen);
+            //     li.innerHTML = '<a href="#none">'+text+'</a>';
+            //     li.className='main-'+i;
+            //     return li;
+
+            // }
+
+            for (var value in mainMenuObj) {
+
+                var li = document.createElement('li');
+                li.innerHTML = '<a href="#none">' + text + '</a>';
+                console.log(li)
+                li.className = 'main-' + (a++);
+                subMenuLi = li;
+
+                return subMenuLi;
+            }
+
+        }
+
+
+        function createSubMenu(text) {
+            for (var value in subMenu_1) {
+                var li = document.createElement('li');
+                li.innerHTML = '<a href="#none">' + text + '</a>';
+                console.log(text)
+                return subMenuLi;
+            }
+        }
+
+
+
+        function init() {
+            for (var i = 1; i < mainMenuObjLen + 1; i++) {
+                var qqq = mainMenu.appendChild(createMainMenu(mainMenuObj[i]));
+                // qqq.getElementById('myGNB').appendChild(createSubMenu(subMenu_1[i]));
+            }
+
+        }
+        init();
+    </script>
+
+</body>
+
+</html>

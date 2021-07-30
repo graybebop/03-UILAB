@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+
+
+<body>
+    <style>
+        table {
+            border: 1px solid #000;
+            width: 1200px;
+            margin: 0 auto;
+        }
+        
+        table th {
+            border: 1px solid #000;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        
+        table td {
+            border: 1px solid #000;
+            padding: 10px 20px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function tableCreate() {
+            var body = document.getElementsByTagName('body')[0];
+            var tbl = document.createElement('table');
+            tbl.style.width = '100%';
+            tbl.setAttribute('border', '1');
+            var tbdy = document.createElement('tbody');
+            for (var i = 0; i < 17; i++) {
+                var tr = document.createElement('tr');
+                for (var j = 0; j < 7; j++) {
+                    if (i == 2 && j == 1) {
+                        break
+                    } else {
+                        var td = document.createElement('td');
+                        td.appendChild(document.createTextNode('\u0020'))
+                        i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
+                        tr.appendChild(td)
+                    }
+                }
+                tbdy.appendChild(tr);
+            }
+            tbl.appendChild(tbdy);
+            body.appendChild(tbl)
+        }
+        tableCreate();
+    </script>
+</body>
+
+</html>

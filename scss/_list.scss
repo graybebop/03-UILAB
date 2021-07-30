@@ -1,0 +1,252 @@
+//mobile
+$widget:1920px;
+$laptop:1800px;
+$mobile-lg:1500px;
+$mobile-md:1300px;
+$mobile-con:1200px;
+$mobile-sm:760px;
+$tablet:1024px;
+$mobile:1140px;
+$mobile-login:670px;
+$mobile-xs:320px;
+$standard:1024px;
+$font-title-color:#000;
+@mixin standard {
+    @media (max-width: $standard) {
+        @content;
+    }
+}
+
+@mixin mobile-lg {
+    @media (max-width: $mobile-lg) {
+        @content;
+    }
+}
+
+@mixin widget {
+    @media (max-width: $widget) {
+        @content;
+    }
+}
+
+@mixin mobile-md {
+    @media (max-width: $mobile-md) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (max-width: $laptop) {
+        @content;
+    }
+}
+
+@mixin mobile-xs {
+    @media (max-width: $mobile-xs) {
+        @content;
+    }
+}
+
+@mixin mobile-login {
+    @media (max-width: $mobile-login) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin mobile-con {
+    @media (max-width: $mobile-con) {
+        @content;
+    }
+}
+
+@mixin mobile-sm {
+    @media (max-width: $mobile-sm) {
+        @content;
+    }
+}
+
+.content-area {
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.bookmark {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -1%;
+    margin-top: -1%;
+    li {
+        display: block;
+        position: relative;
+        margin: 2px 0;
+        width: 31.1%;
+        margin: 1% 1%;
+        margin-bottom: 1%;
+        height: 270px;
+        cursor: pointer;
+        border: 1px solid #d8d8d8;
+        border-radius: 15px;
+        overflow: hidden;
+        &:nth-child(1)~&:nth-child(3) {
+            margin-top: 0;
+        }
+        @include mobile {
+            width: 48%;
+        }
+        @include tablet {
+            width: 48%;
+        }
+        @include mobile-sm {
+            width: 100%;
+        }
+        .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.7;
+            background-color: rgba(255, 255, 255, 0.7);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            transition: 0.5s;
+        }
+        &:hover {
+            .bg {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, 1);
+            }
+        }
+        .list-wrap {
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            @include mobile {
+                padding: 20px 15px;
+                padding-bottom: 7px;
+            }
+            @include tablet {
+                font-size: 18px;
+                padding: 20px 15px;
+                padding-bottom: 7px;
+            }
+            @include mobile-sm {
+                font-size: 16px;
+                padding: 20px 15px;
+            }
+            .list-txt {
+                padding: 10px 15px;
+                .tit {
+                    font-size: 1rem;
+                    color: $font-title-color;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    @include mobile {
+                        font-size: 20px;
+                    }
+                    @include tablet {
+                        font-size: 18px;
+                    }
+                    @include mobile-sm {
+                        font-size: 16px;
+                    }
+                }
+                .rt {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    width: 100%;
+                    margin-top: 16px;
+                    @include mobile {
+                        margin-top: 10px;
+                    }
+                    @include tablet {
+                        margin-top: 10px;
+                    }
+                    @include mobile-sm {
+                        margin-top: 10px;
+                    }
+                    .cat {
+                        font-size: 12px;
+                        color: $font-sub-color;
+                        font-weight: 300;
+                        position: relative;
+                        text-align: left;
+                        @include mobile {
+                            font-size: 14px;
+                        }
+                        @include tablet {
+                            font-size: 14px;
+                        }
+                        @include mobile-sm {
+                            font-size: 14px;
+                        }
+                    }
+                    .name {
+                        font-size: 12px;
+                        color: $font-sub-color;
+                        font-weight: 300;
+                        position: relative;
+                        text-align: center;
+                        @include mobile {
+                            font-size: 14px;
+                        }
+                        @include tablet {
+                            font-size: 14px;
+                        }
+                        @include mobile-sm {
+                            font-size: 14px;
+                        }
+                    }
+                    .div {
+                        background-color: #818181;
+                        height: 14px;
+                        width: 0px;
+                        display: inline-block;
+                        margin: 0 10px;
+                        position: relative;
+                        top: 2px;
+                    }
+                    .date {
+                        font-size: 16px;
+                        color: #818181;
+                        padding: 0 10px;
+                        font-weight: 300;
+                        position: relative;
+                        text-align: center;
+                        @include mobile {
+                            font-size: 14px;
+                        }
+                        @include tablet {
+                            font-size: 14px;
+                        }
+                        @include mobile-sm {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

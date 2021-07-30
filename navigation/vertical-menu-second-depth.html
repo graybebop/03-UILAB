@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <style>
+        #nav {
+            float: left;
+            width: 280px;
+            border-top: 1px solid #999;
+            border-right: 1px solid #999;
+            border-left: 1px solid #999;
+        }
+        
+        #nav li a {
+            display: block;
+            padding: 10px 15px;
+            background: #ccc;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #999;
+            text-decoration: none;
+            color: #000;
+        }
+        
+        #nav li a:hover,
+        #nav li a.active {
+            background: #999;
+            color: #fff;
+        }
+        
+        #nav li ul {
+            display: none;
+        }
+        
+        #nav li ul li a {
+            padding: 10px 25px;
+            background: #ececec;
+            border-bottom: 1px dotted #ccc;
+        }
+    </style>
+    <ul id="nav">
+        <li><a href="#">Item 1</a>
+            <ul>
+                <li><a href="#">Sub-Item 1 a</a></li>
+                <li><a href="#">Sub-Item 1 b</a></li>
+                <li><a href="#">Sub-Item 1 c</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Item 2</a>
+            <ul>
+                <li><a href="#">Sub-Item 2 a</a></li>
+                <li><a href="#">Sub-Item 2 b</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Item 3</a>
+            <ul>
+                <li><a href="#">Sub-Item 3 a</a></li>
+                <li><a href="#">Sub-Item 3 b</a></li>
+                <li><a href="#">Sub-Item 3 c</a></li>
+                <li><a href="#">Sub-Item 3 d</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Item 4</a>
+            <ul>
+                <li><a href="#">Sub-Item 4 a</a></li>
+                <li><a href="#">Sub-Item 4 b</a></li>
+                <li><a href="#">Sub-Item 4 c</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        $(function() {
+
+            $('#nav > li > a').click(function() {
+                if ($(this).attr('class') != 'active') {
+                    $('#nav li ul').slideUp();
+                    $(this).next().slideToggle();
+                    $('#nav li a').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+.button-area {
+    position: relative;
+    margin: 20px 0;
+}
+
+.btn {
+    position: relative;
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    padding: 10px 20px;
+    border: none;
+    margin-right: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    &:focus {
+        outline: 0;
+    }
+    span {
+        vertical-align: middle;
+    }
+    .icons {
+        font-size: 20px;
+        margin-left: -10px;
+        margin-right: 10px;
+        border: 0px solid #ddd;
+        vertical-align: text-bottom;
+    }
+    .icons-circle {
+        font-size: 20px;
+        margin-left: -10px;
+        margin-right: 10px;
+        border: 0px solid #ddd;
+        vertical-align: sub;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 5px;
+        display: none;
+    }
+}
+
+.btn {
+    .txt {
+        margin-right: 10px;
+    }
+}
+
+.icon-search {
+    font-size: 20px;
+}
+
+.text-svg-icon-search {
+    width: 19px;
+    height: 19px;
+    vertical-align: top;
+}
+
+.svg-icon-search {
+    width: 19px;
+    height: 19px;
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+span.ripple-light {
+    /* The absolute position we mentioned earlier */
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 300ms linear;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+span.ripple-dark {
+    /* The absolute position we mentioned earlier */
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 500ms linear;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.btn-circle {
+    border-radius: 50%;
+    text-align: center;
+}
+
+.btn-radius {
+    border-radius: 25px;
+}
+
+.btn-outlined {
+    border: 1px solid #ddd;
+}
+
+.btn-xs {
+    padding: 0.3rem;
+}
+
+.btn-sm {
+    padding: 0.6rem;
+}
+
+.btn-md {
+    padding: 1rem;
+}
+
+.btn-lg {
+    padding: 2rem;
+}
+
+.btn-block {
+    display: block !important;
+    width: 100%;
+}
+
+@each $type,
+$class in $theme-colors {
+    .btn-#{$type} {
+        background-color: $class;
+        color: white;
+        border-color: $class;
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+            background-color: darken($class, 10%);
+            border-color: darken($class, 10%);
+        }
+        &:focus {
+            outline: 0;
+        }
+        &:disabled,
+        &.disabled,
+        fieldset:disabled & {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    }
+    .btn-outline-#{$type} {
+        border-color: 1px solid $class;
+    }
+    @if($type=="light") {
+        .btn-#{$type} {
+            background-color: $class;
+            color: $body;
+            border-color: #ddd;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $body;
+                text-decoration: none;
+                background-color: darken($class, 10%);
+                // border-color: darken($class, 10%);
+            }
+        }
+    }
+    @else if($type=="dark") {
+        .btn-#{$type} {
+            background-color: $class;
+            color: white;
+            border-color: $class;
+            &:hover {
+                background-color: darken($class, 10%);
+            }
+            &:focus,
+            &:active {
+                color: #fff;
+                text-decoration: none;
+                background-color: lighten($class, 15%);
+                // border-color: lighten($class, 15%);
+            }
+        }
+    }
+}
+
+.btn-transparent {
+    background-color: transparent;
+}

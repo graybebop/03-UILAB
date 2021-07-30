@@ -1,0 +1,90 @@
+.blockquote {
+    border-left: 3px solid #2250fc;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    position: relative;
+    margin-bottom: 50px;
+    p {
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        text-transform: none;
+        line-height: 1.7rem;
+        letter-spacing: 0;
+        color: #777;
+        margin-top: 0px !important;
+    }
+    .small,
+    small {
+        display: inline-block;
+        font-size: 70%;
+        font-weight: 400;
+        margin-top: 20px;
+    }
+}
+
+.blockquote-simple {
+    border: 0!important;
+}
+
+.blockquote-color,
+.blockquote-dark {
+    padding: 28px;
+    color: #fff;
+}
+
+.blockquote-color {
+    background-color: #2250fc;
+}
+
+.blockquote-reverse {
+    padding-right: 15px;
+    padding-left: 0;
+    text-align: right;
+    border-right: 5px solid #eee;
+    border-left: 0;
+}
+
+.blockquote-fancy,
+.blockquote-color,
+.blockquote-dark {
+    border: 0!important;
+}
+
+.blockquote-fancy::before {
+    color: rgba(0, 0, 0, .04);
+    content: '"';
+    display: block;
+    font-size: 100px;
+    left: 4px;
+    position: absolute;
+    top: 14px;
+}
+
+.blockquote-fancy>small {
+    float: right;
+}
+
+.blockquote-dark {
+    background-color: #333;
+}
+
+.text-light,
+.text-light h1,
+.text-light h2,
+.text-light h3,
+.text-light h4,
+.text-light h5,
+.text-light h6,
+.text-light .lead,
+.text-light p,
+.text-light a:not(.btn),
+.text-light a:not(.btn):hover:not(.btn-light),
+.text-light i,
+.text-light li,
+.text-light label,
+.text-light div:not(.alert),
+.text-light span:not(.btn-label) {
+    color: #fff!important;
+}

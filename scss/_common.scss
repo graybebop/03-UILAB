@@ -1,0 +1,50 @@
+[hidden] {
+    display: none;
+}
+
+a {
+    outline: medium none;
+    text-decoration: none;
+    color: #000;
+}
+
+a img {
+    border: medium none;
+}
+
+img {
+    max-width: 100%;
+}
+
+s a,
+a:hover,
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+ol,
+ul {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+form,
+input {
+    color: black;
+}
+
+input:focus {
+    outline: #000;
+}

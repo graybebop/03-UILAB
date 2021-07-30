@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <style>
+        .wrapper {
+            position: relative;
+            width: 100%;
+            min-width: 100%;
+            margin: 50px 0;
+        }
+        
+        .gnb {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+        
+        .gnb ul {
+            position: relative;
+        }
+        
+        .gnb li {
+            display: block;
+            margin: 0 10px;
+        }
+        
+        .gnb>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+            font-size: 12px;
+        }
+        
+        .gnb>li>a:hover {
+            background-color: #000;
+            color: #fff !important;
+        }
+        
+        .gnb>li>ul {
+            position: absolute;
+            top: inherit;
+            left: inherit;
+            display: block;
+        }
+        
+        .gnb>li>ul>li {
+            display: block;
+            margin: 0 10px;
+            border: 1px solid #000;
+        }
+        
+        .gnb>li>ul>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+        }
+    </style>
+
+    <div class="wrapper">
+        <ul class="gnb" id="gnb">
+            <li class="m-1"><a href="#none">대메뉴-1</a>
+                <ul class="d-2">
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul class="d-3">
+                            <li><a href="#none">서브메뉴-2-1</a></li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="m-2"><a href="#none">대메뉴-2</a></li>
+            <li class="m-3"><a href="#none">대메뉴-3</a>
+                <ul class="d-2">
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul class="d-3">
+                            <li><a href="#none">서브메뉴-2-1</a>
+                                <ul class="d-4">
+                                    <li><a href="#none">서브메뉴-2-1</a></li>
+                                    <li><a href="#none">서브메뉴-2-2</a></li>
+                                    <li><a href="#none">서브메뉴-2-3</a>
+                                        <ul class="d-5">
+                                            <li><a href="#none">서브메뉴-2-1</a></li>
+                                            <li><a href="#none">서브메뉴-2-2</a></li>
+                                            <li><a href="#none">서브메뉴-2-3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="m-1"><a href="#none">대메뉴-4</a>
+                <ul class="d-2">
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul class="d-3">
+                            <li><a href="#none">서브메뉴-2-1</a></li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="m-2"><a href="#none">대메뉴-5</a></li>
+            <li class="m-3"><a href="#none">대메뉴-6</a>
+                <ul class="d-2">
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul class="d-3">
+                            <li><a href="#none">서브메뉴-2-1</a>
+                                <ul class="d-4">
+                                    <li><a href="#none">서브메뉴-2-1</a></li>
+                                    <li><a href="#none">서브메뉴-2-2</a></li>
+                                    <li><a href="#none">서브메뉴-2-3</a>
+                                        <ul class="d-5">
+                                            <li><a href="#none">서브메뉴-2-1</a></li>
+                                            <li><a href="#none">서브메뉴-2-2</a></li>
+                                            <li><a href="#none">서브메뉴-2-3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div>aa</div>
+    </div>
+    <style>
+        .show {
+            display: block !important;
+        }
+        
+        .hide {
+            display: none !important;
+        }
+    </style>
+    <script>
+        var depth_1 = document.getElementById("gnb");
+        var depth_2 = depth_1.querySelectorAll('ul'); //각 메뉴에 ul즉 서브메뉴가 있는지를 체크
+        var li = depth_1.querySelectorAll('ul > li > ul');
+        var link = depth_1.querySelectorAll('ul a');
+        var linkLen = link.length;
+        var subLen = depth_2.length;
+        for (var i = 0; i < subLen; i++) {
+            depth_2[i].style.display = "none"; //ul을 전부찾아서 display:none;
+            var submenu = li[i].children;
+            for (var j = 0; j < submenu.length; j++) {
+                submenu[j].setAttribute('data-order', String(i) + ':' + String(j));
+            }
+        }
+        for (var k = 0; k < linkLen; k++) {
+            link[k].addEventListener('click', clickEventHandler);
+        }
+
+        function clickEventHandler(e) {
+            var subMenu = e.currentTarget.parentNode.querySelector('ul');
+            if (typeof(subMenu) != 'undefined' && subMenu != null) {
+                console.log('Element exists!');
+                // if (depth_2[0].classList.contains('show')) {
+                //     console.log('element has class show');
+                // }
+                // for (var key in depth_2) {
+                //     console.log(key);
+                // }
+
+                depth_2.forEach(function(value, index) {
+                    console.log(value);
+                    if (value.classList.contains('show')) {
+                        //subMenu.classList.remove('show');
+                        //subMenu.classList.add('hide');
+                    } else {
+                        //console.log('aaa')
+                        subMenu.classList.add('show');
+                    }
+                });
+            } else {
+                console.log('Element does not exist!');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

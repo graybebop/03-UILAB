@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+<style>
+    .paging {
+        text-align: center;
+        padding: 20px 0;
+    }
+</style>
+
+<body>
+
+    <!-- content : s -->
+    <section class="tpod-wrapper">
+
+        <div class="tpod-container mt-70">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <div class="slider-container" id="scd">
+                        <ul id="slider"></ul>
+                        <div class="arrowSlider">
+                            <span class="prev" id="aro1_prev">prev</span>
+                            <span class="next" id="aro1_next">next</span>
+                        </div>
+                        <div class="paging"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function slider() {
+
+            const _this = this; //this를 slider 함수 전체 글로벌로 만들기위한 변수
+            //익스플로러 11에서 obect를 불러오는 방법
+            _this.onClickEventHanddler = function(e) {
+
+                let direction = e.currentTarget.getAttribute('class');
+
+                if (direction == "next") {
+                    playDirection = "next"
+                    _this.nextPage();
+
+
+                } else if (direction == "prev") {
+                    playDirection = "prev"
+                    _this.prevPage();
+                }
+            }
+
+            _this.numPages = function() {
+                return Math.ceil(_this.totalSlideNum / _this.records_per_page);
+            }
+
+            _this.prevPage = function() {
+
+                if (_this.slideNum > 1) {
+                    _this.slideNum--;
+                    _this.changePage(_this.slideNum);
+                }
+            }
+
+            _this.nextPage = function() {
+
+                if (_this.slideNum < _this.numPages()) {
+                    _this.slideNum++;
+                    _this.changePage(_this.slideNum);
+                }
+            }
+
+
+            _this.changePage = function(page) {
+
+                var page_span = document.getElementsByClassName("paging")[0];
+
+                if (page < 1) page = 1;
+                if (page > _this.numPages()) page = _this.numPages();
+
+
+                page_span.innerHTML = page + '/' + (_this.totalSlideNum / _this.pagePerSlideNum);
+                _this.sliderEle.style.left = -((page - 1) * _this.sliderContainerWidth) + 'px';
+
+                if (page == 1) {
+                    _this.leftBtn.style.visibility = "hidden";
+                } else {
+                    _this.leftBtn.style.visibility = "visible";
+                }
+                if (page == _this.numPages()) {
+                    _this.rightBtn.style.visibility = "hidden";
+                } else {
+                    _this.rightBtn.style.visibility = "visible";
+                }
+
+            }
+
+
+            _this.showData = function(obj) {
+
+                let index = 0;
+
+                for (let value in obj) {
+
+                    let lis = document.createElement('li');
+                    _this.sliderEle.appendChild(lis);
+                    lis.innerHTML += "<div class='t-card_thumb'><img src='" + obj[index].addr + "'/></div>";
+
+                    lis.innerHTML += "<div class='" + "t-card__title" + "'>" + (Number(index) + 1) + ' : ' + obj[index].title + "</div>";
+                    lis.innerHTML += "<div class='" + "t-card__subtitle" + "'>" + obj[index].subTitle + "</div>";
+                    lis.setAttribute('data-link', obj[index].link);
+                    lis.setAttribute('class', 't-card rounded');
+
+                    var style = lis.currentStyle || window.getComputedStyle(lis);
+                    var lisMarginRight = parseInt(style.marginRight); //px 값을 제거하고 margin right 값을 반환
+
+                    lis.setAttribute('style', 'width:' + String(_this.slideItemWidth - _this.marginRight) + 'px !important; margin-right:' + _this.marginRight + 'px;');
+
+                    index++;
+
+                }
+            }
+
+            _this.init = function(id, m, n, data) {
+                _this.sliderEle = document.getElementById(id);
+                _this.marginRight = m;
+                _this.pagePerSlideNum = n;
+                _this.sliderObj = data;
+                _this.records_per_page = _this.pagePerSlideNum;
+
+                Object.size = function(result) {
+                    var size = 0,
+                        key;
+                    for (key in result) {
+                        if (result.hasOwnProperty(key)) size++;
+                    }
+                    return size;
+                };
+
+                _this.totalSlideNum = Object.size(_this.sliderObj); //데이터 갈이
+                _this.sliderContainerWidth = 1200; //슬라이더 컨테이너 너비
+
+                let slideItemWidth = null;
+                _this.slideItemWidth = Math.ceil(_this.sliderContainerWidth / _this.pagePerSlideNum); //한화면에 보일 슬라이드 개수
+                _this.totalWidth = _this.totalSlideNum * (_this.sliderContainerWidth / _this.pagePerSlideNum); //슬라이더의 총 길이
+
+                _this.pagePerSlideNum = n;
+
+
+                _this.slideNum = 1; //Arrow 좌, 우키 눌렀을때의 카운팅
+                _this.current_page = 1;
+                _this.sliderEle.setAttribute('style', 'width :' + _this.totalWidth + 'px');
+
+                _this.showData(_this.sliderObj);
+
+
+                _this.leftBtn = document.getElementById("aro1_prev");
+                _this.rightBtn = document.getElementById("aro1_next");
+                _this.leftBtn.addEventListener("click", _this.onClickEventHanddler);
+                _this.rightBtn.addEventListener("click", _this.onClickEventHanddler);
+                _this.changePage(_this.slideNum);
+            }
+        }
+
+
+
+        var sliderData = [{
+            title: '1제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '2제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/2.jpg'
+        }, {
+            title: '3제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/3.jpg'
+        }, {
+            title: '1제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '1제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '2제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/2.jpg'
+        }, {
+            title: '3제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/3.jpg'
+        }, {
+            title: '1제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '1제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }, {
+            title: '2제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/2.jpg'
+        }, {
+            title: '3제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/3.jpg'
+        }, {
+            title: '1제목이 들어갑니다.',
+            subTitle: '서브타이틀이 들어갑니다.',
+            link: '#none',
+            addr: '../images/slider/1.jpg'
+        }];
+
+        window.addEventListener('load', function() {
+            var sliderOption = {
+                item: 4,
+                container: 'slider',
+                margin: 10
+            };
+
+            var tpodSlider = new slider();
+            tpodSlider.init(sliderOption.container, sliderOption.margin, sliderOption.item, sliderData);
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+@each $color,
+$value in $theme-colors {
+    .bg-#{$color} {
+        //@include alert-variant($value, $value);
+        color: $value; // returns `color: #fff`
+        background-color: $value;
+        object-fit: cover;
+    }
+}

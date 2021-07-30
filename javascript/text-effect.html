@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    body {
+        padding: 0 10%;
+        background-color: #111;
+        color: #FFF;
+        font-family: "Open Sans", sans-serif;
+        font-size: 2em;
+        line-height: 100vh;
+        white-space: nowrap;
+    }
+    
+    .blinking-cursor {
+        user-select: none;
+        animation: blink 1s steps(2, start) infinite;
+    }
+    
+    @keyframes blink {
+        to {
+            visibility: hidden;
+        }
+    }
+</style>
+
+<body>
+
+    <span is="type-async" id="type-text">...</span>
+    <span class="blinking-cursor">_</span>
+    <script>
+        async function init() {
+            const node = document.querySelector("#type-text");
+
+            await sleep(1000);
+            node.text = "";
+            await node.type('Hello, ');
+
+            while (true) {
+                await node.type('CodePen!');
+                await sleep(2000);
+                await node.delete('CodePen!');
+                await node.type('World!');
+                await sleep(2000);
+                await node.delete('World!');
+            }
+        }
+
+
+        // Source code 
+
+        const sleep = time => new Promise(resolve => setTimeout(resolve, time))
+
+        class TypeAsync extends HTMLSpanElement {
+            get text() {
+                return this.innerText;
+            }
+            set text(value) {
+                return this.innerHTML = value;
+            }
+
+            get typeInterval() {
+                const randomMs = 100 * Math.random()
+                return randomMs < 50 ? 10 : randomMs;
+            }
+
+            async type(text) {
+                for (let character of text) {
+                    this.text += character;
+                    await sleep(this.typeInterval);
+                }
+            }
+
+            async delete(text) {
+                for (let character of text) {
+                    this.text = this.text.slice(0, this.text.length - 1);
+                    await sleep(this.typeInterval);
+                }
+            }
+        }
+
+        customElements.define('type-async', TypeAsync, {
+            extends: 'span'
+        })
+
+
+        init()
+    </script>
+
+</body>
+
+</html>

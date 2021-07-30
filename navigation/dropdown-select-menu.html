@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Header : S -->
+
+    <div class="wrapper">
+        <select id="selector"></select>
+
+    </div>
+    <script>
+        var data = [{
+            name: 'david',
+            id: 1
+        }, {
+            name: 'daniel',
+            id: 2
+        }]
+
+        data.forEach(function(item) {
+            var option = document.createElement('option');
+            option.value = item.id;
+            option.innerHTML = item.name;
+            selector.appendChild(option)
+        })
+
+        data.forEach(item => console.log(item.name));
+
+
+        selector.onchange = function() {
+            console.log(this.value);
+        }
+
+        function a(a) {
+            return a + 100;
+        }
+
+        a => {
+            return a + 100;
+        }
+
+        var data = [{
+            id: 1,
+            name: 'Foo'
+        }, {
+            id: 2,
+            name: 'Bar'
+        }, {
+            id: 3,
+            name: 'Baz'
+        }];
+
+
+        var select = document.createElement('select');
+        console.log(select)
+        select.innerHTML = data.map(function(v) {
+            return '<option value="' + v.id + '">' + v.name + '</option>';
+        }).join('');
+    </script>
+
+
+    <form action="">
+        <h3>Please select a color</h3>
+        <fieldset>
+            <select id="selColor">
+     <option value = "#FFFFFF">White</option>
+     <option value = "#FF0000">Red</option>
+     <option value = "#FFCC00">Orange</option>
+     <option value = "#FFFF00">Yellow</option>
+     <option value = "#00FF00">Green</option>
+     <option value = "#0000FF">Blue</option>
+     <option value = "#663366">Indigo</option>
+     <option value = "#FF00FF">Violet</option>
+    </select>
+            <input type="button" value="change color" onclick="changeColor()" />
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        // from dropdownList.html
+        function changeColor() {
+            var selColor = document.getElementById("selColor");
+            var color = selColor.value;
+            document.body.style.backgroundColor = color;
+        } // end function
+    </script>
+</body>
+
+</html>

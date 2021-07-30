@@ -1,0 +1,214 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    color: #222;
+    margin: 0;
+    letter-spacing: .5px
+}
+
+// h1 small,
+// h2 small,
+// h3 small,
+// h4 small,
+// h5 small,
+// h6 small,
+// .h1 small,
+// .h2 small,
+// .h3 small,
+// .h4 small,
+// .h5 small,
+// .h6 small {
+//     font-weight: 100
+// }
+h1,
+.h1 {
+    font-size: 4rem;
+}
+
+h1:not(:last-child),
+.h1:not(:last-child) {
+    margin-bottom: 20px
+}
+
+h2,
+.h2 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+h3,
+.h3 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h4,
+.h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h5,
+.h5 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+h6,
+.h6 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+h2:not(:last-child),
+.h2:not(:last-child) {
+    margin-bottom: 16px
+}
+
+// h3,
+// .h3 {
+//     font-size: 1.78571429em;
+//     line-height: 1.5em;
+//     font-weight: 500
+// }
+// h3:not(:last-child),
+// .h3:not(:last-child) {
+//     margin-bottom: 12px
+// }
+// h4,
+// .h4 {
+//     font-size: 1.35714286em;
+//     line-height: 1.68421053em;
+//     font-weight: 600
+// }
+// h4:not(:last-child),
+// .h4:not(:last-child) {
+//     margin-bottom: 8px
+// }
+// h5,
+// .h5 {
+//     font-size: 1em;
+//     line-height: 1.85714286em;
+//     font-weight: 500
+// }
+// h5:not(:last-child),
+// .h5:not(:last-child) {
+//     margin-bottom: 6px
+// }
+// h6,
+// .h6 {
+//     font-size: .85714286em;
+//     line-height: 2.16666667em;
+//     font-weight: 500
+// }
+// h6:not(:last-child),
+// .h6:not(:last-child) {
+//     margin-bottom: 6px
+// }
+@each $type,
+$class in $theme-colors {
+    .text-color-#{$type} {
+        color: $class;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+@for $fontsize from 1 through 100 {
+    .font-size-#{$fontsize} {
+        font-size:#{$fontsize}px !important;
+    }
+}
+
+// font
+$font-weights: ("thin": 100, "light": 300, "regular": 400, "medium": 500, "bold": 700, "heavy": 900);
+@each $weight,
+$key in $font-weights {
+    .font-weight-#{$weight} {
+        font-weight: $key;
+    }
+}
+
+// font
+$line-height: ("normal": 1, "sec": 1.5, "third": 2, "fourth": 2.3, "bold": 2.7, "heavy": 3);
+@each $height,
+$key in $line-height {
+    .line-height-#{$height} {
+        line-height: #{$key}rem;
+    }
+}
+
+.text-color-white {
+    color: #fff;
+}
+
+.text-important {
+    color: #fff;
+    background-color: red;
+    padding: 2px 3px;
+    border-radius: 3px;
+}
+
+.badge {
+    position: relative;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.badge-sm {
+    padding: 0 3px;
+    font-size: 11px;
+    border-radius: 5px;
+}
+
+.badge-red {
+    border: 1px solid red;
+    color: red;
+}
+
+.explain {
+    font-size: 14px;
+    color: #000;
+    .txt {
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 10px;
+    }
+}
+
+mark {
+    background-color: purple;
+    color: #fff !important;
+    padding: 3px 5px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+// @mixin font-weights($map) {
+//     @each $font-weight,
+//     $icon in $map {
+//         @if not map-has-key($map, $font-weight) {
+//             @warn "'#{$icon-name}' is not a valid icon name";
+//         }
+//         @else {
+//             &--#{$icon-name}::before {
+//                 content: $icon;
+//             }
+//         }
+//     }
+// }

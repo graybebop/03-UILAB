@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #txt {
+        font-size: 60px;
+        font-weight: 700;
+        color: #000;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="txt-wrapper" id="txt">적당한텍스트가들어간다</div>
+    </div>
+
+    <script>
+        let str = "베트남 사회주의 공화국(베트남어: Cộng hòa xã hội chủ nghĩa Việt Nam꽁호아싸호이쭈응이어비엣남, 문화어: 윁남사회주의공화국)은 동남아시아의 국가이다. 약칭은 베트남(베트남어: Việt Nam비엣남, 문화어: 윁남)이다. 주요 도시로는 하노이, 호찌민시, 다낭, 하이퐁, 호이안, 사파, 후에 등이 있다. 북쪽으로는 중화인민공화국, 서쪽으로는 라오스 및 캄보디아와 국경을 접하고 동쪽과 남쪽으로는 동해(남중국해)에 면해 있다. 면적은 약 33만 341km²이다. 인도차이나 반도에서 가장 인구가 많은 나라로 최근 인구 통계에서는 9,649만 명으로 조사되어,[2] 세계에서 15번째로 인구가 많은 나라이다. 나라의 명칭인 비엣남(Việt Nam)은 1945년부터 공식적으로 사용되고 있는데, 이것은 오늘날 베트남 북부와 중국 남부를 지배하였던 옛 베트남 왕조인 남월(베트남어: Nam Việt남비엣)의 명칭을 거꾸로 쓴 것이다. 수도는 하노이이며, 최대 도시는 호찌민시이다. 중화인민공화국과 같은 혼합경제체제를 가진 명목상 공산주의 국가다."
+        let re = /(\w+)\s(\w+)/
+        let str = 'John Smith'
+        let newstr = str.replace(re, '$2, $1')
+        console.log(newstr)
+    </script>
+
+</body>
+
+</html>

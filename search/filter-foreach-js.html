@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+
+
+<body>
+    <style>
+        table {
+            border: 1px solid #000;
+            width: 1200px;
+            margin: 0 auto;
+        }
+        
+        table th {
+            border: 1px solid #000;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        
+        table td {
+            border: 1px solid #000;
+            padding: 10px 20px;
+            text-align: center;
+        }
+    </style>
+
+    <table id="rates">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Hourly rate ($)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        $(function() {
+
+            // STORE EACH PERSON AS AN OBJECT IN AN ARRAY
+            var people = [{ // Each person is an object
+                name: 'Casey', // It holds name and rate
+                rate: 60
+            }, {
+                name: 'Camille',
+                rate: 80
+            }, {
+                name: 'Gordon',
+                rate: 75
+            }, {
+                name: 'Nigel',
+                rate: 120
+            }];
+            let results = [];
+            let table = document.querySelector('#rates tbody');
+
+
+
+            people.forEach((value, i, key) => {
+                // console.log(value.name);
+
+                if (value.rate >= 60 && value.rate <= 75) {
+                    results.push(value);
+                    console.log(results)
+                }
+            });
+
+
+            for (var i = 0; i < results.length; i++) {
+                let tableRow = []
+                tableRow[i] = document.createElement('tr');
+                let td = []
+                td[i] = document.createElement('td');
+                table.appendChild(tableRow[i]);
+                tableRow[i].appendChild(td[i]);
+                td[i].innerHTML += results[i]['name'];
+                td[i].innerHTML += results[i]['rate'];
+                // tableRow[i].innerHTML += '<td>' + results[i]['name'] + '</td>';
+                // table.innerHTML += '<tr><td>' + results[i]['rate'] + '</td></tr>';
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

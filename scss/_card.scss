@@ -1,0 +1,69 @@
+.t-card {
+    border-width: thin;
+    display: block;
+    max-width: 100%;
+    outline: none;
+    text-decoration: none;
+    transition-property: box-shadow, opacity;
+    overflow-wrap: break-word;
+    position: relative;
+    white-space: normal;
+    .t-card__title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        letter-spacing: .0125em;
+        line-height: 2rem;
+        word-break: break-all;
+    }
+    .t-card__subtitle,
+    .t-card__text {
+        font-size: .875rem;
+        font-weight: 300;
+        line-height: 1.375rem;
+        letter-spacing: .0071428571em;
+    }
+    .t-card__actions {
+        position: relative;
+        align-items: center;
+        display: flex;
+    }
+}
+
+.btn__content {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: inherit;
+    line-height: normal;
+    position: relative;
+    transition: inherit;
+    transition-property: opacity;
+}
+
+.t-card>:last-child:not(.v-btn):not(.v-chip) {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.grow {
+    flex-shrink: 0!important;
+}
+
+.tpod-list-item-group {
+    flex: 0 1 auto;
+    position: relative;
+    max-width: 100%;
+    transition: .3s cubic-bezier(.25, .8, .5, 1);
+}
+
+.rounded {
+    border-radius: 6px;
+}
+
+.t-card__thumb {
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

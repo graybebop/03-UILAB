@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 10px 20px;
+        position: relative;
+    }
+    
+    #calc {
+        z-index: 10;
+        position: fixed;
+        bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    @media(max-width:760px) {
+        .wrapper {
+            padding: 10px;
+        }
+    }
+</style>
+
+<body>
+
+    <section class="wrapper">
+
+        <ul class="masonry"></ul>
+
+    </section>
+
+    <script>
+        $(document).ready(function() {
+
+            const container = document.getElementsByClassName('masonry')[0];
+            const containerWidth = document.body.clientWidth;
+            //const items = document.querySelectorAll('.grid-list .items'); //현재 정보
+
+            //전체길이 = 각크기*가로개수
+            //windowWidth = eachWidth * itemRowNum;
+            //가로개수 = 전체길이/각크기
+            //itemNum = windowWidth / eachWidth;
+            //각크기 - 전체길이/가로개수
+            let items = [];
+            let windowWidth = containerWidth;
+            let boxWidth = 400;
+            let rowNum = 3; //가로개수
+            let colNum = 5; //세로개수
+            let boxWidthArr = []
+            let boxMargin = 10;
+
+            const result = [];
+            let tempArr = [];
+
+            let ba = [];
+            Array.matrix = function(rowNum, colNum, initial) {
+                var arr, i, j, mat = [];
+                for (let i = 0; i < rowNum; i++) {
+                    arr = [];
+                    for (let j = 0; j < colNum; j++) {
+
+
+                        let box = document.createElement('li');
+                        container.appendChild(box);
+                        box.innerHTML += '<span>' + j + '</span>'
+                        box.setAttribute('class', 'items')
+                        box.style.height = 300 + 'px';
+                        boxWidthArr.push(result.push(ui.generateRandomNumbers(j + 30, 500, 500))); //가로 박스 길이를 배열에 저장
+                        box.style.width = (boxWidthArr[j] + Number(result[j])) + 'px';
+                        box.style.height = (boxWidthArr[j] + Number(result[j])) + 'px';
+                        tempArr.push(box.style.width);
+                        const reducer = (accumulator, currentValue) => (parseInt(accumulator) + parseInt(currentValue)) + 'px';
+                        ba.push(tempArr.reduce(reducer));
+                        box.style.left = ba[j - 1];
+                        arr[j] = tempArr[j];
+                    }
+                    mat[i] = arr;
+                }
+
+                return mat;
+            };
+
+            // matrix('행', '열', '기본값')
+            var arr = Array.matrix(rowNum, colNum, 0);
+            console.log(arr)
+
+        });
+    </script>
+
+</body>
+
+</html>

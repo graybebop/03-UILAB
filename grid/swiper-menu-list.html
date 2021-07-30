@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .dividers {
+        background-color: #ddd;
+        height: 1px;
+        margin: 30px;
+    }
+    
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper {
+        padding: 10px 50px;
+        position: relative;
+    }
+    
+    #calc {
+        z-index: 10;
+        position: fixed;
+        bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    @media(max-width:760px) {
+        .wrapper {
+            padding: 10px;
+        }
+    }
+    
+    .uiTab {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    
+    .uiTab li {
+        width: auto !important;
+    }
+    
+    .uiTab li.active .btn {
+        background-color: #669aff;
+        color: #669aff;
+        border-color: #669aff;
+        color: #ffffff;
+        font-weight: 700;
+    }
+    
+    .uiTab li .btn {
+        width: 100%;
+        border-radius: 30px;
+        height: 34px;
+        color: #000000;
+        padding: 0px 16px;
+    }
+    
+    .btn {
+        border: 1px solid #ecedef;
+        background: #ffffff;
+        color: #666666;
+        height: 32px;
+        overflow: hidden;
+        padding: 0 12px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        cursor: pointer;
+        white-space: nowrap;
+        border-radius: 4px;
+        line-height: 1.1;
+    }
+    
+    .muTab {
+        position: relative;
+    }
+    
+    .gallery {
+        position: relative;
+        height: 100%;
+    }
+    
+    .gallery-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 500px;
+    }
+    
+    .container-flex .items img {
+        height: auto;
+    }
+</style>
+
+<body>
+    <header class="wrapper">
+        <h5 class="pt-20 pb-30">스와이퍼가 응용된 메뉴와 자바스크립트 그리드</h5>
+        <div class="exp font-size-14 font-weight-300 pb-40">
+            <p>1. 스와이퍼 슬라이더가 메뉴로 응용되었으며 모바일 버젼으로 활용할수 있도록 상단 메뉴를 좌우로 스와이핑이 가능</p>
+            <p class="mt-5">2. 모바일 체크후 활성화됨(PC에서는 활성화 되지 않는다.)</p>
+            <p class="mt-5">3. 이미지는 자바스크립트 활용하여 어느 비율에 맞게 화면에 렌덩링됨</p>
+            <p class="mt-5">4. 자바스크립트를 활용하여 그리드를 계산하여 좀 더 세밀한 그리드 기능이 가능함</p>
+            <p class="mt-5">5. 그리화된 리스트는 다양하게 응용이 가능</p>
+        </div>
+
+        <div class="muTab swiper-container slide">
+            <ul class="uiTab f swiper-wrapper list">
+                <li class="swiper-slide active">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_b">전체</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_c">메뉴-1</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_d">메뉴가긴메뉴-2</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_f">메뉴-3</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_g">메-4</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_h">메뉴-5</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_b">메뉴-6</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_c">메뉴-7</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_d">메뉴-8</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_f">메뉴-9</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_g">메뉴-10</button>
+                </li>
+                <li class="swiper-slide">
+                    <button type="button" class="btn" data-ui-tab-btn="tab_best" data-ui-tab-val="tab_best_h">메뉴-11</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="wrapper">
+        <div class="swiper-container container-flex gallery">
+            <div class="gallery-wrapper swiper-wrapper">
+                <div class="swiper-slide items">
+                    <img src="1.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="2.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="3.jpg" />
+                </div>
+                <div class="swiper-slide items">
+                    <img src="4.jpg" />
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <script>
+        $(document).ready(function() {
+            //uijs.init();
+
+            var uijs = {
+                init: function() {
+                    $(this.menuTab.els).length && this.menuTab.using();
+                    $(this.gallery.els).length && this.gallery.using();
+                    //console.log($(this.menuTab.els));
+
+                },
+                isMobile: function() {
+                    var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'Windows CE;', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson', 'Mobile', 'Symbian', 'Opera Mobi', 'Opera Mini', 'IEmobile');
+                    for (var word in mobileKeyWords) {
+                        if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+                            return true;
+                        }
+                    }
+                },
+                // 2021.05.26. 랭크베스트 추가 수정완료 - 확인필요
+                gallery: {
+                    els: ".gallery",
+                    opt: {
+                        observer: true,
+                        observeParents: true,
+                        watchOverflow: true,
+                        simulateTouch: false,
+                        freeMode: false,
+                        slidesPerView: 1,
+                        slidesPerGroup: 1,
+                        spaceBetween: 0,
+                        on: {
+                            slideChange: function() {
+
+                                var swiperActiveIndex = this.activeIndex;
+                                $('.muTab .swiper-wrapper .swiper-slide').removeClass('active');
+                                $('.muTab .swiper-wrapper li:eq("' + swiperActiveIndex + '")').addClass('active');
+                                uijs.menuTab.muCenter($('.muTab .swiper-wrapper li:eq("' + swiperActiveIndex + '")'));
+
+                            }
+                        }
+                    },
+
+                    using: function() {
+                        this.slide = new Swiper(this.els, this.opt);
+                        var _this = this.slide;
+                        _this.sliderMove = function(evt) {
+                            console.log(evt)
+                        }
+
+                        $('.muTab li').each(function(i) {
+                            var uTab = $(this);
+                            uTab.bind('click', function() {
+
+                                uijs.menuTab.moving(_this, uTab.index());
+                            });
+                        })
+                    }
+                },
+                menuTab: {
+                    els: ".muTab.swiper-container",
+                    opt: {
+                        observer: true,
+                        observeParents: true,
+                        watchOverflow: true,
+                        simulateTouch: false,
+                        autoHeight: true,
+                        spaceBetween: 8,
+                        slidesPerView: "auto",
+                        freeMode: true,
+                        preventClicks: true,
+                        preventClicksPropagation: false,
+                    },
+                    moving: function(v, n) {
+                        if (uijs.isMobile()) {
+                            let elm = v;
+                            elm.slideTo(n, 300, false);
+                        }
+
+                    },
+                    muCenter: function(target) {
+                        if (uijs.isMobile()) {
+                            var snbwrap = $('.muTab .swiper-wrapper');
+                            var targetPos = target.position();
+                            var box = $('.muTab');
+                            var boxHalf = box.width() / 2;
+                            var pos;
+                            var listWidth = 0;
+
+                            snbwrap.find('.swiper-slide').each(function() {
+                                listWidth += $(this).outerWidth() + 8;
+                            })
+
+                            var selectTargetPos = targetPos.left + target.outerWidth() / 2;
+
+                            if (selectTargetPos <= boxHalf) { // left
+                                pos = 0;
+                            } else if ((listWidth - selectTargetPos) <= boxHalf) { //right
+                                pos = listWidth - box.width();
+
+                            } else {
+                                pos = selectTargetPos - boxHalf;
+
+                            }
+
+                            setTimeout(function() {
+                                snbwrap.css({
+                                    "transform": "translate3d(" + (pos * -1) + "px, 0, 0)",
+                                    "transition-duration": "500ms"
+                                })
+                            }, 50);
+                        }
+
+                    },
+
+                    using: function() {
+                        this.slide = new Swiper(this.els, this.opt);
+                        if (uijs.isMobile()) {
+                            var $snbSwiperItem = $('.muTab .swiper-wrapper .swiper-slide');
+                            $snbSwiperItem.click(function() {
+
+                                $snbSwiperItem.removeClass('active');
+                                $(this).addClass('active');
+                                uijs.menuTab.muCenter($(this));
+                            });
+                        }
+                    },
+                },
+            }
+
+
+            uijs.init();
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>

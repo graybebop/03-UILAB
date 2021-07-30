@@ -1,0 +1,55 @@
+.breadcrumb {
+    margin-top: 10px;
+    ul {
+        li {
+            display: inline-block;
+            vertical-align: middle;
+            a {
+                font-size: 13px;
+                font-weight: 300;
+                color: #666;
+                &[disabled] {
+                    pointer-events: none;
+                    cursor: none;
+                    color: rgba(0, 0, 0, .5);
+                }
+            }
+        }
+        li+li:before {
+            content: "\e409";
+            font-family: 'Material Icons';
+            margin: 0 5px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #bfbfbf;
+        }
+    }
+}
+
+.breadcrumb-vertical {
+    margin-top: 10px;
+    ul {
+        li {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 13px;
+            font-weight: 300;
+            color: #666;
+            a {
+                font-size: 13px;
+                font-weight: 300;
+                color: #666;
+                &[disabled] {
+                    pointer-events: none;
+                    cursor: none;
+                    color: rgba(0, 0, 0, .5);
+                }
+            }
+            &.bc-divider {
+                margin: 0 10px;
+                color: #bfbfbf;
+                font-size: 12px !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .boxwrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 700px;
+        margin: 0 auto;
+    }
+    
+    .boxwrap:last-child .box {
+        border-bottom: 1px solid #000;
+    }
+    
+    .calendar-body {
+        flex-direction: column;
+    }
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        margin: 0;
+        border: 1px solid #000;
+        border-left: none;
+        border-bottom: none;
+        text-align: center;
+        font-size: 12px;
+        line-height: 100px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    
+    .box .active {
+        border: none;
+        background-color: black;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 50%;
+    }
+    
+    .saturday {
+        border: 1px solid blue;
+        border-left: 0;
+        border-bottom: none;
+        color: blue;
+    }
+    
+    .saturday .active {
+        border: none;
+        background-color: blue;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 50%;
+    }
+    
+    .red {
+        border: 1px solid red;
+        /* border-left: 0; */
+        color: red;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .red .active {
+        border: none;
+        background-color: red;
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 50%;
+    }
+    
+    .thin-gray {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    #date {
+        position: relative;
+    }
+    
+    #calendar-top {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 700px;
+        margin: 0 auto;
+        border-bottom: 1px solid #000;
+    }
+    
+    .calendar-topdate-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    
+    .calendar-topdate-wrapper .box:nth-child(1) {
+        border-left: 1px solid #000;
+    }
+    
+    .date_active {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        color: #fff;
+        background-color: blue;
+        border-radius: 50%;
+        align-self: center;
+    }
+    
+    #calendar-top .box:first-child {
+        border: 1px solid red;
+        color: red;
+    }
+    
+    #calendar-date {
+        position: relative;
+        top: -1px;
+    }
+    
+    #calendar-top .box {
+        font-weight: 500;
+    }
+    
+    #calendar-top .box:last-child {
+        border: 1px solid blue;
+        color: blue;
+    }
+    
+    #calendar-date .boxwrap .box:last-child {
+        border-left: 1px solid blue;
+    }
+    
+    .calendar {
+        width: 700px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .calendar-header {
+        font-size: 40px;
+        font-weight: 700;
+        text-align: center;
+        position: relative;
+        padding: 10px 0;
+    }
+    
+    .btn.prev {
+        position: absolute;
+        left: 20px;
+        top: 0;
+    }
+    
+    .btn.next {
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+
+        <div class="calendar">
+            <div class="calendar-header">
+                <div class="year">2021.09.20</div>
+
+                <button type="button" class="prev btn btn-light btn-outlined btn-sm btn-circle"><span class="material-icons-outlined">chevron_left </span></button>
+                <button type="button" class="next btn btn-light btn-outlined btn-sm btn-circle"><span class="material-icons-outlined">navigate_next</span></button>
+
+            </div>
+            <div class="calendar-body">
+                <div id="calendar-top"></div>
+                <div id="calendar-date"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        let date = new Date();
+        let current_year = date.getFullYear(); //current_year
+        let current_month = date.getMonth() + 1;
+        let fixedMonth = current_month;
+        let today = date.getDate();
+        let n = current_month; //달은 0부터 시작 그래서 +1 //n = current_month;
+        var d = today; //달은 0부터 시작 그래서 +1
+        var calendarBody = document.getElementsByClassName('calendar-body')[0];
+        var oldChild = [];
+        var dateWrapper = document.getElementById('calendar-date');
+        var weekHdWrapper = document.getElementById('calendar-top');
+
+        var checkDateEmpty = dateWrapper.length;
+        let boxRowCount = 0;
+        var boxWrapper = new Array(); //박스의
+        let boxRow = new Array(); //박스를 감싸는 줄 row
+        let boxCol = new Array(); //하나의 박스
+        let colNum = 7;
+        let rowNum = 5;
+        let clearTimeoutId = null;
+
+        function getFirstDayOfWeek(year, month) {
+            if (month < 10) month = "0" + month;
+            return (new Date(year + "-" + month + "-01").getDay());
+        }
+
+        let a = getFirstDayOfWeek(current_year, current_month + 5);
+
+        //해단년도의 해당월에 모든 일수를 구해오기
+        var getDaysInMonth = function(year, month) {
+            return new Date(year, month, 0).getDate();
+        };
+
+        function createTable(n, k) {
+
+
+            //date영역에 상자를 만들때 자식 객체가 있는지 확인
+
+
+            let num = n;
+            var q = 0;
+            let first_day_of_week = getFirstDayOfWeek(current_year, current_month);
+            var arr_calendar = new Array();
+            var count = 0;
+            document.getElementsByClassName('year')[0].innerHTML = current_year + "." + k + '.' + d;
+
+            for (let i = 0; i < first_day_of_week; i++) {
+                arr_calendar.push("");
+                //console.log(arr_calendar);
+            }
+
+            let rowNum = Math.ceil((arr_calendar.length + num) / 7);
+            for (let l = 1; l <= num; l++) {
+                arr_calendar.push(l);
+                //console.log(arr_calendar);
+            }
+
+
+            for (let i = 1; i <= rowNum; i++) {
+
+                let boxWrap = document.createElement('div');
+                oldChild[i - 1] = boxWrap;
+                boxWrap.setAttribute('class', 'boxwrap');
+                boxRow[i] = dateWrapper.appendChild(boxWrap);
+                boxRow[i].addEventListener('mouseleave', function(e) {
+                    //let ele = e.target;
+                    //  console.log(e.target);
+                    //ele.classList.remove('thin-gray');
+                });
+
+
+                for (let j = 1; j <= colNum; j++) {
+                    let box = document.createElement("div");
+                    count++;
+                    boxCol = [j];
+
+                    // console.log(arr_calendar)
+                    boxCol[j] = boxRow[i].appendChild(box);
+                    box.setAttribute('class', 'box');
+
+
+                    boxCol[j].addEventListener('click', function(e) {
+                        //console.log(boxRow.indexOf(e.target.parentNode));
+                        // console.log(e.target);
+                    });
+
+                    boxCol[j].addEventListener('mouseover', function(e) {
+                        //let ele = boxRow.indexOf(e.target.parentNode);
+                        // console.log(boxRow[Number(ele)]);
+                        //boxRow[Number(ele)].classList.add('thin-gray');
+                    });
+
+
+
+                    if (j % 9 == 7) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
+                        box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+                        box.classList.add('active');
+                        boxCol[j].classList.add('saturday');
+
+                        //console.log('boxRowCount : ', boxRowCount++)
+                        boxWrapper[j] = boxRowCount++;
+
+
+                    }
+
+                    //console.log(arr_calendar);
+
+                    if (j % 9 == 1) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
+                        box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+                        box.classList.add('red');
+                        //console.log('boxRowCount : ', boxRowCount++)
+                        boxWrapper[j] = boxRowCount++;
+
+
+                    }
+
+                    if (arr_calendar[count - 1] !== undefined) {
+                        box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+
+                    }
+
+                    if (current_month == fixedMonth && today == Number(arr_calendar[count - 1])) {
+
+                        box.querySelector('span').classList.add('active');
+                    }
+
+
+                    q++;
+
+                }
+            }
+
+            checkUndefinedinDate();
+
+            clearTimeout(clearTimeoutId);
+        }
+
+        function checkUndefinedinDate() {
+
+            let undefinedDay = document.querySelectorAll('#calendar-date .box');
+            //console.log(undefinedDay)
+            let n = null;
+            for (var udy of undefinedDay) {
+                if (udy.innerText == 'undefined') {
+                    udy.innerText = '';
+                }
+
+            }
+        }
+
+
+        function init() {
+
+
+            let prev = document.getElementsByClassName('prev')[0];
+            let next = document.getElementsByClassName('next')[0];
+
+            prev.addEventListener("click", countNum);
+            next.addEventListener("click", countNum);
+
+            function countNum(e) {
+
+                if (e.currentTarget.classList.contains('next')) {
+                    if (current_month > 12 - 1) {
+                        current_month = 0;
+                        current_year++;
+                    }
+                    current_month++;
+                    removeObejct();
+                }
+
+                if (e.currentTarget.classList.contains('prev')) {
+
+                    if (current_month < 2) {
+                        current_month = 13;
+                        current_year--;
+                    };
+                    current_month--;
+                    removeObejct();
+                }
+            }
+
+            let thismonth = getDaysInMonth(current_year, current_month);
+            let calendarTopName = ['일', '월', '화', '수', '목', '금', '토'];
+            let calendarTopElementsWrapper = document.getElementById('calendar-top');
+
+            for (let i = 0; i < calendarTopName.length; i++) {
+                let calendarTopElements = document.createElement('div');
+
+                calendarTopElementsWrapper.appendChild(calendarTopElements);
+                calendarTopElements.setAttribute('class', 'box');
+                calendarTopElements.innerText = calendarTopName[i];
+            }
+            createTable(getDaysInMonth(current_year, n), current_month);
+        }
+
+
+
+
+        function removeObejct() {
+            if (dateWrapper.childNodes) {
+                let len = oldChild.length;
+
+                for (i = 0; i < len; i++) {
+                    //console.log(typeof oldChild[i]);
+
+                    if (typeof(oldChild[i]) == 'object') {
+
+                        //dateWrapper.removeChild(oldChild[i]);
+                        //달력칸만들기.html:363 Uncaught DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+                        //at removeObejct (http://127.0.0.1:5500/javascript/%EB%8B%AC%EB%A0%A5%EC%B9%B8%EB%A7%8C%EB%93%A4%EA%B8%B0.html:363:37)
+                        //at HTMLButtonElement.countNum (http://127.0.0.1:5500/javascript/%EB%8B%AC%EB%A0%A5%EC%B9%B8%EB%A7%8C%EB%93%A4%EA%B8%B0.html:323:21)
+
+                        $('#calendar-date').find('.boxwrap').remove();
+                    }
+                }
+
+            }
+
+            clearTimeoutId = setTimeout(e => {
+                createTable(getDaysInMonth(current_year, current_month), current_month);
+
+            }, 0);
+        }
+
+        init();
+    </script>
+
+</body>
+
+</html>

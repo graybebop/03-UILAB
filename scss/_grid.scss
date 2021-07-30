@@ -1,0 +1,149 @@
+$grid-columns: 12;
+$grid-gutter-width: 15px;
+//
+$container-max-widths: ( sm: 576px, md: 720px, lg: 940px, xl: 1140px);
+//
+$grid__bp-sm: 576;
+$grid__bp-md: 768;
+$grid__bp-lg: 1024;
+$grid__bp-xl: 1800;
+$grid__cols:12;
+$body: #333;
+$gap:0.25;
+.tpod-col {
+    flex-grow: 1;
+    flex-direction: wrap;
+    margin: $gap*1%;
+}
+
+$map-grid-props: ( //
+"":0, //
+"-sm":$grid__bp-sm, //
+"-md":$grid__bp-md, //
+"-lg":$grid__bp-lg, //
+"-xl":$grid__bp-xl, //
+);
+@mixin create-mq ($breakpoint, $min-or-max) {
+    @if($breakpoint==0) {
+        @content;
+    }
+    @else {
+        @media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+            @content;
+        }
+    }
+}
+
+@mixin create-col-classes ($modifier, $grid-cols, $breakpoint) {
+    @include create-mq($breakpoint, 'min') {
+        @for $i from 1 through $grid-cols {
+            $margin: 100 /($grid-cols/$i);
+            @if($breakpoint=="0") {
+                .tpod-col-#{$i} {
+                    // width: ( $margin - ( $gap * 2)) * 1%;
+                    //flex-basis: ( $margin - ( $gap * 2)) * 1%;
+                    //  margin: $gap*3%;
+                    width: (100% / 12) * $i;
+                    margin: $gap * 1%;
+                }
+            }
+            @else {
+                .tpod-col#{$modifier}-#{$i} {
+                    // flex-basis: (100% / 12) * $i - ($gap * 2%);
+                    // width: (100% / 12) * $i - ($gap * 2%);
+                    // margin: $gap * 1%;
+                    // position: relative;
+                    //위에 부분은 다시 원복부탁함
+                    width: (100% / 12) * $i;
+                }
+            }
+        }
+    }
+}
+
+@each $modifier,
+$breakpoint in $map-grid-props {
+    @if($modifier=="") {
+        $modifier: "-xs";
+    }
+    @include create-mq($breakpoint - 1, "max") {
+        .hidden#{$modifier}-down {
+            display: none !important;
+        }
+    }
+    @include create-mq($breakpoint, "min") {
+        .hidden#{$modifier}-up {
+            display: none !important;
+        }
+    }
+}
+
+//----- Extends
+%clearfix:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+//----- Grid System
+$grid-spacing:3%;
+.tpod-wrapper {
+    position: relative;
+    width: 100%;
+    min-width: 1200px;
+    @include mobile {
+        min-width: 100%;
+    }
+}
+
+.tpod-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tpod-flex-nowrap {
+    flex-wrap: nowrap !important;
+}
+
+.tpod-row {
+    //margin: $gap*1% auto;
+    margin: 0 ($gap) * -1%;
+    & {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    @each $modifier,
+    $breakpoint in $map-grid-props {
+        @include create-col-classes($modifier, $grid__cols, $breakpoint)
+    }
+    &.justify-space-around {
+        justify-content: space-around;
+    }
+    &.justify-space-evenly {
+        justify-content: space-evenly;
+    }
+    &.justify-space-between {
+        justify-content: space-between;
+    }
+    &.justify-center {
+        justify-content: center !important;
+    }
+}
+
+.tpod-grid [class^="tpod-col-"] {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    // display: block;
+    // margin-right: $grid-spacing;
+    // -webkit-box-sizing: border-box;
+    // -moz-box-sizing: border-box;
+    // box-sizing: border-box;
+    // margin-top: .75rem;
+    // margin-bottom: .75rem;
+    // &:last-child {
+    //     margin-right: 0%;
+    // }
+}

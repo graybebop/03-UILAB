@@ -1,0 +1,96 @@
+.gnb {
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    @include mobile {
+        width: auto;
+        flex-direction: column;
+    }
+    ul {
+        position: relative;
+    }
+    li {
+        display: block;
+        margin: 0;
+        @include mobile {
+            width: 50%;
+        }
+        a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            &.arrow-right:after {
+                content: "navigate_next";
+                display: block;
+                position: absolute;
+                top: 30%;
+                right: 10px;
+                font-family: 'Material Icons Outlined';
+                -webkit-font-feature-settings: 'liga';
+                font-size: 24px;
+                color: #666;
+            }
+        }
+    }
+    &>li>a.active {
+        background-color: #000;
+        color: #fff !important;
+    }
+    &>li>a.arrow-right:hover:after {
+        color: #fff;
+    }
+    &>li>ul {
+        position: absolute;
+        top: inherit;
+        left: 0;
+        width: 100%;
+        margin-top: 0;
+        display: none;
+        z-index: 1111;
+        background-color: #fff;
+        @include mobile {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    }
+    &>li>ul li a:hover {
+        background-color: #f7f7f7;
+    }
+    &>li>ul>li ul {
+        position: absolute;
+        top: inherit;
+        left: 100%;
+        width: 100%;
+        margin-top: -55px;
+        display: none;
+        z-index: 1111;
+        background-color: #fff;
+        @include mobile {
+            position: relative;
+            margin-top: 0;
+            top: 0;
+            left: 0;
+        }
+    }
+    &>li>ul>li {
+        display: block;
+        margin: 0;
+        border: 1px solid #ddd;
+    }
+    &>li>ul>li>a {
+        position: relative;
+        padding: 20px 20px;
+        display: block;
+    }
+    &>li ul li {
+        @include mobile {
+            width: 100% !important;
+        }
+    }
+}

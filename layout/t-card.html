@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <!-- header gnb : s -->
+    <header class="tpod-wrapper" id="right-aligned-menu">
+        <div class="tpod-header-container">
+            <div class="logo">
+                <a href="#none">TPOD</a>
+            </div>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="#none">HOME</a></li>
+                    <li><a href="#none">FEATURES</a></li>
+                    <li><a href="#none">ELEMENTS</a></li>
+                    <li><a href="#none">PAGES</a></li>
+                    <li><a href="#none">PORTFOLIO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header gnb : e -->
+    <!-- content : s -->
+    <section class="tpod-wrapper">
+        <div class="tpod-container-fluid tpod-page-title">
+            <!-- Page Title : E -->
+            <div class="page-title">
+                <h1>T CARD</h1>
+                <span class="txt">Inspiration comes of working every day.</span>
+                <!-- BreadCrumb : S -->
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="#">Home</a> </li>
+                        <!-- <li><a href="#">Elements</a> </li> -->
+                        <li class="active"><a href="#">Layout</a> </li>
+                        <li class="current"><a href="#">T CARD</a> </li>
+                    </ul>
+                </div>
+                <!-- BreadCrumb : S -->
+            </div>
+            <!-- Page Title : E -->
+        </div>
+        <div class="tpod-container mt-70">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <h4 class="mb-30">T CARD</h4>
+
+                    <div class="t-card bordered border-radius p-15">
+                        <div class="t-card__title">Card title</div>
+                        <div class="t-card__subtitle">Subtitle text</div>
+                        <div class="t-card__text py-10"> T Card의 기본속성은 block 입니다. <span class="d-inline-block font-weight-medium text-color-danger bg-aqua py-5 pr-10 pl-10 border-radius">tpod-col-</span> 등과 같이 사용할수 있습니다.</div>
+                        <div class="t-card__actions pt-20">
+                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tpod-divider"></div>
+                <div class="tpod-col-12">
+                    <h4 class="mb-30">T CARD 썸네일 속성(이미지 주소로 불러올때)</h4>
+                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                        <div class="t-card_thumb">
+                            <img src="../images/t-card-thumb.png" alt="" />
+                        </div>
+                        <div class="t-card__title mt-10">Card title</div>
+                        <div class="t-card__subtitle">Subtitle text</div>
+                        <div class="t-card__text py-10">
+                            <p>1. 썸네일의 속성은 반응형이며 t-card의 기본 속성에 의해서 사이즈가 변경된다.</p>
+
+                        </div>
+                        <div class="t-card__actions pt-20">
+                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tpod-divider"></div>
+                <div class="tpod-col-12">
+                    <h4 class="mb-30">T CARD 썸네일 속성(배경형태로 불러올때)</h4>
+                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                        <div class="t-card_thumb" style="height:250px; background: url('../images/t-card-thumb.png')  no-repeat center; background-size:cover;  ">
+
+                        </div>
+                        <div class="t-card__title mt-10">Card title</div>
+                        <div class="t-card__subtitle">Subtitle text</div>
+                        <div class="t-card__text py-10">
+
+                            <p>2. 이미지의 사이즈는 사용자과 관리자에 올릴때마다 틀려질수 있으므로 이에대한 대응으로 이미지는 썸네일을 감싸는 wrap에 배경이미지로 지정해서 반응형에 대응할 수 있다. </p>
+                        </div>
+                        <div class="t-card__actions pt-20">
+                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tpod-divider"></div>
+                <div class="tpod-col-12">
+                    <h4 class="mb-30">T CARD 나열시 tpod-list-item-group 이용</h4>
+                    <!-- item group: s -->
+                    <div class="tpod-list-item-group">
+                        <div class="tpod-container">
+                            <div class="tpod-row">
+                                <!-- item : s -->
+                                <div class="tpod-col-4">
+                                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                                        <div class="t-card_thumb" style="height:250px; background: url('../images/t-card-thumb.png')  no-repeat center; background-size:cover; ">
+                                        </div>
+                                        <div class="t-card__title mt-10">Card title</div>
+                                        <div class="t-card__subtitle">Subtitle text</div>
+                                        <div class="t-card__text py-10">
+
+                                            <p>2. 이미지의 사이즈는 사용자과 관리자에 올릴때마다 틀려질수 있으므로 이에대한 대응으로 이미지는 썸네일을 감싸는 wrap에 배경이미지로 지정해서 반응형에 대응할 수 있다. </p>
+                                        </div>
+                                        <div class="t-card__actions pt-20">
+                                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- item : e -->
+                                <!-- item : s -->
+                                <div class="tpod-col-4">
+                                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                                        <div class="t-card_thumb" style="height:250px; background: url('../images/t-card-thumb.png')  no-repeat center; background-size:cover; ">
+                                        </div>
+                                        <div class="t-card__title mt-10">Card title</div>
+                                        <div class="t-card__subtitle">Subtitle text</div>
+                                        <div class="t-card__text py-10">
+
+                                            <p>2. 이미지의 사이즈는 사용자과 관리자에 올릴때마다 틀려질수 있으므로 이에대한 대응으로 이미지는 썸네일을 감싸는 wrap에 배경이미지로 지정해서 반응형에 대응할 수 있다. </p>
+                                        </div>
+                                        <div class="t-card__actions pt-20">
+                                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- item : e -->
+                                <!-- item : s -->
+                                <div class="tpod-col-2">
+                                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                                        <div class="t-card_thumb" style="height:250px; background: url('../images/t-card-thumb.png')  no-repeat center; background-size:cover; ">
+                                        </div>
+                                        <div class="t-card__title mt-10">Card title</div>
+                                        <div class="t-card__subtitle">Subtitle text</div>
+                                        <div class="t-card__text py-10">
+
+                                            <p>2. 이미지의 사이즈는 사용자과 관리자에 올릴때마다 틀려질수 있으므로 이에대한 대응으로 이미지는 썸네일을 감싸는 wrap에 배경이미지로 지정해서 반응형에 대응할 수 있다. </p>
+                                        </div>
+                                        <div class="t-card__actions pt-20">
+                                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- item : e -->
+                                <!-- item : s -->
+                                <div class="tpod-col-1">
+                                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                                        <div class="t-card_thumb" style="height:250px; background: url('../images/t-card-thumb.png')  no-repeat center; background-size:cover; ">
+                                        </div>
+                                        <div class="t-card__title mt-10">Card title</div>
+                                        <div class="t-card__subtitle">Subtitle text</div>
+                                        <div class="t-card__text py-10">
+
+                                            <p>2. 이미지의 사이즈는 사용자과 관리자에 올릴때마다 틀려질수 있으므로 이에대한 대응으로 이미지는 썸네일을 감싸는 wrap에 배경이미지로 지정해서 반응형에 대응할 수 있다. </p>
+                                        </div>
+                                        <div class="t-card__actions pt-20">
+                                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- item : e -->
+                                <!-- item : s -->
+                                <div class="tpod-col-1">
+                                    <div class="t-card bordered border-radius p-15 mx-0" style="width:430px;">
+                                        <div class="t-card_thumb" style="height:250px; background: url('../images/t-card-thumb.png')  no-repeat center; background-size:cover; ">
+                                        </div>
+                                        <div class="t-card__title mt-10">Card title</div>
+                                        <div class="t-card__subtitle">Subtitle text</div>
+                                        <div class="t-card__text py-10">
+
+                                            <p>2. 이미지의 사이즈는 사용자과 관리자에 올릴때마다 틀려질수 있으므로 이에대한 대응으로 이미지는 썸네일을 감싸는 wrap에 배경이미지로 지정해서 반응형에 대응할 수 있다. </p>
+                                        </div>
+                                        <div class="t-card__actions pt-20">
+                                            <button type="button" class="btn btn-light"><span class="btn__content"> Action 1 </span></button>
+                                            <button type="button" class="btn btn-dark"><span class="btn__content"> Action 2 </span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- item : e -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- item group: e -->
+
+                </div>
+            </div>
+    </section>
+</body>
+
+</html>

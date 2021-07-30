@@ -1,0 +1,64 @@
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+$state-success-text: #3c763d !default;
+$state-success-bg: #dff0d8 !default;
+$state-success-border: darken(adjust-hue($state-success-bg, -10), 5%) !default;
+$state-info-text: #31708f !default;
+$state-info-bg: #d9edf7 !default;
+$state-info-border: darken(adjust-hue($state-info-bg, -10), 7%) !default;
+$state-warning-text: #8a6d3b !default;
+$state-warning-bg: #fcf8e3 !default;
+$state-warning-border: darken(adjust-hue($state-warning-bg, -10), 5%) !default;
+$state-danger-text: #a94442 !default;
+$state-danger-bg: #f2dede !default;
+$state-danger-border: darken(adjust-hue($state-danger-bg, -10), 5%) !default;
+.alert {
+    position: relative;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    padding-right: 50px;
+}
+
+.alert-with-icons {
+    .material-icons-outlined.icons {
+        font-size: 20px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}
+
+@mixin alert-variant($aaa, $bbb) {
+    color: #fff;
+    background-color: $bbb;
+}
+
+@each $color,
+$value in $theme-colors {
+    .alert-#{$color} {
+        @include alert-variant($value, $value);
+        //color: color-contrast($value); // returns `color: #fff`
+        //background-color: a11y-color(#0094c2, #f0f0f0, 'AAA', 1.25rem, true);
+    }
+}
+
+.close-alert {
+    margin-left: 15px;
+    color: white;
+    opacity: 0.5;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-alert:hover {
+    color: white;
+    opacity: 1;
+}

@@ -1,0 +1,317 @@
+.tpod-search-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background-color: #fff;
+    //box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+    &:hover {
+        -webkit-box-shadow: 8px 4px 9px 0px rgba(0, 0, 0, 0.22);
+        box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.06);
+    }
+    &:focus {
+        background-color: #fff;
+    }
+    &:active {
+        background-color: #fff;
+    }
+    .serach-box {
+        flex: 1;
+        height: 66px;
+        font-size: 14px;
+        border-radius: 50px;
+        border: 0px solid #ddd;
+        overflow: hidden;
+        &:hover {
+            background-color: #f7f7f7;
+        }
+        .txt-wrap {
+            position: relative;
+            top: 13px;
+            left: 30px;
+            .input-txt {
+                position: relative;
+            }
+            input {
+                border-bottom: 1px solid #ddd;
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+.search-wrap {
+    position: relative;
+    width: 90%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 0 20px;
+    overflow: hidden;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 30px;
+    //box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+    &:hover {
+        -webkit-box-shadow: 8px 4px 9px 0px rgba(0, 0, 0, 0.22);
+        box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.06);
+    }
+    .serach-box {
+        position: relative;
+        height: 40px;
+        font-size: 14px;
+        // border-bottom: 1px solid #ddd;
+        width: 97%;
+        .label_txt {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            z-index: 10px;
+        }
+        &:active {
+            .label_txt {
+                color: red;
+            }
+        }
+        &:active {
+            &:before {
+                width: 50%;
+                left: 0;
+            }
+            &:after {
+                width: 50%;
+                right: 0;
+            }
+        }
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            background-color: red;
+            width: 0;
+            left: 50%;
+            z-index: 10;
+            transition: 0.5s;
+        }
+        .search-value {
+            font-size: 14px;
+            line-height: 1;
+            padding: 5px 0;
+            border: none;
+            color: #000;
+            margin-top: 5px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    }
+}
+
+.search-wrap2 {
+    position: relative;
+    width: 90%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 0 20px;
+    overflow: hidden;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 30px;
+    //box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+    &:hover {
+        -webkit-box-shadow: 8px 4px 9px 0px rgba(0, 0, 0, 0.22);
+        box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.06);
+    }
+    .serach-box {
+        position: relative;
+        height: 40px;
+        font-size: 14px;
+        // border-bottom: 1px solid #ddd;
+        width: 97%;
+        .search-value {
+            font-size: 14px;
+            line-height: 1;
+            padding: 0;
+            border: none;
+            color: #000;
+            margin-top: 5px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        label {
+            transition: 0.5s;
+        }
+        .effect-1~.focus-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: red;
+            transition: 0.4s;
+        }
+        .effect-1~.focus-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: red;
+            transition: 0.4s;
+        }
+        .effect-1:focus~.focus-border {
+            width: 100%;
+            transition: 0.4s;
+        }
+        .effect-1:focus~label {
+            color: red;
+        }
+    }
+}
+
+$form-input-border-effect-color:red;
+.search-wrap3 {
+    position: relative;
+    width: 90%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 0 20px;
+    // overflow: hidden;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 30px;
+    //box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+    &:hover {
+        box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);
+    }
+    .search-value {
+        font-size: 14px;
+        line-height: 1;
+        padding: 0;
+        border: none;
+        color: #000;
+        margin-top: 5px;
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+    }
+    label {
+        position: absolute;
+        top: 10px;
+        transition: 0.5s;
+    }
+    .effect-20~.focus-border:before,
+    .effect-20~.focus-border:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: $form-input-border-effect-color;
+        transition: 0.3s;
+    }
+    .effect-20~.focus-border:after {
+        top: auto;
+        bottom: 0;
+        left: auto;
+        right: 0;
+    }
+    .effect-20~.focus-border i:before,
+    .effect-20~.focus-border i:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 0;
+        background-color: $form-input-border-effect-color;
+        transition: 0.4s;
+    }
+    .effect-20~.focus-border i:after {
+        left: auto;
+        right: 0;
+        top: auto;
+        bottom: 0;
+    }
+    .effect-20:focus~.focus-border:before,
+    .effect-20:focus~.focus-border:after,
+    .has-content.effect-20~.focus-border:before,
+    .has-content.effect-20~.focus-border:after {
+        width: 100%;
+        transition: 0.3s;
+    }
+    .effect-20:focus~.focus-border i:before,
+    .effect-20:focus~.focus-border i:after,
+    .has-content.effect-20~.focus-border i:before,
+    .has-content.effect-20~.focus-border i:after {
+        height: 100%;
+        transition: 0.4s;
+    }
+    .effect-20~label {
+        position: absolute;
+        width: 100%;
+        color: #aaa;
+        transition: 0.3s;
+        z-index: 0;
+        letter-spacing: 0.5px;
+    }
+    .effect-20:focus~label,
+    .has-content.effect-20~label {
+        top: 5px;
+        font-size: 12px;
+        color: $form-input-border-effect-color;
+        transition: 0.3s;
+    }
+}
+
+.search-wrap3 .search-value .effect-20:focus {
+    border: 1px solid #000;
+}
+
+.search-wrap4 {
+    position: relative;
+    width: 90%;
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 0 20px;
+    overflow: hidden;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 15px;
+    .search-value {
+        font-size: 20px;
+        line-height: 1;
+        padding: 0;
+        border: 0px solid #000;
+        color: #000;
+        position: absolute;
+        width: 92%;
+        z-index: 20;
+    }
+    .search-value::placeholder {
+        font-size: 20px;
+    }
+    label {
+        position: absolute;
+        top: 10px;
+        transition: 0.5s;
+    }
+}

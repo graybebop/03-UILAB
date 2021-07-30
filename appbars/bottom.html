@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <style>
+        .contents {
+            border: 1px solid #000;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .contents2 {
+            padding: 0;
+        }
+        
+        .contents2 .c {
+            border: 1px solid #000;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            background-color: #ff6600;
+        }
+    </style>
+    <section class="contents" style="height:2000px;">
+        Content
+    </section>
+    <section class="contents2">
+        <div class="c">
+            Content
+        </div>
+    </section>
+    <section class="appbar-bottom">
+        <div class="appbar-container">
+
+            <a href="#none" class="btn btn-circle menu">
+                <span class="material-icons-outlined">menu</span>
+            </a>
+            <div class="menu-right">
+                <a href="#none" class="btn btn-circle menu">
+                    <span class="material-icons-outlined">search</span>
+                </a>
+                <a href="#none" class="btn btn-circle  menu">
+                    <span class="material-icons-outlined">more_vert</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <a href="#none" class="floating">
+        <span class="material-icons">add</span>
+    </a>
+    <script>
+        $(document).ready(function() {
+            let bottomAppBar = document.getElementsByClassName('appbar-bottom')[0];
+            let contentsContainer = document.getElementsByClassName('contents')[0];
+            let contentsContainer2 = document.querySelectorAll('.contents2 .c')[0];
+            let contentsContainer3 = document.querySelectorAll('.contents2')[0];
+            let bottomAppBarHeight = bottomAppBar.clientHeight;
+            console.log(bottomAppBarHeight)
+                // contentsContainer2.style.marginTop = bottomAppBarHeight + 'px';
+            contentsContainer3.style.paddingBottom = bottomAppBarHeight + 10 + 'px';
+        })
+    </script>
+</body>
+
+</html>

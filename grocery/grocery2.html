@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<section class="wrapper">
+    <div class="board-write">
+        <h5>글쓰기</h5>
+        <div>
+            <div class="lt"></div>
+        </div>
+    </div>
+
+</section>
+
+
+<body>
+
+    <script>
+        //select items
+        const form = document.querySelector('.grocery-form');
+        const grocery = document.getElementById('grocery');
+        const submitBtn = document.querySelector('.submit-btn');
+        const container = document.querySelector('.grocery-container');
+        const list = document.querySelector('.grocery-list');
+        const clearBtn = document.querySelector('.clear-btn');
+        const alertBox = document.querySelector('.alert');
+
+        //edit option
+        submitBtn.addEventListener('click', function(e) {
+            //console.log('alert');
+        });
+
+        clearBtn.addEventListener('click', function(e) {
+            clearItems();
+        });
+
+        // display items onload
+        //window.addEventListener("DOMContentLoaded", setupItems);
+
+        let editElement;
+        let editFlag = false;
+        let editId = "";
+
+        //event listeners
+
+        form.addEventListener('submit', addItem);
+
+        //functions
+
+        function addItem(e) {
+
+            e.preventDefault();
+
+            const value = grocery.value;
+            const id = new Date().getTime().toString();
+            if (value && !editFlag) {
+                //console.log('added Item to list');
+                const element = document.createElement('div');
+                element.classList.add('grocery-item');
+                const attr = document.createAttribute('data-id');
+                attr.value = id;
+                element.setAttributeNode(attr);
+                element.innerHTML = `
+                                <div class="title">${value}</div>
+                                <div class="btn-container">
+                                    <button type="button" class="edit-btn"><span class="material-icons">create</span></button>
+                                    <button type="button" class="delete-btn"><span class="material-icons">delete_outline</span></button>
+                                </div>
+                            `;
+                const deleteBtn = element.querySelector('.delete-btn');
+                const editBtn = element.querySelector('.edit-btn');
+                deleteBtn.addEventListener('click', deleteItem);
+                editBtn.addEventListener('click', editItem);
+                //append child
+                list.appendChild(element);
+                displayAlert("item added to the list", 'success');
+                //로컬스토리지 저장후
+                addToLocalStorage(id, value);
+                //인풋박스의 텍스트를 초기화
+                setBackDefault();
+
+
+            } else if (value && editFlag) {
+                editElement.innerHTML = value;
+                setBackDefault();
+            } else {
+                // console.log('please enter a value');
+                //alertBox.style.display = "block";
+                //alertBox.innerHTML = "please enter a value";
+                displayAlert("please enter a value", 'danger')
+            }
+        }
+
+        //display alert
+
+        function displayAlert(text, action) {
+            alertBox.textContent = text;
+            alertBox.classList.add(`alert-${action}`);
+
+            setTimeout(function() {
+                alertBox.textContent = '';
+                alertBox.classList.remove(`alert-${action}`);
+            }, 1000);
+        }
+
+        function editItem(e) {
+            const element = e.currentTarget.parentElement.parentElement;
+
+            //set edit item
+            editElement = e.currentTarget.parentElement.previousElementSibling;
+            grocery.value = editElement.innerHTML;
+            editFlag = true;
+            editId = element.dataset.id;
+            submitBtn.textContent = 'edit';
+
+        }
+
+        function deleteItem(e) {
+
+            const element = e.currentTarget.parentElement.parentElement;
+            const id = element.dataset.id;
+            //console.log(element);
+            list.removeChild(element);
+
+            if (list.children.length === 0) {
+                container.classList.remove('show-container');
+            }
+            setBackDefault();
+            removeToLocalStorage(id);
+        }
+
+        function setBackDefault() {
+
+            grocery.value = '';
+            editFlag = false;
+            editId = '';
+            submitBtn.textContent = 'submit';
+
+        }
+
+        function clearItems() {
+            const items = document.querySelectorAll('.grocery-item');
+            if (items.length > 0) {
+                items.forEach(function(item) {
+                    list.removeChild(item);
+
+                });
+            }
+        }
+        //local storages
+        function addToLocalStorage(id, value) {
+            // console.log('added to local storage');
+            const grocery = {
+                id,
+                value
+            };
+            let items = getLocalStorage();
+            items.join(grocery);
+            localStorage.setItem("list", JSON.stringify(items));
+
+        }
+
+        function getLocalStorage() {
+            return localStorage.getItem("list") ?
+                JSON.parse(localStorage.getItem("list")) : [];
+        }
+
+        function removeToLocalStorage(id) {
+            // console.log(id);
+        }
+
+
+
+        // localStorage.setItem("orange", JSON.stringify(["item", "item2"]));
+        // const oranges = JSON.parse(localStorage.getItem('orange'));
+        // console.log(oranges);
+        // localStorage.removeItem('orange');
+        //setup items
+    </script>
+</body>
+
+</html>

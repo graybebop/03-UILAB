@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>CSS - transition-delay 전환지연</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .wrapper {
+            /* border: 1px solid #000; */
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            padding: 50px;
+            padding-bottom: 200px;
+        }
+        
+        .box,
+        .boxs {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            margin: 0;
+            /* border: 1px solid #000; */
+            text-align: center;
+            font-size: 1rem;
+            line-height: 200px;
+            text-align: center;
+            box-sizing: border-box;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .box {
+            transition-property: background-color font-size transform color;
+            transition-timing-function: ease-in-out;
+            transition-duration: 3s;
+        }
+        
+        .boxs {
+            display: block;
+            position: relative;
+            margin-bottom: 10px;
+            /* transform: translateX(300px); */
+            transition-property: background-color transform;
+            transition-timing-function: ease-in-out;
+            transition-duration: 3s;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+        }
+        
+        .transformed-state {
+            transform: rotate(270deg);
+            background-color: blue;
+            color: yellow;
+            font-size: 12px;
+            transition-property: background-color font-size transform color;
+            transition-timing-function: ease-in-out;
+            transition-duration: 3s;
+        }
+        
+        .transform-moveforward {
+            transform: translateX(900px);
+            background-color: blue;
+            color: yellow;
+            font-size: 12px;
+            transition-property: background-color transform;
+            transition-timing-function: ease-in-out;
+            transition-duration: 3s;
+        }
+        
+        .delay-1 {
+            transition-delay: 0.5s;
+        }
+        
+        .delay-2 {
+            transition-delay: 2s;
+        }
+        
+        .delay-3 {
+            transition-delay: 4s;
+        }
+        
+        .delay-4 {
+            transition-delay: 0.5s;
+        }
+        
+        .delay-5 {
+            transition-delay: 2s;
+        }
+        
+        .delay-6 {
+            transition-delay: 4s;
+        }
+    </style>
+    <div class="wrapper">
+        <div class="explain">
+            <h5>transition-delay</h5>
+            <p class="txt">box클래스에 적용된 transition-delay 속성에 때라서 에니메이션에 적용되는 지연유무를 각각 정의 할 수 있다. <mark class="text-color-danger">transition-delay: 0.5s</mark></p>
+        </div>
+        <div class="box-wrapper pt-50 ">
+            <div class="box delay-1">0.5 seconds</div>
+
+            <div class="box delay-2">2 seconds</div>
+
+            <div class="box delay-3">4 seconds</div>
+
+            <button id="change" class="btn btn-sm btn-primary">Change</button>
+
+        </div>
+
+        <div class="box-wrapper pt-50 ">
+            <div class="boxs delay-4">0.5 seconds</div>
+
+            <div class="boxs delay-5">2 seconds</div>
+
+            <div class="boxs delay-6">4 seconds</div>
+
+            <button id="change2" class="btn btn-sm btn-primary">Change</button>
+
+        </div>
+    </div>
+    <script>
+        function change() {
+
+            const elements = document.querySelectorAll('.box');
+            for (let element of elements) {
+                element.classList.toggle("transformed-state");
+            }
+        }
+
+        function change2() {
+
+            const elements = document.querySelectorAll('.boxs');
+            for (let element of elements) {
+                element.classList.toggle("transform-moveforward");
+            }
+        }
+        const changeButton = document.querySelector('#change');
+        changeButton.addEventListener("click", change);
+        const changeButton2 = document.querySelector('#change2');
+        changeButton2.addEventListener("click", change2);
+    </script>
+</body>
+
+</html>

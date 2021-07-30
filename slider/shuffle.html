@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 10px 20px;
+        position: relative;
+    }
+    
+    #calc {
+        z-index: 10;
+        position: fixed;
+        bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    @media(max-width:760px) {
+        .wrapper {
+            padding: 10px;
+        }
+    }
+</style>
+
+<body>
+
+    <section class="wrapper">
+
+        <ul class="masonry"></ul>
+
+    </section>
+
+    <script>
+        function shuffle(array) {
+            var currentIndex = array.length,
+                randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex], array[currentIndex]
+                ];
+            }
+
+            return array;
+        }
+
+        // Used like so
+        var arr = [2, 11, 37, 42, 100, 200, 300, 400, 5, 6, 7, 8, 9, 100];
+        shuffle(arr);
+        console.log(arr);
+
+
+
+        function generateRandomNumbers(min, max, places) {
+            // If both the minimum and maximum values are integers, return a random integer. Don't let the user specify any decimal places.
+            if (Number.isInteger(min) && Number.isInteger(max)) {
+                if (places !== undefined) {
+                    new Error("Cannot specify decimal places with integers.");
+                }
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            // Otherwise, return a random floating point number with specified decimal places.
+            else {
+
+                // Make sure the minimum value is a number.
+                if (Number.isNaN(Number.parseFloat(min))) {
+                    new Error("Minimum value is not a number.");
+                }
+
+                // Make sure the maximum value is a number.
+                if (Number.isNaN(Number.parseFloat(max))) {
+                    new Error("Maximum value is not a number.");
+                }
+
+                // Make sure the decimal places value is a non-negative number greater than 0.
+                if (Number.isInteger(places) === false) {
+                    new Error("Number of decimal places is not a number.");
+
+                }
+
+                if (places <= 0) {
+                    new Error("Number of decimal places must be at least 1.");
+                }
+
+                // Generate the floating point number.
+                let value = (Math.random() * (max - min + 1)) + min;
+                return Number.parseFloat(value).toFixed(places);
+            }
+        }
+
+        var rnd = generateRandomNumbers(10, 100, 100);
+        var result = [];
+
+        for (let i = 0; i < 10; i++) {
+            rnd = generateRandomNumbers(i, 100, 100)
+            result.push(rnd);
+        }
+
+        console.log(result);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <!-- Header : S -->
+    <style>
+        html,
+        body {
+            padding: 30px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .wrapper {
+            position: relative;
+            width: 1000px;
+            min-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .content h1 {
+            font-size: 30px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .gnb {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin-top: 30px;
+        }
+        
+        .gnb>li {
+            display: block;
+            margin: 0 10px;
+            border: 1px solid #000;
+            position: relative;
+        }
+        
+        .gnb li:first-child {
+            margin-left: 0;
+        }
+        
+        .gnb>li>a {
+            position: relative;
+            padding: 15px 30px;
+            display: block;
+        }
+        
+        .gnb>li>a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .gnb>li>a.active {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .gnb>li>ul {
+            position: absolute;
+            top: inherit;
+            left: inherit;
+            margin-top: 1px;
+            display: none;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        
+        .gnb>li>ul>li {
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .gnb>li>ul>li:last-child {
+            border-bottom: none;
+        }
+        
+        .gnb>li>ul>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+            background: #fff;
+        }
+        
+        .gnb>li>ul>li>a:hover {
+            background: #fafafa;
+        }
+        
+        .gnb>li:hover>ul {
+            display: block;
+        }
+        
+        .content .exp .t-1 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #999;
+            margin-top: 20px;
+        }
+        
+        .content .exp .t-2 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #333;
+            line-height: 22px;
+        }
+    </style>
+    <div class="wrapper content">
+        <ul class="gnb"></ul>
+
+    </div>
+
+    <div id="myDiv">
+        <span>My name is TOm</span>
+    </div>
+
+    <script>
+        function createListItem(text) {
+
+            var li = document.createElement('li');
+            li.textContent = text;
+            return li;
+        }
+
+
+        function appendChildren(parent, children) {
+            consoloe.log(parent);
+            children.forEach(function(child) {
+                parent.appendChild(child);
+            });
+
+
+        }
+
+        var myList = document.getElementsByClassName('gnb')[0];
+        var items = [
+            createListItem('대메뉴-1'),
+            createListItem('대메뉴-2'),
+            createListItem('대메뉴-3')
+        ];
+
+        //appendChildren(myList, items)
+        items.forEach(function(li) {
+            myList.appendChild(li);
+        });
+    </script>
+
+</body>
+
+</html>

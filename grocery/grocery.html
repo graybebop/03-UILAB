@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+        text-rendering: optimizelegibility;
+        font-size: 100%;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    a:active,
+    a:hover {
+        outline: 0 none;
+    }
+    
+    a {
+        color: #818181;
+        transition: 0.2s;
+    }
+    
+    a:hover {
+        color: #05bdb8 !important;
+    }
+    
+    .clearBoth {
+        clear: both;
+    }
+    
+    textarea {
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    textarea:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #b5b5b5;
+        font-size: 14px;
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    textarea::-moz-placeholder {
+        color: #b5b5b5;
+        font-size: 14px;
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    textarea::placeholder {
+        color: #b5b5b5;
+        font-size: 14px;
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    input,
+    select {
+        font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    input:-ms-input-placeholder,
+    select:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #b5b5b5;
+        font-size: 14px;
+    }
+    
+    input::-moz-placeholder,
+    select::-moz-placeholder {
+        color: #b5b5b5;
+        font-size: 14px;
+    }
+    
+    input:-ms-input-placeholder,
+    select:-ms-input-placeholder {
+        color: #b5b5b5;
+        font-size: 14px;
+    }
+    
+    input::placeholder,
+    select::placeholder {
+        color: #b5b5b5;
+        font-size: 14px;
+    }
+    
+    .wrapper {
+        position: relative;
+        width: 100%;
+        min-width: 1200px;
+    }
+    
+    @media (max-width: 1200px) {
+        .wrapper {
+            min-width: 100%;
+        }
+    }
+    
+    .container {
+        width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .desc {
+        padding: 50px 0;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 300;
+    }
+    
+    .tpod-dividers-wrapper {
+        margin-top: 50px;
+    }
+    
+    .tpod-dividers-wrapper .tpod-txt-wrapper .h1 {
+        font-size: 20px !important;
+    }
+    
+    .tpod-dividers-wrapper .tpod-txt-wrapper .title {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 20px 0;
+    }
+    
+    .tpod-divider {
+        position: relative;
+        text-align: center;
+        margin: 3rem auto;
+        color: #e5e5e5;
+        width: 100%;
+    }
+    
+    .tpod-divider:after {
+        content: "";
+        width: 100%;
+        display: block;
+        height: 1px;
+        background-color: #ddd;
+        position: relative;
+        margin-top: -25px;
+    }
+    
+    .tpod-divider .icon-txt-wrap {
+        display: inline-block;
+        position: relative;
+        width: auto;
+    }
+    
+    .tpod-divider .icon-txt-wrap .icons {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .tpod-divider .icon-txt-wrap .icons .material-icons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .tpod-divider .icon-txt-wrap .txt {
+        position: absolute;
+        width: 100%;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        margin-top: 10px;
+        color: #222;
+        border: 1px solid #ddd;
+    }
+    
+    .tpod-caption-pretxt {
+        margin-top: 100px;
+    }
+    
+    .tpod-caption-pretxt textarea {
+        width: 100%;
+        height: auto;
+        padding: 50px 0;
+        background-color: #fafafa;
+        border: 1px solid #ddd;
+    }
+    
+    .tpod-box-wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 1000px;
+    }
+    
+    .tpod-box-wrap div {
+        width: 100%;
+        margin: 0.1%;
+        margin-bottom: 20px;
+        padding: 100px;
+        font-size: 20px;
+        color: #000;
+        border: 1px solid #ddd;
+    }
+    
+    .grocery-form {
+        width: 800px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        border: 1px solid #ddd;
+    }
+    
+    .grocery-container {
+        width: 800px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        border: 1px solid #ddd;
+        margin-top: 30px;
+    }
+    
+    .grocery-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        position: relative;
+        border: 1px solid #ddd;
+    }
+    
+    .grocery-item .title {
+        width: 70%;
+    }
+    
+    .grocery-item .btn-container {
+        width: 30%;
+    }
+    
+    .alert {
+        display: block;
+        font-size: 16px;
+        border: 1px solid #dddd;
+        color: #ff6600;
+        font-weight: 400;
+        text-align: center;
+        margin: 50px 0;
+    }
+    
+    .alert-danger {
+        font-weight: 700;
+        font-size: 20px;
+        color: #ff5500;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+    }
+    
+    .alert-success {
+        font-weight: 700;
+        font-size: 20px;
+        color: #0fa54e;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+    }
+    
+    .show-container {
+        display: none;
+    }
+    
+    .con-sec {
+        display: none;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-weight: 300;
+        color: #222;
+        font-size: 16px;
+        line-height: 24px;
+        margin-top: 100px;
+    }
+    
+    .con-sec.on {
+        display: block;
+    }
+    
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    
+    .tabs li {
+        flex: 1;
+        border: 1px solid #ddd;
+        width: 33%;
+        padding: 10px 20px;
+        text-align: center;
+        color: #222;
+        font-size: 14px;
+    }
+    
+    .tabs li.on {
+        background-color: #05bdb8;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-ontainer mt-50">
+            <h1 class="text-center">Grocery Project</h1>
+            <div class="alert"></div>
+            <form class="grocery-form mt30">
+                <input type="text" class="input-text" id="grocery" placeholder="입력해주세요." />
+                <button type="submit" class="submit-btn">add item</button>
+            </form>
+            <div class="grocery-container" id="grocery">
+                <div class="grocery-list"></div>
+                <button type="button" class="clear-btn">Clear Items</button>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        //select items
+        const form = document.querySelector('.grocery-form');
+        const grocery = document.getElementById('grocery');
+        const submitBtn = document.querySelector('.submit-btn');
+        const container = document.querySelector('.grocery-container');
+        const list = document.querySelector('.grocery-list');
+        const clearBtn = document.querySelector('.clear-btn');
+        const alertBox = document.querySelector('.alert');
+
+        //edit option
+        submitBtn.addEventListener('click', function(e) {
+            //console.log('alert');
+        });
+
+        clearBtn.addEventListener('click', function(e) {
+            clearItems();
+        });
+
+        // display items onload
+        //window.addEventListener("DOMContentLoaded", setupItems);
+
+        let editElement;
+        let editFlag = false;
+        let editId = "";
+
+        //event listeners
+
+        form.addEventListener('submit', addItem);
+
+        //functions
+
+        function addItem(e) {
+
+            e.preventDefault();
+
+            const value = grocery.value;
+            const id = new Date().getTime().toString();
+            if (value && !editFlag) {
+                //console.log('added Item to list');
+                const element = document.createElement('div');
+                element.classList.add('grocery-item');
+                const attr = document.createAttribute('data-id');
+                attr.value = id;
+                element.setAttributeNode(attr);
+                element.innerHTML = `
+                                <div class="title">${value}</div>
+                                <div class="btn-container">
+                                    <button type="button" class="edit-btn"><span class="material-icons">create</span></button>
+                                    <button type="button" class="delete-btn"><span class="material-icons">delete_outline</span></button>
+                                </div>
+                            `;
+                const deleteBtn = element.querySelector('.delete-btn');
+                const editBtn = element.querySelector('.edit-btn');
+                deleteBtn.addEventListener('click', deleteItem);
+                editBtn.addEventListener('click', editItem);
+                //append child
+                list.appendChild(element);
+                displayAlert("item added to the list", 'success');
+                //로컬스토리지 저장후
+                addToLocalStorage(id, value);
+                //인풋박스의 텍스트를 초기화
+                setBackDefault();
+
+
+            } else if (value && editFlag) {
+                editElement.innerHTML = value;
+                setBackDefault();
+            } else {
+                // console.log('please enter a value');
+                //alertBox.style.display = "block";
+                //alertBox.innerHTML = "please enter a value";
+                displayAlert("please enter a value", 'danger')
+            }
+        }
+
+        //display alert
+
+        function displayAlert(text, action) {
+            alertBox.textContent = text;
+            alertBox.classList.add(`alert-${action}`);
+
+            setTimeout(function() {
+                alertBox.textContent = '';
+                alertBox.classList.remove(`alert-${action}`);
+            }, 1000);
+        }
+
+        function editItem(e) {
+            const element = e.currentTarget.parentElement.parentElement;
+
+            //set edit item
+            editElement = e.currentTarget.parentElement.previousElementSibling;
+            grocery.value = editElement.innerHTML;
+            editFlag = true;
+            editId = element.dataset.id;
+            submitBtn.textContent = 'edit';
+
+        }
+
+        function deleteItem(e) {
+
+            const element = e.currentTarget.parentElement.parentElement;
+            const id = element.dataset.id;
+            //console.log(element);
+            list.removeChild(element);
+
+            if (list.children.length === 0) {
+                container.classList.remove('show-container');
+            }
+            setBackDefault();
+            removeToLocalStorage(id);
+        }
+
+        function setBackDefault() {
+
+            grocery.value = '';
+            editFlag = false;
+            editId = '';
+            submitBtn.textContent = 'submit';
+
+        }
+
+        function clearItems() {
+            const items = document.querySelectorAll('.grocery-item');
+            if (items.length > 0) {
+                items.forEach(function(item) {
+                    list.removeChild(item);
+
+                });
+            }
+        }
+        //local storages
+        function addToLocalStorage(id, value) {
+            // console.log('added to local storage');
+            const grocery = {
+                id,
+                value
+            };
+            let items = getLocalStorage();
+            items.join(grocery);
+            localStorage.setItem("list", JSON.stringify(items));
+
+        }
+
+        function getLocalStorage() {
+            return localStorage.getItem("list") ?
+                JSON.parse(localStorage.getItem("list")) : [];
+        }
+
+        function removeToLocalStorage(id) {
+            // console.log(id);
+        }
+
+
+
+        // localStorage.setItem("orange", JSON.stringify(["item", "item2"]));
+        // const oranges = JSON.parse(localStorage.getItem('orange'));
+        // console.log(oranges);
+        // localStorage.removeItem('orange');
+        //setup items
+    </script>
+</body>
+
+</html>

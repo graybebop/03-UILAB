@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <!-- header gnb : s -->
+    <header class="tpod-wrapper" id="right-aligned-menu">
+        <div class="tpod-header-container">
+            <div class="logo">
+                <a href="#none">TPOD</a>
+            </div>
+            <nav class="gnb">
+                <ul>
+                    <li><a href="#none">HOME</a></li>
+                    <li><a href="#none">FEATURES</a></li>
+                    <li><a href="#none">ELEMENTS</a></li>
+                    <li><a href="#none">PAGES</a></li>
+                    <li><a href="#none">PORTFOLIO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header gnb : e -->
+    <!-- content : s -->
+    <section class="tpod-wrapper">
+        <div class="tpod-container-fluid tpod-page-title">
+            <!-- Page Title : E -->
+            <div class="page-title">
+                <h1>스위치 버튼</h1>
+                <span class="txt">Inspiration comes of working every day.</span>
+                <!-- BreadCrumb : S -->
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="#">Home</a> </li>
+                        <li><a href="#">Shortcodes</a> </li>
+                        <li class="active"><a href="#">Accordion</a> </li>
+                    </ul>
+                </div>
+                <!-- BreadCrumb : S -->
+            </div>
+            <!-- Page Title : E -->
+        </div>
+        <div class="tpod-container mt-70">
+            <div class="tpod-row tpod-flex-nowrap">
+                <div class="tpod-col-9 tpod-content">
+
+                    <h4 class="">라디오버튼(기본형)</h4>
+                    <div class="form-radio mt-10">
+                        <input type="radio" name="aaa" checked id="a" /><label for="a">텍스트-1</label>
+                        <input type="radio" name="aaa" id="b" /><label for="b">텍스트-2</label>
+                        <input type="radio" name="aaa" id="c" /><label for="c">텍스트-3</label>
+                        <input type="radio" name="aaa" id="d" /><label for="d">텍스트-4</label>
+                        <input type="radio" name="aaa" id="e" /><label for="e">텍스트-5</label>
+                    </div>
+
+                    <h4 class="mt-50">체크박스(기본형)</h4>
+                    <div class="form-checkbox mt-10">
+                        <input type="checkbox" id="cbggroup1_master" onchange="ui.toggle_check_box(this, 'cbgroup1')" /><label for="cbggroup1_master">Toggle All</label>
+                        <input type="checkbox" name="bbb1[]" checked id="a1" class="cbgroup1" /><label for="a1">텍스트-1</label>
+                        <input type="checkbox" name="bbb2[]" id="b1" class="cbgroup1" /><label for="b1">텍스트-2</label>
+                        <input type="checkbox" name="bbb3[]" id="c2" class="cbgroup1" /><label for="c2">텍스트-3</label>
+                        <input type="checkbox" name="bbb4[]" id="d1" class="cbgroup1" /><label for="d1">텍스트-4</label>
+                        <input type="checkbox" name="bbb5[]" id="e1" class="cbgroup1" /><label for="e1">텍스트-5</label>
+                    </div>
+
+                    <h4 class="mt-50">체크박스(Customized)</h4>
+                    <div class="tpod-row">
+                        <div class="tpod-col-2 mt-10">
+                            <label class="switch-radio">
+                                    <input type="checkbox" />
+                                    <span class="s-b round"></span>
+                                </label>
+                            <div class="mt-10">Check Box Basic</div>
+                        </div>
+                        <div class="tpod-col-2 mt-10">
+                            <label class="switch-radio">
+                                    <input type="checkbox" checked />
+                                    <span class="s-b round"></span>
+                                </label>
+                            <div class="mt-10">Check Box On</div>
+                        </div>
+                        <div class="tpod-col-3 mt-10">
+                            <label class="switch-radio">
+                                    <input type="checkbox" disabled />
+                                    <span class="s-b round"></span>
+                                </label>
+                            <div class="mt-10">Check Box disabled</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tpod-col-3" id="LNB">
+                    <h4>elements</h4>
+                    <ul class="tpod-lnb"></ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- content : s -->
+    <script>
+        $('document').ready(function() {
+
+            ui.init();
+
+        })
+    </script>
+
+</body>
+
+</html>

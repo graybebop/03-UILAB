@@ -1,0 +1,38 @@
+.#{$prefix}-appbar {
+    align-items: center;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    padding: 5px 0;
+    &.extdened {
+        height: 200px;
+    }
+}
+
+.bg-aqua {
+    background-color: $primary;
+    color: #fff;
+}
+
+.bg-success {
+    background-color: $success;
+    color: #fff;
+}
+
+.bg-dark {
+    background-color: $dark;
+    color: #fff;
+}
+
+.#{$prefix}-grow,
+.#{$prefix}-spacer {
+    flex-grow: 1 !important;
+}
+
+.border-radius-sm {
+    border-radius: 0.3rem;
+}
+
+.bordered {
+    border: 1px solid #ddd;
+}
