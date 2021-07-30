@@ -14577,7 +14577,7 @@ mark {
 .search-wrap4 {
   position: relative;
   width: 90%;
-  border: 1px solid #000;
+  border-bottom: 0.5px solid #ddd;
   background-color: #fff;
   padding: 0 20px;
   overflow: hidden;
@@ -14593,6 +14593,8 @@ mark {
       -ms-flex-direction: row;
           flex-direction: row;
   padding-left: 15px;
+  -webkit-transition: border 0.5s;
+  transition: border 0.5s;
 }
 
 .search-wrap4 .search-value {

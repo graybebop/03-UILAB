@@ -287,7 +287,7 @@ $form-input-border-effect-color:red;
 .search-wrap4 {
     position: relative;
     width: 90%;
-    border: 1px solid #000;
+    border-bottom: 0.5px solid #ddd;
     background-color: #fff;
     padding: 0 20px;
     overflow: hidden;
@@ -296,6 +296,7 @@ $form-input-border-effect-color:red;
     align-items: center;
     flex-direction: row;
     padding-left: 15px;
+    transition: border 0.5s;
     .search-value {
         font-size: 20px;
         line-height: 1;

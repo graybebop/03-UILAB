@@ -33,7 +33,7 @@
             left: 0;
         }
         
-        .search-wrap4.effects-1 .border-vertical {
+        .search-value.effects-1~.border-vertical {
             position: absolute;
             top: 0;
             left: 0;
@@ -42,35 +42,35 @@
             border: 0;
         }
         
-        .search-wrap4.effects-1 .border-vertical:before {
+        .search-value.effects-1~.border-vertical:before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
             width: 1px;
-            background-color: #000;
+            background-color: red;
             height: 0;
             transition: 0.5s;
         }
         
-        .search-wrap4.effects-1 .border-vertical:after {
+        .search-value.effects-1~.border-vertical:after {
             content: '';
             position: absolute;
             right: 0;
             bottom: 0;
             width: 1px;
-            background-color: #000;
+            background-color: red;
             height: 0;
             transition: 0.5s;
         }
         
-        .search-wrap4.effects-1:hover .border-vertical:before,
-        .search-wrap4.effects-1:hover .border-vertical:after {
+        .search-value.effects-1:focus~.border-vertical:before,
+        .search-value.effects-1:focus~.border-vertical:after {
             height: 100%;
         }
         /* 보더 에니메이션을 위한 가로 세팅 */
         
-        .search-wrap4.effects-1 .border-horizon {
+        .search-value.effects-1~.border-horizon {
             position: absolute;
             top: 0;
             left: 0;
@@ -80,31 +80,31 @@
             z-index: 1;
         }
         
-        .search-wrap4.effects-1 .border-horizon:before {
+        .search-value.effects-1~.border-horizon:before {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
             height: 1px;
-            background-color: #000;
+            background-color: red;
             height: 0;
             width: 0;
             transition: 0.5s;
         }
         
-        .search-wrap4.effects-1 .border-horizon:after {
+        .search-value.effects-1~.border-horizon:after {
             content: '';
             position: absolute;
             right: 0;
             top: 0;
-            background-color: #000;
+            background-color: red;
             height: 1px;
             width: 0;
             transition: 0.5s;
         }
         
-        .search-wrap4.effects-1:hover .border-horizon:before,
-        .search-wrap4.effects-1:hover .border-horizon:after {
+        .search-value.effects-1:focus~.border-horizon:before,
+        .search-value.effects-1:focus~.border-horizon:after {
             width: 100%;
             height: 1px;
         }
@@ -121,7 +121,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            right: 100px;
+            right: 59px;
             width: 35px;
             height: 35px;
             z-index: 30;
@@ -135,8 +135,8 @@
     </style>
 
     <div class="wrapper">
-        <div class="search-wrap4 effects-1">
-            <input type="text" name="search" value="" class="search-value" placeholder="검색어를 입력해 주세요." autocomplete="off" id="search-value" />
+        <div class="search-wrap4 ">
+            <input type="text" name="search" value="" class="search-value effects-1" placeholder="검색어를 입력해 주세요." autocomplete="off" id="search-value" />
             <!-- <label>검색어 가이드 영역</label> -->
             <span class="border-horizon"></span>
             <span class="border-vertical"></span>
@@ -145,7 +145,6 @@
         </div>
     </div>
     <script>
-        let searchHolder = document.querySelectorAll('.search-wrap4.effects-1')[0];
         let searchValue = document.getElementById('search-value');
         //지우기 버튼
         let btnDelete = document.getElementsByClassName('deleteBtn')[0];
@@ -153,16 +152,14 @@
             searchValue.value = "";
             btnDelete.style.visibility = "hidden";
         });
-        //위치 텍스트 박스
-        // searchHolder.addEventListener('mouseover', (e) => {
-        //     console.log('aaaa');
-        //     btnDelete.style.visibility = "visible";
-        // });
-        // searchHolder.addEventListener('mouseleave', (e) => {
-        //     console.log('aaaa');
-        //     btnDelete.style.visibility = "hidden";
-        // });
 
+
+        searchValue.addEventListener('focus', (e) => {
+            document.getElementsByClassName('search-wrap4')[0].style.borderBottom = 'none';
+        });
+        searchValue.addEventListener('focusout', (e) => {
+            document.getElementsByClassName('search-wrap4')[0].style.borderBottom = '1px solid #ddd';
+        });
 
         let btnSearch = document.getElementById('btnSearch');
         // document.addEventListener('keydown', logKey);
@@ -179,8 +176,6 @@
 
                 btnDelete.style.visibility = "hidden";
             }
-
-
         }
 
 
