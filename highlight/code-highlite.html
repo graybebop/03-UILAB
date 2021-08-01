@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+</head>
+
+
+<body>
+    <style>
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        
+        pre,
+        code {
+            margin: 0;
+            padding: 0;
+        }
+        
+        code {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 25px;
+            font-size: 15px;
+        }
+        
+        .wrapper {
+            padding: 100px;
+        }
+    </style>
+    <div class="wrapper">
+        <h3 class="pt-10 pb-50">html highlight를 쓰기위한 조건</h3>
+        <!-- 절차 1 -->
+        <div>
+            <h5 class="pt-10 pb-10">1. 아래 링크 헤더에 삽입(default.min.css -> agate.min.css 변경해서 사용)</h5>
+        </div>
+        <pre>
+<code class="language-html">
+    &lt;!--&lt;link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css"&gt;--&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css"&gt;
+    &lt;script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        hljs.initHighlightingOnLoad();
+    &lt;/script&gt;
+</code>
+</pre>
+
+        <!-- 절차 2 -->
+        <div>
+            <h5 class="pt-10 pb-10">2. HTML태그를 특수태그로 변환</h5>
+            <textarea style="width:100%; padding:20px;" disabled>&lt;!--&lt;link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css"&gt;--&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css"&gt;
+&lt;script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+hljs.initHighlightingOnLoad();
+&lt;/script&gt;
+</textarea>
+        </div>
+        <div>
+            <h5 class="pt-30 pb-10">3. <a href="https://highlightjs.org/static/demo/" target="_blank">https://highlightjs.org/static/demo/</a> 에서 원하는 스타일로 styles/<mark>agate</mark>.min.css에서 agate이름을 변경 적용하면 된다.</h5>
+        </div>
+        <h5 class="pt-30 pb-10">HTML태그를 적용한 모습</h5>
+        <pre>
+ <code class="language-html">
+    &lt;!-- Popup Layer Mask --&gt;
+    &lt;div class="popup-layer-mask"&gt;&lt;/div&gt;
+    &lt;div class="popup-wrapper pop-hide" id="popup-wrapper"&gt;
+        &lt;div class="popup-close-wrap"&gt;
+            &lt;button type="button" class="btn btn-light btn-circle p-5" onclick=" ui.closeLayerPopup('#popup-wrapper')"&gt;&lt;span class="icons material-icons-outlined"&gt;close&lt;/span&gt;&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;div class="popup-header"&gt;
+            &lt;h4 class="title"&gt;팝업 제목이 들어갑니다.&lt;/h4&gt;
+            &lt;div class="tpod-divider mt-20 mb-5"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="popup-body text-center"&gt;
+            내용이 들어갑니다.
+        &lt;/div&gt;
+        &lt;div class="tpod-divider mt-20 mb-5"&gt;&lt;/div&gt;
+        &lt;div class="button-area text-center"&gt;
+            &lt;button class="btn btn-primary" onclick=" ui.closeLayerPopup('#popup-wrapper')"&gt;확인&lt;/button&gt;
+            &lt;button class="btn btn-light"&gt;취소&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+ </code>
+    </pre>
+        <h5 class="pt-30 pb-10">CSS를 적용한 모습</h5>
+        <pre>
+<code class="language-css">
+    .wrapper {
+        margin: 50px auto;
+        width: 280px;
+        height: 370px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 90;
+    }
+    
+    .ribbon-wrapper-green {
+        width: 85px;
+        height: 88px;
+        overflow: hidden;
+        position: absolute;
+        top: -3px;
+        right: -3px;
+    }
+    
+    .ribbon-green {
+        font: bold 15px Sans-Serif;
+        color: #333;
+        text-align: center;
+        text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
+        transform: rotate(45deg);
+        position: relative;
+        padding: 7px 0;
+        left: -5px;
+        top: 15px;
+        width: 120px;
+        background-color: #BFDC7A;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+        background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+        background-image: -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+        background-image: -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+        background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
+        color: #6a6340;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .ribbon-green:before,
+    .ribbon-green:after {
+        content: "";
+        border-top: 3px solid #6e8900;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        position: absolute;
+        bottom: -3px;
+    }
+    
+    .ribbon-green:before {
+        left: 0;
+    }
+    
+    .ribbon-green:after {
+        right: 0;
+    }
+</code>
+    </pre>
+
+    </div>
+
+
+
+</body>
+
+</html>

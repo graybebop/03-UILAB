@@ -1,0 +1,223 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+
+body, select, button {
+	background-color: #0a0a0a;
+	color: #aaaaaa;
+	margin: 0 0 0 0;
+	font-family: 'Ubuntu', 'Nanum Gothic', sans-serif;
+	overflow-x: hidden;
+}
+
+a:link, a:visited, a:active {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-shadow: 0 0 4px #ffffff;
+}
+
+header {
+	background-color: #000000;
+	width: 100%;
+	height: 39px;
+	display: block;
+	border-bottom: 1px solid #555555;
+}
+
+h1 {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	line-height: 39px;
+	height: 39px;
+	font-size: 24px;
+	text-align: center;
+	color: #ffffff;
+}
+
+#container {
+	width: 100%;
+	overflow-x: hidden;
+	padding: 0 0 0 0;
+	margin-bottom: 0;
+}
+
+main {
+	width: 200%;
+}
+
+.codearea {
+	width: 50%;
+	display: block;
+	float: left;
+}
+
+.areadivider {
+	display: none;
+	float: left;
+}
+
+.areatitle {
+	height: 40px;
+	border-bottom: 1px solid #2a2a2a;
+}
+
+.areatitle h2 {
+	display: inline-block;
+	margin: 0 0 0 0;
+	padding: 3px 10px 3px 10px;
+	line-height: 30px;
+	font-size: 20px;
+	font-weight: 400;
+	border-bottom: 4px solid transparent;
+}
+
+.areatitle h2.clips {
+	animation-name: clipborder;
+	animation-duration: 2s;
+}
+
+.areatitle h3 {
+	display: inline-block;
+	margin: 0 0 0 0;
+	padding: 0 0 0 10px;
+	line-height: 20px;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.floatbar button {
+	border: none;
+	float: left;
+	padding: 10px 10px 10px 10px;
+	line-height: 20px;
+	cursor: pointer;
+	background-color: #000000;
+	color: #ffffff;
+	font-size: 16px;
+}
+
+#btn_conv {
+	font-weight: 700;
+	background-color: #2a2a2a;
+}
+
+.floatbar button:hover, #btn_conv:hover {
+	background-color: #555555;
+}
+
+#btn_conv, #btn_copy {
+	margin-right: 20px;
+}
+
+#btn_to_right, #btn_to_left {
+	width: 40px;
+	padding: 5px 0 5px 0;
+	line-height: 30px;
+	font-size: 20px;
+}
+
+#conv_target {
+	height: 20px;
+	line-height: 16px;
+	padding: 1px 4px 1px 4px;
+	margin: 0 0 0 10px;
+	display: block;
+	border: none;
+	font-size: 12px;
+	background-color: #000000;
+	color: #ffffff;
+}
+
+#conv_target:hover {
+	background-color: #2a2a2a;
+}
+
+#conv_target option {
+	background-color: #000000;
+}
+
+.floatbar {
+	display: inline-block;
+	float: right;
+	height: 30px;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+.codearea textarea {
+	display: block;
+	border: none;
+	width: calc(100% - 10px);
+	height: 100%;
+	margin: 0 0 0 0;
+	padding: 5px 5px 5px 5px;
+	resize: none;
+	font-size: 16px;
+	font-family: monospace;
+	background-color: #000000;
+	-moz-tab-size: 4;
+	  -o-tab-size: 4;
+	     tab-size: 4;
+}
+
+#code_src {
+	color: #d4d4d4;
+}
+#code_dest {
+	color: #ffffff;
+}
+
+footer {
+	background-color: #000000;
+	width: 100%;
+	height: 38px;
+	display: block;
+	border-top: 1px solid #555555;
+	clear: both;
+}
+
+footer p {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	line-height: 38px;
+	height: 38px;
+	text-align: center;
+}
+
+@media only screen and (min-width: 721px) {
+
+main {
+	width: 100%;
+	margin-left: 0 !important;
+}
+
+#btn_to_right, #btn_to_left {
+	display: none;
+}
+
+.codearea {
+	width: calc(50% - 2px);
+}
+
+.areadivider {
+	display: block;
+	width: 4px;
+	height: 300px;
+	background-color: #3f3f3f;
+}
+
+}
+
+a, select, textarea, button {
+	-webkit-transition: background .25s, color .25s, text-shadow .25s;
+	transition:         background .25s, color .25s, text-shadow .25s;
+}
+
+@keyframes clipborder {
+	  0%  {border-bottom: 4px solid transparent; }
+	 12%  {border-bottom: 4px solid #ffffff; }
+	 50%  {border-bottom: 4px solid #ffffff; }
+	100%  {border-bottom: 4px solid transparent; }
+}
