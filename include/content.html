@@ -1,0 +1,61 @@
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper {
+        /* border: 1px solid #000; */
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        background-color: #fff;
+        padding: 50px;
+    }
+    
+    .box {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        margin: 0;
+        /* border: 1px solid #000; */
+        text-align: center;
+        font-size: 1rem;
+        line-height: 200px;
+        text-align: center;
+        box-sizing: border-box;
+        background-color: #000;
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: background-color 2s, transform 0.5s 3s;
+    }
+    
+    .box:hover {
+        background-color: purple;
+        transform: scale(1.5);
+    }
+    
+    .explain {
+        font-size: 14px;
+        color: #000;
+    }
+    
+    mark {
+        background-color: purple;
+        color: #fff !important;
+        padding: 3px 5px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+</style>
+<div class="wrapper">
+    <div class="explain">
+        <h5>CSS 에니메이션 기초(제목)</h5>
+        <p class="txt">설명파트 : box클래스에 적용된 transition 속성에 때라서 에니메이션에 적용되는 속도를 각각 따로 정의 할 수 있다. <mark class="text-color-danger">transition: background-color 2s, transform 0.5s 3s;</mark> <br />또한 transform의 트랜지션을 딜레이한후 (transition-delay: 3s; )3s로 지정시 3초후에 애니메이션된다.</p>
+    </div>
+    <div class="box">box</div>
+
+</div>
