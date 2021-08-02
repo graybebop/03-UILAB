@@ -174,20 +174,9 @@
 
     <script>
         $(document).ready(function() {
-
-
-
-
-            let www = null;
-
-
             const w_w = document.querySelectorAll('.window-width span')[0]; //현재 정보
             const items = document.querySelectorAll('.grid-list .items'); //현재 정보
             var container = document.getElementsByClassName('grid-list')[0];
-
-
-
-
             var container_flex_width = document.getElementsByClassName('grid-list')[0].clientWidth;
             w_w.innerHTML = container_flex_width;
             w_w.parentNode.style.display = "none";
@@ -273,7 +262,7 @@
 
             function resizeHandler() {
 
-                var w_w_width = www = window.innerWidth;
+                var w_w_width = window.innerWidth;
                 if (breakPoint['col-xss'] <= w_w_width && breakPoint['col-xs'] >= w_w_width) {
                     itemsCol = 1;
                 }
