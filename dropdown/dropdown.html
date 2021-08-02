@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>드롭다운</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 100px;
+    }
+    
+    .menu-wrapper {
+        position: relative;
+    }
+    
+    .dropdown {
+        position: absolute;
+        top: inherit;
+        left: 0;
+        background-color: #fff;
+        display: none;
+        /* transition: 0.5s;
+        transform: scale(0.5);
+        transform: translateX(0); */
+    }
+    
+    .dropdown.show {
+        display: block;
+    }
+    
+    .dropdown.hide {
+        display: none;
+    }
+    
+    .dropdown>li {
+        display: block;
+        border: 1px solid #ddd;
+    }
+    
+    .dropdown>li>a {
+        display: block;
+        color: #000;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    #menu .material-icons {
+        transition: 0.5s;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="menu-wrapper">
+            <button class="btn btn-secondary" id="menu">10개
+                <span class="material-icons">expand_more</span></button>
+            <ul class="dropdown hide" id="dropdown">
+                <li><a href="#none">MENU-1</a></li>
+                <li><a href="#none">MENU-2</a></li>
+                <li><a href="#none">MENU-3</a></li>
+                <li><a href="#none">MENU-4</a></li>
+                <li><a href="#none">MENU-5</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <script>
+        const uiExtend = {
+            dropdownMenu: {
+                init: function() {
+                    var dropdown, li, btnMenu;
+                    this.btnMenu = document.getElementById('menu');
+                    this.dropdown = document.getElementsByClassName('dropdown')[0];
+                    this.li = this.dropdown.querySelectorAll('li');
+
+                    this.btnMenu.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        let arrow = this.btnMenu.getElementsByClassName('material-icons')[0];
+                        if (this.dropdown.classList.contains('hide')) {
+                            //arrow.textContent = "expand_less";
+                            arrow.style.transform = "rotate(180deg)";
+                            //this.dropdown.style.transform = "scale(1)";
+                            // this.dropdown.style.transform = "translateX(0)";
+                            //this.dropdown.style.opacity = "1";
+                            this.dropdown.classList.remove('hide');
+                            return this.dropdown.classList.add('show');
+                        } else {
+                            //arrow.textContent = "expand_more";
+                            arrow.style.transform = "rotate(0)";
+                            //this.dropdown.style.transform = "scale(1)";
+                            // this.dropdown.style.transform = "translateX(50px)";
+                            //this.dropdown.style.opacity = "0";
+                            this.dropdown.classList.remove('show');
+                            return this.dropdown.classList.add('hide');
+                        }
+                    });
+                    // $(document).click(function(event) {
+                    //     event.stopPropagation();
+                    //     event.preventDefault();
+                    //     var $target = $(event.target);
+                    //     if (!$target.closest('#dropdown').length &&
+                    //         $('#dropdown').is(":visible")) {
+                    //         $('#dropdown').removeClass('show');
+                    //         $('#dropdown').addClass('hide');
+                    //     }
+                    // });
+
+                },
+
+                closeAllMenu: function(ele) {
+
+
+
+                }
+            }
+        };
+        uiExtend.dropdownMenu.init();
+    </script>
+
+</body>
+
+</html>
