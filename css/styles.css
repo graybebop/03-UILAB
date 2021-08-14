@@ -16456,4 +16456,82 @@ mark {
 #tpod-go-back {
   cursor: pointer;
 }
+
+/* Upload Images */
+.delBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#fileBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.file-box {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  width: 25%;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+#real-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.real-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.file-input-area {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+}
+
+.browse-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+#preview {
+  width: auto;
+  height: 100px;
+}
+
+#preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+.preview {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 5px;
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
 /*# sourceMappingURL=styles.css.map */
