@@ -128,22 +128,59 @@
             },
 
             checkSubMenu: function(node) {
-                var spanEle = node[0].querySelector('span');
-                node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                spanEle.classList.remove('mn-plus');
-                spanEle.classList.add('mn-minus');
+                var checkDepth = document.querySelectorAll('ul.depth-2');
 
-                if (node[0].classList.contains('arrow-right') && node[0].classList.contains('active')) {
+                console.log(node.parentNode)
+
+                if (node[0].parentNode.classList.contains('has-children')) {
+                    var spanEle = node[0].querySelector('span');
+                    node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+                    spanEle.classList.remove('mn-plus');
+                    spanEle.classList.add('mn-minus');
                     node.forEach(function(sub, key, parent) {
                         if (parent[key].localName == "ul") {
-                            parent[key].style.display = "block";
+                            parent[key].classList.add('show');
 
                         } else {
-                            return false;
+                            if (node[0].parentNode.classList.contains('has-children') && spanEle.classList.contains('mn-minus')) {
+                                console.log('close');
+                            }
                         }
 
                     });
+                } else {
+
                 }
+
+                // if (node[0].classList.contains('arrow-right') && !node[0].classList.contains('active')) {
+                //     var spanEle = node[0].querySelector('span');
+                //     node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+                //     spanEle.classList.remove('mn-plus');
+                //     spanEle.classList.add('mn-minus');
+                //     node.forEach(function(sub, key, parent) {
+                //         if (parent[key].localName == "ul") {
+                //             parent[key].classList.add('show');
+
+                //         } else {
+                //             return false;
+                //         }
+
+                //     });
+                // } else {
+                //     var spanEle = node[0].querySelector('span');
+                //     node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+                //     spanEle.classList.add('mn-plus');
+                //     spanEle.classList.remove('mn-minus');
+                //     node.forEach(function(sub, key, parent) {
+                //         if (parent[key].localName == "ul") {
+                //             parent[key].style.display = "none";
+
+                //         } else {
+                //             return false;
+                //         }
+
+                //     });
+                // }
 
 
 
