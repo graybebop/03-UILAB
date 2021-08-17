@@ -64,12 +64,6 @@
 
             },
 
-            using: function() {
-                return true;
-            },
-
-
-
             setMenu: function() {
                 this.depth = []; //각 1개의 메뉴를 배열에 저장
                 this.gnb = document.getElementById("treeview");
@@ -89,7 +83,9 @@
                         eachUL[key] = sub;
                         eachUL[key].parentNode.setAttribute('class', 'has-children');
                         eachUL[key].parentNode.firstChild.classList.add('arrow-right');
+                        eachUL[key].parentNode.firstChild.setAttribute('data-depth', key + 1)
                         eachUL[key].parentNode.firstChild.innerHTML = (key + 1) + ' 차메뉴';
+
 
                         //let boxgetBound = eachUL[key].getBoundingClientRect();
                         if (eachUL[key].localName == "ul") {
@@ -130,7 +126,7 @@
             checkSubMenu: function(node) {
                 var checkDepth = document.querySelectorAll('ul.depth-2');
 
-                console.log(node.parentNode)
+
 
                 if (node[0].parentNode.classList.contains('has-children')) {
                     var spanEle = node[0].querySelector('span');
@@ -152,35 +148,6 @@
 
                 }
 
-                // if (node[0].classList.contains('arrow-right') && !node[0].classList.contains('active')) {
-                //     var spanEle = node[0].querySelector('span');
-                //     node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                //     spanEle.classList.remove('mn-plus');
-                //     spanEle.classList.add('mn-minus');
-                //     node.forEach(function(sub, key, parent) {
-                //         if (parent[key].localName == "ul") {
-                //             parent[key].classList.add('show');
-
-                //         } else {
-                //             return false;
-                //         }
-
-                //     });
-                // } else {
-                //     var spanEle = node[0].querySelector('span');
-                //     node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                //     spanEle.classList.add('mn-plus');
-                //     spanEle.classList.remove('mn-minus');
-                //     node.forEach(function(sub, key, parent) {
-                //         if (parent[key].localName == "ul") {
-                //             parent[key].style.display = "none";
-
-                //         } else {
-                //             return false;
-                //         }
-
-                //     });
-                // }
 
 
 
@@ -188,15 +155,27 @@
             },
 
             hideMenu: function(node) {
-                node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                node.forEach(function(sub, key, parent) {
-                    if (parent[key].localName == "ul") {
-                        parent[key].style.display = "block";
-                    } else {
-                        return false;
-                    }
+                if (node[0].parentNode.classList.contains('has-children')) {
+                    var spanEle = node[0].querySelector('span');
+                    node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+                    spanEle.classList.add('mn-plus');
+                    spanEle.classList.remove('mn-minus');
+                    node.forEach(function(sub, key, parent) {
+                        if (parent[key].localName == "ul") {
+                            parent[key].classList.remove('show');
 
-                });
+                        } else {
+                            if (node[0].parentNode.classList.contains('has-children') && spanEle.classList.contains('mn-minus')) {
+                                console.log('close');
+                            }
+                        }
+
+                    });
+                } else {
+
+                }
+
+
             },
 
             getBoundInfo: function(ele) {
@@ -218,15 +197,19 @@
             mouseEventHandler: function(e) {
                 const mn = e.currentTarget; //1단계메뉴 li
                 const submn = e.currentTarget.children;
-                console.log(mn)
+                //ul li의 중첩클릭방지
+                e.cancelBubble = true;
+                e.stopImmediatePropagation = true;
 
                 switch (e.type) {
                     case 'click':
-                        this.checkSubMenu(mn.childNodes);
+                        if (!mn.childNodes[0].classList.contains('active')) {
+                            this.checkSubMenu(mn.childNodes);
+                        } else {
+                            this.hideMenu(mn.childNodes);
+                        }
                         break;
-                    case 'mouseleave':
-                        //this.hideMenu(mn.childNodes);
-                        break;
+
                 }
 
             },
