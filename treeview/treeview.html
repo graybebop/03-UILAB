@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <style>
+        .wrapper {
+            position: relative;
+            width: 100%;
+            min-width: 100%;
+            margin: 50px 0;
+        }
+        
+        .show {
+            display: block !important;
+        }
+        
+        .hide {
+            display: block !important;
+        }
+    </style>
+
+    <div class="wrapper">
+        <ul class="trvw" id="treeview">
+            <li class="m-1"><a href="#none">대메뉴-1</a>
+                <ul>
+                    <li><a href="#none">서브메뉴-1</a>
+                        <ul>
+                            <li><a href="#none">서브메뉴-2-1</a></li>
+                            <li><a href="#none">서브메뉴-2-2</a></li>
+                            <li><a href="#none">서브메뉴-2-3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="m-1"><a href="#none">대메뉴-1</a>
+                <li class="m-1"><a href="#none">대메뉴-1</a>
+        </ul>
+    </div>
+
+    <script>
+        const Treeview = {
+            init: function() {
+
+                this.setMenu();
+
+            },
+
+            using: function() {
+                return true;
+            },
+
+
+
+            setMenu: function() {
+                this.depth = []; //각 1개의 메뉴를 배열에 저장
+                this.gnb = document.getElementById("treeview");
+                this.mainMenu = this.gnb.children; //1단계  li 만 기져온다.
+                this.subUL = []; //각 메인메뉴의 서브메뉴를 담기위한 배열
+                this.subLI = this.gnb.querySelectorAll('li'); //All Li
+                this.link = this.gnb.querySelectorAll('#treeview li a'); //All link
+                this.spanMenu = [];
+
+                //1단계 각 메뉴를 init한다
+                //각 li 밑에 ul의 단계를 체크한다.
+                // ul of Depth+1, ul of depth+2,...... ul of Depth+N 만든 후 각 ul의 length를 구한후 저장한다.
+                for (let i = 0; i < this.mainMenu.length; i++) {
+                    this.subUL.push(this.mainMenu[i].querySelectorAll('ul'));
+                    this.subUL[i].forEach(function(sub, key, parent) {
+                        let eachUL = [];
+                        eachUL[key] = sub;
+                        eachUL[key].parentNode.setAttribute('class', 'has-children');
+                        eachUL[key].parentNode.firstChild.classList.add('arrow-right');
+                        eachUL[key].parentNode.firstChild.innerHTML = (key + 1) + ' 차메뉴';
+
+                        //let boxgetBound = eachUL[key].getBoundingClientRect();
+                        if (eachUL[key].localName == "ul") {
+                            eachUL[key].setAttribute('class', 'depth-' + (key + 2));
+
+                        }
+
+                    });
+                }
+
+                for (let i = 0; i < this.link.length; i++) {
+                    this.spanMenu[i] = document.createElement('span');
+                    this.spanMenu[i].setAttribute('class', 'material-icons-outlined');
+                    this.spanMenu[i].innerHTML = "menu";
+                    //insertBefore 용법(새로만들어질 엘리먼트, 어디에 붙일까????)
+                    this.link[i].insertBefore(this.spanMenu[i], this.link[i].firstChild);
+                    //arrow-right 클래스가 있는지 체크
+                    if (this.link[i].classList.contains('arrow-right')) {
+                        this.spanMenu[i].classList.add('mn-plus');
+                    }
+                }
+
+                //모든 LI에 mouseover 이벤트를 만든다.
+                this.subLI.forEach(function(lis, key, parent) {
+                    let eachLI = [];
+                    eachLI[key] = lis;
+                    eachLI[key].addEventListener('click', function(e) {
+
+                        Treeview.mouseEventHandler(e);
+                    }.bind(this), false);
+
+                    // eachLI[key].addEventListener('mouseleave', e => {
+                    //     Treeview.mouseEventHandler(e);
+                    // });
+                });
+            },
+
+            checkSubMenu: function(node) {
+                var spanEle = node[0].querySelector('span');
+                node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+                spanEle.classList.remove('mn-plus');
+                spanEle.classList.add('mn-minus');
+
+                if (node[0].classList.contains('arrow-right') && node[0].classList.contains('active')) {
+                    node.forEach(function(sub, key, parent) {
+                        if (parent[key].localName == "ul") {
+                            parent[key].style.display = "block";
+
+                        } else {
+                            return false;
+                        }
+
+                    });
+                }
+
+
+
+
+            },
+
+            hideMenu: function(node) {
+                node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
+                node.forEach(function(sub, key, parent) {
+                    if (parent[key].localName == "ul") {
+                        parent[key].style.display = "block";
+                    } else {
+                        return false;
+                    }
+
+                });
+            },
+
+            getBoundInfo: function(ele) {
+                return ele.getBoundingClientRect();
+
+            },
+
+            getZindex: function(ele) {
+                let i = 0;
+                i++;
+                let obj = window.getComputedStyle(ele);
+                return parseInt(obj.zIndex) + i;
+
+            },
+
+
+            //마우스오버 이벤트를 만들어 해당 노드 아래에 서브메뉴 즉 ul이 있는지를 체크한다.
+
+            mouseEventHandler: function(e) {
+                const mn = e.currentTarget; //1단계메뉴 li
+                const submn = e.currentTarget.children;
+                console.log(mn)
+
+                switch (e.type) {
+                    case 'click':
+                        this.checkSubMenu(mn.childNodes);
+                        break;
+                    case 'mouseleave':
+                        //this.hideMenu(mn.childNodes);
+                        break;
+                }
+
+            },
+
+        }
+
+        Treeview.init();
+    </script>
+
+</body>
+
+</html>

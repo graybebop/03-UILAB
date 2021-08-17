@@ -1,0 +1,242 @@
+.trvw {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    .mn-plus:before {
+        content: "add";
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 30px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+    .mn-minus:before {
+        content: "remove";
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 30px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+    @include mobile {
+        width: auto;
+        flex-direction: column;
+    }
+    ul {
+        position: relative;
+    }
+    li {
+        display: block;
+        margin: 0;
+        position: relative;
+        @include mobile {
+            width: 50%;
+        }
+        a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            padding-left: 53px;
+            color: #67757c;
+            span {
+                &.material-icons-outlined {
+                    font-size: 18px;
+                    color: #67757c;
+                    vertical-align: middle;
+                }
+            }
+            &.arrow-right:after {
+                content: "add";
+                display: block;
+                position: absolute;
+                top: 30%;
+                right: 10px;
+                font-family: 'Material Icons Outlined';
+                -webkit-font-feature-settings: 'liga';
+                font-size: 18px;
+                color: #67757c;
+            }
+            &.active {
+                // background-color: #000;
+                color: #67757c !important;
+            }
+            &.active:after {
+                content: "remove";
+                display: block;
+                position: absolute;
+                top: 30%;
+                right: 10px;
+                font-family: 'Material Icons Outlined';
+                -webkit-font-feature-settings: 'liga';
+                font-size: 18px;
+                color: #fff;
+            }
+        }
+    }
+    &>li>a.active {
+        // background-color: #000;
+        color: #67757c !important;
+    }
+    &>li>a.active:after {
+        content: "remove";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+    &>li>ul {
+        position: relative;
+        top: inherit;
+        left: 0;
+        width: 100%;
+        margin-top: 0;
+        display: none;
+        z-index: 1111;
+        background-color: #fff;
+        @include mobile {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    }
+    &>li>ul li a:hover {
+        //background-color: #f7f7f7;
+    }
+    &>li>ul>li ul {
+        position: relative;
+        top: inherit;
+        left: 0;
+        width: 100%;
+        display: none;
+        z-index: 1111;
+        background-color: #fff;
+        @include mobile {
+            position: relative;
+            margin-top: 0;
+            top: 0;
+            left: 0;
+        }
+    }
+    &>li>ul>li {
+        display: block;
+        margin: 0;
+        border: 1px solid #ddd;
+    }
+    &>li>ul>li>a {
+        position: relative;
+        padding: 20px 20px;
+        display: block;
+        padding-left: 40px;
+    }
+    &>li ul li {
+        @include mobile {
+            width: 100% !important;
+        }
+    }
+}
+
+.trvw>li>ul>li>a {
+    padding-left: 80px;
+    &.arrow-right:after {
+        content: "add";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+    &.active {
+        // background-color: #000;
+        // color: #fff !important;
+    }
+    &.active:after {
+        content: "remove";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+}
+
+.trvw>li>ul>li>ul>li>a {
+    padding-left: 100px;
+    &.arrow-right:after {
+        content: "add";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+    &.active {
+        background-color: #000;
+        color: #fff !important;
+    }
+    &.active:after {
+        content: "remove";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 24px;
+        color: #fff;
+    }
+}
+
+.trvw>li>ul>li>ul>li>ul>li>a {
+    &.arrow-right:after {
+        content: "add";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 18px;
+        color: #67757c;
+    }
+    &.active {
+        // background-color: #000;
+        // color: #fff !important;
+    }
+    &.active:after {
+        content: "remove";
+        display: block;
+        position: absolute;
+        top: 30%;
+        right: 10px;
+        font-family: 'Material Icons Outlined';
+        -webkit-font-feature-settings: 'liga';
+        font-size: 24px;
+        color: #fff;
+    }
+}
