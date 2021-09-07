@@ -16606,7 +16606,6 @@ mark {
   display: none;
   z-index: 1111;
   background-color: #fff;
-  border: 1px solid #ff6600;
 }
 
 @media (max-width: 1140px) {
@@ -16639,7 +16638,6 @@ mark {
 .trvw > li > ul > li {
   display: block;
   margin: 0;
-  border: 1px solid #ddd;
 }
 
 .trvw > li > ul > li > a {
