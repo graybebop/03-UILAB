@@ -9,6 +9,18 @@ const ui = {
         this.isButton.using() ? this.isButton.init(buttons) : false;
         this.isButton.using() ? this.isButton.init(btns) : false;
         this.uploadImage.using() == true ? this.uploadImage.init() : false;
+        this.createInput();
+    },
+    createInput: function() {
+        let textFiled = document.querySelectorAll('input');
+
+        if (textFiled.length > 0) {
+            for (var item of textFiled) {
+                if (item.getAttribute('type') == "text") { //type text면 true 반환
+                    item.setAttribute('class', 'text-field this is type text');
+                }
+            }
+        }
 
     },
     isButton: {
