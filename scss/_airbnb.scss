@@ -316,3 +316,121 @@ $form-input-border-effect-color:red;
         transition: 0.5s;
     }
 }
+
+.airbnb-header {
+    display: flex;
+    flex-direction: wrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: center;
+    background-color: #fff;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100px;
+    box-shadow: -3px 4px 15px -6px rgba(0, 0, 0, 0.2);
+    .logo {
+        margin-left: 20px;
+    }
+    .gnb {
+        position: absolute;
+        right: 20px;
+        li {
+            a {
+                // border: 0 !important;
+                //border-bottom: 1px solid #ddd !important;
+            }
+        }
+    }
+}
+
+.product-list {
+    padding-top: 70px;
+}
+
+.product-detail {
+    padding-top: 150px;
+    width: 1200px;
+    margin: 0 auto;
+    .header-info {
+        position: relative;
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #000;
+        }
+        .addr {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+            align-items: center;
+            .material-icons-outlined {
+                vertical-align: sub;
+                font-size: 20px;
+            }
+            .review-star {
+                color: red;
+            }
+        }
+        .shared-button-area {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            .material-icons-outlined {
+                vertical-align: sub;
+                font-size: 20px;
+                margin-right: 5px;
+            }
+        }
+    }
+    .detail-img {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 50px;
+        justify-content: space-evenly;
+        height: 590px;
+        min-height: 590px;
+        border-radius: 10px;
+        overflow: hidden;
+        img {
+            object-fit: cover;
+            min-height: 100%;
+        }
+        .d-1 {
+            width: 50.333333%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        .d-2 {
+            margin-right: 10px;
+            width: 25.333333%;
+            img {
+                object-fit: contain;
+                min-height: 100%;
+            }
+            .d-2-t {
+                margin-bottom: 10px;
+            }
+        }
+        .d-3 {
+            width: 25.333333%;
+            .d-3-t {
+                margin-bottom: 10px;
+            }
+        }
+        .d-4 {
+            width: 25.333333%;
+        }
+        .d-5 {
+            width: 25.333333%;
+        }
+    }
+}

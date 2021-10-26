@@ -50,7 +50,6 @@
 </style>
 
 <body>
-
     <section class="wrapper">
         <h5 class="pt-50 pb-20">전체리스트</h5>
 
@@ -170,39 +169,79 @@
         </ul>
 
     </section>
-    <div class="window-width" style="position:fixed; bottom:10px; left:10px; border:1px solid #000; background-color: #fff; padding:5px 10px;"><span></span></div>
+
 
     <script>
-        $(document).ready(function() {
-            const w_w = document.querySelectorAll('.window-width span')[0]; //현재 정보
-            const items = document.querySelectorAll('.grid-list .items'); //현재 정보
-            var container = document.getElementsByClassName('grid-list')[0];
-            var container_flex_width = document.getElementsByClassName('grid-list')[0].clientWidth;
-            w_w.innerHTML = container_flex_width;
-            w_w.parentNode.style.display = "none";
-            const breakPoint = {
-                'col-xss': 350,
-                'col-xs': 450,
-                'col-sm': 760,
-                'col-md': 1024,
-                'col-lg': 1500,
-                'col-xl': 1650,
-            };
+        const gridList = {
+
+            init: function() {
+
+                this.items = document.querySelectorAll('.grid-list .items'); //현재 정보
+                this.container = document.getElementsByClassName('grid-list')[0];
+                this.container_flex_width = document.getElementsByClassName('grid-list')[0].clientWidth;
+
+                this.resizeHandler();
+                this.delay = 50;
+                this.timer = null;
+                this.count = 10;
 
 
-            resizeHandler();
+                window.addEventListener('resize', () => {
+                    this.resizeHandler();
+                });
 
+            },
 
-            function getSum(prop) {
-                //합계구하기
-                prop.forEach(async function(t, i) {
-                    sum = sum + t;
-                })
-                return sum;
-            }
+            reArrange: function(ttt, width) {
+                let length = ttt.length;
+                for (var i = 0; i < length; i++) {
+                    ttt[i].style.width = width + 'px';
+                }
+            },
 
+            resizeHandler: function() {
 
-            function getItemsWidth(n) {
+                var w_w_width = window.innerWidth;
+                this.breakPoint = {
+                    'col-xss': 350,
+                    'col-xs': 450,
+                    'col-sm': 760,
+                    'col-md': 1024,
+                    'col-lg': 1500,
+                    'col-xl': 1650,
+                };
+                if (this.breakPoint['col-xss'] <= w_w_width && this.breakPoint['col-xs'] >= w_w_width) {
+                    this.itemsCol = 1;
+                }
+                if (this.breakPoint['col-xs'] <= w_w_width && this.breakPoint['col-sm'] >= w_w_width) {
+                    this.itemsCol = 2;
+                }
+
+                if (this.breakPoint['col-sm'] <= w_w_width && this.breakPoint['col-md'] >= w_w_width) {
+                    this.itemsCol = 2;
+                }
+                if (this.breakPoint['col-md'] <= w_w_width && this.breakPoint['col-lg'] >= w_w_width) { //1024보다 크고  1170보다 작음
+                    this.itemsCol = 3;
+
+                }
+                if (this.breakPoint['col-lg'] <= w_w_width && this.breakPoint['col-xl'] >= w_w_width) {
+                    this.itemsCol = 4;
+                }
+                if (this.breakPoint['col-xl'] < w_w_width) {
+                    this.itemsCol = 5;
+                }
+
+                clearTimeout(this.timer);
+
+                this.timer = setTimeout(() => {
+                    this.getItems(this.itemsCol);
+
+                    console.log('itemsCol', this.itemsCol, this)
+
+                }, this.delay);
+
+            },
+            getItems: function(n) {
 
                 let itemsProps = window.getComputedStyle(document.getElementsByClassName('items')[0]);
 
@@ -211,16 +250,15 @@
                 let itemsMarginRight = parseInt(itemsProps.marginRight);
                 let itemsMarginLeft = parseInt(itemsProps.marginLeft);
 
-                container.style.marginLeft = -itemsMarginLeft + 'px';
-                container.style.marginRight = -itemsMarginRight + 'px';
+                this.container.style.marginLeft = -itemsMarginLeft + 'px';
+                this.container.style.marginRight = -itemsMarginRight + 'px';
 
                 let border = n * 2;
-                let itemsCol = n;
-                let itemsRow = 100 / itemsCol;
+                this.itemsCol = n;
+                let itemsRow = 100 / this.itemsCol;
                 let itemsTotal = itemsPadRight + itemsPadLeft + itemsMarginRight + itemsMarginLeft + border;
 
                 let itemsSpace = 'calc(' + itemsRow + '% - ' + itemsTotal + 'px )';
-                w_w.innerHTML = document.getElementsByClassName('grid-list')[0].clientWidth;
                 let i = 0;
 
 
@@ -229,7 +267,7 @@
 
                 let lastWidth = null;
 
-                for (var item of items) {
+                for (var item of this.items) {
 
                     item.style.width = itemsSpace;
                     if (i < n) {
@@ -242,61 +280,14 @@
                         i++;
                     }
 
-                    reArrange(items, lastWidth);
+                    this.reArrange(this.items, lastWidth);
                 }
 
 
             }
+        }
 
-            function reArrange(ttt, width) {
-                let length = ttt.length;
-                for (var i = 0; i < length; i++) {
-                    ttt[i].style.width = width + 'px';
-                }
-            }
-
-            var delay = 50;
-            var timer = null;
-            var count = 10;
-            window.addEventListener('resize', resizeHandler);
-
-            function resizeHandler() {
-
-                var w_w_width = window.innerWidth;
-                if (breakPoint['col-xss'] <= w_w_width && breakPoint['col-xs'] >= w_w_width) {
-                    itemsCol = 1;
-                }
-                if (breakPoint['col-xs'] <= w_w_width && breakPoint['col-sm'] >= w_w_width) {
-                    itemsCol = 2;
-                }
-
-                if (breakPoint['col-sm'] <= w_w_width && breakPoint['col-md'] >= w_w_width) {
-                    itemsCol = 2;
-                }
-                if (breakPoint['col-md'] <= w_w_width && breakPoint['col-lg'] >= w_w_width) { //1024보다 크고  1170보다 작음
-                    itemsCol = 3;
-
-                }
-                if (breakPoint['col-lg'] <= w_w_width && breakPoint['col-xl'] >= w_w_width) {
-                    itemsCol = 4;
-                }
-                if (breakPoint['col-xl'] < w_w_width) {
-                    itemsCol = 5;
-                }
-                clearTimeout(timer);
-                timer = setTimeout(function() {
-
-                    timer = setTimeout(function() {
-                        getItemsWidth(itemsCol);
-                        console.log('itemsCol', itemsCol)
-
-                    }, delay);
-
-                }, delay);
-
-            }
-
-        })
+        gridList.init();
     </script>
 
 
