@@ -243,11 +243,11 @@
 
                             <h5>요금을 확인하려면 날짜를 입력하세요.</h5>
                             <div class="calendars">
-                                <div class="txt">
+                                <div class="txt" id="btnCheckIn">
                                     <div class="t-1">체크인</div>
                                     <div class="t-2" id="day-checkin">날짜추가</div>
                                 </div>
-                                <div class="txt">
+                                <div class="txt" id="btnCheckOut">
                                     <div class="t-1">체크아웃</div>
                                     <div class="t-2" id="day-checkout">날짜추가</div>
                                 </div>
@@ -263,10 +263,8 @@
                             <button class="btn btn-danger btn-block mt-10">예약 가능 여부 보기</button>
 
                             <!-- Calendar : S -->
-                            <div class="airbnb-calendar">
-                                <div id="cal-1"></div>
-                                <div id="cal-2"></div>
-                            </div>
+                            <div class="airbnb-calendar"></div>
+
 
                             <!-- Calendar : E -->
                         </div>
@@ -279,179 +277,70 @@
     </div>
 
     <script>
-        const GNBMENU = {
-            init: function() {
+        function uical() {
+            this.init = function(calendar_wrapper, calendar_holder, btnCheckTime, prevBtn, nextBtn, dtwp, thd, yearName, inputCheck) {
+                this.dateCount = 0;
 
-                this.setMenu();
+                //this.dateCount = 1; //체크인 데이트
+                //this.dateCount = 2; //체크아웃 데이트
 
-            },
+                this.checkInDate = "";
+                this.checkOutDate = "";
 
-            using: function() {
-                return true;
-            },
-            isMo: function() {
-                var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'Windows CE;', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson', 'Mobile', 'Symbian', 'Opera Mobi', 'Opera Mini', 'IEmobile');
-                for (var word in mobileKeyWords) {
-                    if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
-                        return true;
-                    }
-                }
-            },
+                this.bookingDate = [];
 
+                this.cdp = document.getElementsByClassName('airbnb-calendar')[0];
 
-            selfThis: function() {
-                return this;
-            },
+                //캘린더 구조
+                //캘린더 헤더
+                this.calendar_wrapper = document.createElement('div'); //캘린더 전체 감싸기(id 별 하나씩 추가 가능)
+                this.calendar_wrapper.setAttribute('id', calendar_wrapper);
 
-            setMenu: function() {
+                this.cdp.appendChild(this.calendar_wrapper);
 
-                this.depth = []; //각 1개의 메뉴를 배열에 저장
-                this.gnb = document.getElementById("gnb");
-                this.header = document.getElementsByClassName("airbnb-header")[0];
-                //this.header.style.display = "none";
-                this.mainMenu = this.gnb.children; //1단계  li 만 기져온다.
-                this.subUL = []; //각 메인메뉴의 서브메뉴를 담기위한 배열
-                this.subLI = this.gnb.querySelectorAll('li'); //All Li
-                this.link = this.gnb.querySelectorAll('#gnb li a'); //All link
-                //1단계 각 메뉴를 init한다
-                //각 li 밑에 ul의 단계를 체크한다.
-                // ul of Depth+1, ul of depth+2,...... ul of Depth+N 만든 후 각 ul의 length를 구한후 저장한다.
-                for (let i = 0; i < this.mainMenu.length; i++) {
-                    this.subUL.push(this.mainMenu[i].querySelectorAll('ul'));
-                    this.subUL[i].forEach(function(sub, key, parent) {
-                        let eachUL = [];
-                        eachUL[key] = sub;
-                        eachUL[key].parentNode.setAttribute('class', 'has-children');
-                        eachUL[key].parentNode.firstChild.classList.add('arrow-right');
+                //   this.calendar_wrapper = document.getElementById('calendar-wrapper'); //캘린더 전체 감싸기(id 별 하나씩 추가 가능)
+                this.calendar_header = document.createElement('div'); //캘린더 헤더
+                this.btnMonthPrev = document.createElement('div'); //캘린더 헤더 좌, 우 버튼(월보기)
+                this.btnMonthNext = document.createElement('div'); //캘린더 헤더 좌, 우 버튼(월보기)
+                this.calendarHeaderText = document.createElement('div'); //캘린더 헤더 좌, 우 버튼(월보기)
 
-                        //let boxgetBound = eachUL[key].getBoundingClientRect();
-                        if (eachUL[key].localName == "ul") {
-                            eachUL[key].setAttribute('class', 'depth-' + (key + 2));
-
-                        }
-
-                    });
-                }
-
-                //모든 LI에 mouseover 이벤트를 만든다.
-                this.subLI.forEach(function(lis, key, parent) {
-                    let eachLI = [];
-                    eachLI[key] = lis;
-                    eachLI[key].addEventListener('mouseover', function(e) {
-                        //  this.mouseOverEventHandler(e);
-                        //this.getZindex();
-                        GNBMENU.mouseEventHandler(e);
-                    }.bind(this), false);
-
-                    eachLI[key].addEventListener('mouseleave', e => {
-                        GNBMENU.mouseEventHandler(e);
-                    });
-                });
-            },
-
-            checkSubMenu: function(node) {
-                node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                node.forEach(function(sub, key, parent) {
-                    if (parent[key].localName == "ul") {
-                        parent[key].style.display = "block";
-
-                    } else {
-                        return false;
-                    }
-
-                });
-            },
-
-            hideMenu: function(node) {
-                node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                node.forEach(function(sub, key, parent) {
-                    if (parent[key].localName == "ul") {
-                        parent[key].style.display = "none";
-                    } else {
-                        return false;
-                    }
-
-                });
-            },
-
-            getBoundInfo: function(ele) {
-                return ele.getBoundingClientRect();
-
-            },
-
-            getZindex: function(ele) {
-                let i = 0;
-                i++;
-                let obj = window.getComputedStyle(ele);
-                return parseInt(obj.zIndex) + i;
-
-            },
+                this.calendar_wrapper.appendChild(this.calendar_header);
+                this.calendar_header.appendChild(this.btnMonthPrev);
+                this.calendar_header.appendChild(this.btnMonthNext);
+                this.calendar_header.appendChild(this.calendarHeaderText);
 
 
-            //마우스오버 이벤트를 만들어 해당 노드 아래에 서브메뉴 즉 ul이 있는지를 체크한다.
+                this.calendar_header.setAttribute('class', calendar_holder);
+                this.btnMonthPrev.setAttribute('class', prevBtn + ' btn btn-white  btn-sm btn-circle');
+                this.btnMonthNext.setAttribute('class', nextBtn + ' btn btn-white  btn-sm btn-circle');
+                this.calendarHeaderText.setAttribute('class', 'cal_hd_txt');
 
-            mouseEventHandler: function(e) {
-                const mn = e.currentTarget; //1단계메뉴 li
-                const submn = e.currentTarget.children;
-
-                switch (e.type) {
-                    case 'mouseover':
-                        this.checkSubMenu(mn.childNodes);
-                        break;
-                    case 'mouseleave':
-                        this.hideMenu(mn.childNodes);
-                        break;
-                }
-
-            },
-
-        }
-
-        GNBMENU.init();
-
-        var height = $('.airbnb-header').innerHeight();
-
-        $(window).scroll(function() {
-            var scrolltop = $(this).scrollTop();
-            scrollevent(scrolltop);
+                this.btnMonthPrev.innerHTML = '<span class="material-icons-outlined">chevron_left</span>';
+                this.btnMonthNext.innerHTML = '<span class="material-icons-outlined">navigate_next</span>';
 
 
-        });
+                //캘린더 바디
+                this.calendar_body = document.createElement('div'); //캘린더 바디 좌, 우 버튼(월보기)
+                this.calendar_body_table = document.createElement('table'); //캘린더 바디 테이블
+                this.calendar_body_day_th = document.createElement('div'); //캘린더 바디 요일
+                this.calendar_body_day_td = document.createElement('div'); //캘린더 바디 날짜
 
-        function scrollevent(scroll) {
+                //let calendar_body_table_tr = document.createElement('tr'); //캘린더 바디 테이블 TR
+                //let calendar_body_table_th = document.createElement('th'); //캘린더 바디 테이블 TH
+                //let calendar_body_table_td = document.createElement('td'); //캘린더 바디 테이블 TD
 
-            console.log(scroll)
+                this.calendar_wrapper.appendChild(this.calendar_body);
+                this.calendar_body.setAttribute('class', 'cal_body');
+                //this.calendar_body.appendChild(this.calendar_body_table);
+                // this.calendar_body_table.setAttribute('class', 'cal_body_table');
+                this.calendar_body.appendChild(this.calendar_body_day_th);
+                this.calendar_body_day_th.setAttribute('id', thd);
 
-            //처음 scroll fixed가 필요없는 영역의 경우 좌표설정
-            if (scroll > 500) {
-                //  $('#reservation').css('margin-top', "100px");
-                $('#reservation').addClass('fixed')
-            } else {
-                $('#reservation').removeClass('fixed')
-            }
-
-
-        }
-
-
-
-        const UiCalendar = {
-            setup: function() {
+                this.calendar_body.appendChild(this.calendar_body_day_td);
+                this.calendar_body_day_td.setAttribute('id', dtwp);
 
 
-                this.cal_1 = document.getElementById('cal-1');
-                this.cal_2 = document.getElementById('cal-2');
-
-
-                let calendarComponent = '<div class="calendar-header"><div class="year"></div><button type="button" class="prev btn btn-white  btn-sm btn-circle"><span class="material-icons-outlined">chevron_left</span></button><button type="button" class="next btn btn-white  btn-sm btn-circle"><span class="material-icons-outlined">navigate_next</span></button></div><div class="calendar-body" style="display:block; padding-top:10px;"><div id="t_hd"></div><div id="date"></div></div>';
-
-                this.abCalendar = document.getElementsByClassName('airbnb-calendar')[0];
-                this.cal_1.innerHTML = calendarComponent;
-                this.cal_2.innerHTML = calendarComponent;
-
-                this.datewrap = document.getElementById('date');
-                this.weekdayhdr = document.getElementById('t_hd');
-                this.year = document.getElementsByClassName('year')[0];
+                //달력 기본 정보
                 this.date = new Date();
                 this.current_year = this.date.getFullYear(); //current_year
                 this.current_month = this.date.getMonth() + 1;
@@ -464,53 +353,40 @@
                 this.boxRow = new Array(); //박스를 감싸는 줄 row
                 this.boxCol = new Array(); //하나의 박스
 
-                this.abCalendar.style.display = "none";
+                this.calendarHeaderText.textContent = this.current_year + '.' + this.current_month + '.' + this.current_date;
 
-                let checkin = document.getElementsByClassName('calendars')[0];
-                checkin.addEventListener('click', (e) => {
-                    this.abCalendar.style.display = "block";
+                this.btnMonthPrev.addEventListener("click", (e) => {
+                    this.getMonths("prev")
+
                 });
-            },
+                this.btnMonthNext.addEventListener("click", (e) => {
+
+                    this.getMonths("next")
 
 
-            init: function() {
+                });
 
-                this.setup();
+                this.calendar_wrapper.style.display = "block";
+
+                this.inputCheck = document.getElementById(inputCheck);
+
+                let btnCheck = document.getElementById(btnCheckTime);
+                btnCheck.addEventListener('click', (e) => {
+                    this.calendar_wrapper.style.display = "block";
+
+                });
+
 
                 let thismonth = this.getDaysInMonth(this.current_year, this.current_month);
-
-                let prev = document.getElementsByClassName('prev')[0];
-                let next = document.getElementsByClassName('next')[0];
-
-                prev.addEventListener("click", (e) => {
-
-                    this.current_month--;
-                    console.log(this.current_month);
-                    this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month);
-                    if (this.current_month < 2) {
-                        this.current_month = 13;
-                        this.current_year--;
-                    };
-                });
-                next.addEventListener("click", (e) => {
-
-                    this.current_month++;
-
-                    this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month);
-                    if (this.current_month > 12 - 1) {
-                        this.current_month = 0;
-                        this.current_year++;
-                    };
-                });
-
 
                 this.createTable(this.getDaysInMonth(this.current_year, this.n), this.current_month);
 
                 let weekday = ['일', '월', '화', '수', '목', '금', '토'];
-                let weekhdr = document.createElement('table');
+
+                let weekhdr_table = document.createElement('table');
                 let weekhdr_tr = document.createElement('tr');
-                this.weekdayhdr.appendChild(weekhdr);
-                weekhdr.appendChild(weekhdr_tr);
+                this.calendar_body_day_th.appendChild(weekhdr_table);
+                weekhdr_table.appendChild(weekhdr_tr);
 
                 for (let i = 0; i < weekday.length; i++) {
 
@@ -518,57 +394,81 @@
                     weekhdr_tr.appendChild(weekhdr_td);
                     weekhdr_td.innerText = weekday[i];
                 }
+            }
 
-            },
-
-            getFirstDayOfWeek: function(year, month) {
+            this.getFirstDayOfWeek = function(year, month) {
                 if (month < 10) month = "0" + month;
                 return (new Date(year + "-" + month + "-01").getDay());
-            },
+            }
 
-            // let a = getFirstDayOfWeek(current_year, current_month + 5);
 
-            //해단년도의 해당월에 모든 일수를 구해오기
-            getDaysInMonth: function(year, month) {
-                // Here January is 1 based
-                //Day 0 is the last day in the previous month
+            this.getDaysInMonth = function(year, month) {
                 return new Date(year, month, 0).getDate();
-                // Here January is 0 based
-                // return new Date(year, month+1, 0).getDate();
-            },
+            }
 
-            createTable: function(col, k) {
-                this.year.innerHTML = "";
-                this.datewrap.innerHTML = "";
+            this.getMonths = function(btn) {
+                switch (btn) {
+                    case "next":
+                        if (this.current_month <= 12) {
+                            this.current_month++;
+                            console.log('next : ', this.current_month)
+
+
+                            if (this.current_month > 12) {
+                                this.current_month = 1;
+                                this.current_year++;
+                            }
+
+                            this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month);
+
+                        }
+                        break;
+                    case "prev":
+
+                        if (this.current_month >= 1) {
+                            this.current_month--;
+                            console.log('prev : ', this.current_month)
+                            if (this.current_month < 1) {
+                                this.current_month = 12;
+                                this.current_year--;
+                            };
+                            this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month);
+
+
+                        }
+
+                        break;
+                }
+            }
+
+
+
+            this.createTable = function(col, k) {
+                this.calendarHeaderText.textContent = "";
+                this.calendar_body_day_td.innerHTML = "";
                 let num = col;
                 let count = 0;
 
                 //dateBox = y + "." + k + ".";
 
-                document.getElementsByClassName('year')[0].innerHTML = this.current_year + "." + k + '.' + this.d;
+                this.calendarHeaderText.textContent = this.current_year + "." + k + '.' + this.d;
 
                 let table = document.createElement('table');
-                let dtb = this.datewrap.appendChild(table);
+                let dtb = this.calendar_body_day_td.appendChild(table);
                 let tr = [];
                 let current_date = [];
                 let first_day_of_week = this.getFirstDayOfWeek(this.current_year, this.current_month);
-                let arr_calendar = [];
+                this.arr_calendar = [];
                 for (let i = 0; i < first_day_of_week; i++) {
-                    arr_calendar.push("");
+                    this.arr_calendar.push("");
                     // console.log(arr_calendar.push(""))
                 }
 
                 for (let l = 1; l <= num; l++) {
-                    arr_calendar.push(l);
-
-                    // arr_calendar[l].addEventListener('click', (e) => {
-                    //     console.log(e)
-                    // });
-
-
+                    this.arr_calendar.push(l);
                 }
 
-                let rowNum = Math.ceil((arr_calendar.length) / 7);
+                let rowNum = Math.ceil((this.arr_calendar.length) / 7);
 
                 for (var i = 0; i < rowNum; i++) {
                     let boxWrap = document.createElement('tr');
@@ -578,35 +478,63 @@
                     for (let j = 1; j <= this.colNum; j++) {
                         let box = document.createElement("td");
                         count++;
-                        boxCol = [j];
+                        this.boxCol = [j];
 
-                        // console.log(arr_calendar)
-                        boxCol[j] = this.boxRow[i].appendChild(box);
+
+                        this.boxCol[j] = this.boxRow[i].appendChild(box);
+
                         box.setAttribute('class', 'box');
-                        box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+                        box.innerHTML = '<span>' + this.arr_calendar[count - 1] + '</span>';
+
+
 
                         box.addEventListener('click', (e) => {
-                            console.log(e.currentTarget.childNodes[0].innerText);
-                            this.abCalendar.style.display = "none";
-                            document.getElementById('day-checkin').innerHTML = this.current_month + '월' + e.currentTarget.childNodes[0].innerText + '일';
+
+                            let days = e.currentTarget.childNodes[0];
+
+                            if (days.innerText !== "") {
+                                this.dateCount++;
+                                if (this.dateCount < 3) {
+
+                                    if (this.dateCount === 1) {
+                                        document.getElementById('day-checkin').innerText = this.current_month + '월' + days.innerText + '일';
+                                        this.checkInDate = Number(days.innerText);
+                                        this.deActiveDays();
+                                        this.resetDays();
+                                        this.getAllDays(days.innerText);
+                                    } else if (this.dateCount === 2) {
+                                        document.getElementById('day-checkout').innerText = this.current_month + '월' + days.innerText + '일';
+                                        this.checkOutDate = Number(days.innerText);
+                                        this.getAllDays(days.innerText);
+
+                                        this.dateCount = 0;
+                                    }
+
+
+
+                                }
+                            }
+
+                            //체크인 + 체크아웃을 골랐으면 날짜를 계산하시요.
+
                         });
 
                         if (j % 9 == 7) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
-                            // boxCol[j].classList.add('saturday');
+                            this.boxCol[j].classList.add('saturday');
                         }
 
                         if (j % 9 == 1) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
-                            // box.classList.add('red');
+                            box.classList.add('red');
                         }
 
 
 
-                        if (arr_calendar[count - 1] !== undefined) {
-                            box.innerHTML = '<span>' + arr_calendar[count - 1] + '</span>';
+                        if (this.arr_calendar[count - 1] !== undefined) {
+                            box.innerHTML = '<span>' + this.arr_calendar[count - 1] + '</span>';
 
                         }
 
-                        if (this.current_month == this.fixedMonth && this.today == Number(arr_calendar[count - 1])) {
+                        if (this.current_month == this.fixedMonth && this.today == Number(this.arr_calendar[count - 1])) {
 
                             box.querySelector('span').classList.add('active');
                         }
@@ -615,11 +543,11 @@
 
                 }
                 this.checkUndefinedinDate();
-            },
+            }
 
-            checkUndefinedinDate: function() {
+            this.checkUndefinedinDate = function() {
 
-                let undefinedDay = document.querySelectorAll('#date .box');
+                let undefinedDay = this.calendar_body_day_td.querySelectorAll('.box');
                 //console.log(undefinedDay)
                 let n = null;
                 for (var udy of undefinedDay) {
@@ -629,9 +557,91 @@
 
                 }
             }
-        }
 
-        UiCalendar.init();
+            this.deActiveDays = function() {
+                console.clear();
+                //처음 선택한 이전 날로는 선택 불능하게 만든다.
+                let days = this.calendar_body_day_td.querySelectorAll('.box');
+
+                days.forEach((d, i, p) => {
+                    if (p[i].childNodes[0]) {
+                        //console.log('d : ' + d, 'i : ' + i, 'p : ' + p, Number(p[i].childNodes[0].innerText))
+
+                        if (this.checkInDate > i) {
+                            // p[i].childNodes[0].classList.add('active');
+
+                            p[i].childNodes[0].classList.add('disabled');
+                        } else {
+                            p[i].childNodes[0].classList.remove('disabled');
+                        }
+
+
+                    }
+
+                })
+
+
+            }
+
+            this.resetDays = function() {
+                let days = this.calendar_body_day_td.querySelectorAll('.box');
+                days.forEach((d, i, p) => {
+
+
+                    if (p[i].childNodes[0]) {
+                        //console.log('d : ' + d, 'i : ' + i, 'p : ' + p, Number(p[i].childNodes[0].innerText))
+                        p[i].childNodes[0].classList.remove('active');
+
+                    }
+                })
+            }
+            this.getAllDays = function(ds) {
+                let days = this.calendar_body_day_td.querySelectorAll('.box');
+                let days_num = Number(ds);
+
+                // console.clear();
+
+                days.forEach((d, i, p) => {
+
+
+                    if (p[i].childNodes[0]) {
+                        //console.log('d : ' + d, 'i : ' + i, 'p : ' + p, Number(p[i].childNodes[0].innerText))
+
+                        if (this.dateCount == 1 && this.checkInDate == Number(p[i].childNodes[0].innerText)) {
+                            p[i].childNodes[0].classList.add('active');
+                            console.log('첫번째 예약일');
+                        } else if (this.dateCount == 2 && this.checkOutDate == Number(p[i].childNodes[0].innerText)) {
+                            p[i].childNodes[0].classList.add('active');
+                            console.log('두번째 예약일')
+                        } else {
+
+                            if (this.checkInDate == i) {
+                                //p[i].childNodes[0].classList.add('active');
+                            } else if (this.checkOutDate == i) {
+                                //p[i].childNodes[0].classList.add('active');
+                            } else {
+                                p[i].childNodes[0].classList.remove('active');
+                                // console.log(i)
+                            }
+
+
+                        }
+
+                    }
+                })
+            }
+
+
+            this.getBookDate = function() {
+
+                return this.checkOutDate - this.checkInDate;
+            }
+        }
+        var UICheckIn = new uical();
+        var UICheckOut = new uical();
+        UICheckIn.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin')
+
+        //UiCalendar.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin');
     </script>
 
 

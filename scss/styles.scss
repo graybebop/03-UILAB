@@ -18,7 +18,6 @@
 @import 'dividers';
 @import 'modal';
 @import 'navigation';
-@import 'airbnb';
 @import 'toolbar';
 @import 'shadow';
 @import 'avatar';
@@ -31,9 +30,11 @@
 @import 'board';
 @import 'mobile';
 @import 'pcmenu';
+@import 'color';
 @import 'treeview';
 @import 'main'; // tpod.co.kr에 올라간 메인관련 css
 @import 'uploadimage'; //이미지 업로드
+@import '../airbnb/scss/airbnb'; //서비스별 scss
 #tpod-go-back {
     cursor: pointer;
 }

@@ -172,6 +172,21 @@ $class in $theme-colors {
             }
         }
     }
+    @else if($type=="white") {
+        .btn-#{$type} {
+            background-color: $class;
+            color: #999;
+            border-color: #fff;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $body;
+                text-decoration: none;
+                background-color: darken($class, 10%);
+                // border-color: darken($class, 10%);
+            }
+        }
+    }
     @else if($type=="dark") {
         .btn-#{$type} {
             background-color: $class;

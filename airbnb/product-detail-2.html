@@ -243,11 +243,11 @@
 
                             <h5>요금을 확인하려면 날짜를 입력하세요.</h5>
                             <div class="calendars">
-                                <div class="txt">
+                                <div class="txt" id="btnCehckIn">
                                     <div class="t-1">체크인</div>
                                     <div class="t-2" id="day-checkin">날짜추가</div>
                                 </div>
-                                <div class="txt">
+                                <div class="txt" id="btnCehckOut">
                                     <div class="t-1">체크아웃</div>
                                     <div class="t-2" id="day-checkout">날짜추가</div>
                                 </div>
@@ -263,10 +263,8 @@
                             <button class="btn btn-danger btn-block mt-10">예약 가능 여부 보기</button>
 
                             <!-- Calendar : S -->
-                            <div class="airbnb-calendar">
-                                <div id="cal-1"></div>
-                                <div id="cal-2"></div>
-                            </div>
+                            <div class="airbnb-calendar1"></div>
+                            <div class="airbnb-calendar2"></div>
 
                             <!-- Calendar : E -->
                         </div>
@@ -279,179 +277,24 @@
     </div>
 
     <script>
-        const GNBMENU = {
-            init: function() {
-
-                this.setMenu();
-
-            },
-
-            using: function() {
-                return true;
-            },
-            isMo: function() {
-                var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'Windows CE;', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson', 'Mobile', 'Symbian', 'Opera Mobi', 'Opera Mini', 'IEmobile');
-                for (var word in mobileKeyWords) {
-                    if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
-                        return true;
-                    }
-                }
-            },
-
-
-            selfThis: function() {
-                return this;
-            },
-
-            setMenu: function() {
-
-                this.depth = []; //각 1개의 메뉴를 배열에 저장
-                this.gnb = document.getElementById("gnb");
-                this.header = document.getElementsByClassName("airbnb-header")[0];
-                //this.header.style.display = "none";
-                this.mainMenu = this.gnb.children; //1단계  li 만 기져온다.
-                this.subUL = []; //각 메인메뉴의 서브메뉴를 담기위한 배열
-                this.subLI = this.gnb.querySelectorAll('li'); //All Li
-                this.link = this.gnb.querySelectorAll('#gnb li a'); //All link
-                //1단계 각 메뉴를 init한다
-                //각 li 밑에 ul의 단계를 체크한다.
-                // ul of Depth+1, ul of depth+2,...... ul of Depth+N 만든 후 각 ul의 length를 구한후 저장한다.
-                for (let i = 0; i < this.mainMenu.length; i++) {
-                    this.subUL.push(this.mainMenu[i].querySelectorAll('ul'));
-                    this.subUL[i].forEach(function(sub, key, parent) {
-                        let eachUL = [];
-                        eachUL[key] = sub;
-                        eachUL[key].parentNode.setAttribute('class', 'has-children');
-                        eachUL[key].parentNode.firstChild.classList.add('arrow-right');
-
-                        //let boxgetBound = eachUL[key].getBoundingClientRect();
-                        if (eachUL[key].localName == "ul") {
-                            eachUL[key].setAttribute('class', 'depth-' + (key + 2));
-
-                        }
-
-                    });
-                }
-
-                //모든 LI에 mouseover 이벤트를 만든다.
-                this.subLI.forEach(function(lis, key, parent) {
-                    let eachLI = [];
-                    eachLI[key] = lis;
-                    eachLI[key].addEventListener('mouseover', function(e) {
-                        //  this.mouseOverEventHandler(e);
-                        //this.getZindex();
-                        GNBMENU.mouseEventHandler(e);
-                    }.bind(this), false);
-
-                    eachLI[key].addEventListener('mouseleave', e => {
-                        GNBMENU.mouseEventHandler(e);
-                    });
-                });
-            },
-
-            checkSubMenu: function(node) {
-                node[0].classList.add('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                node.forEach(function(sub, key, parent) {
-                    if (parent[key].localName == "ul") {
-                        parent[key].style.display = "block";
-
-                    } else {
-                        return false;
-                    }
-
-                });
-            },
-
-            hideMenu: function(node) {
-                node[0].classList.remove('active'); //가장상위 메뉴를 찾아서 active 클래스를 붙인다. 나중에 메뉴 인식시 필요함
-                node.forEach(function(sub, key, parent) {
-                    if (parent[key].localName == "ul") {
-                        parent[key].style.display = "none";
-                    } else {
-                        return false;
-                    }
-
-                });
-            },
-
-            getBoundInfo: function(ele) {
-                return ele.getBoundingClientRect();
-
-            },
-
-            getZindex: function(ele) {
-                let i = 0;
-                i++;
-                let obj = window.getComputedStyle(ele);
-                return parseInt(obj.zIndex) + i;
-
-            },
-
-
-            //마우스오버 이벤트를 만들어 해당 노드 아래에 서브메뉴 즉 ul이 있는지를 체크한다.
-
-            mouseEventHandler: function(e) {
-                const mn = e.currentTarget; //1단계메뉴 li
-                const submn = e.currentTarget.children;
-
-                switch (e.type) {
-                    case 'mouseover':
-                        this.checkSubMenu(mn.childNodes);
-                        break;
-                    case 'mouseleave':
-                        this.hideMenu(mn.childNodes);
-                        break;
-                }
-
-            },
-
-        }
-
-        GNBMENU.init();
-
-        var height = $('.airbnb-header').innerHeight();
-
-        $(window).scroll(function() {
-            var scrolltop = $(this).scrollTop();
-            scrollevent(scrolltop);
-
-
-        });
-
-        function scrollevent(scroll) {
-
-            console.log(scroll)
-
-            //처음 scroll fixed가 필요없는 영역의 경우 좌표설정
-            if (scroll > 500) {
-                //  $('#reservation').css('margin-top', "100px");
-                $('#reservation').addClass('fixed')
-            } else {
-                $('#reservation').removeClass('fixed')
-            }
-
-
-        }
-
-
-
         const UiCalendar = {
-            setup: function() {
+
+            init: function(calendar_wrapper, calendar_holder, btnCheckTime, prevBtn, nextBtn, dtwp, thd, yearName, inputCheck) {
 
 
-                this.cal_1 = document.getElementById('cal-1');
-                this.cal_2 = document.getElementById('cal-2');
+                this.calendarComponent = document.createElement('div');
+                this.calendarComponent.setAttribute('id', calendar_holder)
 
+                const calendarComp = '<div class="calendar-header"><div class="' + yearName + '"></div><button type="button" class="' + prevBtn + ' btn btn-white  btn-sm btn-circle"><span class="material-icons-outlined">chevron_left</span></button><button type="button" class="' + nextBtn + ' btn btn-white  btn-sm btn-circle"><span class="material-icons-outlined">navigate_next</span></button></div><div class="calendar-body" style="display:block; padding-top:10px;"><div id="' + thd + '"></div><div id="' + dtwp + '"></div></div>';
 
-                let calendarComponent = '<div class="calendar-header"><div class="year"></div><button type="button" class="prev btn btn-white  btn-sm btn-circle"><span class="material-icons-outlined">chevron_left</span></button><button type="button" class="next btn btn-white  btn-sm btn-circle"><span class="material-icons-outlined">navigate_next</span></button></div><div class="calendar-body" style="display:block; padding-top:10px;"><div id="t_hd"></div><div id="date"></div></div>';
+                this.airBNBCalendar = document.getElementsByClassName(calendar_wrapper)[0];
+                this.airBNBCalendar.appendChild(this.calendarComponent);
 
-                this.abCalendar = document.getElementsByClassName('airbnb-calendar')[0];
-                this.cal_1.innerHTML = calendarComponent;
-                this.cal_2.innerHTML = calendarComponent;
+                this.calendarComponent.innerHTML = calendarComp;
 
-                this.datewrap = document.getElementById('date');
-                this.weekdayhdr = document.getElementById('t_hd');
-                this.year = document.getElementsByClassName('year')[0];
+                this.datewrap = document.getElementById(dtwp); //document.getElementById('date');
+                this.weekdayhdr = document.getElementById(thd);
+                this.year = document.getElementsByClassName(yearName)[0];
                 this.date = new Date();
                 this.current_year = this.date.getFullYear(); //current_year
                 this.current_month = this.date.getMonth() + 1;
@@ -464,23 +307,8 @@
                 this.boxRow = new Array(); //박스를 감싸는 줄 row
                 this.boxCol = new Array(); //하나의 박스
 
-                this.abCalendar.style.display = "none";
-
-                let checkin = document.getElementsByClassName('calendars')[0];
-                checkin.addEventListener('click', (e) => {
-                    this.abCalendar.style.display = "block";
-                });
-            },
-
-
-            init: function() {
-
-                this.setup();
-
-                let thismonth = this.getDaysInMonth(this.current_year, this.current_month);
-
-                let prev = document.getElementsByClassName('prev')[0];
-                let next = document.getElementsByClassName('next')[0];
+                let prev = document.getElementsByClassName(prevBtn)[0];
+                let next = document.getElementsByClassName(nextBtn)[0];
 
                 prev.addEventListener("click", (e) => {
 
@@ -502,6 +330,23 @@
                         this.current_year++;
                     };
                 });
+
+                this.airBNBCalendar.style.display = "block";
+
+                this.inputCheck = document.getElementById(inputCheck);
+
+                let btnCheck = document.getElementById(btnCheckTime);
+                btnCheck.addEventListener('click', (e) => {
+                    this.airBNBCalendar.style.display = "block";
+                    console.log(this.airBNBCalendar);
+                });
+
+
+
+
+                let thismonth = this.getDaysInMonth(this.current_year, this.current_month);
+
+
 
 
                 this.createTable(this.getDaysInMonth(this.current_year, this.n), this.current_month);
@@ -526,15 +371,11 @@
                 return (new Date(year + "-" + month + "-01").getDay());
             },
 
-            // let a = getFirstDayOfWeek(current_year, current_month + 5);
 
-            //해단년도의 해당월에 모든 일수를 구해오기
             getDaysInMonth: function(year, month) {
-                // Here January is 1 based
-                //Day 0 is the last day in the previous month
+
                 return new Date(year, month, 0).getDate();
-                // Here January is 0 based
-                // return new Date(year, month+1, 0).getDate();
+
             },
 
             createTable: function(col, k) {
@@ -545,7 +386,7 @@
 
                 //dateBox = y + "." + k + ".";
 
-                document.getElementsByClassName('year')[0].innerHTML = this.current_year + "." + k + '.' + this.d;
+                this.year.innerHTML = this.current_year + "." + k + '.' + this.d;
 
                 let table = document.createElement('table');
                 let dtb = this.datewrap.appendChild(table);
@@ -560,12 +401,6 @@
 
                 for (let l = 1; l <= num; l++) {
                     arr_calendar.push(l);
-
-                    // arr_calendar[l].addEventListener('click', (e) => {
-                    //     console.log(e)
-                    // });
-
-
                 }
 
                 let rowNum = Math.ceil((arr_calendar.length) / 7);
@@ -587,8 +422,9 @@
 
                         box.addEventListener('click', (e) => {
                             console.log(e.currentTarget.childNodes[0].innerText);
-                            this.abCalendar.style.display = "none";
-                            document.getElementById('day-checkin').innerHTML = this.current_month + '월' + e.currentTarget.childNodes[0].innerText + '일';
+                            // this.airBNBCalendar.style.display = "none";
+                            this.inputCheck.innerHTML = this.current_month + '월' + e.currentTarget.childNodes[0].innerText + '일';
+                            console.log(this.inputCheck);
                         });
 
                         if (j % 9 == 7) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
@@ -619,7 +455,7 @@
 
             checkUndefinedinDate: function() {
 
-                let undefinedDay = document.querySelectorAll('#date .box');
+                let undefinedDay = this.datewrap.querySelectorAll('.box');
                 //console.log(undefinedDay)
                 let n = null;
                 for (var udy of undefinedDay) {
@@ -631,7 +467,35 @@
             }
         }
 
-        UiCalendar.init();
+
+        UiCalendar.init('airbnb-calendar1', 'cal1', 'btnCehckIn', 'prev_btn1', 'next_btn1', 'date1', 't_hd1', 'year1', 'day-checkin');
+        UiCalendar.init('airbnb-calendar2', 'cal2', 'btnCehckOut', 'prev_btn2', 'next_btn2', 'date2', 't_hd2', 'year2', 'day-checkout');
+
+
+
+        var height = $('.airbnb-header').innerHeight();
+
+        $(window).scroll(function() {
+            var scrolltop = $(this).scrollTop();
+            scrollevent(scrolltop);
+
+
+        });
+
+        function scrollevent(scroll) {
+
+            console.log(scroll)
+
+            //처음 scroll fixed가 필요없는 영역의 경우 좌표설정
+            if (scroll > 500) {
+                //  $('#reservation').css('margin-top', "100px");
+                $('#reservation').addClass('fixed')
+            } else {
+                $('#reservation').removeClass('fixed')
+            }
+
+
+        }
     </script>
 
 

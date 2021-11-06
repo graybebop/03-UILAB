@@ -421,6 +421,8 @@
 
                 this.depth = []; //각 1개의 메뉴를 배열에 저장
                 this.gnb = document.getElementById("gnb");
+                this.header = document.getElementsByClassName("airbnb-header")[0];
+                this.header.style.display = "none";
                 this.mainMenu = this.gnb.children; //1단계  li 만 기져온다.
                 this.subUL = []; //각 메인메뉴의 서브메뉴를 담기위한 배열
                 this.subLI = this.gnb.querySelectorAll('li'); //All Li
