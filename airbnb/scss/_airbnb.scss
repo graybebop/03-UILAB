@@ -678,19 +678,31 @@ $form-input-border-effect-color:red;
 }
 
 .airbnb-calendar {
-    position: relative;
-    // top: 0;
-    // left: 0;
-    // width: 440px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
     border: 1px solid var(--gray-200);
     z-index: 2;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1) !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .cal_hd_txt {
+        text-align: center;
+    }
+    .cal_body {
+        margin-top: 16px;
+    }
     table {
         width: 100%;
         border-collapse: collapse;
     }
     table td {
-        border: 1px solid #ddd;
+        border: 0px solid #ddd;
         padding: 5px;
         text-align: center;
         vertical-align: middle;
@@ -722,7 +734,7 @@ $form-input-border-effect-color:red;
         color: #fff;
     }
     table th {
-        border: 1px solid var(--gray-200);
+        border: 0px solid var(--gray-200);
         padding: 10px;
         text-align: center;
         vertical-align: middle;
@@ -747,15 +759,19 @@ $form-input-border-effect-color:red;
         text-align: center;
         position: relative;
     }
+    .btn.calendar {
+        width: 25px;
+        height: 25px;
+    }
     .btn.prev {
         position: absolute;
-        left: 10px;
-        top: 0;
+        left: 20px;
+        top: 20px;
     }
     .btn.next {
         position: absolute;
-        right: 10px;
-        top: 0;
+        right: 20px;
+        top: 20px;
     }
     .saturday {
         color: blue;

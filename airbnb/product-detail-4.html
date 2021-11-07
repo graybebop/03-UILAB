@@ -262,11 +262,7 @@
                             </div>
                             <button class="btn btn-danger btn-block mt-10">예약 가능 여부 보기</button>
 
-                            <!-- Calendar : S -->
-                            <div class="airbnb-calendar"></div>
 
-
-                            <!-- Calendar : E -->
                         </div>
                     </div>
                 </div>
@@ -275,7 +271,9 @@
             <!-- Contents Detail : S -->
         </div>
     </div>
-
+    <!-- Calendar : S -->
+    <div class="airbnb-calendar"></div>
+    <!-- Calendar : E -->
     <script>
         function uical() {
             this.init = function(calendar_wrapper, calendar_holder, btnCheckTime, prevBtn, nextBtn, dtwp, thd, yearName, inputCheck) {
@@ -311,8 +309,8 @@
 
 
                 this.calendar_header.setAttribute('class', calendar_holder);
-                this.btnMonthPrev.setAttribute('class', prevBtn + ' btn btn-white  btn-sm btn-circle');
-                this.btnMonthNext.setAttribute('class', nextBtn + ' btn btn-white  btn-sm btn-circle');
+                this.btnMonthPrev.setAttribute('class', prevBtn + ' btn prev calendar btn-white  btn-sm btn-circle');
+                this.btnMonthNext.setAttribute('class', nextBtn + ' btn next calendar btn-white  btn-sm btn-circle');
                 this.calendarHeaderText.setAttribute('class', 'cal_hd_txt');
 
                 this.btnMonthPrev.innerHTML = '<span class="material-icons-outlined">chevron_left</span>';
@@ -639,7 +637,8 @@
         }
         var UICheckIn = new uical();
         var UICheckOut = new uical();
-        UICheckIn.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin')
+        UICheckIn.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin');
+        // UICheckIn.init('calendar-2', 'cal-hd-2', 'btnCheckOut', 'prev_btn-2', 'next_btn-2', 'date-2', 'thd-2', 'year-2', 'day-checkout')
 
         //UiCalendar.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin');
     </script>
