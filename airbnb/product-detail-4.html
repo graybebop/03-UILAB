@@ -274,7 +274,194 @@
     <!-- Calendar : S -->
     <div class="airbnb-calendar"></div>
     <!-- Calendar : E -->
+
+    <div class="limit-persons hide" id="limitPersons">
+        <div class="txtwrap" id="adults">
+            <div class="lt">
+                <div class="t-1">성인</div>
+                <div class="t-2">만 13세 이상</div>
+            </div>
+
+            <div class="rt">
+                <div class="btn-wrap">
+                    <button class="btn btn-minus btn-circle btn-sm btn-outlined">
+                        <span class="material-icons-outlined">remove</span>
+                    </button>
+                </div>
+                <div class="nums">1</div>
+                <div class="btn-wrap">
+                    <button class="btn btn-plus  btn-circle btn-sm btn-outlined">
+                        <span class="material-icons-outlined">add</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="txtwrap" id="childs">
+            <div class="lt">
+                <div class="t-1">어린이</div>
+                <div class="t-2">만 2~12세</div>
+            </div>
+
+            <div class="rt">
+                <div class="btn-wrap">
+                    <button class="btn btn-minus btn-circle btn-sm btn-outlined">
+                        <span class="material-icons-outlined">remove</span>
+                    </button>
+                </div>
+
+                <div class="nums">1</div>
+                <div class="btn-wrap">
+                    <button class="btn btn-plus btn-circle btn-sm btn-outlined">
+                        <span class="material-icons-outlined">add</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="txtwrap" id="baby">
+            <div class="lt">
+                <div class="t-1">유아</div>
+                <div class="t-2">만 2세미만</div>
+            </div>
+
+            <div class="rt">
+                <div class="btn-wrap">
+                    <button class="btn btn-minus btn-circle btn-sm btn-outlined">
+                        <span class="material-icons-outlined">remove</span>
+                    </button>
+                </div>
+                <div class="nums">1</div>
+
+                <div class="btn-wrap">
+                    <button class="btn btn-plus btn-circle btn-sm btn-outlined">
+                        <span class="material-icons-outlined">add</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-area">
+            <button class="btn confirm  btn-sm btn-light p-4">
+                <span class="material-icons-outlined">
+                    done
+                    </span>확인
+            </button>
+        </div>
+    </div>
     <script>
+        function UIlimitPersons() {
+            this.init = function(id) {
+                //숫자를 증감하는 function
+                //plus 버튼
+                this.count = 0;
+                this.limitNum = 5;
+                this.container = document.querySelectorAll(id + ' .nums')[0];
+                this.btnPlus = document.querySelectorAll(id + ' .btn-plus')[0];
+                this.btnMinus = document.querySelectorAll(id + ' .btn-minus')[0];
+                this.btnMinus.style.opacity = 0.2;
+                this.numVal = document.querySelectorAll(id + ' .nums')[0];
+                this.numVal.textContent = this.count;
+
+                this.btnPlus.addEventListener('click', (e) => {
+
+                    this.onClickEventHandler('plus');
+                });
+                this.btnMinus.addEventListener('click', (e) => {
+
+                    this.onClickEventHandler('minus');
+                });
+
+
+                let limit = document.getElementById('limitPersons');
+                let persons = document.getElementsByClassName('persons')[0];
+                let confirm = document.getElementsByClassName('confirm')[0];
+                persons.addEventListener('click', () => {
+                    if (limit.classList.contains('hide')) {
+                        limit.classList.remove('hide')
+                        document.querySelectorAll('.aside .reserve .persons:hover .arrow-down')[0].style.transform = 'rotate(180deg)';
+                        //document.querySelectorAll('.aside .reserve .persons:hover .arrow-down')[0].style.transform = 'translateY(-30%)';
+                        document.querySelectorAll('.aside .reserve .persons:hover .arrow-down')[0].style.top = '30%';
+                    } else {
+                        limit.classList.add('hide')
+                        document.querySelectorAll('.aside .reserve .persons:hover .arrow-down')[0].style.transform = 'rotate(0)';
+                        //document.querySelectorAll('.aside .reserve .persons:hover .arrow-down')[0].style.transform = 'translateY(-30%)';
+                        document.querySelectorAll('.aside .reserve .persons:hover .arrow-down')[0].style.top = '30%';
+                    }
+                });
+
+
+                confirm.addEventListener('click', () => {
+                    limit.classList.add('hide');
+
+                });
+            }
+
+            this.onClickEventHandler = function(ename) {
+
+                switch (ename) {
+                    case "plus":
+
+                        if (this.count < this.limitNum) {
+                            this.count++;
+                            console.log(this.count);
+                            this.btnPlus.style.opacity = 1;
+                            this.btnMinus.style.opacity = 1;
+                            this.numVal.textContent = this.count;
+                            this.totals();
+
+                            if (this.count == this.limitNum) {
+                                this.btnPlus.style.opacity = 0.2;
+                                this.btnPlus.disabled = false;
+                            }
+                            //return false;
+                        } else if (this.count >= this.limitNum) {
+
+                            this.btnPlus.style.opacity = 0.2;
+                            this.btnPlus.disabled = false
+                        }
+
+                        break;
+                    case "minus":
+                        if (this.count > 0) {
+
+                            this.count--;
+                            console.log(this.count);
+                            this.btnPlus.style.opacity = 1;
+                            this.numVal.textContent = this.count;
+                            this.totals();
+                            if (this.count == 0) {
+                                console.log('this.count == 0 : ', this.count);
+                                this.btnMinus.style.opacity = 0.2;
+                                this.btnMinus.disabled = false
+                            }
+                        }
+
+                        break;
+
+                }
+            }
+
+            this.totals = function() {
+                let an = Number(document.querySelectorAll('#adults .nums')[0].textContent);
+                let cn = Number(document.querySelectorAll('#childs .nums')[0].textContent);
+                let bn = Number(document.querySelectorAll('#baby .nums')[0].textContent);
+
+                document.querySelectorAll('.persons .t-2')[0].innerHTML = '게스트 ' + (an + cn) + ' 명' + ',  ' + '유아 ' + bn + '' + ' 명';
+                //return total;
+            }
+        }
+
+        const getAdult = new UIlimitPersons();
+        const getChilds = new UIlimitPersons();
+        const getBabies = new UIlimitPersons();
+        getAdult.init('#adults');
+        getChilds.init('#childs');
+        getBabies.init('#baby');
+
+        //  UIlimitPersons.init('#adults');
+
+
         function uical() {
             this.init = function(calendar_wrapper, calendar_holder, btnCheckTime, prevBtn, nextBtn, dtwp, thd, yearName, inputCheck) {
                 this.dateCount = 0;
@@ -508,8 +695,6 @@
                                         this.dateCount = 0;
                                     }
 
-
-
                                 }
                             }
 
@@ -639,8 +824,6 @@
         var UICheckOut = new uical();
         UICheckIn.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin');
         // UICheckIn.init('calendar-2', 'cal-hd-2', 'btnCheckOut', 'prev_btn-2', 'next_btn-2', 'date-2', 'thd-2', 'year-2', 'day-checkout')
-
-        //UiCalendar.init('calendar-1', 'cal-hd-1', 'btnCheckIn', 'prev_btn-1', 'next_btn-1', 'date-1', 'thd-1', 'year-1', 'day-checkin');
     </script>
 
 
