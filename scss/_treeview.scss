@@ -122,7 +122,6 @@
         display: none;
         z-index: 1111;
         background-color: #fff;
-        border: 1px solid #ff6600;
         @include mobile {
             position: relative;
             top: 0;
@@ -150,7 +149,6 @@
     &>li>ul>li {
         display: block;
         margin: 0;
-        border: 1px solid #ddd;
     }
     &>li>ul>li>a {
         position: relative;

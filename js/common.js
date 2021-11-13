@@ -3,6 +3,8 @@ window.addEventListener('load', () => {
 });
 const ui = {
     init: function() {
+
+
         const buttons = document.querySelectorAll('button');
         const btns = document.querySelectorAll('.btn')
 
@@ -10,6 +12,9 @@ const ui = {
         this.isButton.using() ? this.isButton.init(btns) : false;
         this.uploadImage.using() == true ? this.uploadImage.init() : false;
         this.createInput();
+
+        this.goback();
+
     },
     createInput: function() {
         let textFiled = document.querySelectorAll('input');
@@ -290,6 +295,30 @@ const ui = {
         button.appendChild(circle);
     },
 
+    gotoUrl: function() {
+        let link_ref = document.querySelectorAll('.grid-list li');
+        if (link_ref) {
+            link_ref.forEach((target, index, p) => {
+
+                target.addEventListener('click', () => {
+                    window.location.href = p[index].getAttribute('data-link');
+                })
+            })
+
+        }
+
+    },
+
+    goback: function() {
+        let topHeader = document.getElementById('header-back');
+        if (topHeader) {
+            document.querySelectorAll('body')[0].style.marginTop = "80px"
+            topHeader.innerHTML = '<div class="history-back"><button class="btn btn-circle btn-sm" onclick="window.history.back()" style="border:none !important;"><span class="material-icons">arrow_back</span></button><span style="vertical-align: middle;">이전페이지로</span></div>';
+
+            //  window.history.back();
+        }
+
+    },
     generateRandomNumbers: function(min, max, places) { //최소값을 정한후 맥스값까지 랜덤값 구하기
         // If both the minimum and maximum values are integers, return a random integer. Don't let the user specify any decimal places.
         if (Number.isInteger(min) && Number.isInteger(max)) {

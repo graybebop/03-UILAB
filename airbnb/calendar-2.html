@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .grid-list {
+        border: 0px solid #ddd;
+    }
+    
+    .grid-list .items {
+        margin: 5px 10px 15px 10px;
+    }
+    
+    #calc {
+        z-index: 10;
+        position: fixed;
+        bottom: 10px;
+        padding: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    @media(max-width:760px) {
+        .wrapper {
+            padding: 10px;
+        }
+    }
+</style>
+
+<body>
+    <div class="airbnb-calendar">
+        <div id="calendar-1">
+            <div class="cal-hd-1">
+                <div class="prev_btn-1 btn prev calendar btn-white  btn-sm btn-circle"><span class="material-icons-outlined">chevron_left</span></div>
+                <div class="next_btn-1 btn next calendar btn-white  btn-sm btn-circle"><span class="material-icons-outlined">navigate_next</span></div>
+            </div>
+            <div class="cal_body">
+                <div id="date-1">
+                    <div class="cal_hd_txt">2021.12.10</div>
+                    <div class="txt_week_days">
+                        <table>
+                            <tr>
+                                <th>일</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                                <th>토</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="calendar-table">
+                        <table>
+                            <tr class="boxwrap">
+                                <td class="box red"><span></span></td>
+                                <td class="box"><span>1</span></td>
+                                <td class="box"><span>2</span></td>
+                                <td class="box"><span>3</span></td>
+                                <td class="box"><span>4</span></td>
+                                <td class="box"><span>5</span></td>
+                                <td class="box saturday"><span>6</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>7</span></td>
+                                <td class="box"><span>8</span></td>
+                                <td class="box"><span>9</span></td>
+                                <td class="box"><span class="active">10</span></td>
+                                <td class="box"><span>11</span></td>
+                                <td class="box"><span>12</span></td>
+                                <td class="box saturday"><span>13</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>14</span></td>
+                                <td class="box"><span>15</span></td>
+                                <td class="box"><span>16</span></td>
+                                <td class="box"><span>17</span></td>
+                                <td class="box"><span>18</span></td>
+                                <td class="box"><span>19</span></td>
+                                <td class="box saturday"><span>20</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>21</span></td>
+                                <td class="box"><span>22</span></td>
+                                <td class="box"><span>23</span></td>
+                                <td class="box"><span>24</span></td>
+                                <td class="box"><span>25</span></td>
+                                <td class="box"><span>26</span></td>
+                                <td class="box saturday"><span>27</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>28</span></td>
+                                <td class="box"><span>29</span></td>
+                                <td class="box"><span>30</span></td>
+                                <td class="box"></td>
+                                <td class="box"></td>
+                                <td class="box"></td>
+                                <td class="box saturday"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="date-2">
+                    <div class="cal_hd_txt">2021.12.10</div>
+                    <div class="txt_week_days">
+                        <table>
+                            <tr>
+                                <th>일</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                                <th>토</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="calendar-table">
+                        <table>
+                            <tr class="boxwrap">
+                                <td class="box red"><span></span></td>
+                                <td class="box"><span></span></td>
+                                <td class="box"><span></span></td>
+                                <td class="box"><span>1</span></td>
+                                <td class="box"><span>2</span></td>
+                                <td class="box"><span>3</span></td>
+                                <td class="box saturday"><span>4</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>5</span></td>
+                                <td class="box"><span>6</span></td>
+                                <td class="box"><span>7</span></td>
+                                <td class="box"><span>8</span></td>
+                                <td class="box"><span>9</span></td>
+                                <td class="box"><span class="active">10</span></td>
+                                <td class="box saturday"><span>11</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>12</span></td>
+                                <td class="box"><span>13</span></td>
+                                <td class="box"><span>14</span></td>
+                                <td class="box"><span>15</span></td>
+                                <td class="box"><span>16</span></td>
+                                <td class="box"><span>17</span></td>
+                                <td class="box saturday"><span>18</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>19</span></td>
+                                <td class="box"><span>20</span></td>
+                                <td class="box"><span>21</span></td>
+                                <td class="box"><span>22</span></td>
+                                <td class="box"><span>23</span></td>
+                                <td class="box"><span>24</span></td>
+                                <td class="box saturday"><span>25</span></td>
+                            </tr>
+                            <tr class="boxwrap">
+                                <td class="box red"><span>26</span></td>
+                                <td class="box"><span>27</span></td>
+                                <td class="box"><span>28</span></td>
+                                <td class="box"><span>29</span></td>
+                                <td class="box"><span>30</span></td>
+                                <td class="box"><span>31</span></td>
+                                <td class="box saturday"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

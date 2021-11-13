@@ -160,6 +160,7 @@
         align-self: center;
         overflow: hidden;
         border: 1px solid #ddd;
+        transition: border 2s;
         &:hover {
             border: 1px solid #000;
         }

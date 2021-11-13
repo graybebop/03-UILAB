@@ -16,6 +16,7 @@ $warning:#ffc107;
 $danger:#dc3545;
 $light:#f8f9fa;
 $dark:#212529;
+$white:#fff;
 $theme-colors: ( //
 "primary": $primary, //
 "secondary": $secondary, //
@@ -24,7 +25,8 @@ $theme-colors: ( //
 "warning": $warning, //
 "danger": $danger, //
 "light": $light, //
-"dark": $dark //
+"dark": $dark, //
+"white": $white //
 ) !default;
 $mobile:1024px;
 $mobile-sm:726px;

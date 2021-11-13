@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap');
+.main-wrap {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+
+.main-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.main-logo2 {
+    position: absolute;
+    top: 170px;
+    font-size: 150px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1)
+}
+
+.main-txt {
+    font-size: 20px !important;
+    font-weight: 400;
+    color: #000;
+}
+
+.font-notosans {
+    font-family: 'Noto Sans KR';
+}
+
+.t-card {
+    padding-bottom: 20px;
+}
+
+.grid-list .items .t-card__subtitle {
+    margin-top: 0;
+    color: #000;
+    text-align: left;
+    padding: 0 10px;
+    padding-bottom: 10px;
+}
+
+.grid-list .items .t-card_thumb {
+    max-height: 230px;
+}
+
+.grid-list .items {
+    cursor: pointer;
+}
+
+.history-back {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    z-index: 10;
+    background-color: #fff;
+    padding-left: 10px;
+    padding-top: 20px;
+    top: 0;
+    left: 0;
+}
+
+.grid-list {
+    border: 0px solid #ddd;
+}
+
+.grid-list .items {
+    margin: 5px 10px 15px 10px;
+}

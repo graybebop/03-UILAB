@@ -112,7 +112,7 @@ span.ripple-dark {
 }
 
 .btn-xs {
-    padding: 0.3rem;
+    padding: 0.2rem;
 }
 
 .btn-sm {
@@ -162,6 +162,21 @@ $class in $theme-colors {
             background-color: $class;
             color: $body;
             border-color: #ddd;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $body;
+                text-decoration: none;
+                background-color: darken($class, 10%);
+                // border-color: darken($class, 10%);
+            }
+        }
+    }
+    @else if($type=="white") {
+        .btn-#{$type} {
+            background-color: $class;
+            color: #999;
+            border-color: #fff;
             &:hover,
             &:focus,
             &:active {

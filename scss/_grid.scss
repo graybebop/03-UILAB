@@ -131,6 +131,9 @@ $grid-spacing:3%;
     &.justify-center {
         justify-content: center !important;
     }
+    &.flex-nowrap {
+        flex-wrap: nowrap;
+    }
 }
 
 .tpod-grid [class^="tpod-col-"] {
