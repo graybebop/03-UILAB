@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="tpod-wrapper py-50">
+        <div class="tpod-container">
+            <div class="tpod-search-wrap">
+                <div class="serach-box location" id="location">
+                    <div class="txt-wrap">
+                        <div>위치</div>
+                        <div class="input-txt">
+                            <div class="txt">어디로 여행가세요</div>
+                            <!-- <button class="btn btn-circle btn-sm  deleteBtn"><span class="material-icons-outlined">highlight_off</span></button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="serach-box" id="datepicker-1">
+                    <div class="txt-wrap">
+                        <div>체크인</div>
+                        <div class="txt" id="checkin">날짜선택</div>
+                    </div>
+                </div>
+                <div class="serach-box" id="datepicker-2">
+                    <div class="txt-wrap">
+                        <div>체크아웃</div>
+                        <div class="txt" id="checkout">날짜선택</div>
+                    </div>
+                </div>
+                <div class="serach-box" id="guest">
+                    <div class="txt-wrap">
+                        <div>인원</div>
+                        <div class="txt">게스트추가</div>
+                    </div>
+                </div>
+                <div class="airbnb-button-area">
+                    <button type="button" class="btn btn-danger btn-circle btn-md" id="btnSearch"><span class="material-icons-outlined icon-search">search</span></button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+
+<script>
+    const datepicker_1 = document.getElementById('datepicker-1');
+    const datepicker_2 = document.getElementById('datepicker-2');
+    const locationArea = document.getElementById('location');
+    const persons = document.getElementById('guest');
+
+    const searchContainer = document.querySelectorAll('.tpod-search-wrap .serach-box');
+
+    function showShadow(n) {
+        searchContainer.forEach((target, index, p) => {
+
+
+            if (!p[index].classList.contains('search-box-shadow') && n == index) { //활성화 되었을때
+
+                p[index].classList.add('search-box-shadow');
+                p[index].querySelector('.txt-wrap').style.backgroundColor = "#fff";
+
+            } else if (p[index].classList.contains('search-box-shadow') && n == index) { //활성화 되었지만 수정 할때 다시선택하게 된다면 위 설정이 풀어지지 말아라
+
+                console.log('do noting');
+
+            } else {
+
+                p[index].classList.remove('search-box-shadow');
+                p[index].querySelector('.txt-wrap').style.backgroundColor = "transparent";
+
+            }
+        })
+    }
+
+
+    locationArea.addEventListener('click', (e) => {
+        showShadow(0);
+        document.getElementById('btnSearch').classList.add('btn-search-all');
+        document.getElementById('btnSearch').innerHTML = '<span class="material-icons-outlined icon-search">search</span> 검색';
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+
+    datepicker_1.addEventListener('click', (e) => {
+        showShadow(1);
+        document.getElementById('btnSearch').classList.add('btn-search-all');
+        document.getElementById('btnSearch').innerHTML = '<span class="material-icons-outlined icon-search">search</span> 검색';
+        e.stopPropagation();
+        e.preventDefault();
+
+    });
+
+
+
+
+    datepicker_2.addEventListener('click', (e) => {
+        showShadow(2)
+        document.getElementById('btnSearch').classList.add('btn-search-all');
+
+        document.getElementById('btnSearch').innerHTML = '<span class="material-icons-outlined icon-search">search</span> 검색';
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+
+
+    persons.addEventListener('click', (e) => {
+
+        showShadow(3)
+        document.getElementById('btnSearch').classList.add('btn-search-all');
+
+        document.getElementById('btnSearch').innerHTML = '<span class="material-icons-outlined icon-search">search</span> 검색';
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+
+
+
+
+    document.addEventListener('click', (e) => {
+        document.getElementById('btnSearch').innerHTML = '<span class="material-icons-outlined icon-search">search</span>';
+        document.getElementById('btnSearch').classList.remove('btn-search-all');
+        searchContainer.forEach((target) => {
+            target.classList.remove('search-box-shadow');
+        });
+    });
+</script>
+
+
+</html>

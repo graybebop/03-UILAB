@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<header id="blog-header">
+    <div class="tpod-container">
+        <div class="airbnb-header">
+            <div class="logo">
+                TPOD <span class="bolded">UILAB</span>
+            </div>
+            <!-- GNB : S -->
+            <ul class="airbnb-gnb" id="gnb">
+                <li><a href="#none">소개하기</a> </li>
+                <li><a href="#none">끄적거리기</a> </li>
+                <li><a href="#none">의뢰하기</a> </li>
+            </ul>
+            <!-- GNB : E -->
+        </div>
+    </div>
+    <div class="airbnb-divider"></div>
+</header>
+<section class="wrapper">
+    <div class="board-write py-50">
+        <h5 class="pb-10">글쓰기</h5>
+        <div class="board-write-row">
+            <div class="lt">제목</div>
+            <div class="rt">
+                <input type="text" data-title="" class="bdr-title" placeholder="" />
+            </div>
+        </div>
+        <div class="board-write-row bdr-open-state">
+            <div class="lt">공개여부</div>
+            <div class="rt">
+                <label class="switch-radio"><input type="checkbox" class="chbbox" data-state="" class="bdr-state" id="check-state">
+                    <span class="s-b round"></span></label>
+                <span class="txt" id="check-state-txt">비공개</span>
+            </div>
+        </div>
+        <div class="board-write-row hide">
+            <div class="lt">비밀번호</div>
+            <div class="rt">
+                <input type="password" data-password="" name="" class="bdr-pd" placeholder="" />
+            </div>
+        </div>
+        <div class="board-write-row hide">
+            <div class="lt">이메일주소</div>
+            <div class="rt">
+                <input type="email" data-email="" class="bdr-email" placeholder="" />
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">내용-1</div>
+            <div class="rt">
+                <textarea class="txtfield bdr-memo" data-memo="" placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">내용-2</div>
+            <div class="rt">
+                <textarea class="txtfield bdr-memo2" data-memo="" onfocus="ClearPlaceHolder(this)" onblur="SetPlaceHolder(this)">내용을 입력해주세요.</textarea>
+            </div>
+        </div>
+        <div class="board-write-button">
+            <button type="button" class="btn btn-dark " onclick="ui.goLink('write','board-view.html')"> 확인</button>
+            <button type="button" class="btn btn-light " onclick="ui.goLink('modify','board-list.html')">취소</button>
+        </div>
+
+    </div>
+
+</section>
+<footer id="footer" class="mt-50">
+    <div class="airbnb-divider"></div>
+    <div class="copy pt-30 pb-30">
+        Copyrights reserved @TPOD since 2012.
+    </div>
+</footer>
+<style>
+    [data-value] {
+        /* Attribute exists */
+    }
+    
+    [data-state="text"] {
+        display: none;
+    }
+    
+    [attribute="data-password"] {
+        display: none;
+    }
+    
+    .text-field,
+    .txtfield {
+        width: 90% !important;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+
+        const txtObj = [{
+            title: '제목을 적어주세요.'
+        }, {
+            password: '비밀번호를 적어주세요.'
+        }, {
+            email: '이메일주소를 적어주세요.'
+        }, {
+            memo: '내용을 입력해주세요.'
+        }, ];
+
+
+
+        let ipt = [];
+        ipt[0] = document.getElementsByClassName('bdr-title')[0];
+        ipt[1] = document.getElementsByClassName('bdr-pd')[0];
+        ipt[2] = document.getElementsByClassName('bdr-email')[0];
+        ipt[3] = document.getElementsByClassName('bdr-memo')[0];
+        ipt[4] = document.getElementsByClassName('bdr-memo2')[0];
+        ipt[0].placeholder = txtObj[0].title;
+        ipt[1].placeholder = txtObj[1].password;
+        ipt[2].placeholder = txtObj[2].email;
+        // console.log(ipt_4);
+        ipt[3].placeholder = txtObj[3].memo;
+
+
+        let bdr = document.querySelectorAll('.board-write-row');
+        bdr[0].style.borderTop = "1px solid #ddd";
+
+        let openState = document.getElementById('check-state');
+        let openStateTxt = document.getElementById('check-state-txt');
+        let radioButton = document.querySelectorAll('.switch-radio .s-b.round');
+        console.log(radioButton)
+
+        let count = 0;
+        for (const txt of txtObj) {
+            console.log(txt)
+        }
+        openState.addEventListener('change', (e) => {
+            if (openState.checked) {
+                openStateTxt.textContent = "비공개";
+                openStateTxt.style.color = "#999";
+                radioButton[0].style.backgroundColor = "#bd2130"
+
+            } else {
+                openStateTxt.textContent = "공개";
+                openStateTxt.style.color = "#999";
+                radioButton[0].style.backgroundColor = "#ddd"
+            }
+        });
+
+
+    });
+
+
+    function ClearPlaceHolder(input) {
+        if (input.value == input.defaultValue) {
+            input.value = "";
+        }
+    }
+
+    function SetPlaceHolder(input) {
+        if (input.value == "") {
+            input.value = input.defaultValue;
+        }
+    }
+</script>
+
+<body>
+
+
+</body>
+
+</html>

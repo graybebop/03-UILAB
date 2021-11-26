@@ -293,6 +293,12 @@ const ui = {
             ripple.remove();
         }
         button.appendChild(circle);
+
+        const transition = document.querySelector('.ripple-dark');
+
+        transition.addEventListener('animationend', () => {
+            button.removeChild(transition);
+        });
     },
 
     gotoUrl: function() {

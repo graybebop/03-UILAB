@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <header id="blog-header">
+        <div class="tpod-container">
+            <div class="airbnb-header">
+                <div class="logo">
+                    TPOD <span class="bolded">UILAB</span>
+                </div>
+                <!-- GNB : S -->
+                <ul class="airbnb-gnb" id="gnb">
+                    <li><a href="#none">소개하기</a> </li>
+                    <li><a href="#none">끄적거리기</a> </li>
+                    <li><a href="#none">의뢰하기</a> </li>
+                </ul>
+                <!-- GNB : E -->
+            </div>
+        </div>
+        <div class="airbnb-divider"></div>
+    </header>
+    <div class="tpod-wrapper" id="blog-type-3">
+
+        <div class="tpod-container pt-50">
+            <div class="tpod-row blog">
+
+                <div class="tpod-col-12 blog-list">
+                    <div id="articles"></div>
+                    <!-- items : s -->
+                    <div id="conts"></div>
+                    <!-- items : e -->
+
+                    <div class="arrowSlider">
+                        <div class="prev" id="aro1_prev"><span class="material-icons-outlined">
+                            chevron_left
+                            </span>이전페이지 </div>
+                        <div class="next" id="aro1_next">다음페이지 <span class="material-icons-outlined">
+                            navigate_next
+                            </span></div>
+                    </div>
+                    <div class="paging"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <footer id="footer" class="mt-50">
+        <div class="airbnb-divider"></div>
+        <div class="copy pt-30 pb-30">
+            Copyrights reserved @TPOD since 2012.
+        </div>
+    </footer>
+    <script>
+        const data_arr = [ //
+            {
+                img: "../blog/sample.jpg",
+                title: "에어비앤비 같은 달력 구현하기",
+                dates: "2021.11.20",
+                excerp: "airbnb와 같은 달력을 구현할수 있을까??? 잘만들어진 달력이거니와 예약값에 따라서 변화되는 기능을 보면 놀랍지 않을 수 없다.* 대표적인 기능을 한번 정리해보자면 <br />1) 좌, 우측 2개로 달려 구성 <br />2)이미 선택된 날짜는 선택못하도록<br />3)etc...... ",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #2] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #4] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #5] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #6] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #7] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #8] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #9] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #10] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            }, {
+                img: "../blog/sample.jpg",
+                title: "[개발노트 #11] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티[개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                dates: "2021.11.20",
+                excerp: "웹개발을 하다보면 항상 부딪치는 문제는 자바스크립트에서 지정하는 스타일과 CSS에 의한 스타일의 표준화라고 생각합니다. 이중으로 관리를 해야하는 문제가 발생하기 때문에 이 둘을 일치화시키는 것은 굉장히 불편하다고 느껴집니다. ​ 다행스럽게도 리액트에서 사용할 수 있는 머티리얼UI는 5.0 버전부터 sx 프로퍼티를 통해 자바스크립트에서 직접 스타일을 지정할 수 있도록 기능을 제공합니다. 이를테면 아래와 같이 자바스크립트에서 직접 스타일을 만들 수 있습니다. [출처] [개발노트 #3] 자바스크립트에서 전역 설정값을 사용하는 방법에 대한 고민|작성자 런던시티",
+                nickname: "admin",
+                link: "#none"
+            },
+
+        ];
+        const blogList = {
+
+            init: function() {
+
+                const contents = document.getElementById('conts');
+
+
+
+                //페이징 관련 변수들
+                this.contsEle = contents;
+
+                this.pagePerContentNum = data_arr.length;
+                this.contsObj = data_arr;
+                this.records_per_page = this.pagePerContentNum;
+
+                this.pagePerContentNum = 2;
+
+                Object.size = function(result) {
+                    var size = 0,
+                        key;
+                    for (key in result) {
+                        if (result.hasOwnProperty(key)) size++;
+                    }
+                    return size;
+                };
+
+                this.totalSlideNum = Object.size(this.contsObj); //데이터 갈이
+
+                document.getElementById('articles').innerHTML = '전체 <em style="color:red; font-weight:700; margin-right:2px;">' + this.totalSlideNum + '</em>개의 글이 있습니다.';
+
+                this.pagePerContentNum = 2;
+
+
+                this.slideNum = 1; //Arrow 좌, 우키 눌렀을때의 카운팅
+                this.current_page = 1;
+
+
+                // this.showData(this.contsObj);
+
+
+                this.leftBtn = document.getElementById("aro1_prev");
+                this.rightBtn = document.getElementById("aro1_next");
+                this.leftBtn.addEventListener("click", (e) => {
+                    this.onClickEventHanddler(e);
+
+                });
+                this.rightBtn.addEventListener("click", (e) => {
+                    this.onClickEventHanddler(e);
+                });
+                this.changePage(this.slideNum);
+
+
+            },
+
+            setData: function(page) {
+                const contents = document.getElementById('conts');
+                contents.innerHTML = "";
+                let inc, total;
+                if (page < 2) {
+
+                    inc = 0 * this.pagePerContentNum;
+                    total = page * this.pagePerContentNum;
+
+                } else if (page > 1) {
+
+                    inc = (page - 1) * this.pagePerContentNum;
+                    total = page * this.pagePerContentNum;
+
+
+                    if (total >= this.totalSlideNum) { //맨 마지막에서 홀수로 나와서 마지막 -1을 위해서 하나를 더 조건식 사용
+
+                        total = total - 1;
+
+                    }
+
+                }
+                let num = null;
+                for (let i = inc; i < total; i++) {
+
+                    let list_container = document.createElement('div');
+                    contents.appendChild(list_container);
+                    list_container.setAttribute('class', 'blog-list-inner');
+
+                    if (i < 9) {
+                        num = "0" + (i + 1);
+                    } else {
+                        num = i + 1;
+                    }
+
+                    list_container.innerHTML = '<div class="thumb-wrap" data-link=' + data_arr[i].link + '><div class="entry-image" style="background-image: url(' + data_arr[i].img + ');"></div></div><div class="txt-wrap"><a href="#none"></a><div class="entry-title"><h2>' + (num) + ' : ' + data_arr[i].title + '</h2></div><div class="entry-content"><div class="t-1">상세설명 :</div><div class="t-2">' + data_arr[i].excerp + '</div></div><div class="entry-meta bot"><ul><li><span class="material-icons-outlined">schedule</span>' + data_arr[i].dates + '</li><li><span class="material-icons-outlined">person</span>' + data_arr[i].nickname + '</li></ul></div>';
+                }
+
+                //for(let i=0; i<)
+            },
+            changePage: function(page) {
+
+                var page_span = document.getElementsByClassName("paging")[0];
+
+                if (page < 1) page = 1;
+                if (page > this.numPages()) page = this.numPages();
+
+
+                page_span.innerHTML = page + '/' + Math.ceil(this.totalSlideNum / this.pagePerContentNum);
+
+
+                //this.sliderEle.style.left = -((page - 1) * this.sliderContainerWidth) + 'px';
+                this.setData(page);
+
+                if (page == 1) {
+                    //this.leftBtn.style.visibility = "hidden";
+                } else {
+                    //this.leftBtn.style.visibility = "visible";
+                }
+                if (page == this.numPages()) {
+                    // this.rightBtn.style.visibility = "hidden";
+                } else {
+                    // this.rightBtn.style.visibility = "visible";
+                }
+
+            },
+
+            onClickEventHanddler: function(e) {
+
+                let direction = e.currentTarget.getAttribute('class');
+                console.log(direction)
+
+                if (direction == "next") {
+                    playDirection = "next"
+                    this.nextPage();
+
+
+                } else if (direction == "prev") {
+                    playDirection = "prev"
+                    this.prevPage();
+                }
+            },
+
+            numPages: function() {
+                return Math.ceil(this.totalSlideNum / this.pagePerContentNum);
+            },
+
+            prevPage: function() {
+
+                if (this.slideNum > 1) {
+                    this.slideNum--;
+                    console.log(this.slideNum)
+                    this.changePage(this.slideNum);
+                }
+            },
+
+            nextPage: function() {
+                console.log(this.numPages())
+                if (this.slideNum < this.numPages()) {
+                    this.slideNum++;
+
+
+                    this.changePage(this.slideNum);
+                }
+            }
+
+        }
+
+
+
+        blogList.init();
+
+
+
+        // data_arr.forEach((value, i, array) => {
+
+        // })
+    </script>
+    <style>
+        .arrowSlider {
+            position: relative;
+            top: 0;
+            background: transparent;
+        }
+        
+        #aro1_next {
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: 50px;
+            border: none;
+            display: inline-block;
+            width: auto;
+            height: 50px;
+            position: absolute;
+            border: 0px solid #000;
+            text-indent: 0%;
+            background-image: none;
+        }
+        
+        #aro1_prev {
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: 50px;
+            border: none;
+            display: inline-block;
+            width: auto;
+            height: 50px;
+            position: absolute;
+            border: 0px solid #000;
+            right: 0px;
+            text-indent: 0%;
+            background-image: none;
+            cursor: pointer;
+        }
+        
+        #aro1_prev:hover,
+        #aro1_next:hover {
+            background-image: none;
+        }
+        
+        #aro1_prev .material-icons-outlined,
+        #aro1_next .material-icons-outlined {
+            vertical-align: sub;
+            font-size: 20px;
+        }
+    </style>
+
+</body>
+
+</html>

@@ -11,6 +11,7 @@ $grid__cols:12;
 $body: #333;
 $gap:0.25;
 .tpod-col {
+    position: relative;
     flex-grow: 1;
     flex-direction: wrap;
     margin: $gap*1%;

@@ -35,6 +35,7 @@
 @import 'main'; // tpod.co.kr에 올라간 메인관련 css
 @import 'uploadimage'; //이미지 업로드
 @import '../airbnb/scss/airbnb'; //서비스별 scss
+@import '../blog/scss/blog';
 #tpod-go-back {
     cursor: pointer;
 }

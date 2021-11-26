@@ -7,11 +7,8 @@
     border: 1px solid #ddd;
     border-radius: 50px;
     background-color: #fff;
+    position: relative;
     //box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
-    &:hover {
-        -webkit-box-shadow: 8px 4px 9px 0px rgba(0, 0, 0, 0.22);
-        box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.06);
-    }
     &:focus {
         background-color: #fff;
     }
@@ -25,21 +22,38 @@
         border-radius: 50px;
         border: 0px solid #ddd;
         overflow: hidden;
+        position: relative;
         &:hover {
             background-color: #f7f7f7;
         }
         .txt-wrap {
-            position: relative;
-            top: 13px;
-            left: 30px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding-top: 13px;
+            padding-left: 30px;
+            .txt {
+                margin-top: 5px;
+                font-size: 1rem;
+                color: #999;
+            }
             .input-txt {
                 position: relative;
             }
             input {
-                border-bottom: 1px solid #ddd;
+                border: 0px solid #ddd;
                 background-color: transparent;
             }
         }
+    }
+    .airbnb-button-area {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        z-index: 2;
     }
 }
 
@@ -416,6 +430,12 @@ $form-input-border-effect-color:red;
     .logo {
         padding-top: 0;
         padding-right: 30px;
+        flex: 1;
+        font-size: 30px;
+        font-weight: 200;
+        .bolded {
+            font-weight: 700;
+        }
     }
 }
 
@@ -434,13 +454,14 @@ $form-input-border-effect-color:red;
             transition: 0.5s;
             &:hover {
                 border-bottom: 3px solid rgba(81, 171, 243, 1);
+                color: rgba(81, 171, 243, 1);
             }
         }
     }
 }
 
 .airbnb-divider {
-    background-color: #ddd;
+    background-color: var(--gray-100);
     height: 1px;
 }
 
@@ -461,13 +482,13 @@ $form-input-border-effect-color:red;
 }
 
 .product-info-box {
+    position: relative;
     h5 {
         font-size: 18px;
         color: var(--gray-800);
         font-weight: 400;
         margin-bottom: 10px;
     }
-    border-top: 1px solid #f1f3f5;
     border-bottom: 1px solid #f1f3f5;
     padding: 30px 0;
     .con {
@@ -503,14 +524,14 @@ $form-input-border-effect-color:red;
         flex-direction: row;
         flex-wrap: nowrap;
         margin-top: 15px;
-        li {
-            a {
-                color: var(--gray-500);
-                background-color: #f7f7f7;
-                padding: 5px 10px;
-                margin-right: 10px;
-                font-size: 14px;
-            }
+        a {
+            display: inline-block;
+            color: var(--gray-500) !important;
+            background-color: #f7f7f7;
+            padding: 5px 10px;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 300;
         }
     }
 }
@@ -678,13 +699,16 @@ $form-input-border-effect-color:red;
     right: 200px;
 }
 
+.calendar-wrapper {
+    display: none;
+}
+
 .airbnb-calendar {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: #fff;
     border: 1px solid var(--gray-200);
+    top: 104px;
+    right: 0;
     z-index: 2;
     padding: 30px;
     border-radius: 10px;
@@ -721,6 +745,11 @@ $form-input-border-effect-color:red;
         vertical-align: middle;
         border-radius: 30px;
         line-height: 30px;
+    }
+    .box .current {
+        border: 1px solid var(--gray-300);
+        color: #000;
+        border-radius: 50%;
     }
     .box .active {
         border: none;
@@ -797,8 +826,9 @@ $form-input-border-effect-color:red;
 
 .limit-persons {
     position: absolute;
-    top: 100px;
-    left: 100px;
+    width: 88%;
+    top: 56px;
+    left: 0;
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -823,7 +853,7 @@ $form-input-border-effect-color:red;
         }
     }
     .lt {
-        width: 100px;
+        flex: 1;
         .t-1 {
             font-size: 16px;
             color: var(--gray-700);
@@ -873,3 +903,112 @@ $form-input-border-effect-color:red;
 }
 
 #date-2 {}
+
+.btn-search-all {
+    position: relative;
+    border-radius: 30px;
+    text-align: left;
+    padding-right: 20px;
+    transition: 0.2s;
+}
+
+.search-box-shadow {
+    box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+#guests {
+    display: none;
+}
+
+.airbnb-detail-photos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border: 0px solid #000;
+    width: 1200px;
+    margin: 0 auto;
+    height: 510px;
+    margin-top: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    .thumb {
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            z-index: 1;
+            transition: 1s;
+        }
+        &:hover {
+            &:before {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+    .lt {
+        //flex: 3;
+        flex-grow: 1;
+        flex-basis: 33%;
+        flex-shrink: 33%;
+        // flex-shrink: 1;
+        // flex-basis: 560px;
+        align-self: stretch;
+        height: 100%;
+        position: relative;
+        border: 0px solid #000;
+        width: 560px;
+        div {
+            height: 100%;
+        }
+        margin-right:10px;
+    }
+    .rt {
+        flex-grow: 5;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 100%;
+        position: relative;
+        margin-right: -30px;
+        div {
+            border: 0px solid #000;
+            margin-right: 10px;
+            width: calc(50% - 21px);
+            height: calc(50% - 5px);
+            margin-bottom: 10px;
+        }
+    }
+    div {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+#attract-points {
+    h5 {
+        margin-bottom: 20px;
+    }
+}
+
+#footer {
+    width: 1200px;
+    margin: 0 auto;
+    .copy {
+        font-size: 0.8rem;
+        color: var(--gray-500);
+        text-align: center;
+    }
+}
+
+#blog-header {
+    box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.06);
+}

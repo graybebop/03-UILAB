@@ -117,6 +117,7 @@
 
                 //다음달 구하기 오른쪽 테이블
                 this.next_month = this.current_month + 1;
+                this.next_year = this.current_year;
 
 
                 //달의 일수 구하기 ex>11월 달수의 일수
@@ -136,7 +137,7 @@
                             //this.current_month = this.current_month - 1;
                             this.current_month++;
 
-                            console.log('next : ', this.current_month, this.getDaysInMonth(this.current_year, this.current_month));
+                            //console.log('next : ', this.current_month, this.getDaysInMonth(this.current_year, this.current_month));
 
                             this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
 
@@ -144,7 +145,7 @@
                         } else if (this.current_month <= 12) {
                             this.current_month = 1;
 
-                            console.log('next : ', this.current_month, this.getDaysInMonth(this.current_year, this.current_month));
+                            //console.log('next : ', this.current_month, this.getDaysInMonth(this.current_year, this.current_month));
 
                             this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
 
@@ -155,7 +156,7 @@
                             //this.next_month = this.current_month - 1;
                             this.next_month++;
 
-                            console.log('next : ', this.next_month, this.getDaysInMonth(this.current_year, this.next_month));
+                            // console.log('next : ', this.next_month, this.getDaysInMonth(this.current_year, this.next_month));
                             this.createTable(this.getDaysInMonth(this.current_year, this.next_month), this.next_month, this.current_year, this.next_month, this.calendar_body_table_right);
 
 
@@ -174,15 +175,39 @@
                         break;
                     case "prev":
 
-                        if (this.current_month >= 1) {
+                        if (this.current_month > 1) { //1보다 작으면 달수를 줄인다.
                             this.current_month--;
-                            console.log('prev : ', this.current_month)
-                            if (this.current_month < 1) {
-                                this.current_month = 11; //캘린더 하나만 사용할때 this.current_month = 12로 수정 
-                                this.current_year--;
-                            };
-                            // this.createTable(this.getDaysInMonth(this.current_year, this.n), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
-                            // this.createTable(this.getDaysInMonth(this.current_year, this.n), this.current_month + 1, this.current_year, this.current_month + 1, this.calendar_body_table_right);
+                            // console.log('prev : ', this.current_month)
+                            // if (this.current_month < 1) {
+                            //     this.current_month = 11; //캘린더 하나만 사용할때 this.current_month = 12로 수정 
+                            //     this.current_year--;
+                            // };
+                            this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
+                        } else if (this.current_month <= 1) { //0보다 작으면 12로 다시 시작
+                            this.current_month = 12;
+                            this.current_year--;
+
+                            this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
+
+                        }
+
+                        if (this.next_month > 1) {
+                            //this.next_month = this.current_month - 1;
+                            this.next_month--;
+
+
+                            this.createTable(this.getDaysInMonth(this.next_year, this.next_month), this.next_month, this.next_year, this.next_month, this.calendar_body_table_right);
+
+
+                        } else if (this.next_month <= 1) {
+                            this.next_month = 12;
+                            this.next_year--;
+                            console.log('오른쪽 next_year : ', this.next_year);
+
+                            //this.next_month 12월이 되었으면 여기서 미리 this.current_year++ 증가
+
+                            this.createTable(this.getDaysInMonth(this.next_year, this.next_month), this.next_month, this.next_year, this.next_month, this.calendar_body_table_right);
+
                         }
 
                         break;
@@ -209,7 +234,7 @@
 
             this.createTable = function(col, k, this_current_year, this_current_month, this_table_container) {
 
-                console.log('this_table_container : ', this_table_container)
+                //console.log('this_table_container : ', this_table_container)
 
                 if (this_table_container.children) {
                     this_table_container.innerHTML = "";
@@ -272,6 +297,19 @@
                         box.setAttribute('class', 'box');
                         box.innerHTML = '<span>' + this.arr_calendar[count - 1] + '</span>';
 
+                        box.addEventListener('click', (e) => {
+
+                            let days = e.currentTarget.childNodes[0];
+
+                            this.selNum = Number(days.innerText);
+                            console.log(this.selNum)
+                            this.deActiveDays();
+                            // this.resetDays();
+                            // this.getAllDays(days.innerText);
+
+                            //체크인 + 체크아웃을 골랐으면 날짜를 계산하시요.
+
+                        });
 
 
                         if (j % 9 == 7) { //n번재의 1번째에 색상을 어떤 액션을 취하는 mod식
@@ -321,6 +359,86 @@
 
             this.getDaysInMonth = function(year, month) {
                 return new Date(year, month, 0).getDate();
+            }
+
+
+            this.deActiveDays = function() {
+                console.clear();
+                //처음 선택한 이전 날로는 선택 불능하게 만든다.
+                let days = this.calendar_body_table_left.querySelectorAll('.box');
+
+                days.forEach((d, i, p) => {
+                    if (p[i].childNodes[0]) {
+                        //console.log('d : ' + d, 'i : ' + i, 'p : ' + p, Number(p[i].childNodes[0].innerText))
+
+                        if (this.checkInDate > i) {
+                            p[i].childNodes[0].classList.add('active');
+
+                            p[i].childNodes[0].classList.add('disabled');
+                        } else {
+                            p[i].childNodes[0].classList.remove('disabled');
+                        }
+
+
+                    }
+
+                })
+
+
+            }
+
+            this.resetDays = function() {
+                let days = this.calendar_body_day_td.querySelectorAll('.box');
+                days.forEach((d, i, p) => {
+
+
+                    if (p[i].childNodes[0]) {
+                        //console.log('d : ' + d, 'i : ' + i, 'p : ' + p, Number(p[i].childNodes[0].innerText))
+                        p[i].childNodes[0].classList.remove('active');
+
+                    }
+                })
+            }
+            this.getAllDays = function(ds) {
+                let days = this.calendar_body_day_td.querySelectorAll('.box');
+                let days_num = Number(ds);
+
+                // console.clear();
+
+                days.forEach((d, i, p) => {
+
+
+                    if (p[i].childNodes[0]) {
+                        //console.log('d : ' + d, 'i : ' + i, 'p : ' + p, Number(p[i].childNodes[0].innerText))
+
+                        if (this.dateCount == 1 && this.checkInDate == Number(p[i].childNodes[0].innerText)) {
+                            p[i].childNodes[0].classList.add('active');
+                            console.log('첫번째 예약일');
+                        } else if (this.dateCount == 2 && this.checkOutDate == Number(p[i].childNodes[0].innerText)) {
+                            p[i].childNodes[0].classList.add('active');
+                            console.log('두번째 예약일')
+                        } else {
+
+                            if (this.checkInDate == i) {
+                                //p[i].childNodes[0].classList.add('active');
+                            } else if (this.checkOutDate == i) {
+                                //p[i].childNodes[0].classList.add('active');
+                            } else {
+                                p[i].childNodes[0].classList.remove('active');
+                                // console.log(i)
+                            }
+
+
+                        }
+
+                    }
+                })
+            }
+
+
+            this.getBookDate = function() {
+
+                return this.checkOutDate - this.checkInDate;
             }
 
         }

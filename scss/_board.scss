@@ -509,6 +509,10 @@
         input {
             border: 1px solid #ccc;
             padding: 8px 10px;
+            &:focus {
+                outline: none;
+                outline: 1px solid #000;
+            }
         }
         .txtfield {
             border: 1px solid #ccc;
@@ -519,8 +523,8 @@
             min-height: 15px;
             height: 300px;
             &:focus {
-                border: none;
                 outline: none;
+                outline: 1px solid #000;
             }
         }
     }
@@ -535,7 +539,7 @@
         }
         .switch-radio input:checked+.s-b:before {
             transform: translateX(18px);
-            background-color: #0d6efd;
+            background-color: #fff;
             left: 12px;
         }
         .switch-radio .s-b:before {
@@ -545,7 +549,7 @@
             width: 25px;
             left: 3px;
             bottom: 2px;
-            background-color: #ddd;
+            background-color: #fff;
             -webkit-transition: .4s;
             transition: .4s;
         }
