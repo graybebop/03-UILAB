@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>업로드 파일</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <section class="wrapper">
+        <h5 class="pt-50 pb-20">대량 이미지 업로드(무제한 추가)</h5>
+        <div id="fileBox"></div>
+    </section>
+    <style>
+        .wrapper {
+            padding: 30px;
+        }
+        
+        .btn-duplicate {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        
+        .delBtn {
+            background: #fff;
+        }
+    </style>
+
+    <script>
+        const upload = {
+            init: function() {
+                this.uploadImage.using() == true ? this.uploadImage.init() : false;
+            },
+            uploadImage: {
+                init: function() {
+                    const fileBox = document.querySelectorAll('#fileBox');
+                    fileBox.length > 0 ? this.setFiles() : false;
+                    // alert('aaaaa')
+                },
+                setFiles: function() {
+                    // const fileBox = document.querySelectorAll('#fileBox');
+                    const btnDuplicate = document.createElement('button');
+                    document.body.appendChild(btnDuplicate);
+                    btnDuplicate.setAttribute('class', 'btn btn-dark btn-duplicate')
+                    btnDuplicate.textContent = "이미지 추가";
+                    var _this = this;
+                    let count = 1;
+                    btnDuplicate.addEventListener('click', function() {
+                        _this.duplicateFileBox(count++);
+                    });
+                    // alert('aaaa');
+                },
+                duplicateFileBox: function(count) {
+                    const fileHold = document.getElementById('fileBox');
+                    const fileBox = document.createElement('div');
+                    fileHold.appendChild(fileBox);
+                    fileBox.setAttribute('id', 'fileBox' + count);
+                    fileBox.setAttribute('class', 'file-box');
+                    const fileWrap = document.createElement('div');
+                    fileBox.appendChild(fileWrap);
+                    fileWrap.setAttribute('class', 'file-input-area');
+                    fileWrap.innerHTML += '<input type="file" class="real-input" id="real-input' + count + '" class="image_inputType_file" accept="img/*" required multiple />';
+                    fileWrap.innerHTML += '<label class="btn btn-outlined btn-primary browse-btn" for="real-input' + count + '">사진업로드</label>';
+                    fileBox.innerHTML += '<div id="preview' + count + '" class="preview">preview</div>';
+                    fileBox.innerHTML += '<div id="filePath">asdsadsadsd</div>';
+                    fileBox.innerHTML += '<button class="btn btn-circle btn-sm btn-outlined delBtn"><span class="material-icons-outlined">close</span></button>';
+
+                    const previewID = document.getElementById('preview' + count + '');
+
+                    this.getImageFile(count, fileBox, previewID, fileWrap);
+
+                    let btn = fileBox.getElementsByClassName('delBtn')[0];
+                    btn.addEventListener('click', (e) => {
+
+                        this.removeImage(e.currentTarget.parentNode)
+                    })
+
+                },
+
+                getImageFile: function(count, pid, previewID, filewrap) {
+                    // const browseBtn = document.querySelector('.browse-btn');
+                    const realInput = document.querySelector('#real-input' + count);
+                    const _this = this;
+                    realInput.addEventListener('change', function(event) {
+                        console.log(_this, event);
+                        var file = realInput.files;
+
+                        if (!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)) {
+                            alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+                            console.log(realInput.outerHTML);
+                            // 선택한 파일 초기화
+                            file.outerHTML = realInput.outerHTML;
+                            pid.innerHTML = '';
+
+                        } else {
+                            _this.previewHtml(file, pid, previewID);
+                        }
+
+                    });
+
+
+                },
+                previewHtml: function(file, pid, previewID) {
+                    pid.querySelector('#filePath').innerHTML = "파일명 : " + file[0].name;
+                    // // FileReader 객체 사용
+                    var reader = new FileReader();
+                    // 파일 읽기가 완료되었을때 실행
+                    reader.onload = function(rst) {
+                            previewID.innerHTML = '<img src="' + rst.target.result + '">';
+
+                        }
+                        // 파일을 읽는다
+                    reader.readAsDataURL(file[0]);
+
+                    pid.getElementsByClassName('file-input-area')[0].style.display = "none";
+                },
+                removeObject: function(target) {
+                    target.innerHTML = "";
+                },
+                using: function() {
+                    return true;
+                },
+
+                removeImage: function(id) {
+                    const fileContainer = document.getElementById('fileBox');
+                    fileContainer.removeChild(id);
+                }
+            },
+        }
+
+        upload.init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>업로드 파일</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <form name="myForm">
+                        <div class="board-write py-50">
+                            <h4 class="pb-30">프로젝트 의뢰하기</h4>
+                            <div class="board-write-row" style="border-top:1px solid #ddd;" id="project-title">
+                                <div class="lt"><span class="necessary"></span>제목</div>
+                                <div class="rt">
+                                    <input type="text" class="" style="width:60%;" placeholder="errorTxt.errTitle" value="" name="title" />
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+
+                            <div class="board-write-row bdr-open-state" id="project-open">
+                                <div class="lt">공개여부</div>
+                                <div class="rt">
+                                    <label class="switch-radio"><input type="checkbox" value="secret" name="secret" class="chbbox bdr-state" id="check-state">
+                                    <span class="s-b round"></span></label>
+                                    <span class="txt" id="check-state-txt">비공개</span>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-budget">
+                                <div class="lt">예산</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errBudget" value="budget" name="budget" style="width:30%" /> (단위 : 만원)
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-mobile">
+                                <div class="lt"><span class="necessary"></span>전화번호</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errMobile" value="mobile" name="mobile" style="width:30%" /> 유선 혹은 무선 둘중에 하나를 적어주시면 됩니다.
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-email">
+                                <div class="lt"><span class="necessary"></span>이메일</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errEmail" value="messenger" name="messenger" style="width:30%" /> 이메일주소 혹은 카카오톡 아이디
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-reserve">
+                                <div class="lt"><span class="necessary"></span>상담시간</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errReserve1" name="reserve1" value="reserve1" style="width:20%" class="mr-10" id="date" /><input type="text" :placeholder="errorTxt.errReserve2" value="reserve2" name="reserve2"
+                                        style="width:20%" id="time" /> 원하시는 상담 시간 및 날짜를 적어주세요.
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-reference">
+                                <div class="lt"><span class="necessary"></span>참조사이트 - 1</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errReference" value="refer" style="width:50%" />
+                                    <button class="btn btn-outlined btn-light ml-10" type="button" @click="duplicateField">추가</button>
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+
+                            <div class="board-write-row" id="project-files">
+                                <div class="lt">이미지</div>
+                                <div class="rt">
+                                    <input type="file" ref="file" id="file" @change="onChangeFileUpload($event.target.files)" accept="image/*" multiple />
+                                    <label class="custom-file-label" for="new-file">
+                                    <span>{{label}}</span>
+                                    <span class="btn btn-dark">Browse</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="board-write-row" id="project-memo">
+                                <div class="lt"><span class="necessary"></span>요청내용</div>
+                                <div class="rt">
+                                    <textarea class="txtfield" value="memo" :placeholder="errorTxt.errMemo"></textarea>
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+
+                            <div class="board-write-button">
+
+                                <button class="btn btn-dark" type="button" onclick="validator.validateForm()">확인</button>
+                                <button class="btn btn-outlined" type="button" @click="$router.push({ path: '/project'})">취소</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const validator = {
+
+        init: () => {
+
+        },
+        validateForm: () => {
+            errorText = {
+                errTitle: "타이틀을 적어 주세요.",
+                errBudget: "에산을 적어 주세요.",
+                errMobile: "연락처를 적어 주세요.",
+                errEmail: "연락할 수단을 적어 주세요.",
+                errReference: "참조사이트가 있으면 적어 주세요.",
+                errReserve1: "날짜를 선택하세요",
+                errReserve2: "시간을 적어주세요",
+                errMemo: "요청사항을 적어 주세요.",
+            }
+
+            let errorTxt = document.querySelectorAll('.error_txt');
+            let errorTitle = document.querySelectorAll('#project-title .error_txt'); //타이틀
+            let errorBudget = document.querySelectorAll('#project-budget .error_txt'); //예산
+            let errorMobile = document.querySelectorAll('#project-mobile .error_txt'); //연락처
+            let errorEmail = document.querySelectorAll('#project-email .error_txt'); //연락처 이메일 혹은 메신져
+            let errorReserve1 = document.querySelectorAll('#date'); //상담 예약 날짜
+            let errorReserve2 = document.querySelectorAll('#time'); //상담 예약 날짜
+            let errorReference = document.querySelectorAll('#project-reference .error_txt'); //참조사이트
+            let errorMemo = document.querySelectorAll('#project-memo .error_txt'); //참조사이트
+
+            errorTxt.forEach((target) => {
+                console.log(target)
+                if (target.classList.contains('hide')) {
+                    target.classList.remove('hide');
+                }
+            });
+
+
+            this.title = document.querySelectorAll('#project-title input');
+
+            console.log(this.title[0].value)
+            if (this.title[0].value == "") {
+                errorTitle[0].innerHTML = errorText.errTitle;
+                errorTitle[0].classList.remove('hide');
+
+                console.log(errorText.errTitle)
+            }
+            // if (this.budget == "") {
+            //     errorBudget[0].innerHTML = this.errorTxt.errBudget;
+            //     errorBudget[0].classList.remove('hide');
+            // }
+            // if (this.mobile == "") {
+            //     errorMobile[0].innerHTML = this.errorTxt.errMobile;
+            //     errorMobile[0].classList.remove('hide');
+
+            // }
+            // if (this.messenger == "") {
+            //     errorEmail[0].innerHTML = this.errorTxt.errEmail;
+            //     errorEmail[0].classList.remove('hide');
+
+            // }
+            // if (this.refer == "") {
+            //     errorReference[0].innerHTML = this.errorTxt.errReference;
+            //     errorReference[0].classList.remove('hide');
+
+            // }
+            // if (this.reserve1 == "") {
+            //     errorReserve1[0].innerHTML = this.errorTxt.errReserve1;
+            //     errorReserve1[0].classList.remove('hide');
+
+            // }
+            // if (this.reserve2 == "") {
+            //     errorReserve2[0].innerHTML = this.errorTxt.errReserve2;
+            //     errorReserve2[0].classList.remove('hide');
+
+            // }
+            // if (this.memo == "") {
+            //     errorMemo[0].innerHTML = this.errorTxt.errMemo;
+            //     errorMemo[0].classList.remove('hide');
+            // }
+
+
+        },
+        //자바스크립트로 단순히 필드 추가하는 방식 ==> Vue는 다른방식
+        duplicateField: () => {
+            let field_component = '<div class="board-write-row board-field"><div class="lt">참조사이트</div><div class="rt"><input type="text"   placeholder="" value="refer" /></div></div>';
+
+            let field = document.createElement('div');
+
+            let inputfield = document.getElementById('reference');
+
+            inputfield.insertAdjacentElement('afterend', field);
+            field.innerHTML = field_component;
+
+        }
+    }
+
+    //validator.validateForm();
+</script>
+
+<script src="js/just-validate.min.js"></script>
+
+<script>
+    new window.JustValidate('.js-form', {
+        rules: {
+            checkbox2: {
+                required: true
+            },
+            radio: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true,
+                remote: {
+                    url: 'https://just-validate-api.herokuapp.com/check-correct',
+                    sendParam: 'email',
+                    successAnswer: 'OK',
+                    method: 'GET',
+                }
+            },
+            login: {
+                required: true,
+                remote: {
+                    url: 'https://just-validate-api.herokuapp.com/check-correct',
+                    sendParam: 'login',
+                    successAnswer: 'OK',
+                    method: 'GET'
+                }
+            },
+            password: {
+                strength: {
+                    custom: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]',
+                },
+            },
+        },
+        messages: {
+            login: {
+                remote: 'Login already exists'
+            }
+        },
+        focusWrongField: true,
+        submitHandler: function(form, values, ajax) {
+            console.log(values)
+            ajax({
+                url: 'https://just-validate-api.herokuapp.com/submit',
+                method: 'POST',
+                data: values,
+                async: true,
+                callback: (response) => {
+                    console.log(response);
+                }
+            });
+        },
+        invalidFormCallback: function(errors) {
+            console.log(errors);
+        },
+    });
+</script>
+
+</html>

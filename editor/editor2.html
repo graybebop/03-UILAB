@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+
+<body>
+
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <h5 class="mt-50">텍스트 편집기</h5>
+                    <div class="icons mt-20 ">
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="bold"><span class="material-icons-outlined">format_bold</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="italic"><span class="material-icons-outlined">format_italic</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="underline"><span class="material-icons-outlined">format_underline</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="insertUnOrderedList"><span class="material-icons-outlined">format_list_bulleted</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="insertOrderedList"><span class="material-icons-outlined">format_list_numbered</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="createLink"><span class="material-icons-outlined">add_link</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="justifyLeft"><span class="material-icons-outlined">format_align_left</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="justifyRight"><span class="material-icons-outlined">format_align_right</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="justifyCenter"><span class="material-icons-outlined">format_align_center</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="justifyFull"><span class="material-icons-outlined">format_align_justify</span></button>
+                        <button type="button" class="btn btn-sm btn-light btn-outlined" data-element="insertImage"><span class="material-icons-outlined">image</span></button>
+                    </div>
+                    <div class="editor mt-10 p-10" id="editor" contenteditable="true" style="height:500px; border:1px solid #ddd;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const elements = document.querySelectorAll('.btn');
+        elements.forEach((element, index, target) => {
+            element.addEventListener('click', () => {
+                let command = element.dataset['element'];
+
+                if (command == "createLink" || command == "insertImage") {
+                    let url = prompt('링크를 입력하세요', '');
+                    document.execCommand(command, false, url);
+                } else {
+                    document.execCommand(command, false, null);
+
+
+                    if (element.classList.contains('active')) {
+                        element.classList.remove('active');
+                    } else {
+                        element.classList.add('active');
+                    }
+                }
+
+
+            });
+        })
+    </script>
+
+    <style>
+        .editor {
+            outline: none;
+            line-height: 2;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        
+        .btn-sm {
+            padding: 5px 8px !important;
+            margin-right: 3px !important;
+            margin-left: 0;
+        }
+        
+        .material-icons-outlined {
+            font-size: 18px;
+        }
+        
+        .btn.active {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</body>
+
+</html>

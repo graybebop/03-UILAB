@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+    <!-- 코드 하이라이트 -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- VUE 스크립트 : 헤더에 삽입 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+
+<body>
+    <style>
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        
+        pre,
+        code {
+            margin: 0;
+            padding: 0;
+        }
+        
+        code {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 25px;
+            font-size: 15px;
+        }
+        
+        .wrapper {
+            padding: 0 100px;
+        }
+    </style>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+                    <div id="app">
+                        {{ message }}
+                    </div>
+                    <pre>
+                        <code class="language-html">
+                            &lt;!-- VUE 스크립트 : 헤더에 삽입 --&gt;
+                            &lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;
+                            
+                            &lt;div id="app"&gt;
+                                {{ message }}
+                            &lt;/div&gt;
+                            
+                            &lt;!-- 스크립트 선언 --&gt;
+                            &lt;script&gt;
+                            var app = new Vue({
+                                el: '#app',
+                                data: {
+                                    message: '안녕하세요 Vue!'
+                                }
+                            })
+                            &lt;/script&gt;
+                        </code>
+                        </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '안녕하세요 Vue!'
+            }
+        })
+    </script>
+</body>
+
+</html>

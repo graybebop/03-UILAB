@@ -10,24 +10,24 @@ const ui = {
 
         this.isButton.using() ? this.isButton.init(buttons) : false;
         this.isButton.using() ? this.isButton.init(btns) : false;
-        this.uploadImage.using() == true ? this.uploadImage.init() : false;
-        this.createInput();
+
+        //this.createInput();
 
         this.goback();
 
     },
-    createInput: function() {
-        let textFiled = document.querySelectorAll('input');
+    // createInput: function() {
+    //     let textFiled = document.querySelectorAll('input');
 
-        if (textFiled.length > 0) {
-            for (var item of textFiled) {
-                if (item.getAttribute('type') == "text") { //type text면 true 반환
-                    item.setAttribute('class', 'text-field this is type text');
-                }
-            }
-        }
+    //     if (textFiled.length > 0) {
+    //         for (var item of textFiled) {
+    //             if (item.getAttribute('type') == "text") { //type text면 true 반환
+    //                 item.setAttribute('class', 'text-field this is type text');
+    //             }
+    //         }
+    //     }
 
-    },
+    // },
     isButton: {
         init: function(eles) {
             for (const ele of eles) {
@@ -40,85 +40,7 @@ const ui = {
             return true;
         }
     },
-    uploadImage: {
-        init: function() {
-            const fileBox = document.querySelectorAll('#fileBox');
-            fileBox.length > 0 ? this.setFiles() : false;
-            // alert('aaaaa')
-        },
-        setFiles: function() {
-            // const fileBox = document.querySelectorAll('#fileBox');
-            const btnDuplicate = document.createElement('button');
-            document.body.appendChild(btnDuplicate);
-            btnDuplicate.setAttribute('class', 'btn btn-dark btn-duplicate')
-            btnDuplicate.textContent = "복제버튼";
-            var _this = this;
-            let count = 1;
-            btnDuplicate.addEventListener('click', function() {
-                _this.duplicateFileBox(count++);
-            });
-            // alert('aaaa');
-        },
-        duplicateFileBox: function(count) {
-            const fileHold = document.getElementById('fileBox');
-            const fileBox = document.createElement('div');
-            fileHold.appendChild(fileBox);
-            fileBox.setAttribute('id', 'fileBox' + count);
-            fileBox.setAttribute('class', 'file-box');
-            const fileWrap = document.createElement('div');
-            fileBox.appendChild(fileWrap);
-            fileWrap.setAttribute('class', 'file-input-area');
-            fileWrap.innerHTML += '<input type="file" class="real-input" id="real-input' + count + '" class="image_inputType_file" accept="img/*" required multiple />';
-            fileWrap.innerHTML += '<label class="btn btn-outlined btn-primary browse-btn" for="real-input' + count + '">사진업로드</label>';
-            fileBox.innerHTML += '<div id="preview' + count + '" class="preview">preview</div>';
-            fileBox.innerHTML += '<div id="filePath">asdsadsadsd</div>';
-            fileBox.innerHTML += '<button class="delBtn"><span class="material-icons-outlined">close</span></button>';
 
-            const previewID = document.getElementById('preview' + count + '');
-
-            this.getImageFile(count, fileBox, previewID)
-        },
-
-        getImageFile: function(count, pid, previewID) {
-            // const browseBtn = document.querySelector('.browse-btn');
-            const realInput = document.querySelector('#real-input' + count);
-            const _this = this;
-            realInput.addEventListener('change', function(event) {
-                console.log(_this, event);
-                var file = realInput.files;
-
-                if (!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)) {
-                    alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
-                    console.log(realInput.outerHTML);
-                    // 선택한 파일 초기화
-                    file.outerHTML = realInput.outerHTML;
-                    pid.innerHTML = '';
-
-                } else {
-                    _this.previewHtml(file, pid, previewID);
-                }
-
-            });
-        },
-        previewHtml: function(file, pid, previewID) {
-            pid.querySelector('#filePath').innerHTML = "파일명 : " + file[0].name;
-            // // FileReader 객체 사용
-            var reader = new FileReader();
-            // 파일 읽기가 완료되었을때 실행
-            reader.onload = function(rst) {
-                    previewID.innerHTML = '<img src="' + rst.target.result + '">';
-
-                }
-                // 파일을 읽는다
-            reader.readAsDataURL(file[0]);
-        },
-        removeObject: function(target) {
-            target.innerHTML = "";
-        },
-        using: function() {
-            return true;
-        }
-    },
     lnbMenu: {
         init: function() {
             let checkLnbMenu = document.getElementById('LNB')[0];

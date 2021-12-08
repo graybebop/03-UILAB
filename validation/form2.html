@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>업로드 파일</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12">
+
+                    <form action="#" class="js-form form">
+                        <div class="board-write py-50">
+                            <h4 class="pb-30">프로젝트 의뢰하기</h4>
+                            <div class="mb-20">사용법 링크 : https://www.cssscript.com/custom-html5-form-validator-vanilla-javascript-just-validate/</div>
+                            <div class="mb-20">깃 허브 링크 : https://github.com/horprogs/Just-validate</div>
+                            <div class="mb-20">제목 필드만 현재 적용 되어 있슴.
+                                <span class="badge-lg badge-danger">확인</span>버튼을 그냥 눌러보면 에러 메시지가 적용됨</div>
+                            <div class="board-write-row" style="border-top:1px solid #ddd;" id="project-title">
+                                <div class="lt"><span class="necessary"></span>제목</div>
+                                <div class="rt">
+                                    <input type="text" data-validate-field="title" class="" style="width:60%;" placeholder="errorTxt.errTitle" value="" name="title" />
+                                </div>
+                            </div>
+
+                            <div class="board-write-row bdr-open-state" id="project-open">
+                                <div class="lt">공개여부</div>
+                                <div class="rt">
+                                    <label class="switch-radio"><input type="checkbox" data-validate-field="secret" value="secret" name="secret" class="chbbox bdr-state" id="check-state">
+                                    <span class="s-b round"></span></label>
+                                    <span class="txt" id="check-state-txt">비공개</span>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-budget">
+                                <div class="lt">예산</div>
+                                <div class="rt">
+                                    <input type="text" data-validate-field="budget" placeholder="errorTxt.errBudget" value="" name="budget" style="width:30%" /> (단위 : 만원)
+
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-mobile">
+                                <div class="lt"><span class="necessary"></span>전화번호</div>
+                                <div class="rt">
+                                    <input type="text" data-validate-field="phone" placeholder="errorTxt.errMobile" value="" name="phone" style="width:30%" /> 유선 혹은 무선 둘중에 하나를 적어주시면 됩니다.
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-email">
+                                <div class="lt"><span class="necessary"></span>이메일</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errEmail" value="messenger" name="messenger" style="width:30%" /> 이메일주소 혹은 카카오톡 아이디
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-reserve">
+                                <div class="lt"><span class="necessary"></span>상담시간</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errReserve1" name="reserve1" value="reserve1" style="width:20%" class="mr-10" id="date" /><input type="text" :placeholder="errorTxt.errReserve2" value="reserve2" name="reserve2"
+                                        style="width:20%" id="time" /> 원하시는 상담 시간 및 날짜를 적어주세요.
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+                            <div class="board-write-row" id="project-reference">
+                                <div class="lt"><span class="necessary"></span>참조사이트 - 1</div>
+                                <div class="rt">
+                                    <input type="text" :placeholder="errorTxt.errReference" value="refer" style="width:50%" />
+                                    <button class="btn btn-outlined btn-light ml-10" type="button" @click="duplicateField">추가</button>
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+
+                            <div class="board-write-row" id="project-files">
+                                <div class="lt">이미지</div>
+                                <div class="rt">
+                                    <input type="file" ref="file" id="file" @change="onChangeFileUpload($event.target.files)" accept="image/*" multiple />
+                                    <label class="custom-file-label" for="new-file">
+                                    <span>{{label}}</span>
+                                    <span class="btn btn-dark">Browse</span>
+                                </label>
+                                </div>
+                            </div>
+
+                            <div class="board-write-row" id="project-memo">
+                                <div class="lt"><span class="necessary"></span>요청내용</div>
+                                <div class="rt">
+                                    <textarea class="txtfield" value="memo" :placeholder="errorTxt.errMemo"></textarea>
+                                    <div class="error_txt hide"></div>
+                                </div>
+                            </div>
+
+                            <div class="board-write-button">
+
+                                <button class="btn btn-dark" type="submit">확인</button>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/just-validate.js"></script>
+<script>
+    new window.JustValidate('.js-form', {
+        messages: {
+            // title: '필수 입력란이다 응',
+            email: 'Please, type a valid email',
+            maxLength: 'The field must contain a maximum of :value characters',
+            minLength: 'The field must contain a minimum of :value characters',
+            password: 'Password is not valid',
+            remote: 'Email already exists',
+            phone: 'shit',
+        },
+        rules: {
+            title: {
+                required: true,
+                //maxLength: 300,
+                minLength: 5,
+                maxLength: 50,
+            },
+            secret: {
+                required: true
+            },
+            budget: {
+                required: true,
+
+            },
+            phone: {
+                required: true,
+            }
+
+            // email: {
+            //     required: true,
+            //     email: true
+            // },
+            // checkbox: {
+            //     required: true
+            // },
+            // name: {
+            //     required: true,
+            //     minLength: 3,
+            //     maxLength: 15
+            // },
+            // text: {
+            //     required: true,
+            //     maxLength: 300,
+            //     minLength: 5
+            // },
+            // password: {
+            //     required: true,
+            //     password: true,
+            //     minLength: 4,
+            //     maxLength: 8
+            // },
+            // zip: {
+            //     required: true,
+            //     zip: true
+            // },
+            // phone: {
+            //     phone: true
+            // }
+        },
+        // focusWrongField: true,
+        // submitHandler: function(form, values, ajax) {
+        //     console.log(values)
+        //     ajax({
+        //         url: 'https://just-validate-api.herokuapp.com/submit',
+        //         method: 'POST',
+        //         data: values,
+        //         async: true,
+        //         callback: (response) => {
+        //             console.log(response);
+        //         }
+        //     });
+        // },
+    });
+</script>
+
+
+<style>
+    .js-validate-error-label {
+        margin: 10px 0;
+        color: red !important;
+    }
+    
+    .js-validate-error-field {
+        border: 1px solid red !important;
+        color: red !important;
+    }
+    
+    .js-validate-error-field:focus {
+        outline: none !important;
+    }
+</style>
+
+</html>

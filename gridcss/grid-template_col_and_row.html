@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+
+<body>
+    <div id="grid-layout-2" class="p-20">
+        <div class="tpod-container-fluid">
+            <div class="tpod-row">
+                <div class="tpod-col-6">
+                    <h5>1. grid-template-rows</h5>
+                    <div class="mt-10" style="line-height:1.5">
+                        grid-template-rows 스택형태의 가로 레이아웃(stacked layout)
+                        <div>가로 높이를 정의한다. <br /> ex) 100px 200px auto는 첫번째 row 100px 두번째 row는 200px이 됨........와 같이 n번째 row height 정의</div>
+
+                        <br /> 명시적 행(Track)의 크기를 정의합니다. 동시에 라인(Line)의 이름도 정의할 수 있습니다. <br /> fr(fraction, 공간 비율) 단위를 사용할 수 있습니다.<br /> repeat() 함수를 사용할 수 있습니다.<br />
+                        <div class="">grid-template-rows: 1행크기 2행크기 ...; ==> grid-template-rows: [first] 100px [second] 200px [third];</div>
+                        <div class="">grid-template-rows: [선이름] 1행크기 [선이름] 2행크기 [선이름] ...; ==> [row1-start] 100px [row1-end row2-start] 200px [row2-end];</div>
+                    </div>
+                    <div class="tpd-grid-template-rows mt-10  mb-50">
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                    </div>
+                    <h5>grid-template-rows: [first] 100px [second] 200px [third] 적용</h5>
+                    <div class="tpd-grid-template-rows2  mt-10 mb-50">
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                    </div>
+                    <h5>grid-template-rows: [first] 100px [second] 200px [third] 적용</h5>
+                    <div class="tpd-grid-template-rows3  mt-10 mb-50">
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                    </div>
+                </div>
+
+                <div class="tpod-col-4 pl-20">
+
+                    <h5 class=" mb-10">2. grid-template-columns</h5>
+                    <div class="mt-10" style="line-height:1.5">
+                        grid-template-columns
+                        <div>세로 높이를 정의한다. <br /> ex) 100px 200px auto는 첫번째 columns 100px 두번째 columns은 200px이 됨........와 같이 n번째 row height 정의</div>
+
+                        <br /> 명시적 행(Track)의 크기를 정의합니다. 동시에 라인(Line)의 이름도 정의할 수 있습니다. <br /> fr(fraction, 공간 비율) 단위를 사용할 수 있습니다.<br /> repeat() 함수를 사용할 수 있습니다.<br />
+                    </div>
+                    <div class="tpd-grid-template-columns mt-10">
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                    </div>
+                </div>
+
+                <div class="tpod-col-3">
+
+                    <h5 class="mt-50 mb-10">3. grid-template-columns 와 grid-template-rows의 혼용 12개</h5>
+                    <div class="mt-10" style="line-height:1.5">
+                        grid-template-rows: 100px 100px 100px auto;<br/> grid-template-columns: 100px 100px 100px auto;
+                    </div>
+                    <div class="tpd-grid-template-1 mt-10">
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                    </div>
+                </div>
+
+                <div class="tpod-col-3 pl-30">
+
+                    <h5 class="mt-50 mb-10">3. grid-template-columns 와 grid-template-rows의 혼용 12개</h5>
+                    <div class="mt-10" style="line-height:1.5">
+                        grid-template-rows: repeat(2, 100px);<br /> grid-template-columns: repeat(6, 100px);
+                    </div>
+                    <div class="tpd-grid-template-2 mt-10">
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                        <div class="items"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>
