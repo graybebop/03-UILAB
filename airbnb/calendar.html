@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/swiper.css">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/swiper.min.js"></script>
@@ -116,15 +116,25 @@
                 this.d = this.current_date; //달은 0부터 시작 그래서 +1
 
                 //다음달 구하기 오른쪽 테이블
-                this.next_month = this.current_month + 1;
-                this.next_year = this.current_year;
+
+                if (this.current_month == 12) {
+                    this.next_month = 1;
+                    this.next_year = this.current_year + 1;
+                } else {
+                    this.next_month = this.current_month + 1;
+                    this.next_year = this.current_year;
+                }
+
+
+                console.log(this.current_month, this.current_year + 1)
 
 
                 //달의 일수 구하기 ex>11월 달수의 일수
                 let thisMonthDays = this.getDaysInMonth((this.current_year, this.current_month), this.current_month);
-
+                //왼쪽달력
                 this.createTable(this.getDaysInMonth(this.current_year, this.n), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
-                this.createTable(this.getDaysInMonth(this.current_year, this.next_month), this.next_month, this.current_year, this.next_month, this.calendar_body_table_right);
+                //오른쪽 달력
+                this.createTable(this.getDaysInMonth(this.next_year, this.next_month), this.next_month, this.next_year, this.next_month, this.calendar_body_table_right);
 
             }
 
@@ -144,7 +154,7 @@
 
                         } else if (this.current_month <= 12) {
                             this.current_month = 1;
-
+                            this.current_year++;
                             //console.log('next : ', this.current_month, this.getDaysInMonth(this.current_year, this.current_month));
 
                             this.createTable(this.getDaysInMonth(this.current_year, this.current_month), this.current_month, this.current_year, this.current_month, this.calendar_body_table_left);
@@ -165,10 +175,10 @@
                             console.log('current_year : ', this.current_month);
 
                             //this.next_month 12월이 되었으면 여기서 미리 this.current_year++ 증가
-                            this.current_year++;
+
                             //this.current_year++;
 
-                            this.createTable(this.getDaysInMonth(this.current_year, this.next_month), this.next_month, this.current_year, this.next_month, this.calendar_body_table_right);
+                            this.createTable(this.getDaysInMonth(this.current_year + 1, this.next_month), this.next_month, this.current_year + 1, this.next_month, this.calendar_body_table_right);
 
                         }
 
@@ -256,7 +266,7 @@
                 //this.calendar_header.appendChild(this.calendarHeaderText);
                 this_table_container.appendChild(calendarHeaderText);
                 calendarHeaderText.setAttribute('class', 'cal_hd_txt');
-                calendarHeaderText.textContent = this.current_year + "." + k + '.' + this.current_date;
+                calendarHeaderText.textContent = this_current_year + "." + k + '.' + this.current_date;
 
                 //월요일~일요일까지 나타내는 테이블
                 this.displayWeekDays(this_table_container);
