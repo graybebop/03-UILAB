@@ -17042,16 +17042,16 @@ mark {
   z-index: 10px;
 }
 
-.search-wrap .serach-box:active .label_txt {
+.search-wrap .serach-box:hover .label_txt {
   color: red;
 }
 
-.search-wrap .serach-box:active:before {
+.search-wrap .serach-box:hover:before {
   width: 50%;
   left: 0;
 }
 
-.search-wrap .serach-box:active:after {
+.search-wrap .serach-box:hover:after {
   width: 50%;
   right: 0;
 }

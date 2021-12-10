@@ -87,12 +87,12 @@
             left: 0;
             z-index: 10px;
         }
-        &:active {
+        &:hover {
             .label_txt {
                 color: red;
             }
         }
-        &:active {
+        &:hover {
             &:before {
                 width: 50%;
                 left: 0;
