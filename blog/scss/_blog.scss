@@ -287,6 +287,9 @@
             flex-wrap: nowrap;
             margin: 20px 0;
             padding-bottom: 20px;
+            @include mobile {
+                flex-direction: column;
+            }
             &:after {
                 content: '';
                 position: absolute;
@@ -297,6 +300,9 @@
             }
             .thumb-wrap {
                 width: 240px;
+                @include mobile {
+                    width: 100%;
+                }
             }
             .txt-wrap {
                 position: relative;
@@ -304,6 +310,10 @@
                 padding-left: 20px;
                 display: flex;
                 flex-direction: column;
+                @include mobile {
+                    padding-left: 0;
+                    padding-top: 30px;
+                }
                 a {
                     position: absolute;
                     display: block;
@@ -325,6 +335,12 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+            @include tablet {
+                min-height: 300px;
+            }
+            @include mobile-sm {
+                min-height: 200px;
+            }
             img {
                 width: 100%;
                 position: relative;
@@ -350,7 +366,10 @@
                 -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
-                line-height: 1.2;
+                line-height: 1.5;
+                @include mobile {
+                    font-size: 18px;
+                }
             }
         }
         .entry-meta {
@@ -370,6 +389,10 @@
                     font-size: 90%;
                     color: #999;
                     margin: 0 15px 10px 0;
+                    @include mobile {
+                        font-size: 14px;
+                        color: #000;
+                    }
                     .material-icons-outlined {
                         vertical-align: sub;
                         font-size: 20px;
@@ -388,6 +411,9 @@
             font-weight: 300;
             position: relative;
             flex: 1;
+            @include mobile {
+                font-size: 0.9rem;
+            }
             .t-1 {
                 font-weight: 500;
                 color: black;

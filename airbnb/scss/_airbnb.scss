@@ -331,14 +331,13 @@ $form-input-border-effect-color:red;
     }
 }
 
-.product-list {
-    // padding-top: 70px;
-}
-
 .product-detail {
     padding-top: 50px;
     width: 1200px;
     margin: 0 auto;
+    @include mobile {
+        width: 100% !important;
+    }
     .header-info {
         position: relative;
         .title {
@@ -427,14 +426,35 @@ $form-input-border-effect-color:red;
     flex-wrap: nowrap;
     padding: 0px 0;
     align-items: center;
+    @include mobile-sm {
+        flex-direction: column;
+        justify-content: flex-start;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        z-index: 11;
+    }
     .logo {
         padding-top: 0;
         padding-right: 30px;
         flex: 1;
         font-size: 30px;
         font-weight: 200;
+        @include mobile {
+            width: auto;
+            font-size: 20px;
+            text-align: left;
+            padding-right: 0;
+            padding: 10px 0;
+            padding-left: 20px;
+        }
         .bolded {
             font-weight: 700;
+            @include mobile {
+                font-weight: 400;
+            }
         }
     }
 }
@@ -444,14 +464,28 @@ $form-input-border-effect-color:red;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    @include mobile-sm {
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+    }
     li {
         align-self: flex-end;
+        @include mobile-sm {
+            justify-content: flex-start;
+            flex: 1;
+            width: 100%;
+        }
         a {
             text-align: center;
             display: block;
             padding: 25px 20px 25px 20px;
             border-bottom: 3px solid rgba(81, 171, 243, 0);
             transition: 0.5s;
+            @include mobile {
+                padding: 15px 10px;
+                text-align: left;
+            }
             &:hover {
                 border-bottom: 3px solid rgba(81, 171, 243, 1);
                 color: rgba(81, 171, 243, 1);
@@ -495,6 +529,24 @@ $form-input-border-effect-color:red;
         line-height: 1.7em;
         font-weight: 300;
         color: var(--gray-500);
+    }
+    @include mobile {
+        .btn-light {
+            display: block !important;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: left;
+        }
+        .con {
+            * {
+                width: 100% !important;
+            }
+            pre {
+                overflow: hidden;
+                word-break: break-all;
+            }
+        }
     }
 }
 
@@ -1003,6 +1055,9 @@ $form-input-border-effect-color:red;
 #footer {
     width: 1200px;
     margin: 0 auto;
+    @include mobile {
+        width: 100%;
+    }
     .copy {
         font-size: 0.8rem;
         color: var(--gray-500);

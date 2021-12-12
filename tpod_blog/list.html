@@ -204,6 +204,20 @@
                 this.changePage(this.slideNum);
 
 
+                window.addEventListener('resize', (e) => {
+                    let header = document.getElementsByClassName("airbnb-header")[0];
+                    let blog = document.getElementById("blog-type-3");
+                    let headers = header.getBoundingClientRect();
+
+                    if (window.innerWidth < 760) {
+                        blog.style.top = headers.height + "px";
+                    } else {
+                        blog.style.top = 0 + "px";
+                    }
+
+
+                })
+
             },
 
             setData: function(page) {
@@ -317,12 +331,6 @@
 
 
         blogList.init();
-
-
-
-        // data_arr.forEach((value, i, array) => {
-
-        // })
     </script>
     <style>
         .arrowSlider {

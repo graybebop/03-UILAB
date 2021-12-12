@@ -102,6 +102,9 @@ $grid-spacing:3%;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    @include mobile {
+        max-width: 100%;
+    }
 }
 
 .tpod-flex-nowrap {
