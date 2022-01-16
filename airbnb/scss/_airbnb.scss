@@ -419,6 +419,7 @@ $form-input-border-effect-color:red;
     }
 }
 
+$mobile-sm:720px;
 .airbnb-header {
     display: flex;
     flex-direction: wrap;
@@ -426,15 +427,15 @@ $form-input-border-effect-color:red;
     flex-wrap: nowrap;
     padding: 0px 0;
     align-items: center;
+    z-index: 100;
+    position: relative;
     @include mobile-sm {
         flex-direction: column;
         justify-content: flex-start;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
         background-color: #fff;
         z-index: 11;
+        padding: 20px 0;
+        box-shadow: -1px 7px 9px 3px rgba(0, 0, 0, 0.01);
     }
     .logo {
         padding-top: 0;
@@ -464,10 +465,12 @@ $form-input-border-effect-color:red;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    position: relative;
     @include mobile-sm {
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
+        display: none;
     }
     li {
         align-self: flex-end;
@@ -491,6 +494,77 @@ $form-input-border-effect-color:red;
                 color: rgba(81, 171, 243, 1);
             }
         }
+    }
+}
+
+.show {
+    display: block !important;
+}
+
+.toggle-buttons {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    top: 33px;
+    right: 20px;
+    z-index: 100;
+    opacity: 1;
+    transition: 0.5s;
+    display: none;
+    @include mobile-sm {
+        display: block;
+    }
+    &.shide {
+        //opacity: 0 !important;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    .menu-bar {
+        width: 100%;
+        height: 1px;
+        background-color: #171717;
+        position: absolute;
+        transition: .5s;
+    }
+    .menu-bar-top {
+        top: 0;
+    }
+    .menu-bar-middle {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .menu-bar-bottom {
+        bottom: 0;
+    }
+    &.close {
+        .menu-bar-top {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+        .menu-bar-middle {
+            display: none;
+            top: 0;
+        }
+        .menu-bar-bottom {
+            transform: rotate(-45deg);
+            bottom: 10px;
+        }
+    }
+}
+
+.layer-dimmed {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: -100%;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: 0.2s;
+    opacity: 0.9;
+    &.showup {
+        bottom: 0;
     }
 }
 

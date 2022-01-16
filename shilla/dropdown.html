@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>드롭다운</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 100px;
+    }
+    
+    .menu-wrapper {
+        position: relative;
+    }
+    
+    .dropdown {
+        position: absolute;
+        top: inherit;
+        left: 0;
+        background-color: #fff;
+        display: none;
+        left: -50px;
+        transition: 0.2s;
+        opacity: 0;
+    }
+    
+    .dropdown>li {
+        display: block;
+        border: 1px solid #ddd;
+    }
+    
+    .dropdown>li>a {
+        display: block;
+        color: #000;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    .dropdown.transition-left {
+        display: block;
+        left: 0;
+        opacity: 1;
+    }
+    
+    #menu .material-icons {
+        transition: 0.05s;
+        font-size: 20px;
+        position: relative;
+        right: 5px;
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: middle;
+        top: 0;
+        margin-right: -13px;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-6">
+                    <div class="menu-wrapper">
+                        <button class="btn btn-secondary" id="menu">
+                            <span class="txt">드롭다운메뉴</span>
+                            <span class="material-icons">expand_more</span>
+                        </button>
+                        <ul class="dropdown" id="dropdown">
+                            <li><a href="#none">MENU-1</a></li>
+                            <li><a href="#none">MENU-2</a></li>
+                            <li><a href="#none">MENU-3</a></li>
+                            <li><a href="#none">MENU-4</a></li>
+                            <li><a href="#none">MENU-5</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="tpod-col-6">
+                    <div class="menu-wrapper">
+                        <button class="btn btn-secondary" id="menu2">
+                            <span class="txt">드롭다운메뉴</span>
+                            <span class="material-icons">expand_more</span>
+                        </button>
+                        <ul class="dropdown dropdown2" id="dropdown2">
+                            <li><a href="#none">MENU-1</a></li>
+                            <li><a href="#none">MENU-2</a></li>
+                            <li><a href="#none">MENU-3</a></li>
+                            <li><a href="#none">MENU-4</a></li>
+                            <li><a href="#none">MENU-5</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        const uiExtend = {
+            dropdownMenu: {
+                init: function(dropdownContainer, dropdownMenu) {
+                    var dropdown, li, btnMenu;
+                    this.btnMenu = document.getElementById(dropdownContainer);
+                    this.dropdown = document.getElementsByClassName(dropdownMenu)[0];
+                    this.li = this.dropdown.querySelectorAll('li');
+                    this.li.forEach((target) => {
+                        target.addEventListener('click', (e) => {
+                            this.btnMenu.querySelector('.txt').textContent = e.currentTarget.textContent;
+
+                            this.arrow();
+                        });
+                    })
+
+                    this.btnMenu.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.arrow();
+                    });
+                },
+
+                arrow: function() {
+                    let arrow = this.btnMenu.querySelector('.material-icons');
+
+                    if (!this.dropdown.classList.contains('show')) {
+                        arrow.style.transform = "rotate(180deg)";
+                        this.dropdown.classList.add('show');
+                        this.dropdown.classList.add('transition-left');
+                        this.dropdown.style.width = this.btnMenu.clientWidth + 'px';
+                        //this.transtion(this.dropdown, "transitionstart");
+                        return false;
+                    } else {
+                        arrow.style.transform = "rotate(0)";
+                        this.dropdown.classList.remove('show');
+                        this.dropdown.classList.remove('transition-left');
+                    }
+                },
+
+                transtion: function(element, str) {
+                    console.log(element, str)
+                    element.addEventListener(str, () => {
+                        console.log(str + ' : Started transitioning');
+                    });
+
+                }
+            }
+        };
+        uiExtend.dropdownMenu.init('menu', 'dropdown');
+        uiExtend.dropdownMenu.init('menu2', 'dropdown2');
+    </script>
+
+</body>
+
+</html>

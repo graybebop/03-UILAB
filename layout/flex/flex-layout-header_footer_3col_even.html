@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/styles.min.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="./menu.js"></script>
+</head>
+
+<body>
+    <div class="flex-wrapper" id="flex-layout">
+        <div class="exp">
+            <h5 class="flx-tit">Flex Layout - Header and Footer 3Columns Even</h5>
+            <div class="txt"></div>
+        </div>
+        <header class="header"></header>
+        <div class="container">
+            <div class="boxes blue-1"></div>
+            <div class="boxes blue-2"></div>
+            <div class="boxes blue-3"></div>
+        </div>
+        <footer class="footer"></footer>
+    </div>
+    <!-- Navigation -->
+    <div class="flex-dimmed"></div>
+    <div class="btn-area">
+        <button class="btn btn-dark close" id="btnToggle">네비게이션 열기</button>
+
+    </div>
+    <div class="drawer" id="gnb-wrapper"></div>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .btn-area {
+            position: fixed;
+            bottom: 0;
+            padding: 10px;
+            text-align: right;
+            z-index: 30;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .mnb-show {
+            left: 0;
+        }
+        
+        .mnb-hide {
+            left: -100%;
+        }
+        
+        .flex-dimmed {
+            z-index: 101;
+        }
+        
+        .drawer {
+            z-index: 102;
+        }
+    </style>
+</body>
+
+</html>

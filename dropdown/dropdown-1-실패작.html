@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 
-
     <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
 
     <script src="../js/jquery.min.js"></script>
@@ -33,7 +32,7 @@
         top: inherit;
         left: 0;
         background-color: #fff;
-        display: none;
+        display: block;
         left: -50px;
         transition: 0.2s;
         opacity: 0;
@@ -57,6 +56,10 @@
         opacity: 1;
     }
     
+    #menu {
+        padding: 20px 50px;
+    }
+    
     #menu .material-icons {
         transition: 0.05s;
         font-size: 20px;
@@ -72,36 +75,65 @@
 
 <body>
     <div class="wrapper">
-        <div class="menu-wrapper">
-            <button class="btn btn-secondary" id="menu">
-                <span class="txt">드롭다운메뉴</span>
-                <span class="material-icons">expand_more</span>
-            </button>
-            <ul class="dropdown" id="dropdown">
-                <li><a href="#none">MENU-1</a></li>
-                <li><a href="#none">MENU-2</a></li>
-                <li><a href="#none">MENU-3</a></li>
-                <li><a href="#none">MENU-4</a></li>
-                <li><a href="#none">MENU-5</a></li>
-            </ul>
-        </div>
-
+        <div class="menu-wrapper" id="dropdown-wrapper"></div>
     </div>
     <script>
+        const menuObj = [ //
+            {
+                name: "메뉴명-1",
+                link: "#none",
+                id: 1
+            }, {
+                name: "메뉴명-1",
+                link: "#none",
+                id: 1
+            }, {
+                name: "메뉴명-1",
+                link: "#none",
+                id: 1
+            }, {
+                name: "메뉴명-1",
+                link: "#none",
+                id: 1
+            }, {
+                name: "메뉴명-1",
+                link: "#none",
+                id: 1
+            }, {
+                name: "메뉴명-1",
+                link: "#none",
+                id: 1
+            }
+        ];
+
         const uiExtend = {
             dropdownMenu: {
-                init: function() {
-                    var dropdown, li, btnMenu;
-                    this.btnMenu = document.getElementById('menu');
-                    this.dropdown = document.getElementsByClassName('dropdown')[0];
-                    this.li = this.dropdown.querySelectorAll('li');
-                    this.li.forEach((target) => {
-                        target.addEventListener('click', (e) => {
+                init: function(menuContainer, dropdownMenu) {
+                    let dropdownWrapper = document.getElementById(menuContainer);
+
+                    //버튼메뉴 생성 - 버튼 메뉴 클릭하면 드롭다운 메뉴 나온다.
+                    this.btnMenu = document.createElement("button");
+                    dropdownWrapper.appendChild(this.btnMenu);
+                    this.btnMenu.setAttribute("class", "btn btn-secondary");
+                    this.btnMenu.setAttribute("id", "menu");
+                    this.btnMenu.innerHTML = '<span class="txt">메뉴명</span><span class="material-icons">expand_more</span>';
+
+                    //드롭다운 메뉴 생성
+                    this.dropdown = document.createElement("ul");
+                    dropdownWrapper.appendChild(this.dropdown);
+                    this.dropdown.setAttribute("class", "dropdown");
+                    this.dropdown.setAttribute("id", dropdownMenu);
+
+                    for (let index in menuObj) {
+                        this.li = document.createElement("li");
+                        this.dropdown.appendChild(this.li);
+                        this.li.innerHTML = '<a href="' + menuObj[index].link + '">' + "메인메뉴-" + (Number(index) + 1) + '</a>';
+                        this.li.addEventListener('click', (e) => {
                             this.btnMenu.querySelector('.txt').textContent = e.currentTarget.textContent;
 
                             this.arrow();
                         });
-                    })
+                    }
 
                     this.btnMenu.addEventListener('click', (e) => {
                         e.stopPropagation();
@@ -136,7 +168,8 @@
                 }
             }
         };
-        uiExtend.dropdownMenu.init();
+        uiExtend.dropdownMenu.init("dropdown-wrapper", "dropdown");
+        uiExtend.dropdownMenu.init("dropdown-wrapper", "dropdown2");
     </script>
 
 </body>

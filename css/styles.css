@@ -1,10 +1,44 @@
 @charset "UTF-8";
+/* default styles here for older browsers. 
+       I tend to go for a 600px - 960px width max but using percentages
+    */
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
+@media only screen and (min-width: 960px) {
+  /* styles for browsers larger than 960px; */
+}
+
+@media only screen and (min-width: 1440px) {
+  /* styles for browsers larger than 1440px; */
+}
+
+@media only screen and (min-width: 2000px) {
+  /* for sumo sized (mac) screens */
+}
+
+@media only screen and (max-device-width: 480px) {
+  /* styles for mobile browsers smaller than 480px; (iPhone) */
+}
+
+@media only screen and (device-width: 768px) {
+  /* default iPad screens */
+}
+
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* For portrait layouts only */
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* For landscape layouts only */
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url("https://fonts.googleapis.com/css?family=Lato");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap");
 html,
 body,
 div,
@@ -10222,7 +10256,7 @@ input:focus {
   min-width: 1200px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1170px) {
   .tpod-wrapper {
     min-width: 100%;
   }
@@ -10233,6 +10267,12 @@ input:focus {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (max-width: 1170px) {
+  .tpod-container {
+    max-width: 100%;
+  }
 }
 
 .tpod-flex-nowrap {
@@ -13798,7 +13838,7 @@ mark {
   transition: 0.5s;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1170px) {
   #fixed-menu .fixed {
     display: none;
   }
@@ -16265,6 +16305,57 @@ mark {
   display: none;
 }
 
+#flex-gnb {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+#flex-gnb > li {
+  display: block;
+  border-bottom: 1px solid #000;
+}
+
+#flex-gnb > li > ul {
+  background-color: #fff;
+}
+
+#flex-gnb > li > ul > li {
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+
+#flex-gnb > li > ul > li:first-child {
+  border-top: 1px solid #999;
+}
+
+#flex-gnb > li > ul > li > a {
+  display: block;
+  padding: 10px;
+  color: #000;
+}
+
+#flex-gnb > li > ul > li > a:before {
+  content: '';
+}
+
+#flex-gnb > li > ul > li > a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#flex-gnb > li > a {
+  display: block;
+  padding: 10px;
+  color: #000;
+}
+
+#flex-gnb > li > a.active {
+  background-color: #000;
+  color: #fff;
+}
+
 .gnb {
   width: 1200px;
   display: -webkit-box;
@@ -17354,6 +17445,12 @@ mark {
   margin: 0 auto;
 }
 
+@media (max-width: 1140px) {
+  .product-detail {
+    width: 100% !important;
+  }
+}
+
 .product-detail .header-info {
   position: relative;
 }
@@ -17484,6 +17581,25 @@ mark {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 100;
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  .airbnb-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    background-color: #fff;
+    z-index: 11;
+    padding: 20px 0;
+    -webkit-box-shadow: -1px 7px 9px 3px rgba(0, 0, 0, 0.01);
+            box-shadow: -1px 7px 9px 3px rgba(0, 0, 0, 0.01);
+  }
 }
 
 .airbnb-header .logo {
@@ -17496,8 +17612,25 @@ mark {
   font-weight: 200;
 }
 
+@media (max-width: 1140px) {
+  .airbnb-header .logo {
+    width: auto;
+    font-size: 20px;
+    text-align: left;
+    padding-right: 0;
+    padding: 10px 0;
+    padding-left: 20px;
+  }
+}
+
 .airbnb-header .logo .bolded {
   font-weight: 700;
+}
+
+@media (max-width: 1140px) {
+  .airbnb-header .logo .bolded {
+    font-weight: 400;
+  }
 }
 
 .airbnb-gnb {
@@ -17513,11 +17646,38 @@ mark {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  .airbnb-gnb {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    width: 100%;
+    display: none;
+  }
 }
 
 .airbnb-gnb li {
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+@media (max-width: 720px) {
+  .airbnb-gnb li {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    width: 100%;
+  }
 }
 
 .airbnb-gnb li a {
@@ -17529,9 +17689,100 @@ mark {
   transition: 0.5s;
 }
 
+@media (max-width: 1140px) {
+  .airbnb-gnb li a {
+    padding: 15px 10px;
+    text-align: left;
+  }
+}
+
 .airbnb-gnb li a:hover {
   border-bottom: 3px solid #51abf3;
   color: #51abf3;
+}
+
+.show {
+  display: block !important;
+}
+
+.toggle-buttons {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  top: 33px;
+  right: 20px;
+  z-index: 100;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .toggle-buttons {
+    display: block;
+  }
+}
+
+.toggle-buttons:hover {
+  cursor: pointer;
+}
+
+.toggle-buttons .menu-bar {
+  width: 100%;
+  height: 1px;
+  background-color: #171717;
+  position: absolute;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.toggle-buttons .menu-bar-top {
+  top: 0;
+}
+
+.toggle-buttons .menu-bar-middle {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.toggle-buttons .menu-bar-bottom {
+  bottom: 0;
+}
+
+.toggle-buttons.close .menu-bar-top {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 9px;
+}
+
+.toggle-buttons.close .menu-bar-middle {
+  display: none;
+  top: 0;
+}
+
+.toggle-buttons.close .menu-bar-bottom {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  bottom: 10px;
+}
+
+.layer-dimmed {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  bottom: -100%;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  opacity: 0.9;
+}
+
+.layer-dimmed.showup {
+  bottom: 0;
 }
 
 .airbnb-divider {
@@ -17581,6 +17832,23 @@ mark {
   line-height: 1.7em;
   font-weight: 300;
   color: var(--gray-500);
+}
+
+@media (max-width: 1140px) {
+  .product-info-box .btn-light {
+    display: block !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+  }
+  .product-info-box .con * {
+    width: 100% !important;
+  }
+  .product-info-box .con pre {
+    overflow: hidden;
+    word-break: break-all;
+  }
 }
 
 .attract-point {
@@ -18244,6 +18512,12 @@ mark {
   margin: 0 auto;
 }
 
+@media (max-width: 1140px) {
+  #footer {
+    width: 100%;
+  }
+}
+
 #footer .copy {
   font-size: 0.8rem;
   color: var(--gray-500);
@@ -18585,7 +18859,7 @@ mark {
   font-size: 22px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 720px) {
   #blog-type-2 .paging a.prev, #blog-type-2 .paging a.rwd, #blog-type-2 .paging a.next, #blog-type-2 .paging a.fwd {
     display: none;
   }
@@ -18629,6 +18903,15 @@ mark {
   padding-bottom: 20px;
 }
 
+@media (max-width: 1140px) {
+  #blog-type-3 .blog-list .blog-list-inner {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 #blog-type-3 .blog-list .blog-list-inner:after {
   content: '';
   position: absolute;
@@ -18640,6 +18923,12 @@ mark {
 
 #blog-type-3 .blog-list .blog-list-inner .thumb-wrap {
   width: 240px;
+}
+
+@media (max-width: 1140px) {
+  #blog-type-3 .blog-list .blog-list-inner .thumb-wrap {
+    width: 100%;
+  }
 }
 
 #blog-type-3 .blog-list .blog-list-inner .txt-wrap {
@@ -18655,6 +18944,13 @@ mark {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media (max-width: 1140px) {
+  #blog-type-3 .blog-list .blog-list-inner .txt-wrap {
+    padding-left: 0;
+    padding-top: 30px;
+  }
 }
 
 #blog-type-3 .blog-list .blog-list-inner .txt-wrap a {
@@ -18679,10 +18975,21 @@ mark {
   background-position: center;
 }
 
+@media (max-width: 1024px) {
+  #blog-type-3 .blog-list .entry-image {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 720px) {
+  #blog-type-3 .blog-list .entry-image {
+    min-height: 300px;
+  }
+}
+
 #blog-type-3 .blog-list .entry-image img {
   width: 100%;
   position: relative;
-  min-height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
   border: 1px solid red;
@@ -18710,7 +19017,13 @@ mark {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  line-height: 1.2;
+  line-height: 1.5;
+}
+
+@media (max-width: 1140px) {
+  #blog-type-3 .blog-list .entry-title h2 {
+    font-size: 18px;
+  }
 }
 
 #blog-type-3 .blog-list .entry-meta {
@@ -18739,6 +19052,13 @@ mark {
   margin: 0 15px 10px 0;
 }
 
+@media (max-width: 1140px) {
+  #blog-type-3 .blog-list .entry-meta ul li {
+    font-size: 14px;
+    color: #000;
+  }
+}
+
 #blog-type-3 .blog-list .entry-meta ul li .material-icons-outlined {
   vertical-align: sub;
   font-size: 20px;
@@ -18758,6 +19078,12 @@ mark {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+@media (max-width: 1140px) {
+  #blog-type-3 .blog-list .entry-content {
+    font-size: 0.9rem;
+  }
 }
 
 #blog-type-3 .blog-list .entry-content .t-1 {
@@ -18843,7 +19169,7 @@ mark {
   font-size: 22px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 720px) {
   #blog-type-3 .paging a.prev, #blog-type-3 .paging a.rwd, #blog-type-3 .paging a.next, #blog-type-3 .paging a.fwd {
     display: none;
   }
@@ -19026,6 +19352,113 @@ mark {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
   top: 50%;
+}
+
+#flex-layout .exp {
+  position: fixed;
+  left: 50px;
+  top: 50px;
+  z-index: 100;
+}
+
+#flex-layout .flx-tit {
+  font-size: 30px;
+  color: #4f96cc;
+}
+
+#flex-layout .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 20%;
+  width: 100%;
+  background-color: #2e76ac;
+  z-index: 2;
+}
+
+#flex-layout .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 20%;
+  width: 100%;
+  background-color: #2e76ac;
+}
+
+#flex-layout .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+#flex-layout .boxes {
+  width: 33.33333%;
+  border: 0px solid #ddd;
+  height: 100%;
+  position: relative;
+}
+
+#flex-layout .boxes:before {
+  content: "flex-box";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+}
+
+#flex-layout .boxes.blue-1 {
+  background-color: #75c4ff;
+}
+
+#flex-layout .boxes.blue-2 {
+  background-color: #5aa5df;
+}
+
+#flex-layout .boxes.blue-3 {
+  background-color: #4f96cc;
+}
+
+.flex-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.flex-dimmed {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #tpod-go-back {

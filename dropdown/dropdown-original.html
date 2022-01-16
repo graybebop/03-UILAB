@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>드롭다운</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<style>
+    .wrapper {
+        padding: 100px;
+    }
+    
+    .menu-wrapper {
+        position: relative;
+    }
+    
+    .dropdown {
+        position: absolute;
+        top: inherit;
+        left: 0;
+        background-color: #fff;
+        display: none;
+        left: -50px;
+        transition: 0.2s;
+        opacity: 0;
+    }
+    
+    .dropdown>li {
+        display: block;
+        border: 1px solid #ddd;
+    }
+    
+    .dropdown>li>a {
+        display: block;
+        color: #000;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    .dropdown.transition-left {
+        display: block;
+        left: 0;
+        opacity: 1;
+    }
+    
+    #menu .material-icons {
+        transition: 0.05s;
+        font-size: 20px;
+        position: relative;
+        right: 5px;
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: middle;
+        top: 0;
+        margin-right: -13px;
+    }
+    
+    .tpod-col-4 {
+        position: relative;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="menu-wrapper">
+            <div class="tpod-row">
+                <div class="tpod-col-4">
+                    <button class="btn btn-secondary" id="menu">
+                        <span class="txt">드롭다운메뉴</span>
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                    <ul class="dropdown" id="dropdown">
+                        <li><a href="#none">MENU-1</a></li>
+                        <li><a href="#none">MENU-2</a></li>
+                        <li><a href="#none">MENU-3</a></li>
+                        <li><a href="#none">MENU-4</a></li>
+                        <li><a href="#none">MENU-5</a></li>
+                    </ul>
+                </div>
+                <div class="tpod-col-4">
+                    <button class="btn btn-secondary" id="menu2">
+                        <span class="txt">드롭다운메뉴</span>
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                    <ul class="dropdown drops2" id="dropdown2">
+                        <li><a href="#none">MENU-1</a></li>
+                        <li><a href="#none">MENU-2</a></li>
+                        <li><a href="#none">MENU-3</a></li>
+
+                    </ul>
+                </div>
+                <div class="tpod-col-4">
+                    <button class="btn btn-secondary" id="menu3">
+                        <span class="txt">드롭다운메뉴</span>
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                    <ul class="dropdown drops3" id="dropdown3">
+                        <li><a href="#none">MENU-1</a></li>
+                        <li><a href="#none">MENU-2</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        const uiExtend = {
+            dropdownMenu: {
+                init: function(menuID, DropDownMenu) {
+
+                    let btnMenu = document.getElementById(menuID);
+                    let dropdown = document.getElementsByClassName(DropDownMenu)[0];
+                    let li = dropdown.querySelectorAll('li');
+                    li.forEach((target) => {
+                        target.addEventListener('click', (e) => {
+                            btnMenu.querySelector('.txt').textContent = e.currentTarget.textContent;
+                            e.stopPropagation();
+                            e.preventDefault();
+                            this.arrow(btnMenu, dropdown);
+
+
+
+                        });
+                    })
+
+                    btnMenu.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.arrow(btnMenu, dropdown);
+                        // document.querySelectorAll('.dropdown').forEach((target) => {
+                        //     if (target.classList.contains('show')) {
+                        //         target.classList.remove('show');
+                        //         target.classList.remove('transition-left');
+                        //         console.log(target);
+                        //     }
+
+                        // });
+                    });
+
+                    // document.body.addEventListener('click', (e) => {
+                    //     console.log(document.querySelectorAll('#'))
+                    // })
+                },
+
+                arrow: function(btnMenu, DropDownMenu) {
+
+                    let arrow = btnMenu.querySelector('.material-icons');
+
+                    if (!DropDownMenu.classList.contains('show')) {
+                        arrow.style.transform = "rotate(180deg)";
+                        DropDownMenu.classList.add('show');
+                        DropDownMenu.classList.add('transition-left');
+                        DropDownMenu.style.width = btnMenu.clientWidth + 'px';
+                        //this.transtion(this.dropdown, "transitionstart");
+                        return false;
+                    } else {
+                        arrow.style.transform = "rotate(0)";
+                        DropDownMenu.classList.remove('show');
+                        DropDownMenu.classList.remove('transition-left');
+                    }
+                },
+
+
+            }
+        };
+
+
+        window.addEventListener('load', () => {
+            const menu1 = uiExtend.dropdownMenu.init("menu", "dropdown");
+            const menu2 = uiExtend.dropdownMenu.init("menu2", "drops2");
+            const menu3 = uiExtend.dropdownMenu.init("menu3", "drops3");
+            console.log(document)
+
+            document.addEventListener('click', (e) => {
+
+                document.querySelectorAll('.dropdown').forEach((target) => {
+                    if (target.classList.contains('show')) {
+                        target.classList.remove('show');
+                        target.classList.remove('transition-left');
+                        console.log(target);
+                    }
+
+                });
+            });
+
+
+
+        });
+    </script>
+
+</body>
+
+</html>

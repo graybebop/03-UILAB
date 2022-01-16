@@ -69,3 +69,48 @@
     z-index: 1;
     display: none;
 }
+
+#flex-gnb {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    &>li {
+        display: block;
+        border-bottom: 1px solid #000;
+        &>ul {
+            background-color: #fff;
+            &>li {
+                display: block;
+                &:first-child {
+                    border-top: 1px solid #999;
+                }
+                border-bottom: 1px solid #ddd;
+                &>a {
+                    display: block;
+                    padding: 10px;
+                    color: #000;
+                    &:before {
+                        content: ''
+                    }
+                    &:hover {
+                        background-color: #fff;
+                        color: #000;
+                    }
+                }
+            }
+        }
+        &>a {
+            display: block;
+            padding: 10px;
+            color: #000;
+            &:hover {
+                // background-color: #f7f7f7;
+            }
+            &.active {
+                background-color: #000;
+                color: #fff;
+            }
+        }
+    }
+}

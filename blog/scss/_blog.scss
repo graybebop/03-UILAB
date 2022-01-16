@@ -336,15 +336,14 @@
             background-size: cover;
             background-position: center;
             @include tablet {
-                min-height: 300px;
+                min-height: 450px;
             }
             @include mobile-sm {
-                min-height: 200px;
+                min-height: 300px;
             }
             img {
                 width: 100%;
                 position: relative;
-                min-height: 300px;
                 object-fit: cover;
                 border: 1px solid red;
             }
