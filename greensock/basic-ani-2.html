@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/EaselPlugin.min.js"></script> -->
+</head>
+
+<body>
+    <div class="tpod-wrapper">
+        <button class="btn btn-dark" onclick="reset()">초기화</button>
+        <button class="btn btn-dark" onclick="ani1('box-1')">샘플1</button>
+        <button class="btn btn-dark" onclick="ani2('box box-2')">샘플2</button>
+        <div>https://greensock.com/docs/v2/Easing/ : Easing 효과 확인</div>
+
+        <button class="btn btn-dark" onclick="tl.play()">play</button>
+        <button class="btn btn-dark" onclick="tl.pause()">pause</button>
+        <button class="btn btn-dark" onclick="tl.resume()">resume</button>
+        <button class="btn btn-dark" onclick="tl.reverse()">reverse</button>
+        <button class="btn btn-dark" onclick="tl.timeScale(0.255)">slowMotion</button>
+        <button class="btn btn-dark" onclick="tl.timeScale(10)">FastMotion</button>
+    </div>
+
+    <div class="box box-1">box-1</div>
+    <div class="box box-2">box-2</div>
+    <div class="box box-3">box-3</div>
+    <div class="box box-4">box-4</div>
+    <div class="box box-5">box-5</div>
+
+    <div class="count">100</div>
+    <style>
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+            color: #fff;
+            font-size: 12px;
+        }
+        
+        .box.box-1 {
+            top: 200px;
+            left: 200px;
+        }
+        
+        .box.box-2 {
+            top: 300px;
+            left: 200px;
+        }
+        
+        .box.box-3 {
+            top: 400px;
+            left: 200px;
+        }
+        
+        .box.box-4 {
+            top: 500px;
+            left: 200px;
+        }
+        
+        .box.box-5 {
+            top: 600px;
+            left: 200px;
+        }
+        
+        .count {
+            position: absolute;
+            color: black;
+            font-size: 25px;
+            top: 30px;
+            right: 0;
+            padding: 10px;
+        }
+    </style>
+
+    <script>
+        window.addEventListener("load", () => {
+            // ani1("box box-1", 500, 1);
+            // ani1("box box-2", 500, 2);
+            // ani1("box box-3", 500, 3);
+            // ani1("box box-4", 500, 4);
+            // ani1("box box-5", 500, 5);
+
+            ani2("box box-1", 200, 1);
+            ani2("box box-2", 500, 2);
+            ani2("box box-3", 500, 3);
+            ani2("box box-4", 500, 4);
+            ani2("box box-5", 500, 5);
+        });
+
+        function reset(ele) {
+            // let box = document.getElementsByClassName(ele)[0];
+            // box.style.transform = "translate(100px, 100px)";
+
+            // box.style.opacity = "1";
+
+            let box = document.querySelectorAll(".box");
+
+
+            box.forEach((target) => {
+
+                TweenLite.to(target, 1, {
+                    opacity: 1,
+
+                    x: 100 + target.offsetWidth,
+
+                })
+            })
+
+        }
+        let i = 0;
+
+        function ani1(ele, xLoc, sec) {
+
+            i++;
+            console.log(i)
+            let box = document.getElementsByClassName(ele)[0];
+            console.log(box.offsetWidth)
+            TweenLite.to(box, 1, {
+                x: (xLoc) + (i * box.offsetWidth),
+                delay: sec
+            })
+        }
+
+        //타임라인을 이용하면 delay를 써서 하는 애니메이션과 똑같은 효과를 얻는다.
+        function ani2(ele, xLoc, delayCount) {
+            let box = document.getElementsByClassName(ele)[0];
+            let tl = new TimelineLite();
+
+            tl
+                .staggerFromTo(box, 1, {
+                    x: 100,
+                    autoAlpha: 0.2,
+
+
+                }, {
+                    x: xLoc,
+                    autoAlpha: 1,
+                    delay: delayCount
+
+                }, 0.1)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <script src="../js/common.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12 mt-100">
+                    <h1>EM에 관해서</h1>
+                    <p>길이가 유연한 가변 단위. media query와 함께 사용하면, 뷰포트의 크기에 따라 길이를 가변적으로 핸들링 할 수 있습니다. 상위 엘리먼트의 폰트 사이즈를 기준으로 적용되는 방식</p>
+                </div>
+                <div class="tpod-col-12">
+                    <h6 class="mt-20">
+                        parent클래스가 25px, child클래스는 1.5em child는 parent의 px의 영향을 받아서 폰트사이즈가 커지고 작아진다.
+                    </h6>
+                    <div class="parent mt-20">폰트사이즈 (parent)
+                        <div class="child">폰트사이즈 (child)</div>
+                    </div>
+                    <pre>
+                        <code class="language-css">
+.parent {
+    font-size: 25px;
+}
+
+.child {
+    font-size: 1.5em;
+}
+                        </code>
+                            </pre>
+                    <style>
+                        .parent {
+                            font-size: 25px;
+                        }
+                        
+                        .child {
+                            font-size: 1.5em;
+                        }
+                    </style>
+                </div>
+
+
+                <div class="tpod-col-12">
+                    <h6 class="mt-20">
+                        parent2클래스가 15px, child클래스는 1.5em child2는 parent2의 px의 영향을 받아서 폰트사이즈가 커지고 작아진다.
+                        <br /> 확실히 차이나는것을 볼 수 있다.
+                    </h6>
+                    <div class="parent2 mt-20">폰트사이즈 (parent)
+                        <div class="child2">폰트사이즈 (child)</div>
+                    </div>
+                    <pre>
+                        <code class="language-css">
+.parent2 {
+    font-size: 15px;
+}
+
+.child2 {
+    font-size: 1.5em;
+}
+                        </code>
+                            </pre>
+                    <style>
+                        .parent2 {
+                            font-size: 25px;
+                        }
+                        
+                        .child2 {
+                            font-size: 1.5em;
+                        }
+                    </style>
+                </div>
+
+
+                <div class="tpod-col-12">
+                    <h6 class="mt-20">
+                        parent3클래스가 15px, child3클래스는 1.5em child2는 parent3의 px의 영향을 받아서 폰트사이즈가 커지고 작아진다.
+                        <br /> 확실히 차이나는것을 볼 수 있다.
+                    </h6>
+                    <div class="parent3 mt-20">폰트사이즈 (parent)
+                        <div class="child3">폰트사이즈 (child)</div>
+                    </div>
+                    <pre>
+                        <code class="language-css">
+.parent3 {
+    font-size: 15px;
+}
+
+.child3 {
+    font-size: 1.5em;
+    padding: 2em 1em;
+}
+                        </code>
+                            </pre>
+                    <style>
+                        .parent3 {
+                            font-size: 15px;
+                        }
+                        
+                        .child3 {
+                            font-size: 1.5em;
+                            padding: 2em 1em;
+                        }
+                    </style>
+                </div>
+
+
+
+                <div class="tpod-col-12">
+                    <h6 class="mt-20">
+
+                    </h6>
+                    <div class="parent4">
+                        I'm 15px
+                        <div class="child4">
+                            I'm 30px, as expected
+                            <div class="child4">
+                                I'm 60px, trouble starts!
+                                <div class="child4">
+                                    I'm 120px, now we're really in trouble!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre>
+                        <code class="language-css">
+.parent4 {
+    font-size: 15px;
+}
+
+.child4 {
+    font-size: 1.5em;
+}
+                        </code>
+                            </pre>
+                    <style>
+                        .parent4 {
+                            font-size: 15px;
+                        }
+                        
+                        .child4 {
+                            font-size: 1.5em;
+                        }
+                    </style>
+                </div>
+
+            </div>
+            <div class="tpod-row">
+                <div class="tpod-col-12 mt-100">
+                    <h1>REM에 관해서</h1>
+                    <p>길이가 유연한 가변 단위. media query와 함께 사용하면, 뷰포트의 크기에 따라 길이를 가변적으로 핸들링 할 수 있습니다. 최상위 엘리먼트(html)의 폰트 사이즈를 기준으로 적용되는 방식</p>
+                </div>
+                <div class="tpod-col-12 html">
+
+                    <div class="parent6 mt-50">
+                        I'm 15px
+                        <div class="child-rem">
+                            I'm 32px, as expected
+                            <div class="child-rem">
+                                I'm 32px, yep!
+                                <div class="child-rem">
+                                    I'm 32px, like clockwork!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <pre>
+                        <code class="language-css">
+.html {
+    font-size: 16px;
+}
+.parent6 {
+    font-size: 15px;
+}
+.child-rem {
+    font-size: 2rem;
+}
+                        </code>
+                            </pre>
+                    <style>
+                        .html {
+                            font-size: 16px;
+                        }
+                        
+                        .parent6 {
+                            font-size: 15px;
+                        }
+                        
+                        .child-rem {
+                            font-size: 2rem;
+                        }
+                    </style>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

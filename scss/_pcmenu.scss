@@ -1,4 +1,19 @@
+#pc-gnb {
+    display: flex !important;
+    @include mobile {
+        display: none !important;
+    }
+}
+
+#mobile-gnb {
+    display: none !important;
+    @include mobile {
+        display: flex !important;
+    }
+}
+
 .gnb {
+    position: relative;
     width: 1200px;
     display: flex;
     flex-direction: row;
@@ -15,6 +30,7 @@
     li {
         display: block;
         margin: 0;
+        position: relative;
         @include mobile {
             width: 50%;
         }
@@ -82,6 +98,7 @@
         display: block;
         margin: 0;
         border: 1px solid #ddd;
+        position: relative;
     }
     &>li>ul>li>a {
         position: relative;

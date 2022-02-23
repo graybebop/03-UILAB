@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TEXT BLOCK</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../css/styles.min.css">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="js/textblock.min.js"></script>
+</head>
+
+<body>
+    <div class="d-flex justify-center  align-items-center nowrap columns vh100 w100">
+        <div class="w200">
+            <h1 class="txt-block text-center">TextBlock</h1>
+            <div class="txt-contents">
+                <span class="font-weight-700">"텍스트 블럭은 화면 사이즈에 따라 텍스트가 리사이즈 됩니다."</span> <br />Parameters target (required  ):<br /> The element that should be resized ".your‑class", "#some-id p" <br />minWidth: default 320 <br />maxWidth: default 960
+                <br />minWidth_FontSize: default 1.0 <br />maxWidth_FontSize: default 1.8 minWidth_LineHeight: default 1.33 (unitless values only) maxWidth_LineHeight: default 1.25 (unitless values only) minWidth_VariableGrade: A variable font weight
+                for the small size, for example 450 maxWidth_VariableGrade: A variable font weight for the large size, i.e. 400 container: The container width to measure. Defaults to "parent" and can alternately be set to "self". fontSize_Units: default
+                em
+            </div>
+
+        </div>
+
+    </div>
+</body>
+<script>
+    Textblock([{
+        target: ".txt-block",
+        minWidth: 280,
+        maxWidth: 800,
+        minWidth_FontSize: 1.9,
+        maxWidth_FontSize: 5.6,
+        minWidth_LineHeight: 1.33,
+        maxWidth_LineHeight: 1.25,
+        minWidth_VariableGrade: 366,
+        maxWidth_VariableGrade: 300,
+        container: "self",
+        fontSize_Units: "rem"
+    }, {
+        target: ".txt-contents",
+        minWidth_FontSize: 1,
+        maxWidth_FontSize: 2.6
+    }]);
+</script>
+<style>
+    .w200 {
+        width: 30%;
+    }
+    
+    h1 {
+        font-weight: 700;
+    }
+</style>
+
+</html>

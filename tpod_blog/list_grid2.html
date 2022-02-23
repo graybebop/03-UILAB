@@ -255,8 +255,15 @@
                         num = i + 1;
                     }
 
-                    list_container.innerHTML = '<a href="#none"></a><div class="thumb-wrap" data-link=' + data_arr[i].link + '><div class="entry-image" style="background-image: url(' + data_arr[i].img + ');"></div></div><div class="txt-wrap"><div class="entry-title"><h2>' + (num) + ' : ' + data_arr[i].title + '</h2></div><div class="entry-content"><div class="t-1">상세설명 :</div><div class="t-2">' + data_arr[i].excerp + '</div></div><div class="entry-meta bot"><ul><li><span class="material-icons-outlined">schedule</span>' + data_arr[i].dates + '</li><li><span class="material-icons-outlined">person</span>' + data_arr[i].nickname + '</li></ul></div>';
+                    list_container.innerHTML = '<a href="#none"></a><div class="thumb-wrap wide" data-link=' + data_arr[i].link + '><span class="thumb-title">' + data_arr[i].title + '</span><div class="entry-image" style="background-image: url(' + data_arr[i].img + ');"></div></div><div class="txt-wrap"><div class="entry-title"><h2>' + (num) + ' : ' + data_arr[i].title + '</h2></div><div class="entry-content"><div class="t-1"></div><div class="t-2">' + data_arr[i].excerp + '</div></div><div class="entry-meta bot"><ul><li><span class="material-icons-outlined">av_timer</span>' + data_arr[i].dates + '</li><li><span class="material-icons-outlined">person</span>' + data_arr[i].nickname + '</li></ul></div>';
                 }
+
+                let btnThumbs = document.getElementsByClassName("thumb-wrap wide")[0];
+
+                btnThumbs.addEventListener("mouseover", (e) => {
+
+                });
+
 
                 //for(let i=0; i<)
             },

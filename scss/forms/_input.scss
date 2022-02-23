@@ -897,3 +897,21 @@ input[type="text"]:focus::placeholder {
         transition: 0.3s;
     }
 }
+
+textarea::placeholder {
+    color: #999;
+}
+
+textarea:focus::placeholder {
+    color: transparent;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: #999;
+}
+
+input[type="email"]:focus::placeholder,
+input[type="password"]:focus::placeholder {
+    color: transparent;
+}

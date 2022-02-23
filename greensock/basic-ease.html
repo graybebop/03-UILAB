@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/EaselPlugin.min.js"></script> -->
+</head>
+
+<body>
+    <div class="tpod-wrapper">
+        <button class="btn btn-dark" onclick="reset()">초기화</button>
+        <button class="btn btn-dark" onclick="ani1('box-1')">샘플1</button>
+        <button class="btn btn-dark" onclick="ani2('box box-2')">샘플2</button>
+        <div>https://greensock.com/docs/v2/Easing/ : Easing 효과 확인</div>
+    </div>
+
+    <div class="box box-1">box-1</div>
+    <div class="box box-2">box-2 : ease: Power4.easeOut</div>
+    <div class="count">100</div>
+    <style>
+        .box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+            color: #fff;
+            font-size: 12px;
+        }
+        
+        .box.box-1 {
+            top: 200px;
+            left: 200px;
+        }
+        
+        .box.box-2 {
+            top: 200px;
+            left: 310px;
+        }
+        
+        .count {
+            position: absolute;
+            color: black;
+            font-size: 25px;
+            top: 30px;
+            right: 0;
+            padding: 10px;
+        }
+    </style>
+
+    <script>
+        function reset(ele) {
+            // let box = document.getElementsByClassName(ele)[0];
+            // box.style.transform = "translate(100px, 100px)";
+
+            // box.style.opacity = "1";
+
+            let box = document.querySelectorAll(".box");
+            box.forEach((target) => {
+                TweenLite.to(target, 1, {
+                    opacity: 1,
+                    y: 100,
+                    x: 100,
+
+                })
+            })
+
+        }
+
+        function ani1(ele) {
+            //1초동안 x=>500px , y=>500px 이동
+            //30으로하면 30초동안 이동
+            // TweenLite.to(box, 1, {
+            //     opacity: 0,
+            //     y: 500,
+            //     x: 500
+            // })
+            let box = document.getElementsByClassName(ele)[0];
+            console.log(box)
+            TweenLite.to(box, 1, {
+                opacity: 1,
+                x: 500,
+                y: 100
+            })
+        }
+
+
+        function ani2(ele) {
+            //1초동안 x=>500px , y=>500px 이동
+            //30으로하면 30초동안 이동
+            // TweenLite.to(box, 1, {
+            //     opacity: 0,
+            //     y: 500,
+            //     x: 500
+            // })
+            let box = document.getElementsByClassName(ele)[0];
+            console.log(box)
+            TweenLite.to(box, 1, {
+                x: 800,
+                y: 200,
+                ease: "bounce.in",
+                onStart: onStart,
+                onUpdate: onUpdate,
+                onComplete: onComplete,
+
+            })
+
+            TweenLite.from(box, 1, {
+                autoAlpha: 1
+            }, )
+        }
+
+        let i = 0;
+
+        function onStart() {
+            console.log("animation satrted")
+        }
+
+        function onUpdate() {
+            console.log("Animation is processing")
+
+            document.getElementsByClassName("count")[0].textContent = i++
+        }
+
+        function onComplete() {
+            console.log("Animation is finished")
+        }
+    </script>
+</body>
+
+</html>

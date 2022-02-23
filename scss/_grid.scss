@@ -154,3 +154,44 @@ $grid-spacing:3%;
     //     margin-right: 0%;
     // }
 }
+
+.d-flex {
+    display: flex;
+    position: relative;
+    &.rows {
+        flex-direction: row;
+    }
+    &.columns {
+        flex-direction: column;
+    }
+    &.justify-space-around {
+        justify-content: space-around;
+    }
+    &.justify-space-evenly {
+        justify-content: space-evenly;
+    }
+    &.justify-space-between {
+        justify-content: space-between;
+    }
+    &.justify-center {
+        justify-content: center !important;
+    }
+    &.align-items-center {
+        align-items: center;
+    }
+    &.nowrap {
+        flex-wrap: nowrap;
+    }
+}
+
+.bdr1px {
+    border: 1px solid #000;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.vh100 {
+    height: 100vh;
+}
