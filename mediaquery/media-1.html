@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+</head>
+
+<style>
+    table {
+        width: 100%;
+    }
+    
+    table th {
+        background-color: #000;
+        color: #fff;
+        font-size: 16px;
+        padding: 15px 20px;
+    }
+    
+    table td {
+        border: 1px solid #ddd;
+        color: #000;
+        font-size: 16px;
+        padding: 15px 20px;
+    }
+</style>
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-col-12 p-100">
+                <h3>미디어 쿼리의 이해</h3>
+                <div class="mt-20">
+                    반응형 웹에서는 필수인 미디어쿼리는, 화면크기 마다 각각 다르게 CSS를 적용하는 것이다. 화면 사이즈를 인식해 서로 다른 CSS를 적용시켜준다. 보통은 스마트폰, 태블릿 , PC 화면 3개 정도를 구분해준다. CSS파일이나 style에 기술한다.
+                </div>
+                <ul class="mt-20">
+                    <li>해상도 320px 이상 또는 768px 미만 -> 스마트폰</li>
+                    <li>해상도 768px 이상 또는 1024px 미만 -> 태블릿</li>
+                    <li>해상도 1024px 초과 -> PC</li>
+                </ul>
+                <div class="">
+                    <pre>
+                        <code class="language-css">
+    link 방식 ex ) &amp;lt;link rel="stylesheet" media="all and (min-width:320px)"
+
+                            </code>
+                            </pre>
+
+                </div>
+                <div class="" style="line-height: 2em;">
+                    only 키워드는 미디어쿼리를 지원하는 브라우저에서만 미디어쿼리를 해석하게한다.<br /> not 키워드는 not 다음에 따라오는 조건을 부정하는 키워드 (ex: not tv 는 tv를 제외한 모든 미디어)<br /> and 키워드는 앞뒤 조건이 모두 사실일때, 콘마는 앞뒤 조건이 하나라도 사실인 경우를 의미.<br /> 조건문은 조건문이 사실일때를 의미, and나 콘마를 이용하여 두가지 이상 작성이 가능하다.<br
+                    /> 모든 조건문에는 min-, max- 옵션을 줄 수 있다. (ex : min-width , max-width)<br /> 다중 조건 ex ) @media (min-width:320px) and (max-width:768px) {적용할css}<br /> 미디어 유형 (생략시 default 값은 all)<br /> all 모든장치<br /> screen 컴퓨터 화면 또는 스마트 기기 화면<br /> tv 영상과
+                    음성이 함께 출력되는 장치<br /> projection 프로젝터 장치<br /> handler 손에 들고다니는 소형장치<br /> speech 음성 출력 장치<br /> aural 음성 합성 장치 (화면을 소리로 출력해주는 장치)<br /> embossed 점자 인쇄 장치 (화면을 읽어 종이에 점자를 찍어내는 장치)<br /> tty 디스플레이 기능이 제한된 장치<br /> braille 점자 표시 장치<br
+                    /> width 웹페이지 가로 너비<br /> height 웹페이지 세로 높이<br /> device-width 기기의 가로 너비<br /> device-height 기기의 세로 높이<br /> orientation 기기의 화면방향 (portrait:세로,landscape:가로) aspect-ratio 화면 비율<br /> device-aspect-ratio 단말기기의 화면 비율<br /> color 기기의 비트
+                    수
+                    <br /> color-index 기기의 색상 수<br /> monochrome 기기가 흑백일 때 픽셀당 비트 수<br /> resoulution 기기의 해상력<br /> scan TV의 스캔 방식<br /> grid 기기의 그리드/비트맵<br />
+                </div>
+
+                <div class="">
+                    <div class="">
+                        <pre>
+                        <code class="language-css">
+                            * 미디어쿼리 ex )
+                            
+                            @media all and (min-width:320px) {
+                                #wrap div{
+                                  width:100%;
+                                }
+                              }
+                              @media all and (min-width:768px) {
+                                #wrap div{
+                                  width:50%;
+                                }
+                                #wrap div:nth-child(5){width:100%;}
+                              }
+                              @media all and (min-width:1024px) {
+                                #wrap div{
+                                  width:20%;
+                                }
+                                #wrap div:nth-child(5){width:20%;}
+                              }
+                            
+
+                            </code>
+                            </pre>
+
+                    </div>
+
+                </div>
+                <div class="" style="line-height: 2em;">
+                    뷰포트 (ViewPort) Viewport란 모바일 브라우저에서 web conetent 를 출력하는 영역으로써, 일반 PC의 브라우저에서는 존재하지 않는 개념이다. <br />Viewport는 웹페이지의 너비와 높이, 확대/축소 설정할 수 있게 해주며, <br />이를 통해 web content가 최적의 상태로 화면에 표시될 수 있게 도와준다. <br />쉽게말해 화면을 모바일에 맞게 표시해주는 설정이라고 보면
+                    된다.
+
+                    <head>태그 내부의
+                        <meta>태그로 기술한다. * 사용법
+
+                        <pre>
+  <code class="language-html">
+     
+    &lt;meta name="viewport" conetent="width-device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"&gt;
+
+      </code>
+      </pre>
+
+                </div>
+                <div class="" style="line-height: 2em;">
+                    width : 뷰포트의 너비 설정<br /> height : 뷰포트의 높이 설정<br /> initial-scale : 초기 배율 설정<br /> >> 1이 기본값, 1보다 낮으면 축소 , 1보다 크면 확대된 값으로 설정됨<br /> minimum-scale : 최소 축소 비율 설정<br /> >> 0.25 기본값<br /> maximum-scale : 최대 확대 비율 설정<br /> >> 5.0 기본값<br
+                    /> user-scalable : 확대/축소 여부 설정<br /> >> yes 기본값, yes | no<br />
+                </div>
+
+                <h4 class="mt-20 mb-5">CSS3 매체 유형(media type)</h4>
+                <table class="tb-2" summary="">
+                    <thead>
+                        <tr class="bg">
+                            <th style="width: 25%;">매체 유형</th>
+                            <th>설명</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>all</td>
+                            <td>모든 매체에 사용함.</td>
+                        </tr>
+                        <tr>
+                            <td>print</td>
+                            <td>프린터 기기에 사용함.</td>
+                        </tr>
+                        <tr>
+                            <td>screen</td>
+                            <td>컴퓨터나 태블릿, 스마트폰 등 스크린(screen)이 있는 매체에 사용함.</td>
+                        </tr>
+                        <tr>
+                            <td>speech</td>
+                            <td>웹 페이지를 읽어주는 스크린 리더(screenreader)에 사용함.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="mt-20 mb-5">CSS3 미디어 쿼리(media query) 속성</h4>
+                <table class="tb-2" summary="">
+                    <thead>
+                        <tr class="bg">
+                            <th style="width: 25%;">속성</th>
+                            <th>설명</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>width</td>
+                            <td>화면의 너비</td>
+                        </tr>
+                        <tr>
+                            <td>height</td>
+                            <td>화면의 높이</td>
+                        </tr>
+                        <tr>
+                            <td>device-width</td>
+                            <td>매체 화면의 너비</td>
+                        </tr>
+                        <tr>
+                            <td>device-height</td>
+                            <td>매체&nbsp;화면의&nbsp;높이</td>
+                        </tr>
+                        <tr>
+                            <td>devie-aspect-ratio</td>
+                            <td>매체 화면의 비율</td>
+                        </tr>
+                        <tr>
+                            <td>orientation</td>
+                            <td>매체 화면의 방향</td>
+                        </tr>
+                        <tr>
+                            <td>color</td>
+                            <td>매체의 색상 비트 수</td>
+                        </tr>
+                        <tr>
+                            <td>color-index</td>
+                            <td>매체에서 표현 가능한 색상의 개수</td>
+                        </tr>
+                        <tr>
+                            <td>monochrome</td>
+                            <td>흑백 매체에서의 픽셀당 비트 수</td>
+                        </tr>
+                        <tr>
+                            <td>resolution</td>
+                            <td>매체의 해상도</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>
+
+</html>

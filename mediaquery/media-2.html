@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+</head>
+
+
+<body>
+    <style>
+        .box-sample {
+            margin: 30px;
+            height: 30vh;
+            background-color: #000;
+            font-size: 50px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 1600 이하의 해상도에서 배경 색상 purple로 변경 */
+        
+        @media (max-width:1600px) {
+            .box-sample {
+                background-color: purple;
+            }
+        }
+        /* 1500 이하의 해상도에서 배경 색상 purple로 변경 */
+        
+        @media (max-width:1500px) {
+            .box-sample {
+                background-color: blue;
+            }
+        }
+        /* 1300 이상이고 1600이하인 해상도에서 배경 색상 red로 변경 */
+        
+        @media (min-width:1300px) and (max-width:1600px) {
+            .box-sample {
+                background-color: red;
+            }
+        }
+        /* screen : 컴퓨터나 태블릿, 스마트폰 등 스크린(screen)이 있는 매체에 사용함. */
+        
+        @media screen and (min-width: 1700px) {
+            .box-sample {
+                background-color: orange;
+            }
+        }
+    </style>
+
+    <div class="box-sample">
+        <span>Hello World!!!</span>
+    </div>
+</body>
+
+</html>
