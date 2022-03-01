@@ -12,49 +12,97 @@
     <!-- Noto Sans koran -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css">
     <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
 
-    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/swiper.min.js"></script>
     <script src="../js/common.js"></script>
 </head>
 
+
 <body>
-
     <!-- content : s -->
-    <section class="tpod-wrapper">
-        <div class="tpod-container-fluid tpod-page-title">
-            <!-- Page Title : E -->
-            <div class="page-title">
-                <h1>Buttons</h1>
-                <span class="txt">Inspiration comes of working every day.</span>
+    <section class="wrapper">
 
-            </div>
-            <!-- Page Title : E -->
-        </div>
-        <div class="tpod-container mt-70">
-            <div class="tpod-row tpod-flex-nowrap">
-                <div class="tpod-col-12 tpod-content">
-                    <div class="tpod-container form-input-effect">
-                        <div class="tpod-row">
-                            <div class="tpod-col-12">
+        <div class="container mt-70">
+            <div class="row flex-nowrap">
+                <div class="col-12 content">
+                    <div class="container form-input-effect">
+                        <div class="row">
+                            <div class="col-12">
                                 <h4>Buttons</h4>
                                 <div class="button-area">
-                                    <button type="button" class="btn btn-primary">Primary</button>
-                                    <button type="button" class="btn btn-secondary">Secondary</button>
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
-                                    <button type="button" class="btn btn-warning">Warning</button>
-                                    <button type="button" class="btn btn-info">Info</button>
-                                    <button type="button" class="btn btn-light">Light</button>
-                                    <button type="button" class="btn btn-dark">Dark</button>
-                                    <button type="button" class="btn btn-link">Link</button>
-                                    <button type="button" class="btn btn-link disabled">disabled</button>
+                                    <button type="button" class="btn btn-primary" role="button">Primary</button>
+                                    <button type="button" class="btn btn-secondary" role="button">Secondary</button>
+                                    <button type="button" class="btn btn-success" role="button">Success</button>
+                                    <button type="button" class="btn btn-danger" role="button">Danger</button>
+                                    <button type="button" class="btn btn-warning" role="button">Warning</button>
+                                    <button type="button" class="btn btn-info" role="button">Info</button>
+                                    <button type="button" class="btn btn-light" role="button">Light</button>
+                                    <button type="button" class="btn btn-dark" role="button">Dark</button>
+
                                 </div>
 
                             </div>
-                            <div class="tpod-divider"></div>
-                            <div class="tpod-col-12">
+                            <div class="col-12">
+                                <h4>Buttons Outline</h4>
+                                <div class="button-area">
+                                    <button type="button" class="btn btn-outline-primary" role="button">Primary</button>
+                                    <button type="button" class="btn btn-outline-secondary" role="button">Secondary</button>
+                                    <button type="button" class="btn btn-outline-success" role="button">Success</button>
+                                    <button type="button" class="btn btn-outline-danger" role="button">Danger</button>
+                                    <button type="button" class="btn btn-outline-warning" role="button">Warning</button>
+                                    <button type="button" class="btn btn-outline-info" role="button">Info</button>
+
+                                    <button type="button" class="btn btn-outline-dark" role="button">Dark</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <h4>Buttons Disabled</h4>
+                                <div class="button-area">
+                                    <button type="button" class="btn btn-primary" role="button" disabled>Primary</button>
+                                    <button type="button" class="btn btn-secondary" role="button" disabled>Secondary</button>
+                                    <button type="button" class="btn btn-success" role="button" disabled>Success</button>
+                                    <button type="button" class="btn btn-danger" role="button" disabled>Danger</button>
+                                    <button type="button" class="btn btn-warning" role="button" disabled>Warning</button>
+                                    <button type="button" class="btn btn-info" role="button" disabled>Info</button>
+                                    <button type="button" class="btn btn-dark" role="button" disabled>Dark</button>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <h4>A Tag Buttons Disabled</h4>
+                                <div class="button-area">
+                                    <a href="#none" class="btn btn-primary disabled" role="button" aria-disabled="true">Primary</a>
+                                    <a href="#none" class="btn btn-secondary disabled" role="button" aria-disabled="true">Secondary</a>
+                                    <a href="#none" class="btn btn-success disabled" role="button" aria-disabled="true">Success</a>
+                                    <a href="#none" class="btn btn-danger disabled" role="button" aria-disabled="true">Danger</a>
+                                    <a href="#none" class="btn btn-warning disabled" role="button" aria-disabled="true">Warning</a>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                                <h4>A Tag 링크기능 주의사항</h4>
+                                <div class="mt-10">
+                                    비활성화된 링크에서 href 속성을 유지해야 하는 경우를 다루기 위해 .disabled 클래스는 포인터 이벤트: 없음을 사용하여 <a>의 링크 기능을 비활성화하려고 시도합니다. 이 CSS 속성은 아직 HTML에 대해 표준화되지 않았지만 모든 최신 브라우저에서 지원합니다. 또한 포인터 이벤트: 없음을 지원하는 브라우저에서도 키보드 탐색은 영향을 받지 않습니다. 즉, 시력이 좋은 키보드 사용자와 보조 기술 사용자는 여전히 이러한 링크를 활성화할 수 있습니다. 따라서 안전을 위해 aria-disabled="true" 외에도 이러한 링크에 tabindex="-1" 속성을 포함하여 키보드 포커스를 받지 않도록 하고 사용자 정의 JavaScript를 사용하여 해당 기능을 완전히 비활성화하십시오.
+                                </div>
+                                <div class="button-area">
+                                    <a href="#none" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true">Primary</a>
+                                    <a href="#none" class="btn btn-secondary disabled" tabindex="-1" role="button" aria-disabled="true">Secondary</a>
+                                    <a href="#none" class="btn btn-success disabled" tabindex="-1" role="button" aria-disabled="true">Success</a>
+                                    <a href="#none" class="btn btn-danger disabled" tabindex="-1" role="button" aria-disabled="true">Danger</a>
+                                    <a href="#none" class="btn btn-warning disabled" tabindex="-1" role="button" aria-disabled="true">Warning</a>
+                                </div>
+
+                            </div>
+
+                            <div class="divider"></div>
+                            <div class="col-12">
                                 <h4>Buttons with Icon</h4>
                                 <div class="button-area">
                                     <button type="button" class="btn btn-light"><span class="icons material-icons-outlined">done</span>Primary</button>
@@ -62,8 +110,8 @@
                                 </div>
 
                             </div>
-                            <div class="tpod-divider"></div>
-                            <div class="tpod-col-12">
+                            <div class="divider"></div>
+                            <div class="col-12">
                                 <h4>Just Only Icon Button</h4>
                                 <div class="button-area">
                                     <button type="button" class="btn btn-secondary btn-xs btn-circle"><span class="material-icons-outlined">done</span></button><span class="ml-10">원 아이콘</span>
@@ -72,8 +120,8 @@
                                     <button type="button" class="btn btn-secondary btn-lg btn-circle ml-30"><span class="material-icons-outlined">done</span></button><span class="ml-10">원 아이콘</span>
                                 </div>
                             </div>
-                            <div class="tpod-divider"></div>
-                            <div class="tpod-col-12">
+                            <div class="divider"></div>
+                            <div class="col-12">
                                 <h4>Buttons - 기본속성은 display:inline-block</h4>
                                 <div class="button-area">
                                     <button type="button" class="btn btn-primary">Primary</button>
@@ -81,15 +129,15 @@
                                 </div>
 
                             </div>
-                            <div class="tpod-divider"></div>
-                            <div class="tpod-col-12">
+                            <div class="divider"></div>
+                            <div class="col-12">
                                 <h4>Buttons - 속성을 block으로 바꾸면</h4>
                                 <div class="button-area">
                                     <button type="button" class="btn btn-primary btn-block">Primary</button>
                                 </div>
 
                             </div>
-                            <div class="tpod-divider"></div>
+                            <div class="divider"></div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +147,21 @@
         </div>
     </section>
     <!-- content : s -->
-    zz
+    <script>
+        $('document').ready(function() {
+
+            ui.init();
+            const buttons = document.querySelectorAll('button');
+            if (buttons) {
+                for (const button of buttons) {
+                    button.addEventListener("click", ui.createRipple);
+                }
+            }
+
+        })
+    </script>
+
+
 </body>
 
 </html>

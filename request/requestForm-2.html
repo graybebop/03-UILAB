@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<section class="wrapper">
+    <div class="board-write py-50">
+        <h5 class="pb-10">홈페이지제작 견적문의</h5>
+        <div class="board-write-row">
+            <div class="lt">제목</div>
+            <div class="rt">
+                <input type="text" data-title="" class="bdr-title" placeholder="" />
+            </div>
+        </div>
+
+        <div class="board-write-row">
+            <div class="lt">분류</div>
+            <div class="rt">
+                <div class="d-inline-block" style="display: inline-block; position: relative;z-index: 10;">
+                    <button class="btn btn-secondary" id="menu">
+                        <span class="txt">분류를 선택 해주세요.</span>
+                        <span class="material-icons">expand_more</span>
+                    </button>
+                    <ul class="dropdown" id="dropdown">
+
+                        <li><a href="#none">홈페이지 디자인</a></li>
+                        <li><a href="#none">쇼핑몰</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="board-write-row bdr-open-state">
+            <div class="lt">공개여부</div>
+            <div class="rt">
+                <label class="switch-radio"><input type="checkbox" class="chbbox" data-state="" class="bdr-state" id="check-state" checked><span class="s-b round"></span></label>
+                <span class="txt" id="check-state-txt">비공개</span>
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">비밀번호</div>
+            <div class="rt">
+                <input type="password" data-password="password" name="" class="bdr-pd" placeholder="" />
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">이메일주소</div>
+            <div class="rt">
+                <input type="email" data-email="email" class="bdr-email" placeholder="" />
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">첨부파일</div>
+            <div class="rt">
+                <input type="file" data-email="file" class="bdr-email" placeholder="" />
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">이미지업로드</div>
+            <div class="rt">
+                <div class="button-area m-1 mb-20">
+                    <button type="button" class="btn btn-dark" id="duplicate-button">이미지 추가</button>
+                </div>
+
+                <div id="fileBox"></div>
+            </div>
+        </div>
+        <div class="board-write-row">
+            <div class="lt">내용</div>
+            <div class="rt">
+                <textarea class="txtfield bdr-memo" data-memo="text" placeholder=""></textarea>
+            </div>
+        </div>
+
+        <div class="board-write-button">
+            <button type="button" class="btn btn-dark btn-md write">확인</button>
+            <button type="button" class="btn btn-light btn-md modify">취소</button>
+        </div>
+
+    </div>
+
+</section>
+<style>
+    .wrapper {
+        padding: 100px;
+    }
+    
+    @media (max-width:1100px) {
+        .wrapper {
+            padding: 20px 15px;
+        }
+    }
+    
+    .menu-wrapper {
+        position: relative;
+    }
+    
+    .dropdown {
+        position: absolute;
+        top: inherit;
+        left: 0;
+        background-color: #fff;
+        transition: 0.2s;
+        visibility: hidden;
+        opacity: 0;
+    }
+    
+    .dropdown>li {
+        display: block;
+        border: 1px solid #ddd;
+    }
+    
+    .dropdown>li>a {
+        display: block;
+        color: #000;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    .dropdown.transition-left {
+        display: block;
+        left: 0;
+        opacity: 1;
+    }
+    
+    #menu .material-icons {
+        transition: 0.05s;
+        font-size: 20px;
+        position: absolute;
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: middle;
+        top: 10px;
+        right: 20px;
+        margin-right: -13px;
+    }
+    
+    [data-value] {
+        /* Attribute exists */
+    }
+    
+    [data-state="text"] {
+        display: none;
+    }
+    
+    [attribute="data-password"] {
+        display: none;
+    }
+    /* .btn-duplicate {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    } */
+    
+    .delBtn {
+        background: #fff;
+    }
+    
+    .filePath {
+        display: none;
+    }
+    
+    .file-input-area input[type="file"] {
+        padding: 0 !important;
+    }
+    
+    .visible {
+        visibility: visible;
+    }
+    
+    .hidden {
+        visibility: hidden;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+
+        const txtObj = [ //
+            {
+                title: '제목을 적어주세요.'
+            }, {
+                password: '비밀번호를 적어주세요.'
+            }, {
+                email: '이메일주소를 적어주세요.'
+            }, {
+                memo: '내용을 입력해주세요.'
+            },
+        ];
+
+
+
+        let ipt = [];
+        ipt[0] = document.getElementsByClassName('bdr-title')[0];
+        ipt[1] = document.getElementsByClassName('bdr-pd')[0];
+        ipt[2] = document.getElementsByClassName('bdr-email')[0];
+        ipt[3] = document.getElementsByClassName('bdr-memo')[0];
+        ipt[4] = document.getElementsByClassName('bdr-memo2')[0];
+        ipt[0].placeholder = txtObj[0].title;
+        ipt[1].placeholder = txtObj[1].password;
+        ipt[2].placeholder = txtObj[2].email;
+        // console.log(ipt_4);
+        ipt[3].placeholder = txtObj[3].memo;
+
+
+        let bdr = document.querySelectorAll('.board-write-row');
+        bdr[0].style.borderTop = "1px solid #ddd";
+
+        let openState = document.getElementById('check-state');
+        let openStateTxt = document.getElementById('check-state-txt');
+
+        let count = 0;
+        for (const txt of txtObj) {
+            console.log(txt)
+        }
+        openState.addEventListener('change', (e) => {
+            if (openState.checked) {
+                openStateTxt.textContent = "비공개";
+                openStateTxt.style.color = "#999";
+
+            } else {
+                openStateTxt.textContent = "공개";
+                openStateTxt.style.color = "#999";
+            }
+        });
+
+
+    });
+
+
+    function ClearPlaceHolder(input) {
+        if (input.value == input.defaultValue) {
+            input.value = "";
+        }
+    }
+
+    function SetPlaceHolder(input) {
+        if (input.value == "") {
+            input.value = input.defaultValue;
+        }
+    }
+
+
+
+    const upload = {
+        init: function() {
+            this.uploadImage.using() == true ? this.uploadImage.init() : false;
+        },
+        uploadImage: {
+            init: function() {
+                const fileBox = document.querySelectorAll('#fileBox');
+                fileBox.length > 0 ? this.setFiles() : false;
+                // alert('aaaaa')
+            },
+            setFiles: function() {
+                // const fileBox = document.querySelectorAll('#fileBox');
+                // const btnDuplicate = document.createElement('button');
+                const btnDuplicate = document.getElementById("duplicate-button");
+                // document.body.appendChild(btnDuplicate);
+                // btnDuplicate.setAttribute('class', 'btn btn-dark btn-duplicate')
+                // btnDuplicate.textContent = "이미지 추가";
+                var _this = this;
+                let count = 1;
+                btnDuplicate.addEventListener('click', function() {
+                    count++
+                    _this.duplicateFileBox(count);
+
+
+
+                });
+                // alert('aaaa');
+            },
+            duplicateFileBox: function(count) {
+
+
+                const fileHold = document.getElementById('fileBox');
+                const fileBox = document.createElement('div');
+                fileHold.appendChild(fileBox);
+                fileBox.setAttribute('id', 'fileBox' + count);
+                fileBox.setAttribute('class', 'file-box');
+                const fileWrap = document.createElement('div');
+                fileBox.appendChild(fileWrap);
+                fileWrap.setAttribute('class', 'file-input-area');
+                fileWrap.innerHTML += '<input type="file" class="real-input" id="real-input' + count + '" class="image_inputType_file" accept="img/*" required multiple />';
+                fileWrap.innerHTML += '<label class="btn btn-primary browse-btn" for="real-input' + count + '">사진업로드</label>';
+                fileBox.innerHTML += '<div id="preview' + count + '" class="preview mr-30 bordered"></div>';
+                fileBox.innerHTML += '<div id="filePath"></div>';
+                fileBox.innerHTML += '<button class="btn btn-circle btn-sm btn-outlined delBtn"><span class="material-icons-outlined">close</span></button>';
+
+                const previewID = document.getElementById('preview' + count + '');
+
+                this.getImageFile(count, fileBox, previewID, fileWrap);
+
+
+                let btn = fileBox.getElementsByClassName('delBtn')[0];
+                btn.addEventListener('click', (e) => {
+
+                    this.removeImage(e.currentTarget.parentNode)
+                })
+
+            },
+
+            getImageFile: function(count, pid, previewID, filewrap) {
+                // const browseBtn = document.querySelector('.browse-btn');
+                const realInput = document.querySelector('#real-input' + count);
+                const _this = this;
+                realInput.addEventListener('change', function(event) {
+                    console.log(_this, event);
+                    var file = realInput.files;
+
+                    if (!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)) {
+                        alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+                        console.log(realInput.outerHTML);
+                        // 선택한 파일 초기화
+                        file.outerHTML = realInput.outerHTML;
+                        pid.innerHTML = '';
+
+                    } else {
+                        _this.previewHtml(file, pid, previewID);
+                    }
+
+                });
+
+
+            },
+            previewHtml: function(file, pid, previewID) {
+                // pid.querySelector('#filePath').innerHTML = file[0].name;
+                // // FileReader 객체 사용
+                var reader = new FileReader();
+                // 파일 읽기가 완료되었을때 실행
+                reader.onload = function(rst) {
+                        previewID.innerHTML = '<img src="' + rst.target.result + '">';
+
+                    }
+                    // 파일을 읽는다
+                reader.readAsDataURL(file[0]);
+
+                pid.getElementsByClassName('file-input-area')[0].style.display = "none";
+            },
+            removeObject: function(target) {
+                target.innerHTML = "";
+            },
+            using: function() {
+                return true;
+            },
+
+            removeImage: function(id) {
+                const fileContainer = document.getElementById('fileBox');
+                fileContainer.removeChild(id);
+            }
+        },
+    }
+
+    upload.init();
+
+
+
+    const uiExtend = {
+        dropdownMenu: {
+            init: function(menuID, DropDownMenu) {
+
+                let btnMenu = document.getElementById(menuID);
+                let dropdown = document.getElementsByClassName(DropDownMenu)[0];
+                btnMenu.style.width = (dropdown.offsetWidth + 30) + "px";
+                let li = dropdown.querySelectorAll('li');
+                li.forEach((target) => {
+                    target.addEventListener('click', (e) => {
+                        btnMenu.querySelector('.txt').textContent = e.currentTarget.textContent;
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.arrow(btnMenu, dropdown);
+
+
+
+                    });
+                })
+
+                btnMenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    this.arrow(btnMenu, dropdown);
+                    // document.querySelectorAll('.dropdown').forEach((target) => {
+                    //     if (target.classList.contains('show')) {
+                    //         target.classList.remove('show');
+                    //         target.classList.remove('transition-left');
+                    //         console.log(target);
+                    //     }
+
+                    // });
+                });
+
+                // document.body.addEventListener('click', (e) => {
+                //     console.log(document.querySelectorAll('#'))
+                // })
+            },
+
+            arrow: function(btnMenu, DropDownMenu) {
+
+                let arrow = btnMenu.querySelector('.material-icons');
+
+                if (!DropDownMenu.classList.contains('visible')) {
+                    arrow.style.transform = "rotate(180deg)";
+                    DropDownMenu.classList.add('visible');
+                    DropDownMenu.classList.add('transition-left');
+                    DropDownMenu.style.width = btnMenu.clientWidth + 'px';
+                    //this.transtion(this.dropdown, "transitionstart");
+                    return false;
+                } else {
+                    arrow.style.transform = "rotate(0)";
+                    DropDownMenu.classList.remove('visible');
+                    DropDownMenu.classList.remove('transition-left');
+                }
+            },
+
+
+        }
+    };
+
+
+    window.addEventListener('load', () => {
+        const menu1 = uiExtend.dropdownMenu.init("menu", "dropdown");
+
+
+        document.addEventListener('click', (e) => {
+
+            document.querySelectorAll('.dropdown').forEach((target) => {
+                if (target.classList.contains('visible')) {
+                    target.classList.remove('visible');
+                    target.classList.remove('transition-left');
+                    console.log(target);
+                }
+
+            });
+        });
+
+
+
+    });
+</script>
+
+<body>
+
+
+</body>
+
+</html>

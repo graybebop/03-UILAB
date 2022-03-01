@@ -40,6 +40,8 @@
 @import '../sass/test';
 @import "../layout/flex/layout-flex";
 @import "mediaquery";
+@import "gnb/gnb";
+@import "../blog2/scss/blog";
 #tpod-go-back {
     cursor: pointer;
 }

@@ -5,314 +5,1156 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>TPOD</title>
+    <title>TPOD Work List</title>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- Noto Sans koran -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/swiper.css">
+
+
     <link rel="stylesheet" type="text/css" href="css/styles.min.css">
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/common.js"></script>
 </head>
+
 <style>
     .wrapper {
-        padding: 10px 20px;
-        position: relative;
+        padding: 0 50px;
     }
     
-    .grid-list {
-        border: 0px solid #ddd;
-    }
-    
-    .grid-list .items {
-        margin: 5px 10px 15px 10px;
-        padding-bottom: 10px;
-        align-self: auto;
-        height: auto;
-    }
-    
-    #calc {
-        z-index: 10;
-        position: fixed;
-        bottom: 10px;
-        padding: 10px;
-        border: 1px solid #000;
-        background-color: #fff;
-    }
-    
-    .history-back {
-        position: fixed;
+    .worklist {
         width: 100%;
-        height: 50px;
-        z-index: 10;
-        background-color: #fff;
-        padding-left: 10px;
-        padding-top: 20px;
+        min-width: auto;
+        max-width: 100%;
     }
     
-    .t-card {
-        height: auto !important;
+    .txtwrap * {
+        /* border: 1px solid #ddd; */
     }
     
-    @media(max-width:760px) {
-        .wrapper {
-            padding: 10px;
-        }
+    #articleNo {
+        color: red;
+        font-weight: 700;
     }
     
-    .t-card__subtitle {
-        margin-top: 10px !important;
+    table {
+        width: 100%;
     }
     
-    .top-button-area {
-        position: absolute;
-        top: 30px;
-        right: 30px;
+    table th {
+        padding: 10px 15px;
+        background-color: #000;
+        color: #fff;
+        font-size: 13px;
+        line-height: 1.2em;
+        text-align: center;
     }
     
-    .top-button-area .material-icons-outlined {
-        font-size: 18px;
+    table td {
+        padding: 10px 15px;
+        color: #000;
+        font-size: 13px;
+        line-height: 1.6em;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
     }
     
-    @media(max-width:760px) {
-        .top-button-area {
-            position: relative;
-        }
+    .no {
+        width: 50px;
+    }
+    
+    .cat {
+        width: 200px;
+    }
+    
+    .title {
+        text-align: left !important;
+        width: 70%;
+    }
+    
+    .work-area {
+        background-color: purple;
+        text-align: left;
+        color: #fff;
+        font-size: 16px;
     }
 </style>
 
 <body>
-    <!-- <div class="history-back">
-        <button class="btn btn-circle btn-sm" onclick="ui.goback()">
-            <span class="material-icons">
-                arrow_back
-            </span>
-        </button>
-        <span style="vertical-align: middle;">이전페이지로</span>
-    </div> -->
-    <section class="wrapper">
-        <div class="top-button-area">
-            <button class="btn btn-sm btn-light btn-outlined"><span class="material-icons-outlined">
-                format_list_bulleted
-                </span>리스트</button>
-            <button class="btn btn-sm btn-secondary"><span class="material-icons-outlined">
-                apps
-                    </span>그리드</button>
+    <section class="wrapper pt-20 pb-20">
+        <div class="worklist">
+            <table>
+                <tr>
+                    <th class="no">번호</th>
+                    <th class="cat">폴더위치</th>
+                    <th>제목</th>
+                    <th>링크</th>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : html변환</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">html태그 코드하이라이트에서 쓸수있도록 태그변환</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('html변환/index.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : Airbnb</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">달력</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('airbnb/calendar.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">상단네비게이션 코딩 / 날짜입력 / 인원수</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('airbnb/navigation.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">airbnb 같은 상세페이지 : 마이리얼트립+airbnb ==> 달력은 삭제하기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('airbnb/product-detail-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">airbnb 같은 상세페이지 : 마이리얼트립+airbnb ==> 달력은 삭제하기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('airbnb/product-detail-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">airbnb 같은 상세페이지 : 마이리얼트립+airbnb ==> 인원수 고르기 선택하면 팝업으로 디자인 뜬다 이부분을 참고</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('airbnb/product-detail-4.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>airbnb</td>
+                    <td class="title">airbnb 같이 그리드 형태의 디자인의 숙소를 구현하기 위해 코딩함</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('airbnb/product-list.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : animation</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>animation</td>
+                    <td class="title">transition-delay를 이해하기 위한 페이지</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('animation/basic-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>animation</td>
+                    <td class="title">CSS 에니메이션 기초 : box에 hover를 하게되면 배경색상이 변경</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('animation/basic.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td class="nos"></td>
+                    <td>animation</td>
+                    <td class="title">@keyframes</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('animation/keyframes.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td class="nos"></td>
+                    <td>animation</td>
+                    <td class="title">Random Move</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('animation/random-move-1.html')">링크</button></td>
+                </tr>
+
+
+                <tr>
+                    <td class="nos"></td>
+                    <td>animation</td>
+                    <td class="title">Random Move-2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('animation/random-move-2.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td class="nos"></td>
+                    <td>animation</td>
+                    <td class="title">Random Move-3 : stop and play 적용됨</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('animation/random-move-3.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : appbars</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>appbars</td>
+                    <td class="title">앱의 ui를 구현하기 위해 material 디자인을 구현하려고 하였지만 시간 부족으로 2페이지만 만들고맘</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('appbars/bottom.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>appbars</td>
+                    <td class="title">앱의 ui를 구현하기 위해 material 디자인을 구현하려고 하였지만 시간 부족으로 2페이지만 만들고맘</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('appbars/top.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : blog</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>blog</td>
+                    <td class="title">airbnb 같은 상세페이지 : 마이리얼트립+airbnb ==> 달력, 인원수고르기 적용되어 있슴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('blog/blog-detail.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>blog</td>
+                    <td class="title">airbnb 같은 상세페이지 : 마이리얼트립+airbnb ==> 달력, 인원수고르기 적용되어 있슴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('blog/blog-detail2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>blog</td>
+                    <td class="title">블로그 리스트 페이지가 적용됨 : airbnb 스타일 => 좌측 리스트, 우측 지도</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('blog/bloglist2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>blog</td>
+                    <td class="title">airbnb와같은 디테일 페이지 이지만 중복느낌이남(삭제예정)</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('blog/detail-travel.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : board</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>board</td>
+                    <td class="title">게시판과같은 리스트 페이지 : 테이블이 아닌 div로 구현 : 반응형 구현되어 있지만 미숙함</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('board/board-list.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>board</td>
+                    <td class="title">게시판 상세페이지로 구현하였지만 코딩이 불안정함 : sns대응해 만들어짐 네이버를 참고해서 제작</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('board/board-view.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>board</td>
+                    <td class="title">게시판 상세페이지로 구현하였지만 코딩이 불안정함 : sns대응해 만들어짐 네이버를 참고해서 제작</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('board/board-view.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>board</td>
+                    <td class="title">게시판 상세페이지로 구현하였지만 코딩이 불안정함 : 텍스트 area에 입력하면 자동으로 리사이징 됨</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('board/board-view2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>board</td>
+                    <td class="title">게시판 글쓰기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('board/board-write.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : calendar</td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>calendar</td>
+                    <td class="title">달력 : 입력상자에 커서를 focus하게되면 직접제작한 달려이 뜬다.</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('calendar/calendar-basic.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>calendar</td>
+                    <td class="title">달력개념형 : flex box로 제작</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('calendar/calendar-flex.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>calendar</td>
+                    <td class="title">달력개념형 : 테이블로 제작</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('calendar/calendar-table.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>calendar</td>
+                    <td class="title">달력 : 좌우측에서 선택할수 있게 제작</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('calendar/calendar.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : components</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">부트스트랩 영감받고 만들려고 했지만 미완성 : 경고문구</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/alerts.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">부트스트랩 영감받고 만들려고 했지만 미완성 : 아바타</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/avatars.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">부트스트랩 영감받고 만들려고 했지만 미완성 : 인용문구</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/blockquote.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">박스에 롤오버 하게되면 에니메이션 효과 적용</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/box.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">박스에 롤오버 하게되면 에니메이션 효과 적용</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/box.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">버튼</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/buttons.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">구분선 : 콘텐츠와 콘텐츠 사이를 구분해주는 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/dividers.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">레이아웃 - display flex columns </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/grid.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>components</td>
+                    <td class="title">라디오 SWITCH버튼 커스토마이징 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('components/switch.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : dropdown</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>dropdown</td>
+                    <td class="title">드롭다운 메뉴 - 1차메뉴 선택하면 2차메뉴에 리스트가 나타난다. </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('dropdown/dropdown-1-실패작.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>dropdown</td>
+                    <td class="title">드롭다운 메뉴 - 드롭다운메뉴 1차 2차 3차 만둔후 하나의 펑션으로 제작 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('dropdown/dropdown-original.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>dropdown</td>
+                    <td class="title">select 메뉴 - 배열 데이터 가져와서 리스트 뿌린다</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('dropdown/select.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : editor</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>editor</td>
+                    <td class="title">에디터 1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('editor/editor.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>editor</td>
+                    <td class="title">에디터 2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('editor/editor2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>editor</td>
+                    <td class="title">에디터 3 : 외부에디터 - 무료소스</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('editor/editor3.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : flex-test</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex : justify-content</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-3.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-4.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-5.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-6.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-7.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-8.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex - Stretch all, fixed spacing flex-grow: 2;를 적용해서 한 오브젝트를 중심으로 다른오브젝트 사이즈가 작아진것을 알수 있다.</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-9.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-10.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-11.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-12.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-13.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-14.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>flex-test</td>
+                    <td class="title">flex </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('flex-test/flexbox-15.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : GNB</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>gnb</td>
+                    <td class="title">gnb - 가로메뉴 기본형 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('gnb/gnb.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>gnb</td>
+                    <td class="title">gnb - 가로메뉴 멀티레벨 - 가장기본형 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('gnb/gnb2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : gridcss</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>gridcss</td>
+                    <td class="title">grid template - 기본개념</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('gridcss/grid-template_col_and_row.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>gridcss</td>
+                    <td class="title">grid template 예제</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('gridcss/grid-template_ex_1.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>gridcss</td>
+                    <td class="title">grid-template-areasㅊ</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('gridcss/grid-template-areas.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : html_basics</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>html_basics</td>
+                    <td class="title">rem em에 관한 단위 알아보기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('html_basics/rem_em_px_unit.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : javascript</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>javascript</td>
+                    <td class="title">랜덤텍스트 - 1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('javascript/random-text.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>javascript</td>
+                    <td class="title">랜덤텍스트 - 2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('javascript/random-text2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>javascript</td>
+                    <td class="title">텍스트 애니메이션 - 다른 사람이 짠 코드</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('javascript/text-effect.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>javascript</td>
+                    <td class="title">토글 효과</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('javascript/toggle.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>javascript</td>
+                    <td class="title">상자복제 - for문 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('javascript/two-dimensional_array.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>javascript</td>
+                    <td class="title">윈도우 리사이즈 테스트</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('javascript/window-resize.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : javascript</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">플렉스 박스 기본형</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('layout/flex-layout-3columns.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">플렉스 박스 기본형2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('layout/flex-layout-header_footer_3col_even.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">앱바 - 기본형</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('layout/appbar.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">breadcrumb</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('layout/breadcrumbs.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">T card</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('layout/t-card.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : mediaquery</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">미디어쿼리 이해</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('mediaquery/media-1.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>layout</td>
+                    <td class="title">미디어쿼리 예제</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('mediaquery/media-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : mobile</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>mobile</td>
+                    <td class="title">모바일 메뉴 - collapsable</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('mobile/mobile-completed.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>mousewheel</td>
+                    <td class="title">마우스</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('mousewheel/mobile-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : mousewheel</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>mousewheel</td>
+                    <td class="title">마우스 휠</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('mousewheel/wheel.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : navigation</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">베이직 메뉴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/basic-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">Collaps Menu-1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/collapse-menu-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">Collaps Menu-2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/collapse-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">css-only-hovermenu</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/css-only-hovermenu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">css-only-hovermenu</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/dropdown-select-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">fixed-menu</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/fixed-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">자바스크립트 2단 메뉴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/javscript-second-depth-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">세로 2단메뉴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/vertical-multi-level-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">세로 2단메뉴 2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/vertical-menu-second-depth.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-1.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 3</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-3.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 4</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-4.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 5</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-5.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 6</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-6.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>navigation</td>
+                    <td class="title">GNB Set - 7</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('navigation/gnb-set-7.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : pcmenu</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>pcmenu</td>
+                    <td class="title">베이직 메뉴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('pcmenu/menu-pc-mobile-responsive.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : plugins</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>plugins</td>
+                    <td class="title">TextBlock - 텍스트 블럭 : 화면 사이즈에 따라 텍스트 사이즈 변경</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('plugins/index.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : popup</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>popup</td>
+                    <td class="title">팝업, 모달, 토스트 창에 대한 정의</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('popup/popup.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : regexp</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>regexp</td>
+                    <td class="title">regexp- 콘솔정의</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('regexp/regexp2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : search</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>search</td>
+                    <td class="title">create-table</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('search/create-table.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>search</td>
+                    <td class="title">filter-foreach</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('search/filter-foreach-js.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>search</td>
+                    <td class="title">filter-foreach2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('search/filter-foreach.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>search</td>
+                    <td class="title">검색엔진 테스트 1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('search/search-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>search</td>
+                    <td class="title">검색엔진 테스트 2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('search/search.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : shape</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>shape</td>
+                    <td class="title">CSS로 그리는 리본</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('shape/corner-ribbon.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>shape</td>
+                    <td class="title">햄버거 아이콘 for 모바일메뉴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('shape/hamburger-navigation.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>shape</td>
+                    <td class="title">로딩중...</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('shape/loading-animation-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>shape</td>
+                    <td class="title">로딩중...</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('shape/loading-animation.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>shape</td>
+                    <td class="title">css로 shape 그리기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('shape/shape.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : slider</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid3</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid3.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid4</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid4.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid5</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid5.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid6</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid6.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid7</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid7.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid8</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid8.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid9</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid9.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid10</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid10.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid11</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/grid11.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">grid12</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/shuffle.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>slider</td>
+                    <td class="title">tpod slider</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('slider/tpod-slider.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : swiper_slider</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">mobile-menu-grid-list</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/mobile-menu-grid-list.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">TpoD uilab 에쓰여진 상세보기 페이지 디자인</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/slider-1.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">swiper-column</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/swiper-column.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">swiper 기본형 -1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/swiper-list-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">swiper 기본형 -2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/swiper-list-3.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">swiper를 이용한 롱 메뉴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/swiper-long-menu.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">swiper-menu-list 모바일 모드에서만 작동됨</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/swiper-menu-list.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>swiper_slider</td>
+                    <td class="title">swiper-paging</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('swiper_slider/swiper-paging.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : tetris</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>tetris</td>
+                    <td class="title">tetris</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('tetris/tetris.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : touch</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>touch</td>
+                    <td class="title">vh, vw를 설명하기위한 페이지인데 무슨의미????</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('touch/event-1.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : tpod_blog</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>tpod_blog</td>
+                    <td class="title">tpod 블로그 상세페이지</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('tpod_blog/detail_travel.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>tpod_blog</td>
+                    <td class="title">리스트 그리드</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('tpod_blog/list_grid.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>tpod_blog</td>
+                    <td class="title">리스트 스택</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('tpod_blog/list_grid2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>tpod_blog</td>
+                    <td class="title">리스트 보통</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('tpod_blog/list.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>tpod_blog</td>
+                    <td class="title">글쓰기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('tpod_blog/write.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : treeview</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>treeview</td>
+                    <td class="title">treeview</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('treeview/treeview.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : units</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>units</td>
+                    <td class="title">vh, vw 이해하기 1</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('units/vh_vw.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>units</td>
+                    <td class="title">vh, vw 이해하기 2</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('units/vh_vw-2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>units</td>
+                    <td class="title">vmin_vmax 이해하기</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('units/vmin_vmax.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : upload</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>upload</td>
+                    <td class="title">uploadfile </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('upload/uploadfile.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : validation</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>validation</td>
+                    <td class="title">폼체크 기본형인데 미완성 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('validation/form.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>validation</td>
+                    <td class="title">폼체크 플러그인 활용한것 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('validation/form2.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>validation</td>
+                    <td class="title">폼체크 just validate 활용 </td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('validation/form3.html')">링크</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : validation</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>video</td>
+                    <td class="title">드래그 & 드롭</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('video/drag.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>video</td>
+                    <td class="title">좌, 우 드래그할수 잇는 창구분</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('video/dragBar.html')">링크</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="work-area">폴더위치 : blog2</td>
+
+                </tr>
+                <tr>
+                    <td class="nos"></td>
+                    <td>blog2</td>
+                    <td class="title">블로그 리스트에서 썸네일 오버시 글자가 위로 올라온다 - 특별한건 없슴</td>
+                    <td><button type="button" class="btn btn-dark btn-md" onclick="ui.goLinks('blog2/blog-1.html')">링크</button></td>
+                </tr>
+            </table>
         </div>
-        <h5 class="pt-50 pb-20">전체리스트 - <span class="font-size-14 font-weight-300">총 <em id="articleNo" class="font-weight-700">34</em> 개의 작업물이 완료되었습니다.</span></h5>
-
-        <ul class="grid-list">
-            <li data-link="/portfolio/" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/9.jpg');">
-                </div>
-                <div class="t-card__title">작업경력서(VUE JS & PHP & MYSQL)</div>
-                <div class="t-card__subtitle">2000년도 부터 지금까지 일한 작업내역</div>
-            </li>
-            <li data-link="highlight/code-highlite.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/1.jpg');">
-                </div>
-                <div class="t-card__title">코드하이라이터</div>
-                <div class="t-card__subtitle">인강에서 예제 사용시 필수인 코드하이라이터</div>
-            </li>
-            <li data-link="tabs/tabs.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/2.jpg');">
-
-                </div>
-                <div class="t-card__title">탭 버튼</div>
-                <div class="t-card__subtitle">페이지 내 여러콘텐츠를 보여줄때 효과적인 UI 메뉴</div>
-            </li>
-            <li data-link="calendar/calendar-flex.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/3.jpg');">
-
-                </div>
-                <div class="t-card__title">미완성 달력</div>
-                <div class="t-card__subtitle">Display flex로 코딩(자바 스크립트 포함)</div>
-            </li>
-            <li data-link="calendar/calendar-table.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/3.jpg');">
-
-                </div>
-                <div class="t-card__title">미완성 달력</div>
-                <div class="t-card__subtitle">달력 Table로 작업(자바스크립트로 작업)</div>
-            </li>
-            <li data-link="grid/mobile-menu-grid-list.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/4.jpg');">
-
-                </div>
-                <div class="t-card__title">Swiper Menu & 자바스크립트 그리드 레이아웃</div>
-                <div class="t-card__subtitle">스와이퍼 메뉴가 적용되어 있다 PC 모드는 적용이 안되어 있고 모바일에서 활성화됨. <span class="text-important">해당 메뉴 누르면 메뉴가 화면을 넘어갈때 스와이핑 기능이 적용</span>이되며 메뉴 활성화될때 화면의 중앙으로 이동 됨. 같이 쓰인 그리드 리스트는 테스트
-                </div>
-            </li>
-            <li data-link="pcmenu/menu-pc-mobile-responsive.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/5.jpg');">
-
-                </div>
-                <div class="t-card__title">멀티레벨 메뉴</div>
-                <div class="t-card__subtitle">다단계 메뉴 반응형에 맞게 작동
-                </div>
-            </li>
-            <li data-link="mobile/mobile-completed.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/6.jpg');">
-
-                </div>
-                <div class="t-card__title">모바일 메뉴</div>
-                <div class="t-card__subtitle">모바일메뉴 - 닫기, 열기
-                </div>
-            </li>
-            <li data-link="treeview/treeview.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/7.jpg');">
-
-                </div>
-                <div class="t-card__title">트리 메뉴</div>
-                <div class="t-card__subtitle">TreeMenu - 세로형 트리메뉴
-                </div>
-            </li>
-            <li data-link="slider/tpod-slider.html" class="t-card items">
-                <div class="t-card_thumb" style="background-image: url('uilab/8.jpg');">
-
-                </div>
-                <div class="t-card__title">자바스크립트 슬라이더</div>
-                <div class="t-card__subtitle">자바스크립트 슬라이더, 좌우 네비게이션, 페이징, 화면당 개수조정
-                </div>
-            </li>
-        </ul>
 
     </section>
 
-
     <script>
-        const gridList = {
-
-            init: function() {
-
-                this.items = document.querySelectorAll('.grid-list .items'); //현재 정보
-                this.container = document.getElementsByClassName('grid-list')[0];
-                this.container_flex_width = document.getElementsByClassName('grid-list')[0].clientWidth;
-
-                this.delay = 250;
-                this.timer = null;
-                this.count = 10;
-
-                window.addEventListener('resize', () => {
-                    this.resizeHandler();
-                });
-
-                this.resizeHandler();
-            },
-
-            reArrange: function(ttt, width) {
-                let length = ttt.length;
-                for (var i = 0; i < length; i++) {
-                    ttt[i].style.width = width + 'px';
-                }
-            },
-
-            resizeHandler: function() {
-
-                var w_w_width = window.innerWidth;
-                this.breakPoint = {
-                    'col-xss': 350,
-                    'col-xs': 450,
-                    'col-sm': 760,
-                    'col-md': 1024,
-                    'col-lg': 1500,
-                    'col-xl': 1650,
-                };
-                if (this.breakPoint['col-xss'] <= w_w_width && this.breakPoint['col-xs'] >= w_w_width) {
-                    this.itemsCol = 1;
-                }
-                if (this.breakPoint['col-xs'] <= w_w_width && this.breakPoint['col-sm'] >= w_w_width) {
-                    this.itemsCol = 2;
-                }
-
-                if (this.breakPoint['col-sm'] <= w_w_width && this.breakPoint['col-md'] >= w_w_width) {
-                    this.itemsCol = 2;
-                }
-                if (this.breakPoint['col-md'] <= w_w_width && this.breakPoint['col-lg'] >= w_w_width) { //1024보다 크고  1170보다 작음
-                    this.itemsCol = 3;
-
-                }
-                if (this.breakPoint['col-lg'] <= w_w_width && this.breakPoint['col-xl'] >= w_w_width) {
-                    this.itemsCol = 4;
-                }
-                if (this.breakPoint['col-xl'] < w_w_width) {
-                    this.itemsCol = 5;
-                }
-
-                clearTimeout(this.timer);
-
-                this.timer = setTimeout(() => {
-                    this.getItems(this.itemsCol);
-
-                    console.log('itemsCol', this.itemsCol, this)
-
-                }, this.delay);
+        window.addEventListener("load", () => {
+            let td_nums = document.querySelectorAll(".worklist .nos");
+            td_nums.forEach((target, index, p) => {
+                p[index].textContent = index + 1;
 
 
-                console.log(this.itemsCol)
-            },
-            getItems: function(n) {
-
-                let itemsProps = window.getComputedStyle(document.getElementsByClassName('items')[0]);
-
-                let itemsPadRight = parseInt(itemsProps.paddingRight);
-                let itemsPadLeft = parseInt(itemsProps.paddingLeft);
-                let itemsMarginRight = parseInt(itemsProps.marginRight);
-                let itemsMarginLeft = parseInt(itemsProps.marginLeft);
-
-                this.container.style.marginLeft = -itemsMarginLeft + 'px';
-                this.container.style.marginRight = -itemsMarginRight + 'px';
-
-                let border = n * 2;
-                this.itemsCol = n;
-                let itemsRow = 100 / this.itemsCol;
-                let itemsTotal = itemsPadRight + itemsPadLeft + itemsMarginRight + itemsMarginLeft + border;
-
-                let itemsSpace = 'calc(' + itemsRow + '% - ' + itemsTotal + 'px )';
-                let i = 0;
-
-
-                let rowWidth = 0;
-                let itemsWidth = [];
-
-                let lastWidth = null;
-
-                for (var item of this.items) {
-
-                    item.style.width = itemsSpace;
-                    if (i < n) {
-                        itemsWidth[i] = item.clientWidth;
-                        rowWidth = rowWidth + itemsWidth[i];
-                        if (i == n - 1) {
-
-                            lastWidth = (rowWidth / n) + (border - 2);
-                        }
-                        i++;
-                    }
-
-                    this.reArrange(this.items, lastWidth);
-                }
-
-
-            }
-        }
-
-        window.addEventListener('load', () => {
-            gridList.init();
-            ui.gotoUrl();
-
-            let txtwrap = document.querySelectorAll('.grid-list li');
-            document.getElementById('articleNo').innerText = txtwrap.length;
+            })
         })
     </script>
 
-
-
 </body>
+
 
 </html>

@@ -1,0 +1,649 @@
+#pc-gnb {
+    display: flex !important;
+    @include mobile {
+        display: none !important;
+    }
+}
+
+#mobile-gnb {
+    display: none !important;
+    @include mobile {
+        display: flex !important;
+    }
+}
+
+.gnb {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 1200px;
+    @include mobile {
+        width: auto;
+        flex-direction: column;
+        padding: 0 15px;
+    }
+    ul {
+        position: relative;
+    }
+    li {
+        position: relative;
+        display: block;
+        margin: 0;
+        flex: 1;
+        @include mobile {
+            width: 100%;
+        }
+        a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            &.arrow-right:after {
+                content: "navigate_next";
+                display: block;
+                position: absolute;
+                top: 30%;
+                right: 10px;
+                font-family: 'Material Icons Outlined';
+                -webkit-font-feature-settings: 'liga';
+                font-size: 24px;
+                color: #666;
+            }
+        }
+    }
+    &>li>a.active {
+        background-color: #000;
+        color: #fff !important;
+    }
+    &>li>a.arrow-right:hover:after {
+        color: #fff;
+    }
+    &>li>ul {
+        position: absolute;
+        top: inherit;
+        left: 0;
+        width: 100%;
+        margin-top: 0;
+        display: none;
+        z-index: 1111;
+        background-color: #fff;
+        @include mobile {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    }
+    &>li>ul li a:hover {
+        background-color: #f7f7f7;
+    }
+    &>li>ul>li ul {
+        position: absolute;
+        top: inherit;
+        left: 100%;
+        width: 100%;
+        margin-top: -55px;
+        display: none;
+        z-index: 1111;
+        background-color: #fff;
+        @include mobile {
+            position: relative;
+            margin-top: 0;
+            top: 0;
+            left: 0;
+        }
+    }
+    &>li>ul>li {
+        display: block;
+        margin: 0;
+        border: 1px solid #ddd;
+    }
+    &>li>ul>li>a {
+        position: relative;
+        padding: 20px 20px;
+        display: block;
+    }
+    &>li ul li {
+        @include mobile {
+            width: 100% !important;
+        }
+    }
+}
+
+#header-set-4 {
+    display: flex;
+    flex-direction: column;
+    .divider {
+        height: 1px;
+        background-color: #ddd;
+        width: 100%;
+        margin-top: -6px;
+    }
+    .gnb-plain {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        @include mobile {
+            width: auto;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+        ul {
+            position: relative;
+        }
+        li {
+            position: relative;
+            display: block;
+            margin: 0;
+            flex: 1;
+            @include mobile {
+                width: 100%;
+            }
+            a {
+                position: relative;
+                padding: 20px 20px;
+                display: block;
+                font-size: 14px;
+                &.arrow-right:after {
+                    content: "keyboard_arrow_down";
+                    display: block;
+                    position: absolute;
+                    top: 30%;
+                    right: 10px;
+                    font-family: 'Material Icons Outlined';
+                    -webkit-font-feature-settings: 'liga';
+                    font-size: 24px;
+                    color: #666;
+                }
+            }
+        }
+        &>li>a.active {
+            background-color: #000;
+            color: #fff !important;
+        }
+        &>li>a.arrow-right:hover:after {
+            color: #fff;
+        }
+        &>li>ul {
+            position: absolute;
+            top: inherit;
+            left: 0;
+            width: 100%;
+            margin-top: 0;
+            display: none;
+            z-index: 1111;
+            background-color: #fff;
+            @include mobile {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+        }
+        &>li>ul li a:hover {
+            background-color: #f7f7f7;
+        }
+        &>li>ul>li ul {
+            position: absolute;
+            top: inherit;
+            left: 100%;
+            width: 100%;
+            margin-top: -55px;
+            display: none;
+            z-index: 1111;
+            background-color: #fff;
+            @include mobile {
+                position: relative;
+                margin-top: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+        &>li>ul>li {
+            display: block;
+            margin: -1px;
+            border: 1px solid #ddd;
+        }
+        &>li>ul>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+        }
+        &>li ul li {
+            @include mobile {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+#header-set-5 {
+    display: flex;
+    flex-direction: column;
+    .divider {
+        height: 1px;
+        background-color: #ddd;
+        width: 100%;
+        margin-top: -6px;
+    }
+    .gnb-plain2 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        @include mobile {
+            width: auto;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+        ul {
+            position: relative;
+        }
+        li {
+            position: relative;
+            display: block;
+            margin: 0;
+            flex: 1;
+            @include mobile {
+                width: 100%;
+            }
+            a {
+                position: relative;
+                padding: 20px 20px;
+                display: block;
+                font-size: 14px;
+                &.arrow-right:after {
+                    content: "keyboard_arrow_down";
+                    display: block;
+                    position: absolute;
+                    top: 30%;
+                    right: 10px;
+                    font-family: 'Material Icons Outlined';
+                    -webkit-font-feature-settings: 'liga';
+                    font-size: 24px;
+                    color: #666;
+                    transition: transform 0.5s;
+                }
+            }
+        }
+        &>li>a {
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 3px;
+                background-color: #000;
+                transition: 0.5s;
+            }
+            &:hover:before {
+                width: 100%;
+            }
+        }
+        &>li>a.active {
+            color: #000;
+        }
+        &>li>a.arrow-right:hover:after {
+            color: #000;
+            transform: rotate(180deg);
+        }
+        &>li>ul {
+            position: absolute;
+            top: inherit;
+            left: 0;
+            width: 100%;
+            margin-top: 0;
+            display: none;
+            z-index: 1111;
+            background-color: #fff;
+            @include mobile {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+        }
+        &>li>ul li a:hover {
+            background-color: #f7f7f7;
+        }
+        &>li>ul>li ul {
+            position: absolute;
+            top: inherit;
+            left: 100%;
+            width: 100%;
+            margin-top: -55px;
+            display: none;
+            z-index: 1111;
+            background-color: #fff;
+            @include mobile {
+                position: relative;
+                margin-top: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+        &>li>ul>li {
+            display: block;
+            margin: -1px;
+            border: 1px solid #ddd;
+        }
+        &>li>ul>li>a {
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+        }
+        &>li ul li {
+            @include mobile {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+#header-set-6 {
+    display: flex;
+    flex-direction: column;
+    .divider {
+        height: 1px;
+        background-color: #ddd;
+        width: 100%;
+        margin-top: -6px;
+        position: relative;
+        z-index: 100;
+        //display: none;
+    }
+    .gnb-plain3 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        @include mobile {
+            width: auto;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+        ul {
+            position: relative;
+        }
+        li {
+            position: relative;
+            display: block;
+            margin: 0;
+            flex: 1;
+            @include mobile {
+                width: 100%;
+            }
+            a {
+                position: relative;
+                padding: 20px 20px;
+                display: block;
+                font-size: 14px;
+                color: #666;
+                &.arrow-right:after {
+                    content: "keyboard_arrow_down";
+                    display: block;
+                    position: absolute;
+                    top: 30%;
+                    right: 10px;
+                    font-family: 'Material Icons Outlined';
+                    -webkit-font-feature-settings: 'liga';
+                    font-size: 24px;
+                    color: #666;
+                    transition: transform 0.5s;
+                }
+            }
+        }
+        &>li>a {
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 3px;
+                background-color: #000;
+                transition: 0.5s;
+            }
+            &:hover:before {
+                width: 100%;
+            }
+        }
+        &>li>a.active {
+            color: #000;
+        }
+        &>li>a.arrow-right:hover:after {
+            color: #000;
+            transform: rotate(180deg);
+        }
+        &>li>ul {
+            position: absolute;
+            top: inherit;
+            left: 0;
+            width: 100%;
+            margin-top: 0;
+            z-index: 1111;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 0;
+            transition: 2s;
+            height: 0;
+            @include mobile {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+        }
+        &>li>ul li a:hover {
+            background-color: #f7f7f7;
+        }
+        &>li>ul>li ul {
+            position: absolute;
+            top: inherit;
+            left: 100%;
+            width: 100%;
+            margin-top: -55px;
+            display: none;
+            z-index: 1111;
+            background-color: #fff;
+            @include mobile {
+                position: relative;
+                margin-top: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+        &>li>ul>li {
+            display: block;
+            border: 0px solid #ddd;
+        }
+        &>li>ul>li>a {
+            position: relative;
+            padding: 10px 20px;
+            display: block;
+        }
+        &>li ul li {
+            @include mobile {
+                width: 100% !important;
+            }
+        }
+    }
+    .bg-submenu {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 99;
+        border-bottom: 1px solid #ddd;
+        transition: height 0.5s;
+    }
+}
+
+#header-set-7 {
+    display: flex;
+    flex-direction: column;
+    .divider {
+        height: 1px;
+        background-color: #ddd;
+        width: 100%;
+        z-index: 100;
+        //display: none;
+    }
+    .gnb-plain4 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        @include mobile {
+            width: auto;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+        ul {
+            position: relative;
+        }
+        li {
+            position: relative;
+            display: block;
+            margin: 0;
+            flex: 1;
+            @include mobile {
+                width: 100%;
+            }
+            a {
+                position: relative;
+                padding: 20px 20px;
+                display: block;
+                font-size: 14px;
+                color: #666;
+                &.arrow-right:after {
+                    content: "keyboard_arrow_down";
+                    display: block;
+                    position: absolute;
+                    top: 30%;
+                    right: 10px;
+                    font-family: 'Material Icons Outlined';
+                    -webkit-font-feature-settings: 'liga';
+                    font-size: 24px;
+                    color: #666;
+                    transition: transform 0.5s;
+                }
+            }
+        }
+        &>li>a {
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 3px;
+                background-color: #000;
+                transition: 0.5s;
+            }
+            &:hover:before {
+                width: 100%;
+            }
+        }
+        &>li>a.active {
+            color: #000;
+        }
+        &>li>a.arrow-right:hover:after {
+            color: #000;
+            transform: rotate(180deg);
+        }
+    }
+    .bg-submenu {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: rgba(255, 255, 255, 1);
+        z-index: 99;
+        border-bottom: 1px solid #ddd;
+        transition: height 0.5s;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        &.opened {
+            // height: 150px;
+        }
+        ul {
+            position: absolute;
+            left: 0;
+            width: auto;
+            margin-top: 0;
+            z-index: 1111;
+            background-color: #fff;
+            padding: 10px 0;
+            transition: 0.5s;
+            @include mobile {
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+            li {
+                position: relative;
+                display: block;
+                margin: 0;
+                flex: 1;
+                @include mobile {
+                    width: 100%;
+                }
+                a {
+                    position: relative;
+                    padding: 10px 20px;
+                    display: block;
+                    font-size: 14px;
+                    color: #666;
+                    &:hover {
+                        background-color: #f7f7f7;
+                    }
+                }
+            }
+        }
+        // &>li>ul li a:hover {
+        //     background-color: #f7f7f7;
+        // }
+    }
+}
+
+.fixed {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    // padding-left: 50px;
+    // padding-right: 50px;
+}

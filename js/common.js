@@ -191,6 +191,12 @@ const ui = {
 
     },
 
+    goLinks: function(link) {
+
+        window.location.href = link;
+
+    },
+
     backToPrevPage: function() {
         window.history.back();
     },
