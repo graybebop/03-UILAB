@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TPOD</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Noto Sans koran -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.min.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+    <script src="../js/common.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+
+<body>
+    <div class="tpod-wrapper">
+        <div class="tpod-container">
+            <div class="tpod-row">
+                <div class="tpod-col-12 mt-100">
+                    <h3>css selecttor : select by attribute</h3>
+                    <p>길이가 유연한 가변 단위. media query와 함께 사용하면, 뷰포트의 크기에 따라 길이를 가변적으로 핸들링 할 수 있습니다. 상위 엘리먼트의 폰트 사이즈를 기준으로 적용되는 방식</p>
+                </div>
+                <style>
+                    input[type="password"] {
+                        color: red;
+                    }
+                    
+                    input[name] {
+                        background: blue;
+                        display: block;
+                        padding: 10px;
+                    }
+                    
+                    p {
+                        display: block;
+                        margin: 10px 0;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <p><input name="pw" type="password" /></p>
+                    <p><input name="id" type="text" /></p>
+                    <p><input name="age" type="number" /></p>
+                </div>
+                <div class="tpod-col-12">
+                    <pre>
+        <code class="language-css">
+input[type="password"] {
+    color: red;
+}
+
+input[name] {
+    background: blue;
+    display: block;
+    padding: 10px;
+}
+
+p {
+    display: block;
+    margin: 10px 0;
+}
+        </code>
+            </pre> <pre>
+                    <code class="language-html">
+    &lt;p&gt;&lt;input name="pw" type="password" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input name="id" type="text" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input name="age" type="number" /&gt;&lt;/p&gt;
+                        </code>
+                    </pre>
+                </div>
+
+                <!-- content : s -->
+                <style>
+                    h1[title~="first"] {
+                        color: red;
+                        font-size: 20px;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <h1 title="heading first">Heading first</h1>
+                    <h1 title="hello first">Heading-first</h1>
+                    <h1 title="abc-first">Heading second</h1>
+                    <h1 title="heading second">Heading third</h1>
+
+
+                    <pre>
+                        <code class="language-css">
+/* h1 요소 중에 title 어트리뷰트 값에 "first"를 단어로 포함하는 요소 */
+h1[title~="first"] {
+    color: red;
+    font-size:20px;
+}
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+    &lt;h1 title="heading first"&gt;Heading first&lt;/h1&gt;
+    &lt;h1 title="hello first"&gt;Heading-first&lt;/h1&gt;
+    &lt;h1 title="abc-first"&gt;Heading second&lt;/h1&gt;
+    &lt;h1 title="heading second"&gt;Heading third&lt;/h1&gt;
+
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+
+
+                <!-- content : s -->
+                <style>
+                    p[lang|="en"] {
+                        color: red;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <p lang="en">Hello!</p>
+                    <p lang="en-us">Hi!</p>
+                    <p lang="en-gb">Ello!</p>
+                    <p lang="us">Hi!</p>
+                    <p lang="no">Hei!</p>
+
+                    <pre>
+                        <code class="language-css">
+/* p 요소 중에 lang 어트리뷰트 값이 "en"과 일치하거나 "en-"로 시작하는 요소 */
+p[lang|="en"] {
+    color: red;
+}
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+    &lt;p lang="en"&gt;Hello!&lt;/p&gt;
+    &lt;p lang="en-us"&gt;Hi!&lt;/p&gt;
+    &lt;p lang="en-gb"&gt;Ello!&lt;/p&gt;
+    &lt;p lang="us"&gt;Hi!&lt;/p&gt;
+    &lt;p lang="no"&gt;Hei!&lt;/p&gt;
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+                <!-- content : s -->
+                <style>
+                    a[href^="https://"] {
+                        color: red;
+                        font-size: 30px;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <a href="https://www.test.com">https://www.test.com</a><br>
+                    <a href="http://www.test.com">http://www.test.com</a>
+
+                    <pre>
+                        <code class="language-css">
+/* a 요소 중에 href 어트리뷰트 값이 "https://"로 시작하는 요소 */
+a[href^="https://"] {
+    color: red;
+    font-size:30px;
+}
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+&lt;a href="https://www.test.com"&gt;https://www.test.com&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://www.test.com"&gt;http://www.test.com&lt;/a&gt;
+                
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+
+                <!-- content : s -->
+                <style>
+                    a[href$=".png"] {
+                        margin-top: 10px;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <img src="a.png" />
+                    <img src="b.jpeg" />
+
+                    <pre>
+                        <code class="language-css">
+/* a 요소 중에 href 어트리뷰트 값이 ".png"로 끝나는 요소 */
+a[href$=".png"] {
+    margin-top: 10px;
+}
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+&lt;img src="a.png" /&gt;
+&lt;img src="b.jpeg" /&gt;
+                
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+
+
+                <!-- content : s -->
+                <style>
+                    /* p 요소의 형제 요소 중에 p 요소 바로 뒤에 위치하는 ul 요소를 선택한다. */
+                    
+                    p+ul {
+                        color: red;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <div>A div element.</div>
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+
+                    <p>The first paragraph.</p>
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+
+                    <h2>Another list</h2>
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <pre>
+                        <code class="language-css">
+    /* p 요소의 형제 요소 중에 p 요소 바로 뒤에 위치하는 ul 요소를 선택한다. */
+    p + ul { color: red; }
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+    &lt;div&gt;A div element.&lt;/div&gt;
+    &lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;The first paragraph.&lt;/p&gt;
+    &lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Another list&lt;/h2&gt;
+    &lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;/ul&gt;
+                
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+
+
+
+
+                <!-- content : s -->
+                <style>
+                    /* p 요소의 형제 요소 중에 p 요소 뒤에 위치하는 ul 요소를 모두 선택한다.*/
+                    
+                    p~ul {
+                        color: red;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <div>A div element.</div>
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+
+                    <p>The first paragraph.</p>
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+
+                    <h2>Another list</h2>
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+                    <pre>
+                        <code class="language-css">
+/* p 요소의 형제 요소 중에 p 요소 뒤에 위치하는 ul 요소를 모두 선택한다.*/
+
+p~ul {
+    color: red;
+}
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+    &lt;div&gt;A div element.&lt;/div&gt;
+    &lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;The first paragraph.&lt;/p&gt;
+    &lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Another list&lt;/h2&gt;
+    &lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;/ul&gt;
+                
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- content : s -->
+                <style>
+                    /* ol 요소의 자식 요소인 li 요소 중에서 짝수번째 요소만을 선택 */
+                    
+                    ol>li:nth-child(2n + 2) {
+                        color: orange;
+                    }
+                    /* ol 요소의 자식 요소인 li 요소 중에서 홀수번째 요소만을 선택 */
+                    
+                    ol>li:nth-child(2n+1) {
+                        color: green;
+                    }
+                    /* 1, 3, 5, 7, 9, 11 ... */
+                    /* ol 요소의 자식 요소인 li 요소 중에서 4번째 요소 요소만을 선택 */
+                    
+                    ol>li:nth-child(4) {
+                        background: brown;
+                    }
+                    /* ul 요소의 모든 자식 요소 중에서 뒤에서부터 시작하여 홀수번째 요소만을 선택 */
+                    
+                    ul> :nth-last-child(2n+1) {
+                        color: red;
+                    }
+                    /* ul 요소의 모든 자식 요소 중에서 뒤에서부터 시작하여 짝수번째 요소만을 선택 */
+                    
+                    ul> :nth-last-child(2n) {
+                        color: blue;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <ol>
+                        <li>Espresso</li>
+                        <li>Americano</li>
+                        <li>Caffe Latte</li>
+                        <li>Caffe Mocha</li>
+                        <li>Caramel Latte</li>
+                        <li>Cappuccino</li>
+                    </ol>
+
+                    <ul>
+                        <li>Espresso</li>
+                        <li>Americano</li>
+                        <li>Caffe Latte</li>
+                        <li>Caffe Mocha</li>
+                        <li>Caramel Latte</li>
+                        <li>Cappuccino</li>
+                    </ul>
+                    <pre>
+                        <code class="language-css">
+    /* ol 요소의 자식 요소인 li 요소 중에서 짝수번째 요소만을 선택 */
+
+    ol>li:nth-child(2n + 2) {
+        color: orange;
+    }
+    /* ol 요소의 자식 요소인 li 요소 중에서 홀수번째 요소만을 선택 */
+
+    ol>li:nth-child(2n+1) {
+        color: green;
+    }
+    /* 1, 3, 5, 7, 9, 11 ... */
+    /* ol 요소의 자식 요소인 li 요소 중에서 4번째 요소 요소만을 선택 */
+
+    ol>li:nth-child(4) {
+        background: brown;
+    }
+    /* ul 요소의 모든 자식 요소 중에서 뒤에서부터 시작하여 홀수번째 요소만을 선택 */
+
+    ul> :nth-last-child(2n+1) {
+        color: red;
+    }
+    /* ul 요소의 모든 자식 요소 중에서 뒤에서부터 시작하여 짝수번째 요소만을 선택 */
+
+    ul> :nth-last-child(2n) {
+        color: blue;
+    }
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+    &lt;ol&gt;
+    &lt;li&gt;Espresso&lt;/li&gt;
+    &lt;li&gt;Americano&lt;/li&gt;
+    &lt;li&gt;Caffe Latte&lt;/li&gt;
+    &lt;li&gt;Caffe Mocha&lt;/li&gt;
+    &lt;li&gt;Caramel Latte&lt;/li&gt;
+    &lt;li&gt;Cappuccino&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;ul&gt;
+    &lt;li&gt;Espresso&lt;/li&gt;
+    &lt;li&gt;Americano&lt;/li&gt;
+    &lt;li&gt;Caffe Latte&lt;/li&gt;
+    &lt;li&gt;Caffe Mocha&lt;/li&gt;
+    &lt;li&gt;Caramel Latte&lt;/li&gt;
+    &lt;li&gt;Cappuccino&lt;/li&gt;
+    &lt;/ul&gt;
+                
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+
+
+
+                <!-- content : s -->
+                <style>
+                    input[type="text"]:valid {
+                        background-color: greenyellow;
+                    }
+                    
+                    input[type="text"]:invalid {
+                        background-color: red;
+                    }
+                </style>
+                <div class="tpod-col-12">
+                    <label>입력값이 반드시 필요
+                        <input type="text" required>
+                      </label>
+                    <br>
+                    <label>특수문자를 포함하지 않는 4자리 문자 또는 숫자
+                        <input type="text" value="ab1!"
+                          pattern="[a-zA-Z0-9]{4}" required>
+                      </label>
+                    <br>
+                    <label>핸드폰 번호 형식
+                        <input type="text" value="010-1111-2222"
+                          pattern="^\d{3}-\d{3,4}-\d{4}$" required>
+                      </label>
+                    <pre>
+                        <code class="language-css">
+input[type="text"]:valid {
+    background-color: greenyellow;
+}
+
+input[type="text"]:invalid {
+    background-color: red;
+}
+                        </code>
+                            </pre>
+
+                    <pre>
+                                <code class="language-html">
+        &lt;label&gt;입력값이 반드시 필요
+        &lt;input type="text" required&gt;
+        &lt;/label&gt;
+        &lt;br&gt;
+        &lt;label&gt;특수문자를 포함하지 않는 4자리 문자 또는 숫자
+        &lt;input type="text" value="ab1!"
+        pattern="[a-zA-Z0-9]{4}" required&gt;
+        &lt;/label&gt;
+        &lt;br&gt;
+        &lt;label&gt;핸드폰 번호 형식
+        &lt;input type="text" value="010-1111-2222"
+        pattern="^\d{3}-\d{3,4}-\d{4}$" required&gt;
+        &lt;/label&gt;
+                
+                                </code>
+                                    </pre>
+                </div>
+                <!-- content : E -->
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
